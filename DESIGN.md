@@ -1,0 +1,76 @@
+# Product site direction
+
+Keep the Windows dynamic island and the visual AI agent office equally visible. Use the actual desktop interface for the interactive preview, with a browser adapter and fictional data.
+
+The marketing shell uses charcoal (#10131c), paper (#f1ece4), cyan (#91d6d8), coral (#ffa98c) and lilac (#c0b6e5). Segoe UI Variable Display and Text use system fallbacks; no commercial fonts are distributed.
+
+The opening pairs left-aligned product messaging with a live, sharply rendered compact island above the original office scene. The Windows desktop wallpaper provides a recognisable setting in both this overview and the interactive workspace. Nine icon-and-label rectangular buttons form a horizontal feature rail, with horizontal scrolling on small screens. Island features are organised in an expandable guide. The office has a distinct question hand-off story with three sequential steps. A language section lists the 11 interface languages verified against the desktop app's LANGUAGES registry and JSON catalogs. Installer status and FAQs close the page.
+
+Avoid the reference site's layout, coloured square-icon matrix, ribbon wallpaper, companion section sequence and Store/download block. Product imagery must come from AgentOffice itself. The composition is built around the two connected product views.
+
+Capsule preview sizing preserves separate space for the artwork, clock and status. The longer date-and-time appearance expands the closed capsule to 232 CSS pixels instead of letting its contents overflow.
+
+Do not introduce unverified performance figures, download counts, Store links or release claims. The installer is not yet linked.
+
+The website supports the app's 11 languages. A globe menu in the upper right and native-language buttons in the language section share one preference. English is the default; an explicit language URL or a saved browser preference overrides it. All marketing copy, FAQ content, labels, demo captions, document metadata and accessible control names use bundled translations. The browser product adapter reads the same language through its URL and uses the product's existing catalogs. Example project names, filenames and sample song lyrics remain sample content. No external translation service is called.
+
+The hero now uses two independently framed product studies, with clear space between them. The Windows study is narrower and right aligned; the office is wider. Captions use the same external label system. No joined seams, stacked pseudo-windows, repeated mascot footer, or in-image marketing labels.
+
+The compact island uses the desktop app's current status-strip component and its native five-second clock/status rotation. The sample laptop charges at 68%, the sample audio output is AirPods Pro, and the sample weather is Istanbul at 21°C. Charging and AirPods toolbar actions play the original connection notices; weather shows its original city/temperature treatment. Manual examples receive a complete five-second turn, then native rotation resumes. Both the hero and main preview use this component. No device detection, geolocation or weather request is made by the website. New descriptions and controls are available in all 11 languages.
+
+Show the app's verified first-launch glass appearance by default. Feed its actual glass renderer a local copy of the illustrated desktop, without capturing the visitor's screen. Keep the hero's whole frame available so the mascot and shoulders are never cropped. The main preview supports horizontal dragging by the original dotted grip, a short opt-in gesture demonstration, and keyboard movement; constrain the open panel to the desktop. Surface thin-line breathing and its five native colours directly beside the preview. Add an editorial gallery of the real menus (focus, water, notes and settings), with native screenshots and links to try them. Keep the two-product hero, existing language controls and privacy boundary intact.
+
+
+## Showcase verification — 2026-10-28
+- Native pointer drag moved the expanded island 102 px; centre control restored its position. Keyboard movement also verified.
+- Native glass and dark appearance toggles verified; thin line uses the original line-glow animation at 3.2 s.
+- Four real native menu screenshots captured after importing the product settings stylesheet.
+- Mobile at 390 px: no horizontal overflow; compact mascot remains inside the full-width preview carrier.
+- Translation validation: 203 messages in all 11 languages; browser scripts syntax checked; Vite build passed.
+
+
+## Live menu study revision
+The four screenshot cards were rejected because small raster crops, unrelated blue backdrops, and inconsistent whitespace looked pasted into the page. Replace them with one continuous, interactive native menu study. Four horizontal tabs share a single stage and one footer. Render the actual product components directly; no screenshots, fake window chrome or additional cards. Palette: ink #10131d, slate #202936, mist #9bc8ce, coral #f6a1ab, lilac #b7a7eb. Keep Segoe UI in display/body roles, with restrained letter spacing for utility labels. The signature is the native glass island drawing against a soft, original slate atmosphere that fills its whole stage. Preserve the main Windows demo, office, languages and all existing controls.
+
+Live study verification: no raster image remains under #menus; one live product frame. Focus Start changes to Pause, water logging updates 750 mL to 1 L, notes checkbox is usable, settings opens and closes correctly when changing tabs, and the gesture guide starts on Water. Turkish labels and native frame language verified. At 390 px the page has no horizontal overflow; the study zooms into the menu rather than shrinking a whole desktop. Original screenshot gallery assets removed.
+
+
+## Claude reference integration
+Use the user’s Claude-built site at AgentOffice/site as the structural and visual reference: large centred opening with a real top-edge island, three concise benefits, generous alternating feature rows and a full-width office. Keep both Windows dynamic island and AI office explicit in the headline. Keep this site’s integrated two-view workspace, source question flow, status examples, original product code and 11-language picker. The eight main tools get their own lazy live stage using a shared family of generated wallpapers. Retain Segoe UI; no font-library changes. Breathing line is a visible toggle with a separate Close line action and synchronizes with page navigation. No app or Claude source files are changed. Existing copy is reused across locales; six new strings are translated fully in all eleven locales.
+
+Reference integration QA: Vite build and browser JS syntax passed; 209 strings in 11 languages validated. Desktop live agents/office/media/water inspected; media Play changed to Pause, water reached 1 L, and office sample response was sent. Line toggle and Close line both restore capsule state. Mobile at 390 px has no horizontal overflow. Header French switch changed both marketing content and native frame locale. Hidden-overflow focus scrolling was reproduced and fixed using non-scrollable clipping on feature stages.
+
+2026-10-29 verification: Native app office question form reused with demo bridge. Verified ask -> speech bubble -> native choice -> send -> waiting cleared. Shelf sample Add to shelf verified. Turkish tool rail no label overflow; settings scrollbar thin/dark; hero language change retains iframe src and glass/rest class. Scroll reveal/progress verified at 1600px; mobile 390px document width 375px. Desktop app and Claude reference source unchanged.
+
+2026-10-29 follow-up plan: Reserve top 96px for live island; navigation on its own lower row with wrap-safe language labels. Centre native office viewport on hand-off and focus its real question form. Use a consistent AgentOffice wordmark, honest Windows download/Coming soon CTA, four illustrated desktop-only capabilities, and final CTA using the product's layered animated mascot. Preserve orange/glass palette, Segoe UI, 11 languages and reduced-motion support. Verify English/German/mobile header, office focus and mascot layers before same-site publication.
+
+Verified follow-up: native office hand-off focused iframe, top18px bottom669px in720px viewport with question visible. English and German header labels stay below live island; 390px mobile no document overflow. All four desktop cards present. Product mascot under/arm/body/eyeL/eyeR images load at final CTA, dark color-scheme keeps iframe transparent. Production build101modules;230 messages in11languages.
+
+Sample-question localization: shared typed adapter translates only sample-question for sample-design in all11 site languages, at creation and at each island/office snapshot boundary. Native UI remains unchanged. Verified Turkish island question, office title/header/options/descriptions and successful Send.
+
+
+## Support, feedback, hardware and download — 2026-10-29
+User request (via the AgentOffice coordinator): add a hero Support button and a crypto support card, a feedback form, a "light on your PC" section and a Windows download block; the hero gets "Download for macOS · Coming soon" and the Windows button now scrolls to the download block (no "Coming soon" on it). This revises the earlier rule against Store/download blocks and figures, at the user's request, with honest limits:
+- Everything that will change lives in `dist/site-config.js`: wallet addresses (USDT on Tron TRC-20, BTC, ETH — all real since 29 Oct 2026; a `*_PLACEHOLDER` value would bring back the "coming soon" marking for that wallet only), the feedback route (`soon` by default, `mailto` once an email is set; nothing is posted anywhere), the APPROXIMATE hardware figures (~150 MB memory, ~1% idle CPU as the planned target after the measured ~5.9% of one core, ~9 MB installer = 9,047,566 bytes) and the Store / installer links (empty = shown inactive with a "soon" note).
+- QR codes are drawn locally from the bundled `dist/vendor/qrcode.js` (qrcode-generator 2.0.4, MIT, Kazuhiko Arase); no remote QR service.
+- No "native" or "no web engine" claims; the four bullets describe real behaviour (draws only on movement, reads chats from where it left off, files stay in place, waits for Windows events).
+- 55 new messages in all 11 languages (`support-copy.mjs`, appended by `prepare-i18n.mjs`); placeholders follow the language through `site-languagechange`. Styles in `dist/support.css`, behaviour in `dist/support.js`.
+- Verified in headless Chrome: 11 languages at 1440 px and tr/de/ru/ja at 375 px, no console errors, no sideways scroll, no cut text; hero Support and Windows buttons scroll to their sections; copy shows "Kopyalandı"; tabs switch; feedback shows its "soon" message. Screenshots: AgentOffice/teslim/site-2.
+
+
+## GitHub Pages and office fixes — 2026-10-29
+- Subpath: the app's root paths in the built product frames (`/mascot/layers`, `/ofis/index.html`, `/assets/…`) are rewritten to relative ones by `fix-subpath.mjs`, run by both build scripts; the site works from `/agentoffice/` and from `/`. The "404 island" the user saw came from the local server: run with a prefix it answered every root path with the new 404 page, so frames of a tab opened at `/` showed it. `serve.mjs --base agentoffice` now serves root paths too. Verified: full scroll at both, desktop and phone, no 404 and no console errors.
+- Office: the project lead is the Claude office's manager (`managers`), so the app's manager desk sits in the middle; its activity turns every 7 s through four coordinating lines. Team names and activities are sample content translated in all 11 languages (`sample-question.ts`).
+- Office language: the site's office scene was an English-edited copy; it is now the app's own `public/ofis`, which takes its words and locale from the shell (uppercase by the locale's rules: "WEBSİTE EKİBİ" in Turkish, "WEBSITE TEAM" in English).
+- The app's offices bar overlaps the scene's limits card (app layout; reported for an app fix). In the demo the scene leaves a floor strip at the bottom for the bar (`office-preview.css`).
+- Pages: `.github/workflows/pages.yml` (deploys committed `dist/`), `dist/.nojekyll`, self-contained `dist/404.html`; `.openai/` is no longer tracked.
+
+
+## Latest app office and window weather — 2026-10-29
+- Re-copied from the app: `public/ofis` (interactions, manager walks to a waiting agent, weather-aware window; dce9d80 spacing fix) and the product sources (`build-product.mjs`, then `build-preview.mjs`). The first-run manager offer stays off by itself in the demo (it only appears for live data, and the demo already has a manager).
+- On desktop sizes the app's own offices-bar spacing is used; only a phone-sized office keeps the floor strip and a smaller bar.
+- Window weather showcase under the office: Sunny / Rainy / Snowy / Night buttons, labelled as a demo. They send demo data into the office frame through the same status and settings the app's office reads (a weather code, and a place where the sun is up, or down for Night, right now). 6 new messages in all 11 languages (`weather-copy.mjs`).
+
+
+## Desktop-only features as island scenes — 2026-10-29
+The four equal icon cards in "A little further on Windows" read as a copy of another site's section and were removed. The section is now an asymmetric set of small screens, each with AgentOffice's smoky-glass island hanging from its top edge: a large full-screen-app scene whose island moves between Small island, Thin line and Hidden (selectable; auto-cycles only while visible), a media island with the sample track, a system-signal island cycling volume, Caps Lock and keyboard language, and a wide shelf scene where a sample file travels from the island into a chat window. Every scene carries a "Preview" tag; all data is sample data, no logos. A "Pause previews" button stops every animation; animations also pause off screen, and reduced motion shows static states (signals stacked). Styles in `dist/desktop-scenes.css`, behaviour in `dist/desktop-scenes.js`, 3 new messages in all 11 languages (`scenes-copy.mjs`).

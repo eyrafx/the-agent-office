@@ -1,0 +1,157 @@
+/* Support, feedback, hardware use and download (29 Oct 2026). Same family as launch-polish.css:
+   near-black ground, amber accents, soft hairlines, Segoe UI. */
+.usage,.get,.support,.feedback{--ink:#f4f1ec;--muted:#b9b5ae;--amber:#ffad62;--hair:#ffffff14;color:var(--ink)}
+.usage h2,.get h2,.support h2,.feedback h2{font-size:clamp(32px,4vw,52px);line-height:1.08;letter-spacing:-1.8px;margin:14px 0 18px}
+.usage p,.get header p,.support-copy p,.feedback-copy p{font-size:17px;line-height:1.7;color:var(--muted);margin:0}
+.usage .eyebrow,.get .eyebrow,.support .eyebrow,.feedback .eyebrow{color:#ffb76b}
+
+/* ——— hero additions ——— */
+.reference-hero .mac-action{background:#ffffff08;border:1px solid #ffffff22;color:#d9d4cc;box-shadow:none;cursor:default;opacity:.85}
+.reference-hero .mac-action small{background:#ffffff14;color:#f4f1ec}
+.reference-hero .mac-action:hover{transform:none}
+.reference-hero .support-action{display:inline-flex;align-items:center;gap:12px;border:1px solid #ffad6255;background:#ffad620d;color:#ffd2a6;min-height:62px;font-size:17px;padding-inline:24px;border-radius:40px}
+.reference-hero .support-action svg{width:20px;height:20px;fill:none;stroke:currentColor;stroke-width:1.8;stroke-linejoin:round}
+.reference-hero .support-action:hover{background:#ffad621c}
+
+/* ——— hardware use ——— */
+.usage{display:grid;grid-template-columns:minmax(0,5fr) minmax(0,6fr);gap:clamp(30px,6vw,80px);align-items:center;padding-block:100px 70px}
+.usage-points{list-style:none;margin:30px 0 0;padding:0;display:grid;gap:14px}
+.usage-points li{position:relative;padding-left:32px;font-size:16px;line-height:1.55;color:#e4dfd7}
+.usage-points li::before{content:'';position:absolute;left:0;top:4px;width:18px;height:18px;border-radius:6px;background:#ffad621f url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 20 20'%3E%3Cpath d='m5 10.5 3 3 7-7' fill='none' stroke='%23ffc17d' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E") center/14px no-repeat;border:1px solid #ffad6233}
+.usage-visual{min-width:0}
+.taskcard{border-radius:20px;border:1px solid var(--hair);background:linear-gradient(180deg,#191b22,#121318);box-shadow:0 40px 80px -45px #000,inset 0 1px 0 #ffffff0d;overflow:hidden}
+.taskcard-head{display:flex;align-items:center;gap:14px;padding:13px 18px;border-bottom:1px solid var(--hair);font-size:13px;color:#cfcac2}
+.taskcard-dots{display:flex;gap:6px}.taskcard-dots i{width:10px;height:10px;border-radius:50%;background:#2c2f38}
+.taskcard-cols,.taskcard-row{display:grid;grid-template-columns:minmax(0,1fr) 80px 96px;gap:12px;padding:10px 18px;font-size:13px}
+.taskcard-cols{color:#8d8a85;border-bottom:1px solid #ffffff0a}
+.taskcard-cols span:not(:first-child),.taskcard-row span:not(:first-child){text-align:right;font-variant-numeric:tabular-nums}
+.taskcard-row{background:#ffad620f;box-shadow:inset 3px 0 #ffad62;color:#f4f1ec;align-items:center}
+.taskcard-name{display:flex;align-items:center;gap:10px;font-weight:600;min-width:0}
+.taskcard-name img{width:22px;height:19px;object-fit:contain;flex:none}
+.taskcard-spark{display:block;width:100%;height:60px;margin-top:8px}
+.spark-line{fill:none;stroke:#ffad62;stroke-width:1.6;vector-effect:non-scaling-stroke}.spark-fill{fill:#ffad6214}
+.usage-stats{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:14px;margin-top:16px}
+.usage-stats>div{padding:20px 18px;border-radius:18px;border:1px solid var(--hair);background:#ffffff05;display:flex;flex-direction:column;gap:4px;min-width:0}
+.usage-stats b{font-size:clamp(26px,2.5vw,36px);line-height:1.05;letter-spacing:-1.5px;font-weight:700;color:#fff;font-variant-numeric:tabular-nums;white-space:nowrap}
+.usage-stats span{font-size:14px;font-weight:600;color:#e4dfd7;overflow-wrap:anywhere}
+.usage-stats small{font-size:12.5px;color:#8d8a85;line-height:1.4;overflow-wrap:anywhere}
+.usage-approx{margin:12px 0 0;text-align:right}
+.usage-approx span{display:inline-block;font-size:11px;letter-spacing:.6px;color:#bdb8b0;border:1px solid #ffffff1c;border-radius:20px;padding:4px 10px}
+
+/* ——— download ——— */
+.get{padding-block:70px}
+.get>header{text-align:center;max-width:760px;margin:0 auto 40px}
+.get-grid{display:grid;grid-template-columns:minmax(0,7fr) minmax(0,4fr);gap:18px}
+.get-main,.get-steps{border-radius:26px;border:1px solid var(--hair);background:radial-gradient(ellipse at 20% 0%,#a65a1922,transparent 60%),#0f1015;padding:32px}
+.get-buttons{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:14px}
+.get-option{display:flex;flex-direction:column;gap:8px;min-width:0}
+.get-button{display:flex;align-items:center;justify-content:center;gap:12px;min-height:62px;padding:14px 20px;border-radius:18px;text-decoration:none;font-size:16px;font-weight:650;text-align:center;line-height:1.3;transition:transform .2s,background .2s}
+.get-button svg{width:22px;height:22px;fill:none;stroke:currentColor;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round;flex:none}
+.get-button.store{background:#f4f1ec;color:#15161b}
+.get-button.installer{background:linear-gradient(180deg,#ffb86d,#ff9b38);color:#271909;border:1px solid #ffd19a}
+.get-button:not(.is-soon):hover{transform:translateY(-2px)}
+.get-button.is-soon{opacity:.72;cursor:default;filter:saturate(.8)}
+.get-soon{font-size:12.5px;color:#bdb8b0;text-align:center}
+.get-req{display:flex;align-items:center;gap:10px;margin:24px 0 0;font-size:14.5px;color:#d9d4cc}
+.get-req svg{width:20px;height:20px;fill:none;stroke:#ffad62;stroke-width:1.7;flex:none}
+.get-warn{margin-top:18px;padding:16px 18px;border-radius:16px;background:#ffad620b;border:1px solid #ffad6226}
+.get-warn b{display:block;font-size:14.5px;margin-bottom:6px;color:#ffd2a6}
+.get-warn p{margin:0;font-size:14px;line-height:1.6;color:#bdb8b0}
+.get-steps>b{display:block;font-size:17px;margin-bottom:16px}
+.get-steps ol{margin:0;padding:0;list-style:none;counter-reset:s;display:grid;gap:14px}
+.get-steps li{counter-increment:s;position:relative;padding-left:40px;font-size:14.5px;line-height:1.55;color:#d9d4cc}
+.get-steps li::before{content:counter(s);position:absolute;left:0;top:-2px;width:27px;height:27px;border-radius:50%;display:grid;place-items:center;font-size:13px;font-weight:700;color:#271909;background:#ffad62}
+
+/* ——— support ——— */
+.support{display:grid;grid-template-columns:minmax(0,5fr) minmax(0,6fr);gap:clamp(30px,6vw,80px);align-items:center;padding-block:90px 50px;scroll-margin-top:24px}
+.support-note{margin-top:22px!important;font-size:14px!important;line-height:1.6!important;padding-left:14px;border-left:2px solid #ffad6255}
+.wallet-card{border-radius:28px;border:1px solid #ffffff1a;background:radial-gradient(ellipse at 100% 0%,#6a2bd133,transparent 55%),radial-gradient(ellipse at 0% 100%,#a65a1933,transparent 55%),#111219;box-shadow:0 50px 100px -50px #000,inset 0 1px 0 #ffffff12;padding:24px;min-width:0}
+.wallet-head{display:flex;align-items:center;justify-content:space-between;gap:12px;flex-wrap:wrap;margin-bottom:18px}
+.wallet-title{display:flex;align-items:center;gap:10px;font-weight:650;font-size:16px}
+.wallet-title img{width:30px;height:26px;object-fit:contain}
+.wallet-badge{font-size:11.5px;font-weight:650;letter-spacing:.3px;color:#271909;background:#ffc17d;border-radius:20px;padding:5px 11px}
+.wallet-tabs{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:6px;padding:5px;border-radius:16px;background:#00000040;border:1px solid #ffffff0f}
+.wallet-tabs button{display:flex;align-items:center;justify-content:center;gap:8px;min-height:42px;border:0;border-radius:12px;background:transparent;color:#bdb8b0;font:inherit;font-size:14px;cursor:pointer}
+.wallet-tabs button i{width:9px;height:9px;border-radius:50%;background:var(--coin)}
+.wallet-tabs button[aria-selected="true"]{background:#ffffff14;color:#fff;box-shadow:inset 0 1px 0 #ffffff14}
+.wallet-panel{display:grid;grid-template-columns:150px minmax(0,1fr);gap:22px;align-items:center;margin-top:20px}
+.wallet-qr{position:relative;width:150px;height:150px;border-radius:16px;background:#fff;padding:8px;box-shadow:0 0 0 4px #ffffff10}
+.wallet-qr-code,.wallet-qr-code svg{display:block;width:100%;height:100%}
+.is-placeholder .wallet-qr-code{opacity:.28;filter:blur(.6px)}
+.wallet-qr-flag{position:absolute;inset:auto 8px 50% 8px;transform:translateY(50%);text-align:center;font-size:11.5px;font-weight:700;line-height:1.3;color:#271909;background:#ffc17d;border-radius:10px;padding:6px 8px}
+.wallet-info{min-width:0}
+.wallet-coin{display:flex;flex-direction:column;gap:3px;margin:0 0 12px}
+.wallet-coin b{font-size:24px;letter-spacing:-.5px}
+.wallet-coin span{font-size:13.5px;color:var(--coin);font-weight:600}
+.wallet-address{display:flex;align-items:stretch;gap:8px;flex-wrap:wrap}
+.wallet-address code{flex:1 1 100%;min-width:0;font:13px/1.4 Consolas,'Cascadia Mono',monospace;color:#e4dfd7;background:#00000045;border:1px solid #ffffff12;border-radius:12px;padding:11px 12px;overflow-wrap:anywhere;word-break:break-all}
+.wallet-copy{display:inline-flex;align-items:center;justify-content:center;gap:8px;border:1px solid #ffad6255;background:#ffad6214;color:#ffd2a6;border-radius:12px;padding:9px 14px;font:inherit;font-size:13.5px;font-weight:650;cursor:pointer;transition:background .2s}
+.wallet-copy:hover{background:#ffad6226}
+.wallet-copy svg{width:16px;height:16px;fill:none;stroke:currentColor;stroke-width:1.8}
+.wallet-copy.done{background:#5ee08f22;border-color:#5ee08f66;color:#a5f0c3}
+.wallet-copy-status{position:absolute;width:1px;height:1px;overflow:hidden;clip-path:inset(50%);white-space:nowrap}
+
+/* ——— feedback ——— */
+.feedback{display:grid;grid-template-columns:minmax(0,5fr) minmax(0,6fr);gap:clamp(30px,6vw,80px);align-items:start;padding-block:50px 90px}
+.feedback-form{display:flex;flex-direction:column;gap:8px;padding:26px;border-radius:26px;border:1px solid var(--hair);background:#0f1015;min-width:0}
+.feedback-form label{font-size:13.5px;font-weight:600;color:#d9d4cc;margin-top:8px}
+.feedback-form textarea,.feedback-form input{width:100%;box-sizing:border-box;font:inherit;font-size:15px;color:#f4f1ec;background:#00000040;border:1px solid #ffffff1c;border-radius:14px;padding:12px 14px;resize:vertical}
+.feedback-form textarea{min-height:130px}
+.feedback-form textarea:focus,.feedback-form input:focus{outline:2px solid #ffad62aa;outline-offset:1px;border-color:transparent}
+.feedback-form ::placeholder{color:#8d8a85}
+.feedback-foot{display:flex;align-items:center;gap:16px;flex-wrap:wrap;margin-top:12px}
+.feedback-send{border:0;border-radius:40px;padding:13px 24px;font:inherit;font-size:15.5px;font-weight:650;color:#271909;background:linear-gradient(180deg,#ffb86d,#ff9b38);cursor:pointer;transition:transform .2s}
+.feedback-send:hover{transform:translateY(-2px)}
+.feedback-status{margin:0;font-size:14px;color:#a5f0c3;flex:1 1 200px}
+.feedback-status[data-kind="warn"]{color:#ffc17d}
+
+@media(max-width:1080px){
+  .usage,.support,.feedback{grid-template-columns:1fr}
+  .get-grid{grid-template-columns:1fr}
+}
+@media(max-width:740px){
+  .usage{padding-block:70px 40px}.get{padding-block:50px}.support{padding-block:60px 30px}.feedback{padding-block:30px 60px}
+  .usage-stats{grid-template-columns:1fr}
+  .usage-stats>div{flex-direction:row;flex-wrap:wrap;align-items:baseline;gap:4px 12px}
+  .usage-stats small{flex-basis:100%}
+  .get-buttons{grid-template-columns:1fr}
+  .get-main,.get-steps{padding:22px}
+  .wallet-card{padding:18px}
+  .wallet-panel{grid-template-columns:1fr;justify-items:center;text-align:center}
+  .wallet-coin{align-items:center}
+  .wallet-address{justify-content:center}
+  .wallet-address code{text-align:left}
+  .taskcard-cols,.taskcard-row{grid-template-columns:minmax(0,1fr) 56px 76px;padding-inline:14px}
+  .reference-hero .support-action{min-height:54px}
+}
+@media(prefers-reduced-motion:reduce){.get-button,.feedback-send,.wallet-copy{transition:none}.get-button:hover,.feedback-send:hover{transform:none}}
+@media(prefers-reduced-motion:no-preference){html{scroll-behavior:smooth}}
+
+/* ——— office demo: window weather ——— */
+.office-weather{grid-column:1/-1;display:flex;flex-wrap:wrap;align-items:center;justify-content:center;gap:8px;margin-top:16px}
+.office-weather-label{font-size:12.5px;letter-spacing:.4px;color:#bdb8b0;margin-right:6px}
+.office-weather button{border:1px solid #ffffff24;background:#ffffff08;color:#e9e4dc;border-radius:999px;padding:8px 15px;font:inherit;font-size:13.5px;font-weight:600;cursor:pointer;transition:background .2s,border-color .2s}
+.office-weather button:hover{background:#ffffff14}
+.office-weather button[aria-pressed="true"]{background:#ffad6222;border-color:#ffad6288;color:#ffd2a6}
+@media(max-width:740px){.office-weather-label{flex-basis:100%;text-align:center;margin:0}}
+/* Wallet notes: which network to use, calm and small (29 Oct 2026). */
+.wallet-notes{list-style:none;margin:14px 0 0;padding:0;display:grid;gap:6px}
+.wallet-notes li{position:relative;padding-left:16px;font-size:13px;line-height:1.5;color:#aeaab3;text-align:left}
+.wallet-notes li::before{content:"";position:absolute;left:2px;top:.6em;width:6px;height:6px;border-radius:50%;background:var(--coin);opacity:.8}
+.wallet-soon{margin:0;padding:11px 12px;border-radius:12px;border:1px dashed #ffffff26;color:#d9d3ca;font-size:14px;font-weight:600}
+.wallet-tabs button.is-placeholder{color:#8f8b93}
+.wallet-tabs button small{font-size:10.5px;font-weight:600;color:#ffc17d}
+/* Contact links beside the feedback form (30 Oct 2026). */
+.contact-lead{margin-top:22px!important;font-size:15px!important}
+.contact-list{list-style:none;margin:12px 0 0;padding:0;display:grid;gap:8px;max-width:420px}
+.contact-list a{display:flex;align-items:center;gap:12px;padding:11px 14px;border-radius:14px;border:1px solid #ffffff14;background:#ffffff06;color:#e8e3dc;text-decoration:none;transition:background .2s,border-color .2s}
+.contact-list a:hover{background:#ffffff0e;border-color:#ffffff26}
+.contact-list a:focus-visible{outline:2px solid #9bc8ce;outline-offset:2px}
+.contact-list svg{width:18px;height:18px;flex:none;fill:none;stroke:#ffb76b;stroke-width:1.7;stroke-linecap:round;stroke-linejoin:round}
+.contact-list span{font-weight:650;font-size:14px}
+.contact-list b{margin-left:auto;font-weight:500;font-size:13px;color:#a9a5ad;min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+/* Download buttons while no download is published: a calm "Coming soon" pill. */
+.download-action.is-soon:not(.mac-action){filter:saturate(.75);opacity:.9}
+.download-action.is-soon:not(.mac-action):hover{transform:none}
+.get-button .soon-pill{margin-left:auto;font-size:11.5px;font-weight:650;padding:5px 10px;border-radius:20px;background:#00000026;color:inherit;flex:none}
+@media(prefers-reduced-motion:reduce){.contact-list a{transition:none}}

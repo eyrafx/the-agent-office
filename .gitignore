@@ -1,0 +1,6 @@
+.local/
+outputs/
+*.tar.gz
+*.log
+node_modules/
+.openai/

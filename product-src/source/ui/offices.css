@@ -1,0 +1,299 @@
+/* Office window: a thin strip over a scene that fills the window. */
+body{overflow:hidden}
+.office-app{position:relative;display:flex;flex-direction:column;height:100vh;background:#17191f;color:#f2f3f7}
+.strip{flex:none;display:flex;align-items:center;gap:12px;height:48px;padding:0 12px;background:#1c1e25;border-bottom:1px solid #2d303a;font-size:13px;position:relative;z-index:5}
+.strip-mascot{display:block;flex:none;width:36px;height:36px;margin:0 -2px 0 -4px}
+.strip-mascot .sprite-mascot{align-items:center}
+.strip-mascot .mascot-layers{filter:none}
+.strip-seg{display:flex;gap:2px;padding:3px;border-radius:10px;background:#25272f;border:1px solid #343743}
+.strip-seg button{display:flex;align-items:center;gap:7px;height:30px;padding:0 12px;border-radius:7px;color:#aeb3c2;font-size:13px;font-weight:600;white-space:nowrap}
+.strip-seg button.on{background:#3a3d49;color:#fff;box-shadow:inset 0 1px 0 rgba(255,255,255,.08)}
+.strip-seg small{font-size:11.5px;font-weight:600;color:#8d93a5;font-variant-numeric:tabular-nums}
+.strip-seg .on small{color:#ffb06a}
+.strip-tile{display:grid;place-items:center;width:20px;height:20px;border-radius:6px;color:#fff;font-size:12px;font-weight:700;background:#5b5f73;box-shadow:inset 0 1px 0 rgba(255,255,255,.3)}
+.strip-tile.claude{background:#d97757}.strip-tile.codex{background:#0d0d0d;box-shadow:inset 0 0 0 1px rgba(255,255,255,.22)}
+/* "Tümü": both tools' marks, one over the other's corner. */
+.strip-tile.all{position:relative;width:24px;background:none;box-shadow:none}
+.strip-tile.all i{position:absolute;display:grid;place-items:center;width:15px;height:15px;border-radius:4px}
+.strip-tile.all .claude{left:0;top:0;background:#d97757}
+.strip-tile.all .codex{right:0;bottom:0;background:#0d0d0d;box-shadow:0 0 0 1.5px #f4f2f9}
+.strip-badge{display:inline-grid;place-items:center;min-width:18px;height:18px;padding:0 5px;border-radius:9px;background:#ff9a3d;color:#1b1206;font-size:11px;font-weight:800;font-style:normal}
+.strip-spacer{flex:1}
+.strip-mode{font-size:12px;color:#adb3c2;padding:5px 10px;border-radius:7px;background:#24262d;border:1px solid #393c48;white-space:nowrap}
+.strip-mode.demo{color:#dcb98b;border-color:#bc8b402c;background:#d59a4610}
+.strip-menu{position:relative}
+.strip-button{display:flex;align-items:center;gap:8px;height:34px;padding:0 12px;border:1px solid #343743!important;border-radius:9px;color:#d7dbe5;font-size:13px;max-width:220px}
+.project-label{overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.dropdown{position:absolute;right:0;top:40px;min-width:220px;max-height:60vh;overflow:auto;padding:6px;border-radius:12px;background:#22242c;border:1px solid #3a3d49;box-shadow:0 14px 34px rgba(0,0,0,.45);z-index:20}
+.dropdown button{display:flex;justify-content:space-between;gap:18px;width:100%;padding:9px 10px;border-radius:8px;color:#d7dbe5;font-size:13px;text-align:left}
+.dropdown button.on{background:#ff8a1f18;color:#ffb878}
+.dropdown small{color:#8d93a5;font-variant-numeric:tabular-nums}
+.strip-icon{display:grid;place-items:center;width:36px;height:36px;border-radius:9px;color:#aeb3c2}
+.strip-icon:hover{color:#fff}
+
+/* Stage: the scene fills it; wall above, floor below the drawing when the window is not 16:9. */
+.stage{position:relative;flex:1;min-height:0;overflow:hidden;background:linear-gradient(180deg,#f1ecfa 0,#ddd3ee 32.6%,#e9c699 32.6%,#d4a672 100%)}
+.scene-layer,.office-cell{position:absolute;inset:0}
+.office-frame{display:block;width:100%;height:100%;border:0;background:transparent}
+.office-grid{position:absolute;inset:0;display:grid;gap:3px;background:#1c1e25}
+.office-grid .office-cell{position:relative;inset:auto;background:linear-gradient(180deg,#f1ecfa 0,#ddd3ee 32.6%,#e9c699 32.6%,#d4a672 100%)}
+.scene-pager{position:absolute;right:14px;bottom:12px;display:flex;align-items:center;gap:8px;padding:4px;border-radius:12px;background:#ffffffd9;border:2px solid #2d2a3e;color:#2d2a3e;font:700 13px "Segoe UI",sans-serif;box-shadow:0 3px 0 #2d2a3e}
+.scene-pager button{width:28px;height:28px;border-radius:8px;font-size:18px;color:#2d2a3e}
+.empty-office{position:absolute;left:50%;top:50%;transform:translate(-50%,-30%);width:min(420px,86%);text-align:center;padding:22px 24px;border-radius:18px;background:#fff;color:#2d2a3e;border:2.5px solid #2d2a3e;box-shadow:0 5px 0 #2d2a3e}
+.empty-office h2{margin:0 0 8px;font-size:20px}.empty-office p{margin:0 0 16px;font-size:14px;line-height:1.55;color:#5d5974}
+
+/* Desks: hover and chosen glow; the chosen desk stays lit while its card is open. */
+.office-scene .desk{cursor:pointer;outline:0}
+.office-scene .desk:hover{filter:brightness(1.04) drop-shadow(0 0 6px #ffffffaa)}
+.office-scene .desk.chosen,.office-scene .desk:focus-visible{filter:drop-shadow(0 0 10px #ffb867) drop-shadow(0 0 3px #ff8a1f)}
+.office-scene .bubble{opacity:0;pointer-events:none;transition:opacity .2s ease}
+.office-scene .bubble.show{opacity:1}
+
+/* Motion from the user's own office: typing, screens, coffee, waving, a pulsing sign. */
+@keyframes tap{0%,100%{transform:translateY(0)}50%{transform:translateY(4px)}}
+@keyframes shake{0%{transform:translate(0,0)}25%{transform:translate(1.2px,-.8px)}50%{transform:translate(-1px,.9px)}75%{transform:translate(.8px,.6px)}100%{transform:translate(0,0)}}
+@keyframes sip{0%,55%{transform:translateY(0)}65%,85%{transform:translateY(-12px)}95%,100%{transform:translateY(0)}}
+@keyframes pulse{0%,100%{transform:scale(1)}50%{transform:scale(1.1)}}
+@keyframes wave{0%,100%{transform:rotate(0)}50%{transform:rotate(-14deg)}}
+@keyframes steam{0%{opacity:.2;transform:translateY(4px)}50%{opacity:.95}100%{opacity:0;transform:translateY(-8px)}}
+@keyframes blink{0%,92%,100%{opacity:1}95%{opacity:.35}}
+@keyframes bob{0%,100%{transform:translateY(0)}50%{transform:translateY(-5px)}}
+@keyframes spin{to{transform:rotate(360deg)}}
+@keyframes flip{0%,70%{transform:rotate(0)}100%{transform:rotate(180deg)}}
+@keyframes prog{from{transform:translateX(0)}to{transform:translateX(14px)}}
+.office-scene .tapl{animation:tap .34s ease-in-out infinite}.office-scene .tapr{animation:tap .34s ease-in-out infinite .17s}
+.office-scene .shake{animation:shake .14s steps(2,end) infinite}
+.office-scene .lines{animation:blink 1.1s steps(1,end) infinite}
+.office-scene .sip{animation:sip 4.4s ease-in-out infinite}
+.office-scene .steam{animation:steam 2s ease-in-out infinite}
+.office-scene .pulse{transform-box:fill-box;transform-origin:50% 50%;animation:pulse 1.1s ease-in-out infinite}
+.office-scene .wave{transform-box:fill-box;transform-origin:0% 100%;animation:wave 1.2s ease-in-out infinite}
+.office-scene .bob{animation:bob 1.6s ease-in-out infinite}
+.office-scene .spin{animation:spin 3s linear infinite;transform-box:fill-box;transform-origin:center}
+.office-scene .flip{animation:flip 2.4s ease-in-out infinite;transform-box:fill-box;transform-origin:center}
+.office-scene .prog{animation:prog .8s linear infinite}
+
+/* The worker's card, drawn like the scene: white, dark outline, small shadow. */
+.person-card{position:absolute;z-index:4;width:320px;padding:14px 16px 16px;border-radius:16px;background:#fff;color:#2d2a3e;border:2.5px solid #2d2a3e;box-shadow:0 8px 24px rgba(45,42,62,.35);font:13.5px/1.45 "Segoe UI",sans-serif}
+.person-card header{display:flex;align-items:center;gap:8px}
+.card-dot{flex:none;width:11px;height:11px;border-radius:50%;border:2px solid #2d2a3e}
+.card-name{flex:1;min-width:0;font-size:16px;line-height:1.25;font-weight:700}
+.card-close{font-size:20px;line-height:1;color:#7a7690;padding:0 2px}
+.card-state{margin:4px 0 10px 19px;color:#6b6782;font-weight:600;font-size:12.5px}
+.card-ask{background:#fff4e8;border:2px solid #ffb877;border-radius:12px;padding:10px 12px;margin-bottom:10px}
+.card-ask b{display:block;font-size:14px;margin-bottom:6px}
+.card-ask code{display:inline-block;max-width:100%;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;vertical-align:top;background:#2d2a3e;color:#fff;border-radius:7px;padding:3px 8px;font:600 13px Consolas,monospace}
+.card-ask small{display:block;margin-top:7px;color:#8a5a2a;font-size:12px}
+.person-card dl{margin:0 0 12px;display:grid;grid-template-columns:auto 1fr;gap:5px 10px}
+.person-card dt{color:#8a86a0;font-weight:600;font-size:12px;padding-top:1px}
+.person-card dd{margin:0;font-weight:600;overflow-wrap:anywhere}.person-card dd span{color:#8a86a0;font-weight:500}
+.card-actions{display:flex;flex-direction:column;gap:8px}
+.card-primary{display:flex;justify-content:center;gap:8px;width:100%;padding:8px 0;border-radius:11px;background:#ff8a1f!important;color:#241c17;font-weight:750;border:2.5px solid #2d2a3e!important;box-shadow:0 3px 0 #2d2a3e}
+.card-where{display:block;font-size:12.5px;line-height:1.4;color:#6b5e52;text-align:center}
+.card-primary.small{width:auto;padding:6px 14px;margin-top:10px}
+.card-links{display:flex;justify-content:space-between;gap:10px}
+.card-links button{color:#5b5776;font-size:12.5px;font-weight:600;text-decoration:underline;text-underline-offset:3px;padding:2px 0}
+.rename-form{display:flex;gap:6px}.rename-form input{flex:1;min-width:0;border:2px solid #2d2a3e;border-radius:8px;padding:4px 8px;font:600 14px "Segoe UI",sans-serif;color:#2d2a3e}
+.rename-form button{border:2px solid #2d2a3e!important;border-radius:8px;padding:3px 10px;font-weight:700;color:#2d2a3e}
+
+/* Drawer: lists, requests, history, changes and settings, only when asked for. */
+.drawer{position:absolute;top:48px;right:0;bottom:0;width:min(400px,92vw);z-index:6;display:flex;flex-direction:column;background:#1e2027;border-left:1px solid #343743;box-shadow:-18px 0 40px rgba(0,0,0,.35)}
+.drawer-head{flex:none;display:flex;align-items:center;gap:6px;padding:8px 8px 8px 10px;border-bottom:1px solid #2d303a}
+.drawer-tabs{flex:1;display:flex;gap:2px;overflow-x:auto;scrollbar-width:none}
+.drawer-tabs button{display:flex;align-items:center;gap:6px;height:30px;padding:0 10px;border-radius:8px;color:#a6abba;font-size:12.5px;font-weight:600;white-space:nowrap}
+.drawer-tabs button.on{background:#ff8a1f18;color:#ffb878}
+.drawer-close{width:30px;height:30px;border-radius:8px;font-size:20px;color:#a6abba}
+.drawer-body{flex:1;min-height:0;overflow:auto;padding:14px 16px 20px}
+.drawer-body .search-field{margin-bottom:12px}.drawer-body .search-field input{width:100%}
+.list-row{display:flex;align-items:center;gap:10px;width:100%;padding:10px 8px;border-radius:9px;text-align:left;border-bottom:1px solid #2a2d36}
+.list-row.on{background:#ff8a1f10}
+.list-row>span{flex:1;min-width:0}.list-row b{display:block;font-size:13.5px;font-weight:600;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.list-row small{display:block;margin-top:3px;font-size:12px;color:#8d96aa;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.list-row em{font-style:normal;font-size:11.5px;color:#8d93a5}
+.list-row .card-dot{border-color:#17191f}
+.quiet{color:#8d96aa;font-size:13px;padding:18px 4px}
+.drawer-note{color:#8d96aa;font-size:12.5px;line-height:1.55;margin:4px 0 12px}
+.settings-button{padding:7px 12px;border:1px solid #414653!important;border-radius:8px;background:#24262d;font-size:12.5px;color:#d7dbe5;white-space:nowrap}
+.settings-guidance kbd{display:inline-block;min-width:18px;padding:1px 6px;border-radius:5px;background:#ffffff14;border:1px solid #ffffff1f;font:600 11px "Segoe UI",sans-serif;color:#e8eaf0;text-align:center}
+.shortcut-state{color:#e9b46c;font-size:12px}
+.toast{z-index:30}
+
+@media(max-width:1040px){.strip-seg button{padding:0 9px}.strip-layout button{padding:0 8px}}
+/* How many work now: a green dot and the number (chats on record are in the tooltip). */
+.live-count{display:inline-flex;align-items:center;gap:4px;font-variant-numeric:tabular-nums}
+.live-count i{width:7px;height:7px;border-radius:50%;background:#3fcf7a;box-shadow:0 0 0 2px rgba(63,207,122,.22)}
+@media(max-width:920px){.strip-offices small{display:none}.strip-mode{display:none}}
+/* Offices: one per project, as tabs at the bottom right, drawn like the scene. */
+.office-tabs{position:absolute;right:14px;bottom:12px;z-index:3;display:flex;align-items:center;gap:4px;max-width:calc(100% - 28px);overflow-x:auto;scrollbar-width:none;padding:5px;border-radius:14px;background:#fffffff0;border:2.5px solid #2d2a3e;box-shadow:0 3px 0 #2d2a3e;font:700 13px "Segoe UI",sans-serif;color:#2d2a3e}
+.tabs-label{padding:0 8px 0 6px;font-size:11px;letter-spacing:1.2px;text-transform:uppercase;color:#6b6782;white-space:nowrap}
+.office-tabs>button{display:flex;align-items:center;gap:6px;height:30px;padding:0 12px;border-radius:9px;color:#4a4660;white-space:nowrap}
+.office-tabs>button.on{background:#2d2a3e;color:#fff}
+.office-tabs small{font-size:11px;color:inherit;opacity:.7}
+.office-tabs [hidden]{display:none}
+.office-tabs .strip-tile{width:18px;height:18px}.office-tabs .strip-tile.all{width:22px}
+.office-tabs>[data-more].on{background:#e9e5f3;color:#2d2a3e}
+/* The offices that did not fit, above the bar. */
+.tabs-menu{position:absolute;right:14px;bottom:68px;z-index:4;display:flex;flex-direction:column;gap:2px;max-height:60%;overflow-y:auto;padding:5px;border-radius:14px;background:#fffffff5;border:2.5px solid #2d2a3e;box-shadow:0 3px 0 #2d2a3e;font:700 13px "Segoe UI",sans-serif;color:#2d2a3e}
+.tabs-menu[hidden]{display:none}
+.tabs-menu button{display:flex;align-items:center;gap:6px;height:30px;padding:0 12px;border-radius:9px;color:#4a4660;white-space:nowrap;text-align:left}
+.tabs-menu button:hover{background:#efecf6}
+.tabs-menu small{font-size:11px;opacity:.7}
+/* Side by side: each office says whose and which it is, with its floors. */
+.floor-frame{position:absolute;inset:0}
+.cell-label{position:absolute;left:50%;bottom:8px;transform:translateX(-50%);z-index:2;display:flex;align-items:center;gap:3px;max-width:calc(100% - 16px);overflow:hidden;padding:4px;border-radius:12px;background:#fffffff0;border:2px solid #2d2a3e;box-shadow:0 2px 0 #2d2a3e;font:700 12px "Segoe UI",sans-serif;color:#2d2a3e}
+.cell-label>button{display:flex;align-items:center;gap:5px;height:26px;padding:0 9px;border-radius:8px;color:#2d2a3e;white-space:nowrap}
+.cell-label>button:hover{background:#efecf6}
+.cell-label small{font-size:11px;opacity:.7}
+.cell-label .strip-tile{width:18px;height:18px}.cell-label .strip-tile.all{width:22px}
+/* Floors of a crowded office (14 desks each), after its tab. */
+.tabs-floors{display:flex;align-items:center;gap:3px;padding-left:6px;margin-left:4px;border-left:2px solid #e3e0ec}
+.tabs-floors button{height:26px;padding:0 10px;border-radius:8px;font-size:12px;color:#4a4660;white-space:nowrap}
+.tabs-floors button.on{background:#ffd36b;color:#2d2a3e;box-shadow:inset 0 0 0 2px #2d2a3e}
+/* Switching offices: the new one slides in from the side of its tab. */
+@keyframes office-in-left{from{transform:translateX(7%);opacity:.2}to{transform:none;opacity:1}}
+@keyframes office-in-right{from{transform:translateX(-7%);opacity:.2}to{transform:none;opacity:1}}
+.office-cell.slide-left{animation:office-in-left .34s cubic-bezier(.22,.9,.26,1)}
+.office-cell.slide-right{animation:office-in-right .34s cubic-bezier(.22,.9,.26,1)}
+/* Settings: their own panel (the gear), apart from the list drawer. A title, four groups with
+   short labels; each control shows its value and limits. At narrow widths a row's control goes
+   under its label, and the title and close button never get cut. */
+.settings-panel{position:absolute;top:48px;right:0;bottom:0;width:min(540px,100vw);z-index:7;display:flex;flex-direction:column;background:#1e2027;border-left:1px solid #343743;box-shadow:-18px 0 40px rgba(0,0,0,.35)}
+.sp-head{flex:none;display:flex;align-items:center;gap:10px;min-height:52px;padding:8px 10px 8px 20px;border-bottom:1px solid #2d303a}
+.sp-head h2{flex:1;min-width:0;margin:0;font-size:17px;font-weight:650;letter-spacing:-.2px;color:#f2f3f7;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.sp-close{flex:none;display:grid;place-items:center;width:34px;height:34px;border-radius:9px;color:#aeb3c2}
+.sp-close:hover{background:#ffffff12;color:#fff}
+.sp-body{flex:1;min-height:0;overflow:auto;overscroll-behavior:contain;padding:0 20px 24px;scrollbar-width:thin}
+.set-group{padding:16px 0 8px;border-bottom:1px solid #2a2d36}
+.set-group:last-child{border-bottom:0}
+.set-group>header{display:flex;align-items:center;gap:10px;margin-bottom:6px}
+.set-group h3{flex:1;min-width:0;margin:0;font-size:12px;font-weight:700;letter-spacing:.6px;text-transform:uppercase;color:#9aa1b4}
+.set-reset{flex:none;height:26px;padding:0 10px;border-radius:7px;font-size:12px;font-weight:600;color:#c8cdda;background:#ffffff0d}
+.set-reset:hover{background:#ffffff1a;color:#fff}
+.set-row{display:grid;grid-template-columns:minmax(0,1fr) auto;gap:6px 14px;align-items:center;padding:9px 0}
+.set-row.wide{grid-template-columns:minmax(0,1fr)}
+.set-row>label,.set-label{display:flex;flex-direction:column;gap:2px;min-width:0}
+.set-row b{font-size:13.5px;font-weight:600;color:#eef0f5}
+.set-row small{font-size:12px;color:#8d96aa;line-height:1.35}
+.set-row small.warn{color:#f0b46a}
+.set-range{display:flex;align-items:center;gap:10px}
+.set-range input[type=range]{width:170px;accent-color:#ff9a3d}
+.set-range output{min-width:62px;font-size:12.5px;font-weight:600;color:#dfe2ea;font-variant-numeric:tabular-nums;text-align:right}
+.set-seg{display:inline-flex;flex-wrap:wrap;gap:2px;padding:3px;border-radius:10px;background:#14161b;border:1px solid #2d303a;justify-self:start}
+.set-seg button{height:30px;padding:0 12px;border-radius:8px;font-size:12.5px;font-weight:600;color:#a6abba}
+.set-seg button.on{background:#ff8a1f22;color:#ffc48d;box-shadow:inset 0 0 0 1px #ff9a3d55}
+/* The rest look of a place: each choice with a small picture of the screen's top edge. */
+.set-seg.looks button{height:auto;display:inline-flex;flex-direction:column;align-items:center;gap:4px;padding:6px 10px 5px}
+.rest-pic{width:64px;height:26px;display:block}
+.rest-pic .rp-screen{fill:#1d2027;stroke:#3a3e4a}
+.rest-pic .rp-island{fill:#050608;stroke:#5b6070;stroke-width:.6}
+.rest-pic .rp-clock{fill:#d9dce4}
+.rest-pic .rp-line{fill:#ff9a3d}
+.rest-pic .rp-arrow{fill:none;stroke:#8b90a0;stroke-width:1.6;stroke-linecap:round;stroke-linejoin:round}
+.set-seg.looks button.on .rp-screen{stroke:#ff9a3d88}
+.set-row select,.set-row .dd-trigger{height:32px;max-width:240px;padding:0 8px;border-radius:8px;background:#14161b;color:#eef0f5;border:1px solid #343743;font-size:13px}
+.switch{appearance:none;-webkit-appearance:none;position:relative;width:38px;height:22px;border-radius:11px;background:#3a3e4b;cursor:pointer;transition:background .15s;flex:none}
+.switch::after{content:"";position:absolute;top:3px;left:3px;width:16px;height:16px;border-radius:50%;background:#e9ebf1;transition:transform .15s}
+.switch:checked{background:#ff8a1f}
+.switch:checked::after{transform:translateX(16px)}
+.switch:focus-visible,.set-seg button:focus-visible,.set-key:focus-visible,.set-small:focus-visible,.set-reset:focus-visible,.sp-close:focus-visible,.set-range input:focus-visible{outline:2px solid #ffb878;outline-offset:2px}
+.set-small{height:30px;padding:0 12px;border-radius:8px;font-size:12.5px;font-weight:600;color:#eef0f5;background:#ffffff12;white-space:nowrap}
+.set-small:hover:not(:disabled){background:#ffffff20}
+.set-small.danger{color:#ffb3a8}
+.set-key{min-width:150px;height:32px;padding:0 12px;border-radius:8px;font:600 12.5px "Segoe UI",sans-serif;color:#eef0f5;background:#14161b;border:1px solid #343743;text-align:center}
+.set-key.recording{border-color:#ff9a3d;color:#ffc48d}
+.set-table{width:100%;border-collapse:collapse;margin:4px 0 6px}
+.set-table th,.set-table td{padding:8px 0;font-size:13px;text-align:center}
+.set-table th[scope=row]{text-align:left;font-weight:600;color:#eef0f5}
+.set-table thead th{font-size:12px;font-weight:600;color:#8d96aa}
+.set-status{margin:2px 0 6px;font-size:12px;color:#9aa1b4}
+.set-note{margin:8px 0 4px;font-size:12px;line-height:1.45;color:#8d96aa}
+@media (max-width:620px){.set-row{grid-template-columns:minmax(0,1fr)}.set-range input[type=range]{width:min(240px,60vw)}}
+
+/* The island's pages in the settings: each shown or hidden, moved up or down. */
+.set-pages{list-style:none;margin:4px 0 8px;padding:0;display:flex;flex-direction:column;gap:4px}
+.set-pages li{display:flex;align-items:center;justify-content:space-between;gap:8px;padding:6px 8px;border-radius:10px;background:rgba(255,255,255,.04)}
+.set-pages label{display:flex;align-items:center;gap:10px}
+.set-pages b{font-weight:600}
+.set-move{display:inline-flex;gap:4px}
+.set-move button{width:26px;height:24px;border-radius:7px;background:rgba(255,255,255,.08)}
+.set-move button:disabled{opacity:.3}
+
+/* Advanced settings stay apart, folded. */
+.set-advanced{margin:6px 0 0}
+.set-advanced>summary{cursor:pointer;padding:8px 2px;font-size:12.5px;color:var(--muted,#9aa0ad)}
+.set-value{font-size:12.5px;color:var(--muted,#9aa0ad)}
+/* The question form in the office's light card: the same parts in the scene's drawing style. */
+.person-card .ask-form,.request-card .ask-form{--label:#2d2a3e;--label-2:#4a4660;--label-3:#8a86a0;max-height:340px;scrollbar-color:rgba(45,42,62,.3) transparent}
+.person-card .card-ask:has(.ask-form){padding:10px}
+.person-card .ask-opt,.request-card .ask-opt{background:#fff!important;box-shadow:inset 0 0 0 1.5px #c9c4da;color:#2d2a3e}
+.person-card .ask-opt:hover:not(:disabled),.request-card .ask-opt:hover:not(:disabled){background:#fff8ef!important}
+.person-card .ask-opt.on,.request-card .ask-opt.on{background:#ffe6c4!important;box-shadow:inset 0 0 0 2px #ff9a3d}
+.person-card .ask-mark,.request-card .ask-mark{box-shadow:inset 0 0 0 1.5px #8a86a0}
+.person-card .ask-opt.on .ask-mark,.request-card .ask-opt.on .ask-mark{background:#ff9a3d;box-shadow:inset 0 0 0 3px #fff}
+.person-card .ask-opt.on .ask-mark.sq,.request-card .ask-opt.on .ask-mark.sq{box-shadow:none;background-color:#ff9a3d}
+.person-card .ask-h,.request-card .ask-h{color:#8a4a10;background:#ffe6c4}
+.person-card .ask-other,.request-card .ask-other{background:#fff;color:#2d2a3e;box-shadow:inset 0 0 0 1.5px #c9c4da}
+.person-card .ask-release,.request-card .ask-release{color:#4a4660;background:#efedf5!important}
+.person-card .ask-send,.request-card .ask-send{color:#fff;background:#2d2a3e!important}
+.person-card .ask-foot,.request-card .ask-foot{background:inherit}
+/* The system signs, each a switch with its name. */
+.set-signs{display:flex;flex-wrap:wrap;gap:8px 16px}
+.set-signs label{display:inline-flex;align-items:center;gap:7px;font-size:12.5px;color:#d9dce4}
+.person-card .ask-foot{flex-wrap:wrap}
+.person-card .ask-hold{flex:1 1 100%}
+.person-card .ask-release{margin-left:auto}
+.set-row .set-text{height:32px;width:200px;max-width:100%;padding:0 10px;border-radius:8px;background:#14161b;color:#eef0f5;border:1px solid #343743;font:inherit;font-size:13px;outline:none}
+.set-row .set-text:focus{border-color:rgba(255,154,60,.7)}
+/* The weather's city picker: the field with its spinner and clear button, the state below the label. */
+.city-box{position:relative;display:inline-flex;align-items:center;max-width:100%}
+.set-row .city-box .set-text{width:230px;padding-right:58px}
+.city-spin{position:absolute;right:32px;width:12px;height:12px;box-sizing:border-box;border-radius:50%;border:2px solid rgba(255,255,255,.18);border-top-color:#ffad5c;animation:city-spin .8s linear infinite}
+.city-spin[hidden],.city-clear[hidden]{display:none}
+@keyframes city-spin{to{transform:rotate(1turn)}}
+@media (prefers-reduced-motion:reduce){.city-spin{animation-duration:2.4s}}
+.city-clear{position:absolute;right:5px;display:grid;place-items:center;width:24px;height:24px;padding:0;border:0;border-radius:6px;background:transparent;color:#8d96aa;font-size:17px;line-height:1;cursor:pointer}
+.city-clear:hover,.city-clear:focus-visible{background:rgba(255,255,255,.08);color:#eef0f5;outline:none}
+.set-row small.city-said.ok{color:#7fdca4}
+.city-ok{display:inline-block;vertical-align:-1px;margin-right:4px}
+.city-opt{gap:10px;min-height:40px}
+.dd-opt .city-code{flex:none;min-width:22px;padding:2px 5px;border-radius:5px;background:rgba(255,255,255,.08);font-size:10.5px;font-weight:700;letter-spacing:.4px;text-align:center;color:rgba(255,255,255,.72)}
+.dd-opt .city-names{display:flex;flex-direction:column;min-width:0;line-height:1.25}
+.city-names b{font-weight:600;color:#fff;overflow:hidden;text-overflow:ellipsis}
+.city-names small{font-size:11.5px;color:rgba(255,255,255,.55);overflow:hidden;text-overflow:ellipsis}
+
+/* The first start: one panel over the office (tools found, what connecting does, one step). */
+.first-run{position:absolute;inset:0;z-index:20;display:grid;place-items:center;padding:24px;background:rgba(12,13,17,.72);backdrop-filter:blur(6px)}
+.fr-card{width:min(520px,100%);max-height:100%;overflow:auto;padding:28px 30px 22px;border-radius:18px;background:#1e2027;border:1px solid #343743;box-shadow:0 24px 60px rgba(0,0,0,.45);color:#eef0f5}
+.fr-card h1{margin:0 0 8px;font-size:22px;font-weight:700}
+.fr-lead{margin:0 0 18px;font-size:14px;line-height:1.55;color:#aab1c3}
+.fr-tools{list-style:none;margin:0 0 14px;padding:0;display:grid;gap:8px}
+.fr-tool{display:flex;align-items:center;gap:10px;padding:10px 12px;border-radius:10px;background:#16181e;border:1px solid #2c2f39;font-size:14px}
+.fr-tool b{font-weight:650}
+.fr-mark{display:grid;place-items:center;width:22px;height:22px;border-radius:50%;flex:none;font-weight:700}
+.fr-tool.found .fr-mark{background:rgba(127,220,164,.16);color:#7fdca4}
+.fr-tool.missing{color:#8d96aa}.fr-tool.missing .fr-mark{background:#262933;color:#8d96aa}
+.fr-note{margin:0 0 14px;font-size:13px;line-height:1.5;color:#aab1c3}
+.fr-what{margin:0 0 16px;padding-left:18px;display:grid;gap:6px;font-size:13px;line-height:1.5;color:#c7ccd8}
+.fr-error{margin:0 0 14px;padding:10px 12px;border-radius:10px;background:rgba(255,122,107,.12);color:#ffb3a8;font-size:13px;line-height:1.5}
+.fr-actions{display:flex;flex-wrap:wrap;align-items:center;gap:12px}
+.fr-go{min-width:220px}
+.fr-skip{border:0;background:none;padding:6px 2px;color:#aab1c3;text-decoration:underline;text-underline-offset:3px;cursor:pointer}
+.fr-skip:hover,.fr-skip:focus-visible{color:#eef0f5}
+.fr-later{margin:14px 0 0;font-size:12px;color:#8d96aa}
+
+/* The Claude Code connection's line under the header: connect a tool found later, repair a broken link. */
+.link-notice{display:flex;align-items:center;gap:12px;padding:8px 16px;background:#1f2430;border-bottom:1px solid #343743;font-size:13px;color:#dfe3ec}
+.link-notice[hidden]{display:none}
+.link-notice[data-kind=broken],.link-notice[data-kind=unreadable]{background:#2b2220;color:#ffd2c9}
+.ln-text{flex:1;min-width:0;line-height:1.45}
+.ln-act{flex:none;height:28px;padding:0 12px;border-radius:8px;border:0;background:#ff9a3c;color:#1b1206;font-weight:650;cursor:pointer}
+.ln-act:disabled{opacity:.6;cursor:default}
+.ln-act.quiet{background:transparent;color:#dfe3ec;box-shadow:inset 0 0 0 1px #4a4f5e}
+.manager-offer{flex-wrap:wrap}
+.mo-choices{display:flex;flex-wrap:wrap;gap:6px;flex:1 1 100%}
+.mo-pick{max-width:220px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.ln-close{flex:none;width:26px;height:26px;border:0;border-radius:6px;background:transparent;color:#8d96aa;font-size:17px;cursor:pointer}
+.ln-close:hover,.ln-close:focus-visible{background:rgba(255,255,255,.08);color:#eef0f5}
+
+/* The Claude Code row's steps (connect, or repair and remove). */
+.set-buttons{display:inline-flex;flex-wrap:wrap;justify-content:flex-end;gap:6px}

@@ -1,0 +1,30 @@
+/* The developer's note (29 Oct 2026): a short, calm card in smoky glass beside the download. */
+.dev-note{padding-block:10px 40px}
+.dev-note-card{position:relative;max-width:720px;margin:0 auto;padding:34px 38px 28px;border-radius:28px;border:1px solid #ffffff14;background:radial-gradient(90% 90% at 100% 0%,#91d6d814,transparent 60%),linear-gradient(180deg,#15171fe6,#0e1016f2);box-shadow:0 40px 90px -55px #000,inset 0 1px 0 #ffffff10}
+.dev-note .eyebrow{color:#9bc8ce;margin-bottom:10px}
+.dev-note h2{font-size:clamp(26px,3vw,36px);line-height:1.15;letter-spacing:-1px;margin:0 0 16px;color:#f4f1ec}
+.dev-note-card>p{font-size:16px;line-height:1.7;color:#c4c0c8;margin:0 0 12px}
+.dev-note-card a{color:#9bc8ce;text-decoration:underline;text-underline-offset:3px}
+.dev-note-card a:hover{color:#c6eef0}
+.dev-note-sign{display:flex;align-items:center;gap:12px;margin-top:22px}
+.dev-note-sign img{width:30px;height:30px;object-fit:contain;flex:none;padding:7px;border-radius:50%;background:#ffffff0a;border:1px solid #ffffff14;box-sizing:content-box}
+.dev-note-who{display:grid;gap:2px;line-height:1.25}
+.dev-note-who b{font-size:15px;font-weight:650;color:#f1ece4}
+.dev-note-who small{font-size:12.5px;color:#8f8b93}
+.dev-note-foot{margin:18px 0 0!important;padding-top:14px;border-top:1px solid #ffffff10;font-size:12.5px!important;color:#8f8b93!important}
+.dev-note-foot a{color:#a9a5ad}
+.get-sha{display:flex;flex-wrap:wrap;align-items:center;gap:8px 10px;margin-top:14px}
+.get-sha[hidden]{display:none}
+.get-sha-label{font-size:12.5px;font-weight:650;color:#b9b5ae}
+.get-sha code{flex:1 1 100%;min-width:0;font:12px/1.4 Consolas,'Cascadia Mono',monospace;color:#e4dfd7;background:#00000045;border:1px solid #ffffff12;border-radius:10px;padding:9px 11px;word-break:break-all}
+.get-sha-copy{border:1px solid #ffffff22;background:#ffffff08;color:#e5d8ca;border-radius:10px;padding:7px 12px;font:600 12.5px/1 var(--font);cursor:pointer}
+.get-sha-copy.done{border-color:#5ee08f66;color:#a5f0c3}
+.get-sha-status{position:absolute;width:1px;height:1px;overflow:hidden;clip-path:inset(50%)}
+@media(max-width:740px){.dev-note-card{padding:26px 22px 22px;border-radius:22px}.dev-note-card>p{font-size:15px}}
+/* Footer: © line and the trust-page links, wrapping calmly on phones. */
+.footer{flex-wrap:wrap;font-size:13px}
+.footer .footer-copy{display:inline;color:#8f8b93}
+.footer-links{display:flex;flex-wrap:wrap;gap:8px 18px;flex:1 1 auto;justify-content:center}
+.footer-links a{color:#c9c6cf}.footer-links a:hover{color:#f1ece4}
+@media(max-width:740px){.footer{justify-content:flex-start;gap:14px 20px;font-size:13px}.footer-links{justify-content:flex-start;flex-basis:100%;order:3}.footer>a:last-child{order:4}}
+.footer-by{color:#6f6b74}
