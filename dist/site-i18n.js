@@ -32,7 +32,7 @@
    document.querySelector('.site-language-options').setAttribute('aria-label',t('Language'));
    document.querySelector('.language-list').setAttribute('aria-label',t('Language'));
    document.querySelector('.brand[aria-label]')?.setAttribute('aria-label',t('AgentOffice home'));
-   document.querySelectorAll('iframe[src*="product/"]').forEach(frame=>{const url=new URL(frame.getAttribute('src'),location.href);if(frame.closest('.hero-island-live')){frame.contentWindow?.postMessage({type:'product-language',language:id},location.origin);}else if(url.searchParams.get('lang')!==id){url.searchParams.set('lang',id);frame.src=url.pathname+url.search;}});
+   document.querySelectorAll('iframe[src*="product/"]').forEach(frame=>{const url=new URL(frame.getAttribute('src'),location.href);if(url.searchParams.get('lang')!==id){url.searchParams.set('lang',id);frame.src=url.pathname+url.search;}});
    if(persist){try{localStorage.setItem('agentoffice:site-language',id);}catch{}const url=new URL(location.href);url.searchParams.set('lang',id);history.replaceState(null,'',url);}
    window.dispatchEvent(new CustomEvent('site-languagechange',{detail:{language:id}}));
  }

@@ -41,7 +41,7 @@ export function wireInfo(root: HTMLElement, changed: () => void) {
 }
 
 /** The island's header above a page and the space kept under it (CSS px). */
-const HEAD = 50, FOOT = 12;
+const HEAD = 60, FOOT = 12;
 /** The height a page needs for what it shows now: each shown part at its natural height (a list
  *  counts all its lines, so it scrolls only when the island cannot grow further). */
 export function pageNeeds(box: HTMLElement): number {

@@ -32,3 +32,6 @@ html,body{margin:0;width:100%;height:100%;background:transparent!important}
 #app.limits-open .notch-stage{transform:translateX(20px) scale(calc(var(--zoom,1) * .66))}
 
 #app.live-glass .limits-slot .limits-shape{background:transparent;box-shadow:none}
+
+/* Hero embed: the island alone, without the sample-data foot note. */
+.hero-embed .foot-note.demo{display:none}

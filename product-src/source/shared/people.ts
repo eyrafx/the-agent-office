@@ -157,25 +157,56 @@ export function todayResults(list: Person[], history: HistoryEvent[], now = Date
     .map(p => `${shortName(p.session)}: ${lower(p.session.reply!)}`);
 }
 
+/** A title that names a lead, in the app's languages: a strong hint for the office's manager. */
+const LEAD = /(?<![\p{L}\p{N}])(y[öo]netici(?:si)?|lideri?|koordinat[öo]r(?:ü)?|manager|lead|leader|orchestrator|coordinator|gerente|responsable|coordinador|jefe|leiter|koordinator|chef|coordinateur|gestionnaire|coordenador|l[íi]der|responsabile|coordinatore|capo|менеджер|руководитель|координатор|лидер)(?![\p{L}\p{N}])|マネージャー|リーダー|管理者|经理|负责人|协调|매니저|관리자|리더/iu;
+export const namesALead = (s: Pick<Session, 'name' | 'customName'>) => LEAD.test(s.customName || '') || LEAD.test(s.name);
+/** A manager picked by hand who has been resting this long gives way to a chat that is running the team. */
+export const MANAGER_STALE_MS = 30 * 60_000;
+/** When this chat's helpers last did anything (0: it has none). */
+const helpersAt = (p: Person) => p.helpers.reduce((t, h) => Math.max(t, h.lastActivity), 0);
+
 /**
- * An office's manager: the chat the user chose for that office, while it is one
- * of the office's people. An office has none unless chosen; a chat's name never
- * makes it one. The choice belongs to that office alone (its key carries the
- * tool and the project). Being the manager is not a state: it works, waits,
- * rests or is unverified like anyone.
+ * The manager the office would have by itself: the chat that runs helper agents (the one whose
+ * helpers worked most recently, within the last three days), a chat whose title names a lead
+ * ("Yönetici", "Manager", "Lead", …) coming first among them; without helpers anywhere, the latest
+ * chat whose title names a lead; else nobody.
  */
-export function managerOf(snapshot: Snapshot, office: { key: string; people: Person[] }): Person | undefined {
-  const id = snapshot.managers?.[office.key];
-  return id ? office.people.find(p => p.session.key.sessionId === id && !p.session.parentKey && p.state !== 'ended') : undefined;
+export function autoManager(office: { people: Person[] }, now = Date.now()): Person | undefined {
+  const mains = office.people.filter(p => !p.session.parentKey && p.state !== 'ended');
+  const leading = mains.filter(p => p.helpers.length && now - helpersAt(p) < HISTORY_MS).sort((a, b) => helpersAt(b) - helpersAt(a));
+  return leading.find(p => namesALead(p.session)) ?? leading[0]
+    ?? mains.filter(p => namesALead(p.session) && p.state !== 'history').sort((a, b) => b.session.lastActivity - a.session.lastActivity)[0];
 }
-const MANAGER = /\b(y[öo]netici|manager)\b/i;
-/** Once, when managers become per office: the former single manager, or else a chat
- *  named "Yönetici", stays its office's manager; no other office gets one. */
+
+/** How the office has its manager: picked by hand, found by itself, or none (the user said so, or nobody fits). */
+export type ManagerSource = 'chosen' | 'auto' | 'none';
+/**
+ * An office's manager. By default the office finds it (autoManager). The user can pick one by hand
+ * (kept while that chat is in the office) or say the office has none (an empty choice). A hand pick
+ * that has been resting for half an hour, is past or of unknown state gives way to a chat whose
+ * helpers worked since, so a forgotten pick never holds the big desk against the one running the
+ * team. Being the manager is not a state: it works, waits, rests or is unverified like anyone.
+ */
+export function managerChoice(snapshot: Snapshot, office: { key: string; people: Person[] }, now = Date.now()): { person?: Person; source: ManagerSource } {
+  const pick = snapshot.managers?.[office.key];
+  if (pick === '') return { source: 'none' };
+  const chosen = pick ? office.people.find(p => p.session.key.sessionId === pick && !p.session.parentKey && p.state !== 'ended') : undefined;
+  const auto = autoManager(office, now);
+  if (chosen) {
+    const resting = chosen.state === 'history' || chosen.state === 'unverified' || (chosen.state === 'idle' && now - chosen.session.lastActivity > MANAGER_STALE_MS);
+    if (!(resting && auto && auto !== chosen && helpersAt(auto) > chosen.session.lastActivity)) return { person: chosen, source: 'chosen' };
+  }
+  return auto ? { person: auto, source: 'auto' } : { source: 'none' };
+}
+export function managerOf(snapshot: Snapshot, office: { key: string; people: Person[] }, now = Date.now()): Person | undefined {
+  return managerChoice(snapshot, office, now).person;
+}
+/** Once, when managers became per office: the former single manager stays its office's pick. Any
+ *  other office finds its manager by itself. */
 export function carriedManagers(snapshot: Snapshot, offices: ProjectOffice[]): Record<string, string> {
   const out: Record<string, string> = {};
   for (const o of offices) {
-    const mains = o.people.filter(p => !p.session.parentKey);
-    const chosen = mains.find(p => p.session.key.sessionId === snapshot.manager) ?? mains.filter(p => MANAGER.test(p.session.name)).sort((a, b) => b.session.lastActivity - a.session.lastActivity)[0];
+    const chosen = o.people.find(p => !p.session.parentKey && p.session.key.sessionId === snapshot.manager);
     if (chosen) out[o.key] = chosen.session.key.sessionId;
   }
   return out;

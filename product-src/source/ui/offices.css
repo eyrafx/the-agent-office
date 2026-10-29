@@ -3,7 +3,7 @@ body{overflow:hidden}
 .office-app{position:relative;display:flex;flex-direction:column;height:100vh;background:#17191f;color:#f2f3f7}
 .strip{flex:none;display:flex;align-items:center;gap:12px;height:48px;padding:0 12px;background:#1c1e25;border-bottom:1px solid #2d303a;font-size:13px;position:relative;z-index:5}
 .strip-mascot{display:block;flex:none;width:36px;height:36px;margin:0 -2px 0 -4px}
-.strip-mascot .sprite-mascot{align-items:center}
+.strip-mascot .sprite-mascot{pointer-events:auto}
 .strip-mascot .mascot-layers{filter:none}
 .strip-seg{display:flex;gap:2px;padding:3px;border-radius:10px;background:#25272f;border:1px solid #343743}
 .strip-seg button{display:flex;align-items:center;gap:7px;height:30px;padding:0 12px;border-radius:7px;color:#aeb3c2;font-size:13px;font-weight:600;white-space:nowrap}

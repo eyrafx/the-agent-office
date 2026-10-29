@@ -6,7 +6,7 @@ import fs from 'node:fs/promises';
 import path from 'node:path';
 import { fileURLToPath } from 'node:url';
 const dir = path.join(path.dirname(fileURLToPath(import.meta.url)), 'dist', 'product', 'assets');
-const swaps = [['`/mascot/layers/', '`../mascot/layers/'], ['`/ofis/index.html`', '`../ofis/index.html`'], ['`/assets/', '`../assets/'], ["'/mascot/layers/", "'../mascot/layers/"], ['"/mascot/layers/', '"../mascot/layers/']];
+const swaps = [['`/mascot/', '`../mascot/'], ['`/ofis/index.html`', '`../ofis/index.html`'], ['`/assets/', '`../assets/'], ["'/mascot/", "'../mascot/"], ['"/mascot/', '"../mascot/']];
 let changed = 0;
 for (const name of await fs.readdir(dir)) {
   if (!name.endsWith('.js')) continue;

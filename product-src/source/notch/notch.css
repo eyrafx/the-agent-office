@@ -87,8 +87,10 @@
    capsule's spacer, whose position the view measures after each text change. */
 .island-mascot{position:absolute;left:0;top:0;width:66px;height:58px;transform-origin:0 0;transform:translate(var(--mascot-x,260px),2px) scale(.44);transition:transform calc(.28s*var(--motion,1)) var(--spring-close),opacity calc(.16s*var(--motion,1)) ease calc(.3s*var(--motion,1));pointer-events:none}
 /* Open: in the header, just inside the island's left end (the island is centred in its 864px area
-   and as wide as the page shown), after the move handle. */
-.expanded .island-mascot{transform:translate(calc((864px - var(--page-w,620px)) / 2 + 36px),6px) scale(.56);transition:transform calc(.28s*var(--motion,1)) var(--spring-open),opacity calc(.14s*var(--motion,1)) ease}
+   and as wide as the page shown), after the move handle; ~56 px wide there, so its face reads. */
+.expanded .island-mascot{transform:translate(calc((864px - var(--page-w,620px)) / 2 + 36px),1px) scale(.9);transition:transform calc(.28s*var(--motion,1)) var(--spring-open),opacity calc(.14s*var(--motion,1)) ease;pointer-events:auto;z-index:3}
+/* There a click surprises it (still.ts); in the small island a click opens the island. */
+.expanded .island-mascot .sprite-mascot{pointer-events:auto;cursor:default}
 
 /* The mascot at the capsule's left end, the message centred in the capsule: an empty end
    on the right as wide as the mascot keeps it in the true middle, and gives way first when
@@ -154,7 +156,7 @@
 .expanded .island-face{opacity:1;transform:none;pointer-events:auto;transition:opacity calc(.18s*var(--motion,1)) ease calc(.04s*var(--motion,1)),transform calc(.28s*var(--motion,1)) var(--spring-open)}
 /* The island's own header, the same on every page: the mascot, the page's title (the agents
    page: its headline), the date and time, what waits for the user, the settings and keep-open. */
-.island-head{display:flex;align-items:center;gap:8px;height:44px;padding:0 12px 0 92px;flex:none}
+.island-head{display:flex;align-items:center;gap:8px;height:54px;padding:0 12px 0 100px;flex:none}
 .notch-label{flex:1;display:flex;align-items:center;gap:8px;min-width:0;font-size:14.5px;font-weight:650;letter-spacing:-.2px;white-space:nowrap}
 .head-clock{flex:none;display:inline-flex;align-items:baseline;gap:7px;font-size:12.5px;color:var(--label-2);font-variant-numeric:tabular-nums;white-space:nowrap}
 .head-clock b{font-size:13.5px;font-weight:700;color:var(--label)}
@@ -165,17 +167,17 @@
 /* Pages side by side; only the one shown is in view. */
 /* Clipped, not scrollable: focusing a field on a page (while the pages slide) must never scroll
    the strip sideways and show half of another page. */
-.pages{position:absolute;top:44px;left:0;right:0;bottom:6px;overflow:clip;touch-action:pan-y}
+.pages{position:absolute;top:54px;left:0;right:0;bottom:6px;overflow:clip;touch-action:pan-y}
 .track{display:flex;height:100%;will-change:transform;transition:transform calc(.38s*var(--motion,1)) var(--ease)}
 .track.dragging{transition:none}
 .page{flex:0 0 100%;height:100%;box-sizing:border-box;padding:0 18px;will-change:transform;display:flex;flex-direction:column;min-width:0}
 .island-head{position:relative}
-.page-nav{position:absolute;left:50%;top:6px;transform:translateX(-50%);display:inline-flex;align-items:center;gap:0}
-.island-head .notch-label{max-width:calc(var(--page-w,620px) / 2 - 92px - 84px)}
+.page-nav{position:absolute;left:50%;top:11px;transform:translateX(-50%);display:inline-flex;align-items:center;gap:0}
+.island-head .notch-label{max-width:calc(var(--page-w,620px) / 2 - 100px - 76px)}
 /* A narrower page keeps the time and drops the date. */
 .narrow-page .head-clock .clock-date{display:none}
 /* The handle that moves the island along the top edge (left of the mascot). */
-.move-grip{position:absolute;left:10px;top:10px;display:grid;place-items:center;width:24px;height:24px;border-radius:12px;color:rgba(255,255,255,.28);cursor:grab;touch-action:none;transition:color calc(.15s*var(--motion,1)),background calc(.15s*var(--motion,1))}
+.move-grip{position:absolute;left:10px;top:15px;display:grid;place-items:center;width:24px;height:24px;border-radius:12px;color:rgba(255,255,255,.28);cursor:grab;touch-action:none;transition:color calc(.15s*var(--motion,1)),background calc(.15s*var(--motion,1))}
 .move-grip:hover,.moving-island .move-grip{color:rgba(255,255,255,.8);background:rgba(255,255,255,.07)!important}
 .moving-island .move-grip{cursor:grabbing}
 .island-head .head-clock{margin-left:auto}
@@ -497,7 +499,7 @@
 .focus-card .ask-form{max-height:200px}
 /* On a narrower page a long page name ("Notlar ve Yapılacaklar") takes two short lines beside the
    mascot instead of being cut. */
-.narrow-page .island-head .notch-label{font-size:12px;letter-spacing:-.15px;max-width:calc(var(--page-w,620px) / 2 - 92px - 70px)}
+.narrow-page .island-head .notch-label{font-size:12px;letter-spacing:-.15px;max-width:calc(var(--page-w,620px) / 2 - 100px - 62px)}
 .narrow-page .island-head .notch-light{display:none}
 .narrow-page .island-head .notch-text{white-space:normal;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;line-height:1.12}
 

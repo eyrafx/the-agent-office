@@ -374,7 +374,7 @@ function mgrPlate(name, ds) {
   let size = 20, tw = measure(name, size, 700);
   if (tw > 170) { size = Math.max(12, 20 * 170 / tw); tw = measure(name, size, 700); }
   const w = tw + 62;
-  return `<g filter="url(#sh1)"><title>${esc(T('office.manager', 'Yönetici'))}</title><rect x="${-w / 2}" y="32" width="${w}" height="34" rx="17" fill="#ffd66b" stroke="${OL}" stroke-width="2.8"/>` +
+  return `<g filter="url(#sh1)"><title>${esc(T('office.manager', 'Yönetici'))} · ${esc(T('ofis.change_manager', 'Yöneticiyi değiştirmek için tıkla'))}</title><rect x="${-w / 2}" y="32" width="${w}" height="34" rx="17" fill="#ffd66b" stroke="${OL}" stroke-width="2.8"/>` +
     `<rect x="${-w / 2 + 6}" y="36" width="${w - 12}" height="7" rx="3.5" fill="#fff" opacity=".45"/>` +
     `<circle cx="${-w / 2 + 17}" cy="49" r="6.5" fill="${COL[ds] || '#aaa'}" stroke="${OL}" stroke-width="1.8"/>` +
     `<path transform="translate(${w / 2 - 18},49)" d="M0,-9 L2.6,-2.8 L9.2,-2.8 L3.9,1.2 L5.9,7.6 L0,3.8 L-5.9,7.6 L-3.9,1.2 L-9.2,-2.8 L-2.6,-2.8 Z" fill="#fff" stroke="${OL}" stroke-width="1.8" stroke-linejoin="round"/>` +
@@ -939,7 +939,44 @@ function hitOf(t) {
   for (let i = 0; i < DESKS.length; i++) { const d = $('d' + i); if (d && d.contains(t) && deskOwner[i]) return { ch: deskOwner[i], part: 'govde' }; }
   return null;
 }
+let surukle = null, tiklamaYok = false;
+const masaKutusu = () => { const r = $('d3').getBoundingClientRect(); return { x: r.left, y: r.top, w: r.width, h: r.height }; };
+const masaUstunde = e => { const r = $('d3').getBoundingClientRect(); return e.clientX >= r.left && e.clientX <= r.right && e.clientY >= r.top && e.clientY <= r.bottom; };
+function surukleneni(t) {
+  for (const ch of Object.values(C)) if (ch.fig && ch.fig.contains(t)) return ch;
+  for (let i = 0; i < DESKS.length; i++) { const o = deskOwner[i]; if (o && o.loc === 'seat' && ($('b' + i).contains(t) || $('a' + i).contains(t))) return o; }
+  return null;
+}
+function surukleBitir(e, birak) {
+  const s = surukle; surukle = null;
+  if (!s || !s.on) return;
+  s.g.remove(); $('d3').style.filter = ''; markChosen();
+  tiklamaYok = true; setTimeout(() => { tiklamaYok = false; }, 400);
+  const yon = DESKS[3].mgr && deskOwner[3] === s.ch;
+  if (birak && !yon && masaUstunde(e)) tell({ type: 'ofis-yonetici', id: s.ch.id });
+}
+$('sahne').addEventListener('pointerdown', e => { if (e.button !== 0) return; const ch = surukleneni(e.target); if (ch) surukle = { ch, x: e.clientX, y: e.clientY, on: false, g: null }; });
+window.addEventListener('pointermove', e => {
+  if (!surukle) return;
+  if (!surukle.on) {
+    if (Math.hypot(e.clientX - surukle.x, e.clientY - surukle.y) < 8) return;
+    surukle.on = true;
+    const g = surukle.g = document.createElementNS(SVGNS, 'g'); g.style.pointerEvents = 'none'; fxG.appendChild(g);
+    const ad = gorunenAd(surukle.ch), ipucu = T('ofis.drop_to_make_manager', 'Yönetici yapmak için büyük masaya bırak');
+    const w = Math.max(measure(ad, 16, 800), measure(ipucu, 13, 600)) + 30;
+    g.innerHTML = `<g opacity=".92" transform="scale(${(figScale(surukle.ch.pre) * 0.85).toFixed(3)})">${figMarkup(surukle.ch.pre)}</g>` +
+      `<g filter="url(#sh1)" transform="translate(0,18)"><rect x="${-w / 2}" y="0" width="${w}" height="46" rx="14" fill="#fff" stroke="${OL}" stroke-width="2.4"/>` +
+      `<text y="19" font-size="16" font-weight="800" fill="${OL}" text-anchor="middle">${esc(ad)}</text><text y="37" font-size="13" font-weight="600" fill="#6b7190" text-anchor="middle">${esc(ipucu)}</text></g>`;
+  }
+  const p = new DOMPoint(e.clientX, e.clientY).matrixTransform($('sahne').getScreenCTM().inverse());
+  surukle.g.setAttribute('transform', `translate(${p.x.toFixed(1)},${p.y.toFixed(1)})`);
+  $('d3').style.filter = masaUstunde(e) ? 'drop-shadow(0 0 12px #ffd66b) drop-shadow(0 0 4px #ff9f1a)' : '';
+});
+window.addEventListener('pointerup', e => surukleBitir(e, true));
+window.addEventListener('pointercancel', e => surukleBitir(e, false));
 $('sahne').addEventListener('click', e => {
+  if (tiklamaYok) { tiklamaYok = false; return; }
+  if (DESKS[3].mgr && $('d3').contains(e.target) && !$('b3').contains(e.target) && !$('a3').contains(e.target)) { tell({ type: 'ofis-yonetici-masa', rect: masaKutusu() }); return; }
   const hit = hitOf(e.target);
   if (hit && hit.part === 'govde') tepki(hit.ch);
   tell({ type: 'ofis-select', id: hit ? hit.ch.id : null, rect: hit ? rectOf(hit.ch) : null, part: hit ? hit.part : null });

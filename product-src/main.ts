@@ -15,13 +15,15 @@ const callbacks = new Map<string,Set<(v:any)=>void>>();
 const emit = (key:string,value:any) => callbacks.get(key)?.forEach(f=>f(clone(value)));
 const subscribe = (key:string,fn:(v:any)=>void) => { if(!callbacks.has(key)) callbacks.set(key,new Set()); callbacks.get(key)!.add(fn); return Promise.resolve(()=>callbacks.get(key)?.delete(fn)); };
 const tell = (value:object) => parent.postMessage(value, location.origin);
+// In the site's hero the island stands alone: no 'sample data' foot note there (the page says it).
+if(new URLSearchParams(location.search).has('hero'))document.documentElement.classList.add('hero-embed');
 let selectedLanguage=resolveLanguage(new URLSearchParams(location.search).get('lang')||'en');
 const preferences = { language:selectedLanguage, reducedMotion:matchMedia('(prefers-reduced-motion:reduce)').matches, muted:true };
 setLanguage(selectedLanguage);
 localStorage.setItem('agentoffice:ui',JSON.stringify(preferences));
 localStorage.removeItem('agentoffice-island-page');
 localStorage.setItem('agentoffice-media-lyrics','0');
-let settings:Settings = { ...clone(DEFAULT_SETTINGS),language:selectedLanguage,islandTheme:'glass',scale:100,clockStyle:'time',reducedMotion:preferences.reducedMotion,closeDelay:700,lyricsOnline:true,hideMascot:false,statusBattery:true,statusAudio:true,statusWeather:true,statusAlarm:false,weatherCity:'Istanbul',weatherPlace:{name:'Istanbul',admin1:'Istanbul',country:'Türkiye',countryCode:'TR',latitude:41.01,longitude:28.98,timezone:'Europe/Istanbul'} };
+let settings:Settings = { ...clone(DEFAULT_SETTINGS),language:selectedLanguage,islandTheme:'glass',scale:100,clockStyle:'time',reducedMotion:preferences.reducedMotion,lyricsOnline:true,hideMascot:false,statusBattery:true,statusAudio:true,statusWeather:true,statusAlarm:false,weatherCity:'Istanbul',weatherPlace:{name:'Istanbul',admin1:'Istanbul',country:'Türkiye',countryCode:'TR',latitude:41.01,longitude:28.98,timezone:'Europe/Istanbul'} };
 // Fictional device conditions; the real desktop component owns their layout and five-second rotation.
 const sampleStatus=():IslandStatus=>({battery:{percent:68,charging:true},audio:{kind:'headphones',name:'AirPods Pro',bluetooth:true},weather:{temperature:21,code:1,place:'Istanbul',at:Date.now()}});
 const now = Date.now();

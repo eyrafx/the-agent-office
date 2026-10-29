@@ -23,6 +23,8 @@ for (const file of files) {
 await writeFile(path.join(root, 'product-src/source/mascot/renderer.ts'), `import { createStillMascot } from './still';\nexport interface MascotController { setState(state:any):void;setPointer(x:number,y:number):void;setVisible(on:boolean):void;setReducedMotion(on:boolean):void;dispose():void }\nexport const createMascot=(el:HTMLElement,o:any={})=>createStillMascot(el,o.reducedMotion);\n`);
 await mkdir(path.join(root, 'dist/mascot'), { recursive: true });
 await cp(path.join(app, 'public/mascot/layers'), path.join(root, 'dist/mascot/layers'), { recursive: true });
+// The chibi octopus (body + faces) the app's mascot uses since f5b8a52.
+await cp(path.join(app, 'public/mascot/chibi'), path.join(root, 'dist/mascot/chibi'), { recursive: true });
 await cp(path.join(app,'src/i18n'),path.join(root,'product-src/source/i18n'),{recursive:true});
 const { build } = await import(pathToFileURL(path.join(app, 'node_modules/vite/dist/node/index.js')).href);
 await build({ root: path.join(root, 'product-src'), configFile: false, publicDir: false, base: './', resolve: { alias: { '@tauri-apps/api/webview': path.join(app,'node_modules/@tauri-apps/api/webview.js') } }, build: { outDir: path.join(root, 'dist/product'), emptyOutDir: true, sourcemap: false, minify: true } });

@@ -1,1 +1,0 @@
-import"./modulepreload-polyfill-P2Xu9kJm.js";import{t as e}from"./still-HmdjUP3e.js";var t=matchMedia(`(prefers-reduced-motion:reduce)`),n=e(document.querySelector(`#mascot`),t.matches);t.addEventListener(`change`,e=>n.setReducedMotion(e.matches)),window.addEventListener(`pagehide`,()=>n.dispose(),{once:!0});

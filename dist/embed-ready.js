@@ -10,3 +10,10 @@
   setTimeout(ready, 6000); // never leave it hidden
  });
 })();
+
+// While the hero island is open, the navigation underneath steps back so the two never collide.
+(() => {
+ const frame = document.querySelector('.hero-island-live iframe');
+ if (!frame) return;
+ window.addEventListener('message', e => { if (e.origin === location.origin && e.source === frame.contentWindow && e.data && e.data.type === 'product-state') document.documentElement.classList.toggle('hero-island-open', !!e.data.expanded); });
+})();

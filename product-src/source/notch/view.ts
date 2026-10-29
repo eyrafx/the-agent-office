@@ -5,6 +5,7 @@ import { ago, fromApp, language, locale as localeTag, number, resolveLanguage, s
 import type { Bridge, Snapshot, PendingRequest } from '../shared/contract';
 import { mascotState, requestId, sessionId } from '../shared/contract';
 import { createMascot } from '../mascot/renderer';
+import { finishedAgents, workingNow } from '../mascot/still';
 import { createNotchController } from './controller';
 import { escapeHtml as e, watchSnapshot } from '../ui/state';
 import { icon, mark } from '../ui/icons';
@@ -35,7 +36,9 @@ const PAGE_KEY = 'agentoffice-island-page';
 /** Each page's size when open (CSS px; the island grows to it). The agents page is the large one
  *  and scrolls inside; the others are as small as their content needs (a page may ask for less
  *  height while it has little to show). */
-const PAGE_SIZE: Record<PageId, { w: number; h: number }> = { agents: { w: 620, h: 440 }, media: { w: 520, h: 200 }, notes: { w: 520, h: 420 }, focus: { w: 540, h: 238 }, alarms: { w: 520, h: 420 }, water: { w: 520, h: 340 }, shelf: { w: 540, h: 420 } };
+// Heights include the 54 px header (the mascot's ~56 px face reads there); the agents page keeps 440
+// (the island area is 476 px high, geometry.rs) and its list scrolls a line earlier.
+const PAGE_SIZE: Record<PageId, { w: number; h: number }> = { agents: { w: 620, h: 440 }, media: { w: 520, h: 210 }, notes: { w: 520, h: 430 }, focus: { w: 540, h: 248 }, alarms: { w: 520, h: 430 }, water: { w: 520, h: 350 }, shelf: { w: 540, h: 430 } };
 import '../ui/styles.css';
 import './notch.css';
 import './pages.css';
@@ -56,6 +59,7 @@ export function mountNotch(root: HTMLElement, bridge: Bridge): { dispose(): void
   const pageTitle = (id: PageId) => ({ agents: l('island.agents'), media: l('island.media'), notes: l('island.notes'), focus: l('island.focus_and_timer'), alarms: l('island.alarms'), water: l('island.water'), shelf: l('island.file_shelf') })[id];
   root.innerHTML = `<canvas class="glass-backdrop" hidden></canvas><div class="notch-stage"><div class="island-area"><div class="island-shape"><i class="shoulder l"></i><i class="shoulder r"></i><div class="island-clip"><section id="island-face" class="island-face" aria-label="AgentOffice" inert><header class="island-head"><button class="move-grip" data-noswipe aria-label="${l('island.move_the_island_along_the')}" title="${l('island.drag_move_along_the_top')}">${icon('grip', 14)}</button><span class="notch-label"><span class="notch-light"></span><span class="notch-text">AgentOffice</span></span><nav class="page-nav" aria-label="${l('island.pages')}"><button class="page-arrow prev" aria-label="${l('island.previous_page')}">${icon('chevL', 14)}</button><span class="page-dots"></span><button class="page-arrow next" aria-label="${l('island.next_page')}">${icon('chevR', 14)}</button></nav><span class="head-clock" aria-hidden="true"><span class="clock-date"></span><b class="clock-time"></b></span><span class="head-actions"><button class="nav-alert" hidden></button><button class="notch-settings icon-button" aria-label="${l('island.settings')}" title="${l('island.settings')}">${icon('gear',15)}</button><button class="notch-pin icon-button" aria-label="${l('island.pin_the_detail_panel')}" title="${l('island.pin_the_detail_panel')}" aria-pressed="false">${icon('pin',15)}</button></span></header><div class="pages" aria-roledescription="carousel" aria-label="${l('island.island_pages')}"><div class="track"><div class="page" data-page="agents" role="group" aria-roledescription="${l('island.page')}" aria-label="${pageTitle('agents')}"><div class="focus-card" style="--i:0"></div><div class="filters list-head" style="--i:1"><span class="seg-src" role="group" aria-label="${l('island.source')}"></span><span class="st-group" role="group" aria-label="${l('island.state')}"></span></div><div class="notch-scroll"></div><footer class="island-foot"><button class="foot-btn notch-office">${icon('expand',14)}<span>${l('island.open_office')}</span></button><button class="foot-btn notch-limits" aria-pressed="false" aria-controls="limits-panel">${icon('gauge',14)}<span>${l('island.limits')}</span></button><span class="foot-note"></span></footer></div></div></div><div class="notch-feedback" role="status" hidden></div></section></div></div><div class="island-mascot"></div><button class="capsule-face" data-left="mascot" data-right="status" aria-expanded="false" aria-controls="island-face"><span class="cap-side cap-left"><span class="capsule-spacer" aria-hidden="true"></span><span class="cap-battery" role="img" hidden></span><span class="capsule-media"></span></span><span class="cap-strip"><b class="cap-clock"></b><span class="cap-extra" role="img"></span></span><span class="cap-side cap-right"><span class="capsule-badge" hidden></span><span class="capsule-ring">${icon('bell', 14)}</span><span class="capsule-focus"><svg class="mini-ring" viewBox="0 0 20 20"><circle cx="10" cy="10" r="8" stroke="rgba(255,255,255,.18)"/><circle class="mini-value" cx="10" cy="10" r="8" pathLength="100" stroke-dasharray="100" stroke-linecap="round"/></svg><b class="cf-time"></b></span><span class="cap-status"><span class="notch-light"></span><em class="cap-count"></em></span></span><span class="capsule-text sr">AgentOffice</span><span class="sign-toast" aria-live="polite"></span></button></div><div class="limits-slot"><div class="limits-shape"></div><aside id="limits-panel" class="limits-panel" aria-label="${l('island.limits')}" inert></aside></div></div>`;
   const q = <T extends Element = HTMLElement>(selector:string) => root.querySelector<T>(selector)!;
+  let workingBefore = new Set<string>(), mascotSeen: Snapshot | undefined;
   let snapshot: Snapshot | undefined, disposed = false; const requests = new Map<string,PendingRequest>(), sending = new Set<string>();
   const mascot = createMascot(q('.island-mascot'), { compact: true, reducedMotion: prefs.reducedMotion });
 
@@ -224,7 +228,7 @@ export function mountNotch(root: HTMLElement, bridge: Bridge): { dispose(): void
   let sizeKey = '';
   const applySize = (page: PageId) => {
     // The media page widens for its lyrics column.
-    const w = page === 'media' && media.wide() ? 780 : PAGE_SIZE[page].w, h = (page === 'media' && media.wide() ? 236 : pageHeight(page)) + feedbackH, key = `${w}x${h}`;
+    const w = page === 'media' && media.wide() ? 780 : PAGE_SIZE[page].w, h = (page === 'media' && media.wide() ? 246 : pageHeight(page)) + feedbackH, key = `${w}x${h}`;
     if (key === sizeKey) return;
     const before = sizeKey.split('x').map(Number); sizeKey = key;
     // Narrower or lower than before: a pointer the island leaves behind gets a moment to return.
@@ -589,7 +593,8 @@ export function mountNotch(root: HTMLElement, bridge: Bridge): { dispose(): void
     if (!open.length && quiet) { quiet = null; }
     waitingCount = open.length; renderCapsule();
     renderFoot();
-    mascot.setState(mascotState(snapshot));
+    // An agent whose reply just ended (it was working in the last snapshot) makes the mascot happy for a moment.
+    if (snapshot !== mascotSeen) { const done = finishedAgents(workingBefore, snapshot); workingBefore = workingNow(snapshot); mascotSeen = snapshot; const base = mascotState(snapshot); mascot.setState(done && base === 'idle' ? 'replyEnded' : base); }
     if (limitsOpen) fillLimits(false);
     renderCard(list); renderFilters(list); renderList(list);
   }
