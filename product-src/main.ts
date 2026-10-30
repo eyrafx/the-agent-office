@@ -15,6 +15,21 @@ const callbacks = new Map<string,Set<(v:any)=>void>>();
 const emit = (key:string,value:any) => callbacks.get(key)?.forEach(f=>f(clone(value)));
 const subscribe = (key:string,fn:(v:any)=>void) => { if(!callbacks.has(key)) callbacks.set(key,new Set()); callbacks.get(key)!.add(fn); return Promise.resolve(()=>callbacks.get(key)?.delete(fn)); };
 const tell = (value:object) => parent.postMessage(value, location.origin);
+// What the desktop shell does natively: it tells the island whether the pointer is over its visible
+// shape (or its whole area while it changes shape). Without this, a pointer that left while the
+// island was animating was never reported, so it stayed open; an entry during a closing animation
+// was missed too. Here the page measures it itself from the shapes the island reports.
+let shapeRegion:any[]=[];let pointerAt:{x:number,y:number}|null=null;let pointerUnder=false;
+function checkPointer(){
+  const p=pointerAt;const under=!!p&&shapeRegion.some(r=>p.x>=r.x&&p.x<=r.x+r.w&&p.y>=r.y&&p.y<=r.y+r.h);
+  if(under!==pointerUnder){pointerUnder=under;emit('pointer',under);}
+}
+addEventListener('pointermove',e=>{pointerAt={x:e.clientX,y:e.clientY};checkPointer();},{passive:true});
+addEventListener('pointerdown',e=>{pointerAt={x:e.clientX,y:e.clientY};checkPointer();},{passive:true});
+document.documentElement.addEventListener('pointerleave',()=>{pointerAt=null;checkPointer();});
+addEventListener('mouseout',e=>{if(!e.relatedTarget){pointerAt=null;checkPointer();}});
+addEventListener('blur',()=>{pointerAt=null;checkPointer();});
+
 // In the site's hero the island stands alone: no 'sample data' foot note there (the page says it).
 if(new URLSearchParams(location.search).has('hero'))document.documentElement.classList.add('hero-embed');
 let selectedLanguage=resolveLanguage(new URLSearchParams(location.search).get('lang')||'en');
@@ -101,7 +116,7 @@ const methods:Record<string,any>={
   pinNotch:async(value:boolean)=>emit('pinned',value),onNotchPinned:(fn:any)=>subscribe('pinned',fn),
   onNotchReveal:(fn:any)=>subscribe('reveal',fn),onNotchPointer:(fn:any)=>subscribe('pointer',fn),onNotchDock:(fn:any)=>subscribe('dock',fn),onNotchLayout:(fn:any)=>subscribe('layout',fn),
   onLimitsPanel:(fn:any)=>subscribe('limits',fn),setLimitsPanel:async(open:boolean)=>emit('limits',{open,side:'right'}),
-  resizeNotch:async(expanded:boolean)=>tell({type:'product-state',expanded}),notchShape:async()=>{},notchMove:async(action:'start'|'end'|'center')=>moveIsland(action),
+  resizeNotch:async(expanded:boolean)=>tell({type:'product-state',expanded}),notchShape:async(rects:any[],moving:boolean,area:any)=>{shapeRegion=moving&&area?[area]:(rects||[]);checkPointer();},notchMove:async(action:'start'|'end'|'center')=>moveIsland(action),
   onSign:(fn:any)=>subscribe('sign',fn),indicatorsSupported:async()=>['volume','caps','language','battery','wifi','audio'],
   listMonitors:async()=>[{name:'demo',label:'Demo display',primary:true}],shortcuts:async()=>[true,true],
   playChime:async()=>notice(copyFor(selectedLanguage).muted),claudeHooksStatus:async()=>null,setClaudeHooks:async()=>false,
