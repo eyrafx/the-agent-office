@@ -15,6 +15,41 @@ const callbacks = new Map<string,Set<(v:any)=>void>>();
 const emit = (key:string,value:any) => callbacks.get(key)?.forEach(f=>f(clone(value)));
 const subscribe = (key:string,fn:(v:any)=>void) => { if(!callbacks.has(key)) callbacks.set(key,new Set()); callbacks.get(key)!.add(fn); return Promise.resolve(()=>callbacks.get(key)?.delete(fn)); };
 const tell = (value:object) => parent.postMessage(value, location.origin);
+// Hover, as the desktop shell decides it: the island hears only "the pointer is over me / has left",
+// from geometry with hysteresis, never from layout. Closed, the pointer must touch the small island;
+// open, it counts as inside anywhere over the open panel plus a small margin; it closes only after the
+// pointer has stayed outside for a moment; nothing changes while the island is still changing shape
+// (its outline moving under a still pointer is not the pointer moving). The page's own enter/leave on
+// the island root are held back so layout changes can never toggle it.
+const HOVER_MARGIN=6,HOVER_LEAVE_MS=60;
+let hoverShapes:any[]=[],hoverMoving=false,hoverOpen=false,hoverAt:{x:number,y:number}|null=null,hoverUnder=false;
+let hoverTimer:ReturnType<typeof setTimeout>|undefined;
+const hoverInside=()=>{
+  const p=hoverAt;if(!p||!hoverShapes.length)return false;
+  if(!hoverOpen)return hoverShapes.some(r=>p.x>=r.x&&p.x<=r.x+r.w&&p.y>=r.y&&p.y<=r.y+r.h);
+  const x0=Math.min(...hoverShapes.map(r=>r.x))-HOVER_MARGIN,y0=Math.min(...hoverShapes.map(r=>r.y))-HOVER_MARGIN;
+  const x1=Math.max(...hoverShapes.map(r=>r.x+r.w))+HOVER_MARGIN,y1=Math.max(...hoverShapes.map(r=>r.y+r.h))+HOVER_MARGIN;
+  return p.x>=x0&&p.x<=x1&&p.y>=y0&&p.y<=y1;
+};
+function hoverPointer(){
+  if(hoverMoving&&hoverAt)return; // mid-animation: keep the current answer
+  const inside=hoverInside();
+  if(inside){clearTimeout(hoverTimer);hoverTimer=undefined;if(!hoverUnder){hoverUnder=true;emit('pointer',true);}return;}
+  if(hoverUnder&&hoverTimer===undefined)hoverTimer=setTimeout(()=>{hoverTimer=undefined;if(!hoverInside()&&hoverUnder){hoverUnder=false;emit('pointer',false);}},HOVER_LEAVE_MS);
+}
+// A finger has no hover: a tap on the island opens it and it stays open until a tap lands elsewhere
+// (inside this frame, or anywhere on the page, which the site reports as 'hero-pointer-away').
+let hoverTouch=false;
+addEventListener('pointermove',e=>{hoverTouch=e.pointerType==='touch';hoverAt={x:e.clientX,y:e.clientY};hoverPointer();},{passive:true});
+addEventListener('pointerdown',e=>{hoverTouch=e.pointerType==='touch';hoverAt={x:e.clientX,y:e.clientY};hoverPointer();},{passive:true});
+const hoverAway=()=>{hoverAt=null;hoverMoving=false;hoverPointer();};
+const hoverGone=()=>{if(!hoverTouch)hoverAway();};
+addEventListener('message',e=>{if(e.origin===location.origin&&e.source===parent&&e.data?.type==='hero-pointer-away')hoverAway();});
+document.documentElement.addEventListener('pointerleave',hoverGone);
+addEventListener('mouseout',e=>{if(!e.relatedTarget)hoverGone();});
+addEventListener('blur',hoverGone);
+for(const type of ['pointerenter','pointerleave'])addEventListener(type,e=>{if((e.target as Element)?.id==='app')e.stopImmediatePropagation();},true);
+
 // In the site's hero the island stands alone: no 'sample data' foot note there (the page says it).
 if(new URLSearchParams(location.search).has('hero'))document.documentElement.classList.add('hero-embed');
 let selectedLanguage=resolveLanguage(new URLSearchParams(location.search).get('lang')||'en');
@@ -101,7 +136,7 @@ const methods:Record<string,any>={
   pinNotch:async(value:boolean)=>emit('pinned',value),onNotchPinned:(fn:any)=>subscribe('pinned',fn),
   onNotchReveal:(fn:any)=>subscribe('reveal',fn),onNotchPointer:(fn:any)=>subscribe('pointer',fn),onNotchDock:(fn:any)=>subscribe('dock',fn),onNotchLayout:(fn:any)=>subscribe('layout',fn),
   onLimitsPanel:(fn:any)=>subscribe('limits',fn),setLimitsPanel:async(open:boolean)=>emit('limits',{open,side:'right'}),
-  resizeNotch:async(expanded:boolean)=>tell({type:'product-state',expanded}),notchShape:async()=>{},notchMove:async(action:'start'|'end'|'center')=>moveIsland(action),
+  resizeNotch:async(expanded:boolean)=>{if(hoverOpen!==!!expanded){hoverOpen=!!expanded;hoverMoving=true;}tell({type:'product-state',expanded});},notchShape:async(rects:any[],moving:boolean)=>{hoverMoving=!!moving;if(!moving){hoverShapes=rects||[];hoverPointer();}},notchMove:async(action:'start'|'end'|'center')=>moveIsland(action),
   onSign:(fn:any)=>subscribe('sign',fn),indicatorsSupported:async()=>['volume','caps','language','battery','wifi','audio'],
   listMonitors:async()=>[{name:'demo',label:'Demo display',primary:true}],shortcuts:async()=>[true,true],
   playChime:async()=>notice(copyFor(selectedLanguage).muted),claudeHooksStatus:async()=>null,setClaudeHooks:async()=>false,

@@ -35,3 +35,6 @@ html,body{margin:0;width:100%;height:100%;background:transparent!important}
 
 /* Hero embed: the island alone, without the sample-data foot note. */
 .hero-embed .foot-note.demo{display:none}
+
+/* The chibi mascot a touch smaller in the open header, so it keeps clear of the title. */
+.expanded .island-mascot{transform:translate(calc((864px - var(--page-w,620px)) / 2 + 34px),4px) scale(.8)}

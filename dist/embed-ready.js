@@ -16,4 +16,6 @@
  const frame = document.querySelector('.hero-island-live iframe');
  if (!frame) return;
  window.addEventListener('message', e => { if (e.origin === location.origin && e.source === frame.contentWindow && e.data && e.data.type === 'product-state') document.documentElement.classList.toggle('hero-island-open', !!e.data.expanded); });
+ // A finger has no hover to lose: a tap anywhere else on the page closes the island it opened.
+ document.addEventListener('pointerdown', e => { if (e.pointerType !== 'mouse' && frame.contentWindow) frame.contentWindow.postMessage({ type: 'hero-pointer-away' }, location.origin); }, { passive: true });
 })();
