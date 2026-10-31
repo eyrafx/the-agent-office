@@ -3,8 +3,8 @@ import path from 'node:path';
 import { fileURLToPath, pathToFileURL } from 'node:url';
 import { followLanguageClock } from './patch-view.mjs';
 const root = path.dirname(fileURLToPath(import.meta.url));
-// The desktop project's app folder (a sibling checkout by default; AGENTOFFICE_APP overrides it).
-const app = process.env.AGENTOFFICE_APP || path.resolve(root, '../AgentOffice/app');
+// The desktop app's folder in this repository (AGENTOFFICE_APP overrides it).
+const app = process.env.AGENTOFFICE_APP || path.resolve(root, '../app');
 const files = ['notch/view.ts','notch/strip.ts','notch/controller.ts','notch/pager.ts','notch/kit.ts','notch/media.ts','notch/focus.ts','notch/alarms.ts','notch/notes.ts','notch/water.ts','notch/shelf.ts','notch/limits.ts','notch/glass.ts','notch/notch.css','notch/pages.css','ui/styles.css','ui/offices.css','ui/state.ts','ui/icons.ts','ui/preferences.ts','ui/settings-panel.ts','ui/first-run.ts','ui/dropdown.ts','ui/city-picker.ts','shared/contract.ts','shared/settings.ts','shared/people.ts','shared/places.ts','mascot/still.ts','mascot/sprite.css'];
 const sources = [];
 for (const file of files) {

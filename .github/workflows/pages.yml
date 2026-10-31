@@ -1,5 +1,5 @@
-# Publishes the committed dist/ folder to GitHub Pages on every push to main.
-# No build runs on GitHub: dist/ is already the finished static site.
+# Publishes the committed site/dist/ folder to GitHub Pages on every push to main.
+# No build runs on GitHub: site/dist/ is already the finished static site.
 # One-time setup on GitHub: Settings › Pages › Source: "GitHub Actions".
 name: Deploy to GitHub Pages
 
@@ -28,6 +28,6 @@ jobs:
       - uses: actions/configure-pages@v5
       - uses: actions/upload-pages-artifact@v3
         with:
-          path: dist
+          path: site/dist
       - id: deployment
         uses: actions/deploy-pages@v4
