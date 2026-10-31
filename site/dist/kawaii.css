@@ -86,7 +86,9 @@ html.kw .intro-actions{justify-content:flex-start}
 html.kw .connections{justify-content:flex-start;color:var(--kw-muted)}
 html.kw .connections b{color:var(--kw-text);background:var(--kw-paper);border:2px solid var(--kw-line);border-radius:999px;padding:3px 10px}
 html.kw .connections a{color:var(--kw-link)}
-.kw-band{position:absolute;right:-8%;top:120px;width:58%;height:620px;z-index:-1;background:var(--kw-mint);border:var(--kw-bw) solid var(--kw-line);border-radius:48px;transform:rotate(-7deg)}
+/* The band starts where the sticker column starts (the hero grid: 1260px max, 32px padding, 28px gap,
+   1.12fr/.88fr), plus room for its tilt, so the copy column never runs onto it at any width. */
+.kw-band{position:absolute;right:-8%;top:120px;left:calc((100% - min(100%,1260px))/2 + 60px + (min(100%,1260px) - 92px)*.56 + var(--kw-band-in,48px));height:620px;z-index:-1;background:var(--kw-mint);border:var(--kw-bw) solid var(--kw-line);border-radius:48px;transform:rotate(-7deg)}
 .kw-band::after{content:"";position:absolute;inset:14px;border-radius:36px;background:repeating-conic-gradient(from 0deg at 40% 46%,rgba(255,255,255,.5) 0 4deg,transparent 4deg 13deg)}
 /* The sticker box is Octo's hit area: its size never changes with the pose or the clip, and the hover
    lift moves only what is inside it (kawaii.js sets .kw-on), so a parked cursor cannot flip him back and forth. */
