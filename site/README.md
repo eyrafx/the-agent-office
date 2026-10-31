@@ -15,8 +15,8 @@ An English marketing site giving equal weight to the Windows dynamic island and 
 Building the site never modifies the desktop app.
 
 ## Publishing (GitHub Pages)
-- Target: https://eyrafx.github.io/agentoffice/ (repo `agentoffice`). Every path in `dist/` is relative, so the same files work from `/agentoffice/` and from a domain root; `fix-subpath.mjs` keeps the product frames that way after each product build.
+- Target: https://eyrafx.github.io/the-agent-office/ (repo `the-agent-office`). Every path in `dist/` is relative, so the same files work from `/the-agent-office/` and from a domain root; `fix-subpath.mjs` keeps the product frames that way after each product build.
 - `.github/workflows/pages.yml` (at the repository root) publishes the committed `site/dist/` on every push to `main` (no build on GitHub). One-time: Settings › Pages › Source: GitHub Actions.
 - `dist/.nojekyll` and a self-contained `dist/404.html` are included.
-- Local check as on Pages: `node serve.mjs --base agentoffice` → http://127.0.0.1:8940/agentoffice/ (root paths are served too).
+- Local check as on Pages: `node serve.mjs --base the-agent-office` → http://127.0.0.1:8940/the-agent-office/ (root paths are served too).
 - Before publishing, fill in `dist/site-config.js` (wallets, feedback, Store and installer links, hardware figures).
