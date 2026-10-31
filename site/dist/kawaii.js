@@ -57,4 +57,19 @@
    }, 3200);
   });
  }
+
+ // Video slots ("The Agent Office" film and loops): a slot with data-src gets a muted, looping
+ // video that plays only while on screen; without one the placeholder stays. Reduced motion shows
+ // the poster with controls instead of autoplay.
+ document.querySelectorAll('[data-kw-video]').forEach(slot => {
+  const src = slot.dataset.src;
+  if (!src) return;
+  const v = document.createElement('video');
+  v.muted = true; v.loop = true; v.playsInline = true; v.preload = 'none';
+  if (slot.dataset.poster) v.poster = slot.dataset.poster;
+  v.src = src;
+  if (reduce.matches) v.controls = true;
+  slot.prepend(v); slot.classList.add('has-video');
+  new IntersectionObserver(([e]) => { if (reduce.matches) return; e.isIntersecting ? v.play().catch(() => {}) : v.pause(); }, { threshold: .25 }).observe(slot);
+ });
 })();

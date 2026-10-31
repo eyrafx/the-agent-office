@@ -26,6 +26,8 @@
   a:active{transform:translateY(4px);box-shadow:0 1px 0 #2a1640}
   a:focus-visible{outline:3px dashed var(--ink);outline-offset:4px}
   .sfx{position:absolute;right:-18px;top:-22px;font-size:26px;font-weight:900;color:#fff;-webkit-text-stroke:2px #2a1640;paint-order:stroke fill;transform:rotate(10deg)}
+  html,body{overflow-x:clip}
+  @media(max-width:480px){.sfx{right:4px;top:-26px;font-size:22px}}
   @media(prefers-reduced-motion:reduce){.island i{animation:none}a{transition:none}}
 </style>
 </head>

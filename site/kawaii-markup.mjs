@@ -60,6 +60,31 @@ await page('index.html', html => {
     const foot = html.match(/<p class="pledge-foot">[^]*?<\/p>/)[0];
     html = html.replace(foot, `${foot}<div class="kw-thanks"><p class="kw-thanks-bubble" role="status" hidden>Thank you so much!</p><button type="button" class="kw-thanks-btn" data-kw-thanks>${HEART}<span>Say thanks</span></button><p class="kw-thanks-note">No wallet needed. A kind word makes Octo’s day too.</p><div class="kw-thanks-links"><a href="https://github.com/eyrafx/agentoffice" target="_blank" rel="noopener">${STAR}<span>Star on GitHub</span></a><a href="https://github.com/eyrafx/agentoffice/discussions" target="_blank" rel="noopener">${CHAT}<span>Leave a thank-you message</span></a></div></div>`);
   }
+  // "The Agent Office": the living office, after the office demo. Videos are slots: set data-src
+  // (and data-poster) on .kw-office-film and the .kw-loop spans; empty ones show the placeholder.
+  if (!html.includes('id="agent-office"')) {
+    const at = html.lastIndexOf('<section', html.indexOf('id="media-preview"'));
+    const ico = {
+      talk: '<svg viewBox="0 0 48 48" aria-hidden="true"><path class="f1" d="M6 10h24a4 4 0 0 1 4 4v10a4 4 0 0 1-4 4H16l-7 6v-6H6a4 4 0 0 1-4-4V14a4 4 0 0 1 4-4Z"/><path class="f2" d="M24 22h18a4 4 0 0 1 4 4v8a4 4 0 0 1-4 4h-2v5l-6-5H24a4 4 0 0 1-4-4v-8a4 4 0 0 1 4-4Z"/></svg>',
+      paw: '<svg viewBox="0 0 48 48" aria-hidden="true"><ellipse class="f1" cx="24" cy="32" rx="11" ry="9"/><circle class="f2" cx="12" cy="20" r="5"/><circle class="f2" cx="20" cy="12" r="5"/><circle class="f2" cx="30" cy="12" r="5"/><circle class="f2" cx="38" cy="20" r="5"/></svg>',
+      plane: '<svg viewBox="0 0 48 48" aria-hidden="true"><path class="f1" d="M4 22 44 6 34 42 24 30 4 22Z"/><path class="f2" d="M24 30 44 6 18 27Z"/><rect class="f3" x="4" y="34" width="16" height="11" rx="2"/><path d="m4 35 8 6 8-6"/></svg>',
+      medal: '<svg viewBox="0 0 48 48" aria-hidden="true"><path class="f2" d="M14 4h8l4 12h-8zM34 4h-8l-4 12h8z"/><circle class="f1" cx="24" cy="30" r="13"/><path class="f3" d="m24 22 2.4 5 5.4.6-4 3.7 1.1 5.3-4.9-2.7-4.9 2.7 1.1-5.3-4-3.7 5.4-.6z"/></svg>',
+      game: '<svg viewBox="0 0 48 48" aria-hidden="true"><path class="f1" d="M12 14h24a9 9 0 0 1 9 9v6a7 7 0 0 1-12.6 4.2L30 30H18l-2.4 3.2A7 7 0 0 1 3 29v-6a9 9 0 0 1 9-9Z"/><path d="M13 20v8M9 24h8"/><circle class="f2" cx="33" cy="21" r="2.6"/><circle class="f3" cx="38" cy="26" r="2.6"/></svg>',
+      day: '<svg viewBox="0 0 48 48" aria-hidden="true"><circle class="f3" cx="17" cy="20" r="8"/><path d="M17 4v4M17 32v4M1 20h4M29 20h4M5.7 8.7l2.8 2.8M25.5 28.5l2.8 2.8M5.7 31.3l2.8-2.8"/><path class="f1" d="M44 34a12 12 0 0 1-15-15 12 12 0 1 0 15 15Z"/></svg>',
+      toggle: '<svg viewBox="0 0 48 48" aria-hidden="true"><rect class="f1" x="3" y="13" width="42" height="22" rx="11"/><circle class="f4" cx="34" cy="24" r="7.5"/></svg>'
+    };
+    const card = (k, title, body, loop) => `<article class="kw-ocard kw-ocard-${k}">${ico[k]}${loop ? '<span class="kw-loop" data-kw-video data-src="" aria-hidden="true"></span>' : ''}<h3>${title}</h3><p>${body}</p></article>`;
+    const section = `<section class="kw-office wrap" id="agent-office" aria-labelledby="kw-office-title"><header class="kw-office-head"><p class="eyebrow">THE AGENT OFFICE</p><h2 id="kw-office-title">Fun while you build.</h2><p>The Agent Office is a lively, game-like office where real projects get built. Agents work, chat and take breaks, and all of it plays out in front of you.</p></header><figure class="kw-office-film" data-kw-video data-src="" data-poster=""><div class="kw-film-placeholder"><svg class="kw-film-art" viewBox="0 0 640 360" preserveAspectRatio="xMidYMid slice" aria-hidden="true"><rect class="kw-film-wall" width="640" height="230"/><rect class="kw-film-floor" y="230" width="640" height="130"/><g class="kw-film-window"><rect x="70" y="40" width="170" height="110" rx="10"/><path d="M155 40v110M70 95h170"/></g><g class="kw-film-desk"><rect x="380" y="200" width="200" height="16" rx="6"/><rect x="400" y="150" width="70" height="50" rx="6"/><path d="M395 216v60M565 216v60"/></g><g class="kw-film-fly"><path class="kw-plane" d="M250 120 300 100 288 145 276 130Z"/><g class="kw-env"><rect x="520" y="70" width="46" height="32" rx="4"/><path d="m520 72 23 16 23-16"/></g></g><g class="kw-film-hearts"><path d="M150 210c-6-9-19-3-13 7l13 11 13-11c6-10-7-16-13-7z"/><path d="M600 160c-4-6-13-2-9 5l9 7 9-7c4-7-5-11-9-5z"/></g></svg><img class="kw-film-octo" src="${OCTO('wave')}-360.webp" alt="" width="360" height="290" loading="lazy" decoding="async"><p class="kw-film-note">The Agent Office film is on its way.</p></div></figure><div class="kw-office-grid">${
+      card('talk', 'Characters with a life of their own', 'Agents chat, joke, gossip, flirt a little and grumble about the manager. Each one improvises its own lines with its own model.')}${
+      card('paw', 'Office pets', 'Lucy, a cuddly Cavalier, snores and chases anything that flies. A sly cat, a parrot that steals things and an aquarium share the floor, and they all enjoy a little care.', true)}${
+      card('plane', 'Letters in the air', 'Flying envelopes and paper planes show who is sending what to whom.', true)}${
+      card('medal', 'Agent of the Month', 'Every month the office celebrates its standout agent.')}${
+      card('game', 'A game layer, one click away', 'Little games start with a click and never touch the real work.', true)}${
+      card('day', 'Daily life', 'Outfits, lunch breaks, busy mornings and quiet evenings.')}${
+      card('toggle', 'Everything is optional', 'Each part can be switched off, and simple mode keeps the office calm and focused.')
+    }</div></section>`;
+    html = html.slice(0, at) + section + html.slice(at);
+  }
   // a thank-you line in the developer note, just before the signature (text only)
   if (!html.includes('kw-note-thanks')) html = html.replace('<div class="dev-note-sign">', '<p class="kw-note-thanks">AgentOffice was built with Claude, made possible by Anthropic’s startup support program. Thank you, Anthropic 💕</p><div class="dev-note-sign">');
   return html;
