@@ -1,0 +1,279 @@
+/* AgentOffice, kawaii edition (31 Oct 2026): manga sticker pop by day, the same art at night.
+   Loaded last; every rule sits under html.kw so it wins over the older layers without !important.
+   Product views (island, office, menus, scenes, task card, wallet) stay dark like the real app and
+   get an ink frame; everything around them takes the theme. */
+
+/* fonts: self-hosted subsets (SIL OFL 1.1), CJK files load only for CJK text */
+@font-face{font-family:'KW Display';src:url('fonts/kawaii/dela-latin.woff2') format('woff2');font-display:swap;unicode-range:U+0000-024F,U+0259,U+02BB-02DC,U+0300-036F,U+0400-04FF,U+1E00-1EFF,U+2000-206F,U+20AC,U+2116,U+2122,U+2190-2199,U+2605-2606,U+2661,U+2665}
+@font-face{font-family:'KW Display';src:url('fonts/kawaii/dela-cjk.woff2') format('woff2');font-display:swap;unicode-range:U+2E80-9FFF,U+F900-FAFF,U+FF00-FFEF}
+@font-face{font-family:'KW Text';src:url('fonts/kawaii/mplus-500-latin.woff2') format('woff2');font-weight:400 600;font-display:swap;unicode-range:U+0000-024F,U+0259,U+02BB-02DC,U+0300-036F,U+0400-04FF,U+1E00-1EFF,U+2000-206F,U+20AC,U+2116,U+2122,U+2190-2199,U+2605-2606,U+2661,U+2665}
+@font-face{font-family:'KW Text';src:url('fonts/kawaii/mplus-800-latin.woff2') format('woff2');font-weight:700 900;font-display:swap;unicode-range:U+0000-024F,U+0259,U+02BB-02DC,U+0300-036F,U+0400-04FF,U+1E00-1EFF,U+2000-206F,U+20AC,U+2116,U+2122,U+2190-2199,U+2605-2606,U+2661,U+2665}
+@font-face{font-family:'KW Text';src:url('fonts/kawaii/mplus-500-cjk.woff2') format('woff2');font-weight:400 600;font-display:swap;unicode-range:U+3000-30FF,U+4E00-9FFF,U+FF00-FFEF}
+@font-face{font-family:'KW Text';src:url('fonts/kawaii/mplus-800-cjk.woff2') format('woff2');font-weight:700 900;font-display:swap;unicode-range:U+3000-30FF,U+4E00-9FFF,U+FF00-FFEF}
+@font-face{font-family:'KW Display KO';src:url('fonts/kawaii/dohyeon-cjk.woff2') format('woff2');font-display:swap}
+@font-face{font-family:'KW Text KO';src:url('fonts/kawaii/gowun-cjk.woff2') format('woff2');font-display:swap}
+@font-face{font-family:'KW Display ZH';src:url('fonts/kawaii/kuaile-cjk.woff2') format('woff2');font-display:swap}
+
+/* ---------- tokens ---------- */
+html.kw{
+ --kw-bg:#fff6d2;--kw-paper:#fffdf4;--kw-panel:#fffdf4;--kw-text:#2a1640;--kw-muted:#5a4772;--kw-line:#2a1640;--kw-shadow:#2a1640;
+ --kw-candy:#ff5fa2;--kw-candy-soft:#ffc4dc;--kw-candy-text:#c2185b;--kw-mint:#8fe8cf;--kw-sky:#a9d8ff;--kw-grape:#b59cff;--kw-lemon:#ffe45c;
+ --kw-dots:rgba(255,95,162,.26);--kw-on-candy:#2a1640;--kw-link:#c2185b;--kw-glow:none;
+ --kw-display:'KW Display','Yu Gothic UI','Segoe UI',sans-serif;--kw-text-font:'KW Text','Segoe UI Variable Text','Segoe UI',system-ui,sans-serif;
+ --kw-r:22px;--kw-bw:3px;
+ /* the older layers' own tokens, re-pointed */
+ --bg:var(--kw-bg);--paper:var(--kw-text);--muted:var(--kw-muted);--line:var(--kw-line);--font:var(--kw-text-font);
+ --promo-bg:var(--kw-bg);--promo-ink:var(--kw-text);--promo-muted:var(--kw-muted);--promo-amber:var(--kw-candy);
+ color-scheme:light;background:var(--kw-bg)
+}
+html.kw[data-theme=night]{
+ --kw-bg:#120f33;--kw-paper:#1d1850;--kw-panel:#1b1648;--kw-text:#fff1f8;--kw-muted:#cbbde6;--kw-line:#ffb3d6;--kw-shadow:#06041a;
+ --kw-candy:#ff6fae;--kw-candy-soft:#5a2a6e;--kw-candy-text:#ff9cc8;--kw-mint:#2f6f78;--kw-sky:#2b3b86;--kw-grape:#7d64d6;--kw-lemon:#ffd27a;
+ --kw-dots:rgba(255,170,214,.12);--kw-on-candy:#1a0e2e;--kw-link:#ff9cc8;--kw-glow:0 0 22px rgba(255,120,190,.35);
+ color-scheme:dark
+}
+:lang(ko).kw,.kw :lang(ko){--kw-display:'KW Display KO','Malgun Gothic',sans-serif;--kw-text-font:'KW Text KO','Malgun Gothic',sans-serif}
+:lang(zh).kw,.kw :lang(zh){--kw-display:'KW Display ZH','Microsoft YaHei',sans-serif;--kw-text-font:'Microsoft YaHei',system-ui,sans-serif}
+/* product frames keep the app's dark rendering and transparency */
+html.kw iframe{color-scheme:normal}
+html.kw :is(.reference-office-frame,#office-frame,.release-mascot){color-scheme:dark}
+
+/* ---------- page ---------- */
+html.kw body{background:radial-gradient(circle,var(--kw-dots) 1.6px,transparent 2.2px) 0 0/18px 18px,var(--kw-bg);color:var(--kw-text);font-family:var(--kw-text-font);transition:background-color .4s,color .4s}
+html.kw[data-theme=night] body{background:radial-gradient(circle,var(--kw-dots) 1.2px,transparent 1.8px) 0 0/18px 18px,radial-gradient(120% 60% at 50% 0%,#2a1f6a 0%,transparent 60%),var(--kw-bg)}
+html.kw ::selection{background:var(--kw-candy);color:var(--kw-on-candy)}
+html.kw :focus-visible{outline:3px dashed var(--kw-text);outline-offset:4px}
+canvas.kw-petals{position:absolute;inset:0;width:100%;height:100%;pointer-events:none}
+canvas.kw-page{position:fixed;z-index:60}
+.reference-hero canvas.kw-back{z-index:0}.reference-hero canvas.kw-front{z-index:30}
+
+/* headings: the chunky display face, with a sticker shadow on the big ones */
+html.kw :is(h1,h2,h3){font-family:var(--kw-display);font-weight:400;letter-spacing:-.005em}
+html.kw main h2:not(:is(.reference-stage,.demo-shell,.scene,.taskcard,.wallet-card,.get-grid,.dev-note-card,.question-card,.office-window,.tool-rail-area,.octo-story,.kw-strip) *){text-shadow:3px 3px 0 var(--kw-candy-soft)}
+html.kw main :is(h2,h3):not(:is(.reference-stage,.demo-shell,.scene,.taskcard,.wallet-card,.get-grid,.dev-note-card,.question-card,.office-window,.tool-rail-area,.octo-story,.kw-strip) *){color:var(--kw-text)}
+html.kw main :is(section,.reference-trio) h2{font-size:clamp(32px,3.5vw,54px);line-height:1.12}
+html.kw[data-theme=night] main h2:not(:is(.reference-stage,.demo-shell,.scene,.taskcard,.wallet-card,.get-grid,.dev-note-card,.question-card,.office-window,.tool-rail-area,.octo-story,.kw-strip) *){text-shadow:0 0 18px rgba(255,120,190,.45),3px 3px 0 #3b1f5e}
+html.kw :is(h1,h2) span{color:inherit}
+html.kw .eyebrow{display:inline-flex;gap:8px;align-items:center;width:fit-content;max-width:100%;padding:6px 12px 5px;border-radius:10px;background:var(--kw-text);color:var(--kw-bg);font:400 12.5px/1.2 var(--kw-display);letter-spacing:.04em;transform:rotate(-1.5deg)}
+html.kw[data-theme=night] .eyebrow{background:var(--kw-candy);color:var(--kw-on-candy)}
+
+/* buttons: stickers that press in */
+html.kw :is(.button,.header-try,.get-button,.pledge-action,.feedback-send,.kw-thanks-btn,.release-demo,.scenes-pause){font-family:var(--kw-text-font);font-weight:800;border-radius:16px;border:var(--kw-bw) solid var(--kw-line);box-shadow:0 5px 0 var(--kw-shadow);transition:transform .1s,box-shadow .1s,background-color .3s;color:var(--kw-text);background:var(--kw-paper)}
+html.kw :is(.button.primary,.header-try,.get-button.primary,.pledge-action,.feedback-send,.kw-thanks-btn){background:var(--kw-candy);color:var(--kw-on-candy)}
+html.kw :is(.button,.header-try,.get-button,.pledge-action,.feedback-send,.kw-thanks-btn,.release-demo):hover{transform:translateY(-2px);box-shadow:0 7px 0 var(--kw-shadow)}
+html.kw :is(.button,.header-try,.get-button,.pledge-action,.feedback-send,.kw-thanks-btn,.release-demo):active{transform:translateY(4px);box-shadow:0 1px 0 var(--kw-shadow)}
+html.kw :is(.button,.header-try,.get-button) svg{stroke:currentColor}
+html.kw :is(.button,.get-button) small{background:var(--kw-grape);color:var(--kw-on-candy);border:2px solid var(--kw-line);border-radius:8px}
+
+/* header */
+html.kw .brand{color:var(--kw-text)}
+html.kw .brand .wordmark{font-family:var(--kw-display);font-weight:400;color:var(--kw-text)}
+html.kw .header nav a{color:var(--kw-text);font-weight:800}
+html.kw .site-language summary{background:var(--kw-paper);color:var(--kw-text);border:var(--kw-bw) solid var(--kw-line);box-shadow:0 4px 0 var(--kw-shadow);border-radius:999px}
+html.kw .site-language-options{background:var(--kw-paper);border:var(--kw-bw) solid var(--kw-line);box-shadow:0 6px 0 var(--kw-shadow);border-radius:18px}
+html.kw .site-language-options button{color:var(--kw-text)}
+html.kw .site-language-options button[aria-pressed=true]{background:var(--kw-candy);color:var(--kw-on-candy)}
+
+/* day/night switch */
+.kw-theme{position:relative;flex:none;width:64px;height:36px;padding:0;border:var(--kw-bw) solid var(--kw-line);border-radius:999px;background:var(--kw-sky);box-shadow:0 4px 0 var(--kw-shadow);cursor:pointer;transition:background-color .35s}
+html.kw[data-theme=night] .kw-theme{background:#2b2470}
+.kw-theme-track{position:absolute;inset:0}
+.kw-theme svg{position:absolute;top:50%;width:18px;height:18px;margin-top:-9px;fill:none;stroke:var(--kw-line);stroke-width:2.2;stroke-linecap:round;stroke-linejoin:round}
+.kw-sun{left:7px}.kw-sun circle{fill:var(--kw-lemon)}
+.kw-moon{right:7px}.kw-moon path:first-child{fill:#fff4c8}.kw-moon-star{fill:#fff4c8;stroke-width:1.4}
+.kw-theme-knob{position:absolute;top:3px;left:3px;width:24px;height:24px;border-radius:50%;background:#fff;border:2.5px solid var(--kw-line);transition:transform .45s cubic-bezier(.3,1.6,.5,1);box-shadow:inset -3px -3px 0 rgba(255,95,162,.25)}
+html.kw[data-theme=night] .kw-theme-knob{transform:translateX(28px);background:#ffe9f4}
+.kw-theme:hover .kw-theme-knob{box-shadow:inset -3px -3px 0 rgba(255,95,162,.45)}
+.header-actions .kw-theme{margin-right:2px}
+/* the new theme opens as a circle from the switch */
+::view-transition-old(root),::view-transition-new(root){animation:none;mix-blend-mode:normal}
+html.kw-switching::view-transition-new(root){animation:kw-reveal .7s cubic-bezier(.5,0,.2,1)}
+@keyframes kw-reveal{from{clip-path:circle(0 at var(--kw-x) var(--kw-y))}to{clip-path:circle(150vmax at var(--kw-x) var(--kw-y))}}
+
+/* ---------- hero ---------- */
+/* The hero island's frame is 864x480 and see-through. Closed, only the area around the small island
+   takes the pointer, so the headline, buttons and Octo underneath stay clickable; open, the whole
+   frame does, as before (html.hero-island-open is set by embed-ready.js from the product's state). */
+html.kw .reference-hero .hero-island-live{pointer-events:none}
+html.kw:not(.hero-island-open) .reference-hero .hero-island-live iframe{clip-path:inset(0 calc(50% - 170px) calc(100% - 72px))}
+html.kw .reference-hero{background:none;isolation:isolate;overflow:hidden;padding-top:206px;padding-bottom:40px;min-height:0}
+html.kw .reference-hero::before,html.kw .reference-hero::after{display:none}
+html.kw[data-theme=night] .reference-hero{background:linear-gradient(180deg,#0c0a2a 0%,#1e1856 50%,#2e1f66 80%,var(--kw-bg) 100%)}
+html.kw .reference-hero-content{display:grid;grid-template-columns:minmax(0,1.12fr) minmax(0,.88fr);align-items:center;column-gap:28px;text-align:left;max-width:1260px;margin:0 auto;padding-left:32px;padding-right:32px}
+html.kw .intro-copy{position:relative;z-index:5;text-align:left;margin:0;max-width:none}
+html.kw .reference-hero h1{font-size:clamp(36px,4vw,66px);overflow-wrap:anywhere;line-height:1.1;text-align:left;color:var(--kw-text);text-shadow:4px 4px 0 var(--kw-candy-soft),5px 5px 0 var(--kw-line);text-wrap:balance}
+html.kw[data-theme=night] .reference-hero h1{text-shadow:0 0 26px rgba(255,120,190,.55),4px 4px 0 #3b1f5e}
+html.kw .reference-hero h1 :is(.cyan-text,.coral-text){color:inherit;background:none;-webkit-text-fill-color:currentColor}
+html.kw :is(:lang(ja),:lang(ko),:lang(zh)) .reference-hero h1{font-size:clamp(32px,3.8vw,58px);line-height:1.24;overflow-wrap:normal}
+html.kw :lang(ja) :is(h1,h2,h3,.kw-bubble,figcaption){word-break:auto-phrase}
+html.kw .intro-description{color:var(--kw-text);font-weight:800;text-align:left}
+html.kw .intro-detail{color:var(--kw-muted);text-align:left;margin-left:0}
+html.kw .intro-actions{justify-content:flex-start}
+html.kw .connections{justify-content:flex-start;color:var(--kw-muted)}
+html.kw .connections b{color:var(--kw-text);background:var(--kw-paper);border:2px solid var(--kw-line);border-radius:999px;padding:3px 10px}
+html.kw .connections a{color:var(--kw-link)}
+.kw-band{position:absolute;right:-8%;top:120px;width:58%;height:620px;z-index:-1;background:var(--kw-mint);border:var(--kw-bw) solid var(--kw-line);border-radius:48px;transform:rotate(-7deg)}
+.kw-band::after{content:"";position:absolute;inset:14px;border-radius:36px;background:repeating-conic-gradient(from 0deg at 40% 46%,rgba(255,255,255,.5) 0 4deg,transparent 4deg 13deg)}
+html.kw[data-theme=night] .kw-band{background:#231d62;box-shadow:0 0 0 6px rgba(255,150,210,.08),0 0 60px rgba(255,110,180,.25)}
+html.kw[data-theme=night] .kw-band::after{background:repeating-conic-gradient(from 0deg at 40% 46%,rgba(255,180,220,.12) 0 4deg,transparent 4deg 13deg)}
+.kw-sticker{position:relative;z-index:6;justify-self:center;width:min(100%,500px);transform:rotate(-5deg);transition:transform .35s cubic-bezier(.3,1.6,.5,1)}
+.kw-sticker:hover{transform:rotate(1deg) translateY(-8px) scale(1.02)}
+.kw-octo{display:block;width:100%;height:auto;cursor:pointer;-webkit-user-select:none;user-select:none;-webkit-touch-callout:none;
+ filter:drop-shadow(5px 0 0 #fff) drop-shadow(-5px 0 0 #fff) drop-shadow(0 5px 0 #fff) drop-shadow(0 -5px 0 #fff) drop-shadow(3px 3px 0 var(--kw-line)) drop-shadow(-1px -1px 0 var(--kw-line)) drop-shadow(0 10px 0 rgba(42,22,64,.18))}
+html.kw[data-theme=night] .kw-octo{filter:drop-shadow(5px 0 0 #fff) drop-shadow(-5px 0 0 #fff) drop-shadow(0 5px 0 #fff) drop-shadow(0 -5px 0 #fff) drop-shadow(0 0 22px rgba(255,120,190,.6))}
+.kw-badge{position:absolute;display:grid;place-items:center;border:var(--kw-bw) solid var(--kw-line);box-shadow:0 4px 0 var(--kw-shadow);pointer-events:none}
+.kw-kana{right:-3%;top:-1%;width:92px;height:92px;border-radius:50%;background:var(--kw-candy);color:var(--kw-on-candy);font:400 21px/1 'KW Display',sans-serif;transform:rotate(12deg)}
+.kw-star{left:-5%;bottom:17%;width:60px;height:60px;border-radius:18px;background:var(--kw-sky);transform:rotate(-14deg)}
+.kw-star svg{width:32px;height:32px;fill:#fff;stroke:var(--kw-line);stroke-width:2;stroke-linejoin:round}
+.kw-bubble{position:absolute;left:0;top:-5%;margin:0;max-width:12.5em;padding:11px 15px;border-radius:22px;background:var(--kw-paper);border:var(--kw-bw) solid var(--kw-line);box-shadow:0 4px 0 var(--kw-shadow);font-weight:800;font-size:15px;line-height:1.4;color:var(--kw-text);transform:rotate(4deg)}
+.kw-bubble::after{content:"";position:absolute;right:28px;bottom:-15px;width:22px;height:16px;background:var(--kw-paper);border:var(--kw-bw) solid var(--kw-line);border-top:0;border-left:0;clip-path:polygon(0 0,100% 0,100% 100%);transform:skewX(-30deg)}
+.kw-moon-disc,.kw-lanterns{display:none}
+html.kw[data-theme=night] .kw-moon-disc{display:block;position:absolute;right:7%;top:15%;z-index:-1;width:clamp(70px,7vw,110px);aspect-ratio:1;border-radius:50%;background:radial-gradient(circle at 38% 36%,#fffaf0,#ffe9c4 60%,#f6d3a4);box-shadow:0 0 60px 18px rgba(255,226,180,.2),0 0 160px 50px rgba(255,170,210,.12)}
+html.kw[data-theme=night] .kw-lanterns{display:block;position:absolute;right:20%;top:150px;z-index:1;width:clamp(200px,22vw,300px);height:auto;pointer-events:none}
+.kw-lanterns .kw-string{fill:none;stroke:rgba(255,220,240,.45);stroke-width:1.5}
+.kw-lantern{fill:#ff6f9f;stroke:#ffd27a;stroke-width:1.6;filter:drop-shadow(0 0 10px rgba(255,120,160,.9));animation:kw-sway 5s ease-in-out infinite;transform-box:fill-box;transform-origin:50% 0}
+.kw-lantern path{fill:none;stroke:rgba(255,230,190,.7)}
+.kw-lantern .kw-cap{fill:#2a1640;stroke:#ffd27a}
+.kw-lantern:nth-of-type(2){animation-delay:-1.7s}.kw-lantern:nth-of-type(3){animation-delay:-3.1s}
+@keyframes kw-sway{50%{rotate:5deg}}
+/* the story card, in ink and paper */
+html.kw .reference-hero .octo-story{grid-column:1/-1;position:relative;z-index:6;max-width:none;width:100%;margin:26px 0 0;color:var(--kw-text);background:var(--kw-paper);border:var(--kw-bw) solid var(--kw-line);box-shadow:0 6px 0 var(--kw-shadow),var(--kw-glow);-webkit-backdrop-filter:none;backdrop-filter:none;transform:rotate(-.5deg);font-family:var(--kw-text-font)}
+html.kw .octo-story::before{background:radial-gradient(circle,rgba(255,95,162,.35) 1.4px,transparent 1.9px) 0 0/10px 10px}
+html.kw .reference-hero .octo-story :is(.octo-story-title,p){font-family:var(--kw-text-font);color:var(--kw-text)}
+html.kw .reference-hero .octo-story-title{font-family:var(--kw-display);font-weight:400;text-shadow:none}
+html.kw .octo-story-avatar{background:radial-gradient(circle at 50% 38%,#fff 0%,#ffd6e8 60%,#ffc0dc 100%);box-shadow:0 0 0 3px var(--kw-line),0 0 0 8px #fff,0 0 0 11px var(--kw-line)}
+html.kw .octo-story .octo-story-bubble{border:var(--kw-bw) solid var(--kw-line);box-shadow:0 4px 0 var(--kw-shadow);color:var(--kw-text);background:var(--kw-candy-soft)}
+html.kw .octo-story-bubble::before{border-bottom-color:var(--kw-line)}
+html.kw .octo-story-bubble::after{border-bottom-color:var(--kw-candy-soft)}
+html.kw .octo-name{background:none;-webkit-background-clip:border-box;background-clip:border-box;color:var(--kw-candy-text)}
+html.kw .octo-story .octo-story-bubble .octo-name{color:var(--kw-candy-text)}
+html.kw .octo-spark{color:var(--kw-candy)}
+/* the three-panel strip */
+.kw-strip{grid-column:1/-1;position:relative;z-index:6;display:grid;grid-template-columns:1fr 1fr 1.25fr;gap:18px;margin:22px 0 10px}
+.kw-panel{position:relative;height:190px;margin:0;overflow:hidden;border:var(--kw-bw) solid var(--kw-line);border-radius:14px;box-shadow:0 4px 0 var(--kw-shadow)}
+.kw-panel-1{background:#dff4ff;transform:rotate(-1deg)}.kw-panel-2{background:#ffeaf3;transform:rotate(.8deg)}.kw-panel-3{background:#fff2c7;transform:rotate(-.6deg)}
+html.kw[data-theme=night] .kw-panel-1{background:#1b2a63}html.kw[data-theme=night] .kw-panel-2{background:#3a1e5c}html.kw[data-theme=night] .kw-panel-3{background:#2c215e}
+.kw-art{position:absolute;inset:0;width:100%;height:100%;stroke:var(--kw-line);stroke-width:3;stroke-linejoin:round}
+.kw-col{fill:#fff}.kw-wave{fill:var(--kw-mint)}.kw-wave2{fill:#6fd6bb}.kw-bub{fill:#fff;stroke-width:2.5}
+html.kw[data-theme=night] :is(.kw-col,.kw-bub){fill:#e9e2ff}html.kw[data-theme=night] .kw-wave{fill:#2f6f9a}html.kw[data-theme=night] .kw-wave2{fill:#24507a}
+.kw-rays{stroke:var(--kw-candy);stroke-width:2.5;opacity:.7}.kw-screen{fill:none}.kw-pill{fill:#1a1224}.kw-glint{fill:var(--kw-lemon);stroke-width:2.5}
+.kw-speed{stroke-width:2;opacity:.3;stroke-dasharray:40 26}.kw-hearts{fill:var(--kw-candy);stroke-width:2.5}.kw-hearts .kw-heart2{fill:var(--kw-candy-soft)}
+.kw-panel img{position:absolute;right:9%;bottom:-16%;width:44%;height:auto}
+.kw-panel figcaption{position:absolute;left:12px;top:10px;max-width:78%;padding:6px 10px;background:#fff;color:#2a1640;border:2.5px solid var(--kw-line);font-weight:800;font-size:13.5px;line-height:1.35}
+.kw-panel-2 figcaption{top:auto;bottom:10px}
+
+/* ---------- sections as manga panels ---------- */
+html.kw main>:is(section,div.reference-trio):not(.reference-hero){position:relative}
+html.kw :is(.reference-feature,.languages,.desktop-extras,.usage,.get,.dev-note,.release,.support,.feedback,.faq,.demo-wrap){background:var(--kw-panel);border:var(--kw-bw) solid var(--kw-line);border-radius:30px;box-shadow:0 8px 0 var(--kw-shadow),var(--kw-glow);padding:clamp(26px,3.4vw,52px);margin-top:46px;margin-bottom:0;overflow:visible}
+html.kw :is(.reference-feature,.languages,.desktop-extras,.usage,.get,.dev-note,.release,.support,.feedback,.faq,.demo-wrap)::after{content:"";position:absolute;right:0;top:0;width:44%;height:54%;pointer-events:none;border-radius:0 30px 0 0;
+ background:radial-gradient(circle,var(--kw-dots) 1.6px,transparent 2.2px) 0 0/11px 11px;-webkit-mask-image:radial-gradient(90% 100% at 100% 0%,#000,transparent 70%);mask-image:radial-gradient(90% 100% at 100% 0%,#000,transparent 70%)}
+html.kw main>section:nth-of-type(even):not(.reference-hero){rotate:.25deg}
+html.kw main>section:nth-of-type(odd):not(.reference-hero){rotate:-.2deg}
+/* text in those panels follows the theme; product views keep their own colours */
+html.kw main :is(section,.reference-trio) :is(h2,h3,h4,p,li,summary,dt,dd,label,b,strong,small,.reference-hint,.reference-count):not(:is(.reference-stage,.demo-shell,.scene,.taskcard,.wallet-card,.get-grid,.dev-note-card,.question-card,.office-window,.tool-rail-area,.octo-story,.kw-strip) *):not(.eyebrow){color:var(--kw-text)}
+html.kw main :is(section,.reference-trio) :is(p,li,small,.reference-hint):not(:is(.reference-stage,.demo-shell,.scene,.taskcard,.wallet-card,.get-grid,.dev-note-card,.question-card,.office-window,.tool-rail-area,.octo-story,.kw-strip) *):not(.eyebrow){color:var(--kw-muted)}
+html.kw main :is(section,.reference-trio) a:not(.button,.get-button,.release-demo,.brand,.header-try):not(:is(.reference-stage,.demo-shell,.scene,.taskcard,.wallet-card,.get-grid,.dev-note-card,.question-card,.office-window,.tool-rail-area,.octo-story,.kw-strip) *){color:var(--kw-link)}
+/* product views: dark screens inside an ink frame */
+html.kw :is(.reference-stage,.demo-shell,.taskcard,.wallet-card,.dev-note-card,.feedback-form,.scene){border:var(--kw-bw) solid var(--kw-line);border-radius:var(--kw-r);box-shadow:0 6px 0 var(--kw-shadow);overflow:hidden}
+html.kw .reference-trio{gap:18px}
+html.kw .reference-trio>div{background:var(--kw-panel);border:var(--kw-bw) solid var(--kw-line);border-radius:20px;box-shadow:0 5px 0 var(--kw-shadow);padding:18px 20px}
+html.kw .reference-trio>div:nth-child(1){transform:rotate(-1deg)}html.kw .reference-trio>div:nth-child(2){transform:rotate(.7deg)}html.kw .reference-trio>div:nth-child(3){transform:rotate(-.5deg)}
+html.kw .reference-trio b{font-family:var(--kw-display);font-weight:400}
+html.kw .language-list button{background:var(--kw-paper);color:var(--kw-text);border:var(--kw-bw) solid var(--kw-line);border-radius:16px;box-shadow:0 4px 0 var(--kw-shadow)}
+html.kw .language-list button[aria-pressed=true]{background:var(--kw-candy);color:var(--kw-on-candy)}
+html.kw .language-list button i{color:inherit}
+/* footer: the last panel's tail */
+html.kw .footer{color:var(--kw-muted);border-top:var(--kw-bw) dashed var(--kw-line);margin-top:60px}
+html.kw .footer a{color:var(--kw-text)}
+
+/* ---------- support: say thanks ---------- */
+.kw-thanks{position:relative;margin-top:22px;padding:18px 18px 16px;border:var(--kw-bw) dashed var(--kw-line);border-radius:20px;background:color-mix(in srgb,var(--kw-candy-soft) 35%,transparent)}
+.kw-thanks-btn{display:inline-flex;align-items:center;gap:9px;min-height:50px;padding:0 22px;font-size:16px;cursor:pointer}
+.kw-thanks-btn svg{width:20px;height:20px;fill:#fff;stroke:var(--kw-line);stroke-width:2}
+.kw-thanks-note{margin:12px 0 10px;font-size:14.5px}
+.kw-thanks-links{display:flex;flex-wrap:wrap;gap:10px}
+.kw-thanks-links a{display:inline-flex;align-items:center;gap:8px;min-height:44px;padding:0 14px;border-radius:14px;border:2.5px solid var(--kw-line);background:var(--kw-paper);color:var(--kw-text);font-weight:800;font-size:14.5px;text-decoration:none;box-shadow:0 3px 0 var(--kw-shadow)}
+html.kw main .kw-thanks-links a{color:var(--kw-text)}
+.kw-thanks-links svg{width:18px;height:18px;fill:var(--kw-lemon);stroke:var(--kw-line);stroke-width:2;stroke-linejoin:round}
+.kw-thanks-links a:last-child svg{fill:var(--kw-sky)}
+.kw-thanks-bubble{position:absolute;right:16px;top:-22px;margin:0;padding:9px 15px;border-radius:20px;background:var(--kw-paper);border:var(--kw-bw) solid var(--kw-line);box-shadow:0 4px 0 var(--kw-shadow);font-weight:800;color:var(--kw-candy-text)!important}
+.kw-thanks-bubble.kw-pop{animation:kw-pop .5s cubic-bezier(.3,1.7,.5,1)}
+@keyframes kw-pop{from{transform:scale(.4) rotate(-8deg);opacity:0}}
+html.kw .support-pledge.kw-thanked .pledge-layers{animation:kw-wiggle .6s ease-in-out 2}
+@keyframes kw-wiggle{25%{rotate:-6deg}75%{rotate:6deg}}
+
+/* feature stages: candy screens behind the dark product views */
+html.kw .reference-stage{background:radial-gradient(circle,rgba(255,255,255,.55) 2px,transparent 2.6px) 0 0/16px 16px,var(--kw-stage,var(--kw-sky));border-radius:var(--kw-r)}
+html.kw #inside .reference-stage{--kw-stage:#ffb3d1}html.kw #team .reference-stage{--kw-stage:#a9d8ff}html.kw #media-preview .reference-stage{--kw-stage:#b59cff}
+html.kw #notes-preview .reference-stage{--kw-stage:#ffe45c}html.kw #focus-preview .reference-stage{--kw-stage:#8fe8cf}html.kw #alarm-preview .reference-stage{--kw-stage:#ffc4a8}
+html.kw #water-preview .reference-stage{--kw-stage:#a9e4ff}html.kw #shelf-preview .reference-stage{--kw-stage:#ffd0e6}html.kw #settings-preview .reference-stage{--kw-stage:#d9ccff}
+html.kw[data-theme=night] .reference-stage{background:radial-gradient(circle,rgba(255,200,230,.16) 1.4px,transparent 2px) 0 0/16px 16px,radial-gradient(90% 90% at 50% 0%,color-mix(in srgb,var(--kw-stage,#a9d8ff) 30%,#1d1850),#141040)}
+html.kw .reference-hint{border-left:4px solid var(--kw-candy);border-radius:2px}
+html.kw .reference-count{color:var(--kw-candy-text)}
+html.kw .office-weather button{border:2.5px solid var(--kw-line);background:var(--kw-paper);color:var(--kw-text);box-shadow:0 3px 0 var(--kw-shadow);font-weight:800}
+html.kw .office-weather button[aria-pressed=true]{background:var(--kw-candy);color:var(--kw-on-candy)}
+html.kw .office-weather-label,html.kw .office-weather span{color:var(--kw-muted)}
+/* support and feedback: paper stickers instead of dark cards */
+html.kw .support-pledge{background:var(--kw-paper);border:var(--kw-bw) solid var(--kw-line);box-shadow:0 6px 0 var(--kw-shadow)}
+html.kw .pledge-glow{display:none}
+html.kw .feedback-form{background:var(--kw-paper);border:var(--kw-bw) solid var(--kw-line)}
+html.kw .feedback-form :is(input,textarea,select){background:#fff;color:#2a1640;border:2.5px solid var(--kw-line);border-radius:14px}
+html.kw[data-theme=night] .feedback-form :is(input,textarea,select){background:#120f33;color:var(--kw-text)}
+html.kw .feedback-form :is(input,textarea)::placeholder{color:#7a6a8e}
+html.kw .usage-stats *{color:var(--kw-text)}
+html.kw .usage-stats small,html.kw .usage-stats span{color:var(--kw-muted)}
+html.kw .usage-points li::before{background:var(--kw-candy);border-color:var(--kw-line)}
+html.kw .faq :is(details,summary){border-color:var(--kw-line)}
+html.kw .faq details{border-bottom:2.5px dashed color-mix(in srgb,var(--kw-line) 45%,transparent)}
+
+/* ---------- small screens ---------- */
+@media (max-width:900px){
+ html.kw .reference-hero-content{grid-template-columns:1fr;padding-left:18px;padding-right:18px}
+ html.kw .reference-hero{padding-top:172px}
+ html.kw[data-theme=night] .kw-moon-disc{display:none}
+ .kw-sticker{width:min(82vw,380px);margin:30px auto 6px}
+ .kw-bubble{left:-2%;top:-10%;font-size:14px}
+ .kw-band{display:none}
+ .kw-sticker::before{content:"";position:absolute;left:-30%;right:-30%;top:18%;height:62%;z-index:-1;background:var(--kw-mint);border:var(--kw-bw) solid var(--kw-line);border-radius:40px;transform:rotate(-2deg);background-image:repeating-conic-gradient(from 0deg at 50% 50%,rgba(255,255,255,.45) 0 4deg,transparent 4deg 13deg)}
+ html.kw[data-theme=night] .kw-sticker::before{background-color:#231d62;background-image:repeating-conic-gradient(from 0deg at 50% 50%,rgba(255,180,220,.12) 0 4deg,transparent 4deg 13deg)}
+ .kw-strip{grid-template-columns:1fr;gap:12px}
+ .kw-panel{height:150px}
+ html.kw :is(.reference-feature,.languages,.desktop-extras,.usage,.get,.dev-note,.release,.support,.feedback,.faq,.demo-wrap){border-radius:22px;margin-top:30px;padding:22px 16px}
+ html.kw main>section:not(.reference-hero){rotate:0deg!important}
+ html.kw[data-theme=night] .kw-lanterns{display:none}
+}
+@media (prefers-reduced-motion:reduce){
+ .kw-sticker,.kw-theme-knob,html.kw :is(.button,.header-try,.get-button,.pledge-action,.feedback-send,.kw-thanks-btn){transition:none}
+ .kw-lantern,.kw-thanks-bubble.kw-pop,html.kw .support-pledge.kw-thanked .pledge-layers{animation:none}
+}
+html.kw .eyebrow .reference-count{color:inherit;opacity:.75}
+html.kw .download-action{background-image:none}
+html.kw .download-action.is-soon:not(.mac-action){filter:none;opacity:1}
+html.kw .reference-hero :is(.download-action,.live-action,.support-action){width:auto;max-width:none;min-height:54px;font-size:15.5px;border-radius:16px}
+html.kw .intro-actions{gap:12px}
+html.kw .languages>*{min-width:0}
+/* ---------- FAQ, privacy, disclaimer ---------- */
+html.kw body[data-page]{background:radial-gradient(circle,var(--kw-dots) 1.6px,transparent 2.2px) 0 0/18px 18px,var(--kw-bg)}
+html.kw #legal{background:var(--kw-paper);border:var(--kw-bw) solid var(--kw-line);box-shadow:0 8px 0 var(--kw-shadow),var(--kw-glow);color:var(--kw-text)}
+html.kw #legal :is(h1,h2,summary){color:var(--kw-text)}
+html.kw #legal h1{font-family:var(--kw-display);font-weight:400;letter-spacing:0;text-shadow:3px 3px 0 var(--kw-candy-soft)}
+html.kw[data-theme=night] #legal h1{text-shadow:0 0 18px rgba(255,120,190,.45)}
+html.kw #legal :is(p,li,.lead){color:var(--kw-text)}
+html.kw #legal .when{color:var(--kw-muted)}
+html.kw #legal :is(a,code){color:var(--kw-link)}
+html.kw .legal-faq details{border:2.5px solid var(--kw-line);background:color-mix(in srgb,var(--kw-candy-soft) 22%,transparent);box-shadow:0 3px 0 var(--kw-shadow)}
+html.kw .legal-faq summary::after{border-color:var(--kw-candy)}
+html.kw .legal-faq details div p{color:var(--kw-text)}
+html.kw .legal-home{border:2.5px solid var(--kw-line);color:var(--kw-text);background:var(--kw-paper);box-shadow:0 3px 0 var(--kw-shadow);font-weight:800}
+html.kw .legal-lang select{border:2.5px solid var(--kw-line);background:var(--kw-paper);color:var(--kw-text);box-shadow:0 3px 0 var(--kw-shadow)}
+html.kw .shelf-samples button{background:var(--kw-candy);color:var(--kw-on-candy);border:2.5px solid var(--kw-line);box-shadow:0 3px 0 var(--kw-shadow);font-weight:800}
+@media (max-width:440px){
+ .kw-theme{width:52px;height:32px}
+ .kw-theme svg{width:15px;height:15px;margin-top:-7.5px}.kw-sun{left:5px}.kw-moon{right:5px}
+ .kw-theme-knob{width:20px;height:20px}
+ html.kw[data-theme=night] .kw-theme-knob{transform:translateX(20px)}
+ html.kw .header-actions{gap:6px}
+ html.kw .header .brand .wordmark{font-size:17px}
+ html.kw .header .brand img{width:36px;height:auto}
+}
+@media (max-width:350px){html.kw .header .brand .wordmark{display:none}}

@@ -97,7 +97,10 @@
   }
   // Nothing published yet: the Windows buttons in the hero and the closing section say so too
   // (they still lead to the download block, which explains the options).
+  // The markup already carries the "Coming soon" pill, so the hero does not reflow when this runs;
+  // once a link is published it goes away.
   if (!dl.storeUrl && !dl.installerUrl) $$('.download-action:not(.mac-action)').forEach(btn => { btn.classList.add('is-soon'); if (!btn.querySelector('small')) btn.insertAdjacentHTML('beforeend', '<small>Coming soon</small>'); });
+  else $$('.download-action:not(.mac-action)').forEach(btn => { btn.classList.remove('is-soon'); btn.querySelector('small')?.remove(); });
 
   // ——— placeholders follow the site language ———
   const placeholders = () => $$('[data-placeholder]').forEach(el => { el.placeholder = t(el.dataset.placeholder); });

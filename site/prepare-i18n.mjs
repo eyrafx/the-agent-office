@@ -15,6 +15,7 @@ import {footerCopy} from './footer-copy.mjs';
 import {sectionCopy} from './section-copy.mjs';
 import {filesCopy} from './files-copy.mjs';
 import {contactCopy} from './contact-copy.mjs';
+import {kawaiiCopy} from './kawaii-copy.mjs';
 for(const id of Object.keys(copy)){const extra=statusCopy[id]?.split('\n');if(extra?.length!==10)throw new Error(`Incomplete status copy: ${id}`);copy[id].push(...extra);}
 for(const id of Object.keys(copy)){const extra=showcaseCopy[id]?.split('|');if(extra?.length!==29)throw new Error(`Incomplete showcase copy: ${id}`);copy[id].push(...extra);}
 for(const id of Object.keys(copy)){if(referenceCopy[id]?.length!==6)throw new Error('Incomplete reference copy '+id);copy[id].push(...referenceCopy[id]);}
@@ -30,6 +31,7 @@ for(const id of Object.keys(copy)){if(footerCopy[id]?.length!==6)throw new Error
 for(const id of Object.keys(copy)){if(sectionCopy[id]?.length!==4)throw new Error('Incomplete section copy '+id);copy[id].push(...sectionCopy[id]);}
 for(const id of Object.keys(copy)){if(filesCopy[id]?.length!==4)throw new Error('Incomplete files copy '+id);copy[id].push(...filesCopy[id]);}
 for(const id of Object.keys(copy)){if(contactCopy[id]?.length!==3)throw new Error('Incomplete contact copy '+id);copy[id].push(...contactCopy[id]);}
+for(const id of Object.keys(copy)){if(kawaiiCopy[id]?.length!==12)throw new Error('Incomplete kawaii copy '+id);copy[id].push(...kawaiiCopy[id]);}
 for(const [id,values] of Object.entries(copy)){
  if(values.length!==en.length||values.some(x=>!x))throw new Error(`Incomplete ${id}: ${values.length}/${en.length}`);
  for(let i=0;i<en.length;i++)if(en[i].includes('{n}')&&!values[i].includes('{n}'))throw new Error(`Missing variable ${id}:${i}`);

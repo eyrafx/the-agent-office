@@ -25,6 +25,7 @@ The small Claude and OpenAI marks drawn in `app/src/ui/icons.ts` are taken from 
 - The desktop app uses the system's Segoe UI font (owned by Microsoft); no font file is bundled.
 - `promo-site/public/fonts/Manrope-var.woff2` (the browser demo used by `promo-video/`): Manrope, Copyright 2018 The Manrope Project Authors, SIL Open Font License 1.1 ([`promo-site/public/fonts/Manrope-OFL.txt`](promo-site/public/fonts/Manrope-OFL.txt)).
 - `site/dist/fonts/quicksand/` (the website): Quicksand, Copyright 2011 The Quicksand Project Authors, SIL Open Font License 1.1 ([`site/dist/fonts/quicksand/OFL.txt`](site/dist/fonts/quicksand/OFL.txt)).
+- `site/dist/fonts/kawaii/` (the website, subsets made with `site/kawaii-fonts.py`), all SIL Open Font License 1.1: Dela Gothic One, Copyright 2020 The Dela Gothic Project Authors ([`OFL-delagothicone.txt`](site/dist/fonts/kawaii/OFL-delagothicone.txt)); M PLUS Rounded 1c, Copyright 2016 The Rounded M+ Project Authors ([`OFL-mplusrounded1c.txt`](site/dist/fonts/kawaii/OFL-mplusrounded1c.txt)); Do Hyeon ([`OFL-dohyeon.txt`](site/dist/fonts/kawaii/OFL-dohyeon.txt)); Gowun Dodum ([`OFL-gowundodum.txt`](site/dist/fonts/kawaii/OFL-gowundodum.txt)); ZCOOL KuaiLe ([`OFL-zcoolkuaile.txt`](site/dist/fonts/kawaii/OFL-zcoolkuaile.txt)).
 
 ## Runtime dependencies (shipped in the app)
 
