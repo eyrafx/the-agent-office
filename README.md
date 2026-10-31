@@ -8,6 +8,8 @@ A dynamic island for **Windows** and a little office for your AI coding agents.
      change the text to "⬇ Download AgentOffice vX.Y.Z" and point it at the release file. -->
 **[⬇ Download AgentOffice (coming soon)](https://eyrafx.github.io/agentoffice/#download)**
 
+[![Latest version](https://img.shields.io/github/v/release/eyrafx/agentoffice?include_prereleases&sort=semver&label=latest%20version)](https://github.com/eyrafx/agentoffice/releases) · [What's new](CHANGELOG.md)
+
 <!-- When the demo video is published, turn "▶ Watch Demo (coming soon)" into a link to it. -->
 ▶ Watch Demo *(coming soon)* · [Website and live demo](https://eyrafx.github.io/agentoffice/) · [Türkçe README](README_TR.md)
 
@@ -19,7 +21,7 @@ A dynamic island for **Windows** and a little office for your AI coding agents.
 
 AgentOffice sits at the top of your screen and shows what your coding agents are doing: who is working, who is waiting for you, and how much of your usage limit is left. Open the office and every chat becomes a colleague at a desk, grouped by project. Everything runs on your PC, with no account and no AgentOffice server.
 
-The island is called **Octolantis**, and **Octo**, a small orange octopus, lives in it and keeps you company.
+The island is called **Octolantis**, and **Octo**, a little octopus, lives in it and keeps you company.
 
 ## Features
 
@@ -143,6 +145,12 @@ powershell -File scripts/dev.ps1 -Action bundle   # build the installer
 ```
 
 `scripts/dev.ps1` keeps Rust, caches, build output and test data inside the project folder (`.tools/`, `.artifacts/`, `.local-data/`), so a development build never touches an installed AgentOffice.
+
+### Making a release
+
+1. `node scripts/set-version.mjs X.Y.Z` sets the version everywhere (with no argument it checks that all places agree).
+2. Add a `## X.Y.Z` section to [CHANGELOG.md](CHANGELOG.md) and [CHANGELOG_TR.md](CHANGELOG_TR.md), then commit and push.
+3. **Actions › Draft release › Run workflow** with X.Y.Z builds the installer and creates a **draft** release with the changelog text and the installer's SHA-256. Nothing is public until the draft is published on the Releases page.
 
 | Folder | What it is |
 |---|---|

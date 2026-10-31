@@ -8,6 +8,8 @@
      yazıyı "⬇ AgentOffice vX.Y.Z'yi indir" yapın ve bağlantıyı sürüm dosyasına yönlendirin. -->
 **[⬇ AgentOffice'i indir (yakında)](https://eyrafx.github.io/agentoffice/#download)**
 
+[![Son sürüm](https://img.shields.io/github/v/release/eyrafx/agentoffice?include_prereleases&sort=semver&label=son%20s%C3%BCr%C3%BCm)](https://github.com/eyrafx/agentoffice/releases) · [Yenilikler](CHANGELOG_TR.md)
+
 <!-- Demo videosu yayımlanınca "▶ Demoyu İzle (yakında)" yazısını videoya bağlayın. -->
 ▶ Demoyu İzle *(yakında)* · [Web sitesi ve canlı demo](https://eyrafx.github.io/agentoffice/) · [English README](README.md)
 
@@ -19,7 +21,7 @@
 
 AgentOffice ekranının üst kenarında durur ve kodlama ajanlarının ne yaptığını gösterir: kim çalışıyor, kim senden yanıt bekliyor, kullanım sınırından ne kadar kaldı. Ofisi açtığında her sohbet, projesine göre gruplanmış, masasında oturan bir çalışma arkadaşına dönüşür. Her şey senin bilgisayarında çalışır; hesap yok, AgentOffice sunucusu yok.
 
-Adanın adı **Octolantis**; orada yaşayan küçük turuncu ahtapot **Octo** da sana eşlik eder.
+Adanın adı **Octolantis**; orada yaşayan küçük ahtapot **Octo** da sana eşlik eder.
 
 ## Özellikler
 
@@ -143,6 +145,12 @@ powershell -File scripts/dev.ps1 -Action bundle   # kurulum dosyasını oluştur
 ```
 
 `scripts/dev.ps1` Rust'ı, önbellekleri, derleme çıktısını ve test verisini proje klasörünün içinde tutar (`.tools/`, `.artifacts/`, `.local-data/`); böylece geliştirme sürümü kurulu bir AgentOffice'e hiç dokunmaz.
+
+### Sürüm hazırlamak
+
+1. `node scripts/set-version.mjs X.Y.Z` sürümü her yerde değiştirir (sürüm verilmezse yalnız hepsinin aynı olduğunu denetler).
+2. [CHANGELOG.md](CHANGELOG.md) ve [CHANGELOG_TR.md](CHANGELOG_TR.md) dosyalarına `## X.Y.Z` bölümü eklenir, sonra commit edilip gönderilir.
+3. **Actions › Draft release › Run workflow** (X.Y.Z ile) kurulum dosyasını derler ve sürüm notları ile SHA-256 özetini içeren bir **taslak** sürüm oluşturur. Taslak Releases sayfasında yayımlanana kadar hiçbir şey herkese açık olmaz.
 
 | Klasör | Ne var |
 |---|---|
