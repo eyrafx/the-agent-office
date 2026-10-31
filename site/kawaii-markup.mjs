@@ -3,16 +3,17 @@
 // dist/kawaii.js and dist/sakura.js; copy: kawaii-copy.mjs (run prepare-i18n.mjs after editing it).
 import fs from 'node:fs/promises';
 
-const THEME = `<script>(()=>{let t;try{t=localStorage.getItem('agentoffice:theme')}catch{}if(t!=='day'&&t!=='night')t=matchMedia('(prefers-color-scheme: dark)').matches?'night':'day';const r=document.documentElement;r.dataset.theme=t;r.classList.add('kw')})()</script>`;
 const HEAD = `<link rel="preload" href="fonts/kawaii/dela-latin.woff2" as="font" type="font/woff2" crossorigin><link rel="preload" href="fonts/kawaii/mplus-500-latin.woff2" as="font" type="font/woff2" crossorigin><link rel="stylesheet" href="kawaii.css"><script src="sakura.js" defer></script><script src="kawaii.js" defer></script>`;
-const SWITCH = `<button type="button" class="kw-theme" data-kw-theme aria-pressed="false" aria-label="Night theme" title="Night theme"><span class="kw-theme-track" aria-hidden="true"><svg class="kw-sun" viewBox="0 0 24 24"><circle cx="12" cy="12" r="4.6"/><path d="M12 2.5v2.6M12 18.9v2.6M2.5 12h2.6M18.9 12h2.6M5.3 5.3l1.8 1.8M16.9 16.9l1.8 1.8M5.3 18.7l1.8-1.8M16.9 7.1l1.8-1.8"/></svg><svg class="kw-moon" viewBox="0 0 24 24"><path d="M19.5 14.6A8 8 0 0 1 9.4 4.5a8 8 0 1 0 10.1 10.1Z"/><path class="kw-moon-star" d="M17 3.5l.7 1.6 1.6.7-1.6.7-.7 1.6-.7-1.6-1.6-.7 1.6-.7Z"/></svg><span class="kw-theme-knob"></span></span></button>`;
 const OCTO = n => `assets/octo/octo-${n}`;
 const STAR = `<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2.6l2.7 6 6.6.6-5 4.4 1.5 6.5L12 16.7 6.2 20.1l1.5-6.5-5-4.4 6.6-.6z"/></svg>`;
 const HEART = `<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 20.4s-7.6-4.6-7.6-10.6A4.3 4.3 0 0 1 12 7.2a4.3 4.3 0 0 1 7.6 2.6c0 6-7.6 10.6-7.6 10.6Z"/></svg>`;
 const CHAT = `<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 5h14a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2h-7l-4.5 3.5V17H5a2 2 0 0 1-2-2V7a2 2 0 0 1 2-2Z"/></svg>`;
 
 function common(html) {
-  if (!html.includes("agentoffice:theme")) html = html.replace('<meta charset="utf-8">', `<meta charset="utf-8">${THEME}`);
+  // day only (the night theme was dropped on 31 Oct): the class is in the markup, no theme script
+  html = html.replace(/<script>\(\(\)=>\{let t;try\{t=localStorage\.getItem\('agentoffice:theme'\)[^<]*<\/script>/, '');
+  html = html.replace(/<button type="button" class="kw-theme"[^]*?<\/button>/g, '');
+  if (!/<html[^>]*class="kw"/.test(html)) html = html.replace(/<html lang="([^"]*)">/, '<html lang="$1" class="kw">');
   html = html.replace(/<meta name="theme-color" content="[^"]*">/, '<meta name="theme-color" content="#fff6d2">');
   html = html.replace('href="assets/ada-icon.png"', 'href="assets/octo-icon.png"');
   if (!html.includes('kawaii.css')) html = html.replace('</head>', `${HEAD}</head>`);
@@ -30,8 +31,7 @@ async function page(file, edit) {
 }
 
 await page('index.html', html => {
-  // the day/night switch sits before the language menu
-  if (!html.includes('data-kw-theme')) html = html.replace('<details class="site-language"', `${SWITCH}<details class="site-language"`);
+  html = html.replace(/<svg class="kw-lanterns"[^]*?<\/svg><div class="kw-moon-disc" aria-hidden="true"><\/div>/, '');
   // hero: the copy on the left, Octo as a sticker on the right, then the story card and its strip
   if (!html.includes('kw-sticker')) {
     const start = html.indexOf('<aside class="octo-story"'), end = html.indexOf('</script></div>', start);
@@ -47,7 +47,7 @@ await page('index.html', html => {
       panel(3, `<svg class="kw-art" viewBox="0 0 480 190" preserveAspectRatio="xMidYMid slice" aria-hidden="true"><g class="kw-speed"><path d="M0 50h480M0 82h480M0 114h480M0 146h480M0 178h480"/></g><g class="kw-hearts"><path d="M90 74c-10-14-30-4-20 12l20 18 20-18c10-16-10-26-20-12z"/><path class="kw-heart2" d="M150 126c-7-10-21-3-14 8l14 13 14-13c7-11-7-18-14-8z"/></g></svg><img src="${OCTO('shy')}-256.webp" alt="" width="256" height="225" loading="lazy" decoding="async">`, 'Octo moved in. Your agents are in good arms.')
     }</div>`;
     html = html.slice(0, start) + '</div>' + sticker + card + strip + html.slice(end + '</script></div>'.length);
-    html = html.replace('<section class="reference-hero"', '<section class="reference-hero"').replace('<div class="hero-island-live">', '<span class="kw-band" aria-hidden="true"></span><svg class="kw-lanterns" viewBox="0 0 300 120" aria-hidden="true"><path class="kw-string" d="M0 18Q150 70 300 18"/><g class="kw-lantern" transform="translate(70 34)"><path d="M0 0v6"/><rect x="-14" y="6" width="28" height="36" rx="12"/><path d="M-8 6v36M8 6v36M-14 24h28"/><rect class="kw-cap" x="-9" y="3" width="18" height="5" rx="2"/><rect class="kw-cap" x="-9" y="40" width="18" height="5" rx="2"/></g><g class="kw-lantern" transform="translate(150 44)"><path d="M0 0v6"/><rect x="-16" y="6" width="32" height="42" rx="14"/><path d="M-9 6v42M9 6v42M-16 27h32"/><rect class="kw-cap" x="-10" y="3" width="20" height="5" rx="2"/><rect class="kw-cap" x="-10" y="46" width="20" height="5" rx="2"/></g><g class="kw-lantern" transform="translate(230 34)"><path d="M0 0v6"/><rect x="-14" y="6" width="28" height="36" rx="12"/><path d="M-8 6v36M8 6v36M-14 24h28"/><rect class="kw-cap" x="-9" y="3" width="18" height="5" rx="2"/><rect class="kw-cap" x="-9" y="40" width="18" height="5" rx="2"/></g></svg><div class="kw-moon-disc" aria-hidden="true"></div><div class="hero-island-live">');
+    html = html.replace('<div class="hero-island-live">', '<span class="kw-band" aria-hidden="true"></span><div class="hero-island-live">');
   }
   // The Windows buttons already carry their "Coming soon" pill (support.js removes it once a download
   // is published), so adding it after load no longer reflows the hero.
@@ -63,7 +63,4 @@ await page('index.html', html => {
   return html;
 });
 
-for (const file of ['faq.html', 'privacy.html', 'disclaimer.html']) await page(file, html => {
-  if (!html.includes('data-kw-theme')) html = html.replace('<div class="legal-lang">', `${SWITCH}<div class="legal-lang">`);
-  return html;
-});
+for (const file of ['faq.html', 'privacy.html', 'disclaimer.html']) await page(file, html => html);

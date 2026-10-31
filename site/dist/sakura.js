@@ -34,7 +34,7 @@
   }
 
   function layer(opt) {
-    let o = Object.assign({ maxBack: 34, maxFront: 7, wind: 0.4, colors: [['#ffb3d1', '#fff0f6']], glow: null, frontBlur: [0, 0.8], stars: 0, starColor: '#fff4dc' }, opt);
+    let o = Object.assign({ size: 1, maxBack: 34, maxFront: 7, wind: 0.4, colors: [['#ffb3d1', '#fff0f6']], glow: null, frontBlur: [0, 0.8], stars: 0, starColor: '#fff4dc' }, opt);
     const fixed = !o.area;
     const canvases = [o.back && { el: o.back, front: false }, o.front && { el: o.front, front: true }].filter(Boolean);
     let sprites, W = 0, H = 0, petals = [], stars = [], running = false, raf = 0, last = 0, visible = true, held = false;
@@ -43,8 +43,8 @@
     function makeSprites() {
       sprites = { back: [], front: [] };
       o.colors.forEach(([i, e]) => {
-        sprites.back.push(petalSprite(24, i, e, 0, o.glow), petalSprite(17, i, e, 0.5, o.glow));
-        sprites.front.push(petalSprite(40, i, e, o.frontBlur[0], o.glow), petalSprite(54, i, e, o.frontBlur[1], o.glow));
+        sprites.back.push(petalSprite(24 * o.size, i, e, 0, o.glow), petalSprite(17 * o.size, i, e, 0.5, o.glow));
+        sprites.front.push(petalSprite(40 * o.size, i, e, o.frontBlur[0], o.glow), petalSprite(54 * o.size, i, e, o.frontBlur[1], o.glow));
       });
     }
 
@@ -101,7 +101,7 @@
         const g = (p.front ? front : back).ctx, sw = p.img.width * p.scale, sh = p.img.height * p.scale;
         g.save();
         g.translate(p.x, p.y); g.rotate(p.rot); g.scale(1, 0.25 + 0.75 * Math.abs(Math.cos(p.flip)));
-        g.globalAlpha = p.front ? 0.85 : 0.55 + p.z * 0.45;
+        g.globalAlpha = p.front ? 0.9 : 0.7 + p.z * 0.3;
         g.drawImage(p.img, -sw / 2, -sh / 2, sw, sh);
         g.restore();
       }
