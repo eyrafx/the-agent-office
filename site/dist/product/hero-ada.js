@@ -13,11 +13,11 @@
   hop: { file: 'hop', duration: 2000 },
   wave: { file: 'wave', duration: 2250 },
   shy: { file: 'shy', duration: 2375 },
-  // The pink Octo's (ada-70) plead in three parts: in (plays once, stays on the peak), hold (a
+  // The pink Octo's (ada-75) plead in three parts: in (plays once, stays on the peak), hold (a
   // ping-pong loop that starts and ends on that peak), out (plays once, ends on the base pose).
-  pleadIn: { file: 'plead-in', duration: 688 },
+  pleadIn: { file: 'plead-in', duration: 938 },
   pleadHold: { file: 'plead-hold', loop: 2000, exitAt: 0 }, // the loop is back on the peak at every 2000 ms
-  pleadOut: { file: 'plead-out', duration: 688 },
+  pleadOut: { file: 'plead-out', duration: 938 },
  };
  const HOP_EVERY = [9000, 16000];
  const clipUrl = name => `${BASE}${CLIPS[name].file}-256.webp`;
@@ -162,7 +162,7 @@
   const r = box.getBoundingClientRect();
   const dx = cursor.x - (r.left + r.width / 2), dy = cursor.y - (r.top + r.height * 0.42);
   if (Math.hypot(dx, dy) < Math.max(24, r.width * 0.6)) return null;
-  // ada-70 has no separate pupils: from any direction she turns her head to the viewer.
+  // ada-75 has no separate pupils: from any direction she turns her head to the viewer.
   return 'front';
  }
  let pendingGaze = null, pendingSince = 0;

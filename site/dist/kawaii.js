@@ -24,7 +24,7 @@
  // Octo poses: hello first, then the resting pose; shy when the cursor lands on him, pleading while
  // pressed. A tap on a phone gets a short shy moment.
  // Octo's poses are crisp stills; once the page has settled (desktop, motion allowed, no data
- // saver) the pink idle clip (ada-70, re-encoded for the web) is fetched and plays while he rests.
+ // saver) the pink idle clip (ada-75, re-encoded for the web) is fetched and plays while he rests.
  // The sticker box has a fixed aspect, so swapping still and clip never moves the layout.
  const POSE = n => `assets/octo/octo-${n}-720.webp`;
  const SRCSET = n => `assets/octo/octo-${n}-360.webp 360w, assets/octo/octo-${n}-720.webp 720w`;
