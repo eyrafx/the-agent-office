@@ -31,14 +31,20 @@
  const IDLE_CLIP = 'assets/octo/octo-idle-512.webp';
  ['base', 'shy', 'plead'].forEach(n => { const i = new Image(); i.srcset = SRCSET(n); i.sizes = '480px'; });
  document.querySelectorAll('[data-kw-octo]').forEach(img => {
-  let pose = 'wave', timer, clip = null;
+  let pose = 'wave', timer, hover, clip = null;
   // the hero's sunburst band follows the pose (kawaii.css colours it per data-octo)
   const stage = img.closest('.reference-hero');
+  // The fixed-size sticker box takes the pointer, not the image: the image's box grows and shrinks
+  // between still and clip, which used to flip Octo back and forth under a parked cursor.
+  const box = img.closest('.kw-sticker') || img;
   const show = n => {
    if (n === 'base' && clip) { img.removeAttribute('srcset'); img.classList.add('kw-clip'); img.src = clip; return; }
    img.classList.remove('kw-clip'); img.srcset = SRCSET(n); img.src = POSE(n);
   };
   const set = n => { if (pose === n) return; pose = n; img.dataset.pose = n; if (stage) stage.dataset.octo = n; show(n); };
+  // A short delay on the way in and a longer one on the way out: brushing the edge starts nothing.
+  const later = (fn, ms) => { clearTimeout(hover); hover = setTimeout(fn, ms); };
+  const on = v => { box.classList.toggle('kw-on', v); set(v ? 'shy' : 'base'); };
   if (stage) stage.dataset.octo = pose;
   setTimeout(() => pose === 'wave' && set('base'), reduce.matches ? 0 : 1900);
   const wantClip = !reduce.matches && !navigator.connection?.saveData && matchMedia('(min-width: 900px)').matches;
@@ -46,11 +52,11 @@
    const go = () => { const c = new Image(); c.src = IDLE_CLIP; (c.decode ? c.decode() : Promise.resolve()).then(() => { clip = c.src; if (pose === 'base') show('base'); }).catch(() => {}); };
    window.requestIdleCallback ? requestIdleCallback(go, { timeout: 4000 }) : setTimeout(go, 1500);
   }, { once: true });
-  img.addEventListener('pointerenter', e => e.pointerType === 'mouse' && set('shy'));
-  img.addEventListener('pointerleave', e => e.pointerType === 'mouse' && set('base'));
-  img.addEventListener('pointerdown', () => { clearTimeout(timer); set('plead'); });
-  img.addEventListener('pointerup', e => { set('shy'); if (e.pointerType !== 'mouse') timer = setTimeout(() => set('base'), 1400); });
-  img.addEventListener('pointercancel', () => set('base'));
+  box.addEventListener('pointerenter', e => e.pointerType === 'mouse' && later(() => on(true), 80));
+  box.addEventListener('pointerleave', e => e.pointerType === 'mouse' && later(() => on(false), 220));
+  box.addEventListener('pointerdown', () => { clearTimeout(timer); clearTimeout(hover); set('plead'); });
+  box.addEventListener('pointerup', e => { set('shy'); if (e.pointerType !== 'mouse') timer = setTimeout(() => set('base'), 1400); });
+  box.addEventListener('pointercancel', () => { box.classList.remove('kw-on'); set('base'); });
  });
 
  // Say thanks: the support Octo blushes and says thank you. Nothing is sent anywhere.
