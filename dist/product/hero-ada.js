@@ -1,8 +1,9 @@
 (() => {
  'use strict';
  // Ada inside the hero island's open panel: a wave when the island opens, idle with blinks and an
- // occasional hop while it stays open; her eyes follow the cursor over the panel (gaze stills), she
- // looks up at you with big eyes (plead) when the cursor lands on her, the shy clip on a click. Same clip engine as the corner mascot (ada-mascot.js): only the prepared
+ // occasional hop while it stays open; her eyes follow the cursor over the panel (gaze stills); while
+ // the cursor is on her she looks up at you with big sparkly eyes (the plead clip cut in three: in,
+ // a ping-pong hold around the peak, out); the shy clip on a click. Same clip engine as the corner mascot (ada-mascot.js): only the prepared
  // clips and stills are switched, never moved or warped in code. The island's own open/close logic
  // is not touched: the mascot box stays pointer-events:none and the cursor is matched by position.
  if (!new URLSearchParams(location.search).has('hero')) return;
@@ -12,7 +13,11 @@
   hop: { file: 'hop', duration: 1984 },
   wave: { file: 'wave', duration: 2046 },
   shy: { file: 'shy', duration: 2542 },
-  plead: { file: 'plead', duration: 2046 },
+  // Cut from plead-256.webp (16 fps, 62 ms a frame): in = frames 0-9 (plays once, stays on 9),
+  // hold = 9→15→10 looping, out = 16-32 (plays once, ends on the base pose).
+  pleadIn: { file: 'plead-in', duration: 620 },
+  pleadHold: { file: 'plead-hold', loop: 744, exitAt: 434 }, // frame 15 is on screen 372-434 ms into the loop
+  pleadOut: { file: 'plead-out', duration: 1054 },
  };
  const HOP_EVERY = [9000, 16000];
  const clipUrl = name => `${BASE}${CLIPS[name].file}-256.webp`;
@@ -85,7 +90,7 @@
  }
 
  /* ---------- Behaviour ---------- */
- const S = { state: 'closed', timer: 0, hopTimer: 0, over: false, gaze: null };
+ const S = { state: 'closed', timer: 0, hopTimer: 0, over: false, gaze: null, holdStart: 0, leaving: false };
  const cursor = { x: 0, y: 0, inside: false, moved: 0 };
  const isOpen = () => app.classList.contains('expanded');
 
@@ -95,12 +100,35 @@
   S.state = 'idle'; S.gaze = null;
   if (!(await show(clipUrl('idle'), true)) && S.state === 'idle') S.timer = setTimeout(idle, 1500);
  }
- async function play(name) {
+ // then: what follows the clip (default: idle).
+ async function play(name, then = idle) {
   clearTimeout(S.timer);
   S.state = name; S.gaze = null;
   const ok = await show(clipUrl(name), true);
   if (S.state !== name) return;
-  S.timer = setTimeout(() => { if (S.state === name) idle(); }, ok ? CLIPS[name].duration : 0);
+  S.timer = setTimeout(() => { if (S.state === name) then(); }, ok ? CLIPS[name].duration : 0);
+ }
+
+ /* Looking at you while the cursor stays on her. */
+ const afterAda = () => (S.over ? lookUp() : idle());
+ function lookUp() { play('pleadIn', () => (S.over ? hold() : play('pleadOut', afterAda))); }
+ async function hold() {
+  clearTimeout(S.timer);
+  S.state = 'pleadHold'; S.gaze = null;
+  const ok = await show(clipUrl('pleadHold'), true);
+  if (S.state !== 'pleadHold') return;
+  if (!ok) { play('pleadOut', afterAda); return; }
+  S.holdStart = performance.now();
+  if (!S.over) lookAway();
+ }
+ // Leaving: the out part starts where the loop shows frame 15, so it simply continues from there.
+ function lookAway() {
+  if (S.state !== 'pleadHold' || S.leaving) return;
+  const { loop, exitAt } = CLIPS.pleadHold;
+  const wait = (exitAt - (performance.now() - S.holdStart) % loop + loop) % loop;
+  S.leaving = true;
+  clearTimeout(S.timer);
+  S.timer = setTimeout(() => { S.leaving = false; if (S.state === 'pleadHold') play('pleadOut', afterAda); }, wait);
  }
  function scheduleHop() {
   clearTimeout(S.hopTimer);
@@ -119,7 +147,7 @@
  }
  function closed() {
   clearTimeout(S.timer); clearTimeout(S.hopTimer);
-  S.state = 'closed'; S.over = false;
+  S.state = 'closed'; S.over = false; S.leaving = false;
   clear();
  }
 
@@ -163,9 +191,11 @@
   if (over === S.over) return;
   S.over = over;
   // Landing on her: she looks up at you, once per landing.
-  if (over && (S.state === 'idle' || S.state === 'gaze' || S.state === 'hop')) play('plead');
+  if (over && (S.state === 'idle' || S.state === 'gaze' || S.state === 'hop')) lookUp();
+  else if (over && S.state === 'pleadHold' && S.leaving) { clearTimeout(S.timer); S.leaving = false; }  // back before the out part
+  else if (!over && S.state === 'pleadHold') lookAway();
  }
- function left() { cursor.inside = false; S.over = false; }
+ function left() { cursor.inside = false; if (S.over) { S.over = false; if (S.state === 'pleadHold') lookAway(); } }
 
  function start() {
   app = document.getElementById('app');
@@ -189,11 +219,11 @@
   document.documentElement.addEventListener('pointerleave', left);
   addEventListener('blur', left);
   setInterval(updateGaze, 60);
-  addEventListener('click', e => { if (isOpen() && !calm.matches && onAda(e.clientX, e.clientY)) play('shy'); }, true);
+  addEventListener('click', e => { if (isOpen() && !calm.matches && onAda(e.clientX, e.clientY)) { S.leaving = false; play('shy', afterAda); } }, true);
   calm.addEventListener?.('change', () => { if (calm.matches) closed(); else if (isOpen()) opened(); });
   if (was) opened();
   // Fetch the clips after the page has settled, in the order they are needed.
-  const fetchAll = () => { if (!calm.matches && !navigator.connection?.saveData) ['wave', 'idle', 'plead', 'shy', 'hop'].map(clipUrl).concat(['right', 'left', 'upLeft'].map(gazeUrl)).reduce((p, u) => p.then(() => load(u, 'low').catch(() => {})), Promise.resolve()); };
+  const fetchAll = () => { if (!calm.matches && !navigator.connection?.saveData) ['wave', 'idle', 'pleadIn', 'pleadHold', 'pleadOut', 'shy', 'hop'].map(clipUrl).concat(['right', 'left', 'upLeft'].map(gazeUrl)).reduce((p, u) => p.then(() => load(u, 'low').catch(() => {})), Promise.resolve()); };
   (window.requestIdleCallback ? requestIdleCallback(fetchAll, { timeout: 3000 }) : setTimeout(fetchAll, 500));
   window.AO_HERO_ADA = S;
   return true;
