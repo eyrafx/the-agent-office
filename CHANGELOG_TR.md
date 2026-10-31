@@ -1,8 +1,8 @@
 # Sürüm notları
 
-AgentOffice'in her sürümünde nelerin değiştiği, onu kullananlar için. [English](CHANGELOG.md)
+The Agent Office'in her sürümünde nelerin değiştiği, onu kullananlar için. [English](CHANGELOG.md)
 
-Sürümler üç sayıdan oluşur (BÜYÜK.KÜÇÜK.YAMA) ve AgentOffice gençken 0.x olarak kalır. Microsoft Store aynı sürümü sonuna her zaman 0 olan dördüncü bir sayıyla gösterir (0.9.0, Mağaza'da 0.9.0.0'dır).
+Sürümler üç sayıdan oluşur (BÜYÜK.KÜÇÜK.YAMA) ve The Agent Office gençken 0.x olarak kalır. Microsoft Store aynı sürümü sonuna her zaman 0 olan dördüncü bir sayıyla gösterir (0.9.0, Mağaza'da 0.9.0.0'dır).
 
 ## 0.9.0 (henüz yayımlanmadı)
 
@@ -26,7 +26,7 @@ Sürümler üç sayıdan oluşur (BÜYÜK.KÜÇÜK.YAMA) ve AgentOffice gençken
 - Yönetici odanın başındaki büyük masada, ekip önünde oturur. Büyük masaya bir tıklama yöneticiyi değiştirir; her ofis bu seçimi bir kez önerir.
 - Yöneticiyle ekipler arasında mesajlar uçar; bir sohbetin kartı konuşmasını sade bir dille gösterir.
 - Yaşayan ofis: ajanların konuşma balonlarındaki kısa sözleri, köpek Lucy, kedi, papağan ve akvaryum, kahve molaları ve öğle yemeği, günün gerçek saatini, havasını ve mevsimini gösteren bir pencere. Sakin, sade bir ofis için kapatılabilir.
-- Bir ajana tıklamak o sohbeti Claude'da ya da Codex'te açar. AgentOffice senin yerine hiçbir soruyu yanıtlamaz, hiçbir izni onaylamaz.
+- Bir ajana tıklamak o sohbeti Claude'da ya da Codex'te açar. The Agent Office senin yerine hiçbir soruyu yanıtlamaz, hiçbir izni onaylamaz.
 
 ### Başlarken
 
@@ -35,4 +35,4 @@ Sürümler üç sayıdan oluşur (BÜYÜK.KÜÇÜK.YAMA) ve AgentOffice gençken
 - Bir yönetici sohbeti ve ekipleriyle çalışmak için isteğe bağlı bir beceri paketi; Ayarlar'dan kurulur, güncellenir ya da kaldırılır.
 - İstersen Windows ile birlikte sessizce başlar; bildirim alanındaki simgeden ofise, Ayarlar'a ve sessize alma seçeneğine ulaşılır.
 - 11 dil: English, Türkçe, Deutsch, Español, Français, Italiano, Português (Brasil), Русский, 日本語, 한국어, 简体中文.
-- Her şey senin bilgisayarında kalır: hesap yok, reklam yok, analiz yok, AgentOffice sunucusu yok.
+- Her şey senin bilgisayarında kalır: hesap yok, reklam yok, analiz yok, The Agent Office sunucusu yok.

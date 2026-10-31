@@ -1,25 +1,25 @@
-# AgentOffice
+# The Agent Office
 
 **Windows** için bir dinamik ada ve yapay zekâ kodlama ajanların için küçük bir ofis.
 
 ## İndir
 
 <!-- Site "yakında" dediği sürece bu bağlantı da öyle der. Kurulum dosyası yayımlanınca
-     yazıyı "⬇ AgentOffice vX.Y.Z'yi indir" yapın ve bağlantıyı sürüm dosyasına yönlendirin. -->
-**[⬇ AgentOffice'i indir (yakında)](https://eyrafx.github.io/agentoffice/#download)**
+     yazıyı "⬇ The Agent Office vX.Y.Z'yi indir" yapın ve bağlantıyı sürüm dosyasına yönlendirin. -->
+**[⬇ The Agent Office'i indir (yakında)](https://eyrafx.github.io/agentoffice/#download)**
 
 [![Son sürüm](https://img.shields.io/github/v/release/eyrafx/agentoffice?include_prereleases&sort=semver&label=son%20s%C3%BCr%C3%BCm)](https://github.com/eyrafx/agentoffice/releases) · [Yenilikler](CHANGELOG_TR.md)
 
 <!-- Demo videosu yayımlanınca "▶ Demoyu İzle (yakında)" yazısını videoya bağlayın. -->
 ▶ Demoyu İzle *(yakında)* · [Web sitesi ve canlı demo](https://eyrafx.github.io/agentoffice/) · [English README](README.md)
 
-> **Bağımsız bir projedir.** AgentOffice'in Microsoft, Anthropic, OpenAI ya da Anysphere (Cursor) ile resmi bir bağlantısı yoktur ve onlar tarafından desteklenmemektedir. Ürün adları sahiplerine aittir.
+> **Bağımsız bir projedir.** The Agent Office'in Microsoft, Anthropic, OpenAI ya da Anysphere (Cursor) ile resmi bir bağlantısı yoktur ve onlar tarafından desteklenmemektedir. Ürün adları sahiplerine aittir.
 
 ---
 
-## AgentOffice nedir?
+## The Agent Office nedir?
 
-AgentOffice ekranının üst kenarında durur ve kodlama ajanlarının ne yaptığını gösterir: kim çalışıyor, kim senden yanıt bekliyor, kullanım sınırından ne kadar kaldı. Ofisi açtığında her sohbet, projesine göre gruplanmış, masasında oturan bir çalışma arkadaşına dönüşür. Her şey senin bilgisayarında çalışır; hesap yok, AgentOffice sunucusu yok.
+The Agent Office ekranının üst kenarında durur ve kodlama ajanlarının ne yaptığını gösterir: kim çalışıyor, kim senden yanıt bekliyor, kullanım sınırından ne kadar kaldı. Ofisi açtığında her sohbet, projesine göre gruplanmış, masasında oturan bir çalışma arkadaşına dönüşür. Her şey senin bilgisayarında çalışır; hesap yok, The Agent Office sunucusu yok.
 
 Adanın adı **Octolantis**; orada yaşayan küçük ahtapot **Octo** da sana eşlik eder.
 
@@ -43,7 +43,7 @@ Adanın adı **Octolantis**; orada yaşayan küçük ahtapot **Octo** da sana e�
 
 ## Desteklenen araçlar
 
-| Araç | AgentOffice onu nasıl izler |
+| Araç | The Agent Office onu nasıl izler |
 |---|---|
 | Claude Code (terminal, IDE, Claude masaüstü uygulaması) | Claude Code ayarlarına eklenen küçük bir hook aktarıcısı (Ayarlar'dan kaldırılabilir) |
 | Codex (CLI ve masaüstü uygulaması) | Codex'in kendi oturum dosyalarını ve proje listesini yalnız okur |
@@ -92,7 +92,7 @@ Başka araçlar ancak davranışları doğrulanabildiğinde eklenir.
 
 1. Yukarıdaki indirme bağlantısından **AgentOffice_x.y.z_x64-setup.exe** dosyasını indir *(yakında)*.
 2. Kurulum dosyasını çalıştır. Kullanıcıya özel kurulum yönetici yetkisi istemez.
-3. AgentOffice açılır. İlk açılış ekranı Claude Code, Codex ve Cursor'ı bulur ve tek adımda bağlar.
+3. The Agent Office açılır. İlk açılış ekranı Claude Code, Codex ve Cursor'ı bulur ve tek adımda bağlar.
 4. Adayı açmak için imleci ekranın üst kenarına getir; ofisi adadan ya da bildirim alanı simgesinden aç.
 
 Microsoft Store sürümü planlanıyor.
@@ -119,14 +119,14 @@ Microsoft Store sürümü planlanıyor.
 
 ## Kaldırma
 
-AgentOffice'i Windows'ta **Yüklü uygulamalar** listesinden kaldır. Kaldırıcı, AgentOffice'in Claude Code ve Cursor'a eklediği hook'ları da siler; ajanlarına ve ayarlarına başka hiçbir şekilde dokunmaz.
+The Agent Office'i Windows'ta **Yüklü uygulamalar** listesinden kaldır. Kaldırıcı, The Agent Office'in Claude Code ve Cursor'a eklediği hook'ları da siler; ajanlarına ve ayarlarına başka hiçbir şekilde dokunmaz.
 
 Store sürümünde kaldırmadan önce bağlantıyı Ayarlar › Gelişmiş'ten kapat.
 
 ## Gizlilik
 
-- Hesap yok, analiz yok, AgentOffice sunucusu yok.
-- Sohbet içerikleri hiçbir yere yüklenmez; AgentOffice yalnız oturum olaylarını, başlıkları ve proje adlarını okur.
+- Hesap yok, analiz yok, The Agent Office sunucusu yok.
+- Sohbet içerikleri hiçbir yere yüklenmez; The Agent Office yalnız oturum olaylarını, başlıkları ve proje adlarını okur.
 - Claude sınırları için bilgisayarındaki mevcut Claude Code oturumuyla Anthropic'in kullanım servisine sorulur; erişim anahtarı asla saklanmaz, kaydedilmez ya da başka yere gönderilmez.
 - Eş zamanlı şarkı sözleri (LRCLIB) ve hava durumu (Open-Meteo) sen açana kadar kapalıdır.
 
@@ -144,7 +144,7 @@ powershell -File scripts/dev.ps1 -Action native   # uygulamayı çalıştır
 powershell -File scripts/dev.ps1 -Action bundle   # kurulum dosyasını oluştur
 ```
 
-`scripts/dev.ps1` Rust'ı, önbellekleri, derleme çıktısını ve test verisini proje klasörünün içinde tutar (`.tools/`, `.artifacts/`, `.local-data/`); böylece geliştirme sürümü kurulu bir AgentOffice'e hiç dokunmaz.
+`scripts/dev.ps1` Rust'ı, önbellekleri, derleme çıktısını ve test verisini proje klasörünün içinde tutar (`.tools/`, `.artifacts/`, `.local-data/`); böylece geliştirme sürümü kurulu kopyaya hiç dokunmaz.
 
 ### Sürüm hazırlamak
 
@@ -167,16 +167,16 @@ Hata bildirimleri, fikirler ve pull request'ler memnuniyetle karşılanır: [Iss
 
 ## Destek
 
-AgentOffice ücretsizdir. İşine yarıyorsa [destek sayfasından](https://eyrafx.github.io/agentoffice/#support) destek olabilirsin.
+The Agent Office ücretsizdir. İşine yarıyorsa [destek sayfasından](https://eyrafx.github.io/agentoffice/#support) destek olabilirsin.
 
 ## Teşekkürler
 
-AgentOffice, Anthropic'in girişimlere destek programı sayesinde Claude ile geliştirildi. Teşekkürler Anthropic 💕
+The Agent Office, Anthropic'in girişimlere destek programı sayesinde Claude ile geliştirildi. Teşekkürler Anthropic 💕
 
 ## Lisans
 
 - **Kod**: [MIT Lisansı](LICENSE), © 2026 eyra.
-- **Adlar, maskot ve görseller**: "AgentOffice", "Octolantis" ve "Octo" adları, Octo maskotu, ofis çizimleri, simge ve diğer tüm görseller, animasyonlar ve videolar MIT kapsamında **değildir**; tüm hakları saklıdır. Bkz. [LICENSE-ASSETS.md](LICENSE-ASSETS.md) (İngilizce). Çatallar kendi adları ve görselleriyle memnuniyetle karşılanır.
+- **Adlar, maskot ve görseller**: "The Agent Office", "AgentOffice", "Octolantis" ve "Octo" adları, Octo maskotu, ofis çizimleri, simge ve diğer tüm görseller, animasyonlar ve videolar MIT kapsamında **değildir**; tüm hakları saklıdır. Bkz. [LICENSE-ASSETS.md](LICENSE-ASSETS.md) (İngilizce). Çatallar kendi adları ve görselleriyle memnuniyetle karşılanır.
 - **Üçüncü taraf parçalar**: [THIRD_PARTY_NOTICES.md](THIRD_PARTY_NOTICES.md).
 
 ---

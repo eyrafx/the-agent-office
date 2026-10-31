@@ -81,6 +81,6 @@ jobs:
           $sha = (Get-FileHash $installer.FullName -Algorithm SHA256).Hash.ToLower()
           "$sha  $($installer.Name)" | Set-Content -NoNewline -Encoding ascii "$($installer.FullName).sha256"
           node scripts/release-notes.mjs $env:VERSION $installer.Name $sha | Set-Content -Encoding utf8 notes.md
-          gh release create "v$env:VERSION" $installer.FullName "$($installer.FullName).sha256" --draft --target $env:GITHUB_SHA --title "AgentOffice $env:VERSION" --notes-file notes.md
+          gh release create "v$env:VERSION" $installer.FullName "$($installer.FullName).sha256" --draft --target $env:GITHUB_SHA --title "The Agent Office $env:VERSION" --notes-file notes.md
           if ($LASTEXITCODE) { throw 'Could not create the draft release.' }
           "Draft release v$env:VERSION created with $($installer.Name). Review it on the Releases page; nothing is published yet."

@@ -1,8 +1,8 @@
 # Changelog
 
-What changes in each AgentOffice version, written for the people who use it. [Türkçe](CHANGELOG_TR.md)
+What changes in each version of The Agent Office, written for the people who use it. [Türkçe](CHANGELOG_TR.md)
 
-Versions are three numbers, MAJOR.MINOR.PATCH, and stay at 0.x while AgentOffice is young. The Microsoft Store shows the same version with a fourth number, which is always 0 (0.9.0 is 0.9.0.0 in the Store).
+Versions are three numbers, MAJOR.MINOR.PATCH, and stay at 0.x while The Agent Office is young. The Microsoft Store shows the same version with a fourth number, which is always 0 (0.9.0 is 0.9.0.0 in the Store).
 
 ## 0.9.0 (not released yet)
 
@@ -26,7 +26,7 @@ The first public version.
 - The manager sits at the big desk at the head of the room, with the team in front. A click on the big desk changes the manager, and each office offers the choice once.
 - Messages fly between the manager and the teams, and a chat's card shows its conversation in plain words.
 - A living office: agents' short lines in speech balloons, Lucy the dog, the cat, the parrot and the aquarium, coffee breaks and lunch, and a window with the real time of day, weather and season. It can be turned off for a calm, plain office.
-- A click on an agent opens that chat in Claude or Codex. AgentOffice never answers a question or approves a permission for you.
+- A click on an agent opens that chat in Claude or Codex. The Agent Office never answers a question or approves a permission for you.
 
 ### Getting started
 
@@ -35,4 +35,4 @@ The first public version.
 - An optional skill pack for working with a manager chat and its teams, installed, updated or removed from Settings.
 - Starts quietly with Windows if you want it to, with a tray icon for the office, Settings and mute.
 - 11 languages: English, Türkçe, Deutsch, Español, Français, Italiano, Português (Brasil), Русский, 日本語, 한국어, 简体中文.
-- Everything stays on your PC: no account, no ads, no analytics, no AgentOffice server.
+- Everything stays on your PC: no account, no ads, no analytics, no server of ours.

@@ -1,25 +1,25 @@
-# AgentOffice
+# The Agent Office
 
 A dynamic island for **Windows** and a little office for your AI coding agents.
 
 ## Download
 
 <!-- While the site says "coming soon", so does this link. When the installer is out,
-     change the text to "⬇ Download AgentOffice vX.Y.Z" and point it at the release file. -->
-**[⬇ Download AgentOffice (coming soon)](https://eyrafx.github.io/agentoffice/#download)**
+     change the text to "⬇ Download The Agent Office vX.Y.Z" and point it at the release file. -->
+**[⬇ Download The Agent Office (coming soon)](https://eyrafx.github.io/agentoffice/#download)**
 
 [![Latest version](https://img.shields.io/github/v/release/eyrafx/agentoffice?include_prereleases&sort=semver&label=latest%20version)](https://github.com/eyrafx/agentoffice/releases) · [What's new](CHANGELOG.md)
 
 <!-- When the demo video is published, turn "▶ Watch Demo (coming soon)" into a link to it. -->
 ▶ Watch Demo *(coming soon)* · [Website and live demo](https://eyrafx.github.io/agentoffice/) · [Türkçe README](README_TR.md)
 
-> **Independent project.** AgentOffice is not affiliated with or endorsed by Microsoft, Anthropic, OpenAI or Anysphere (Cursor). Product names belong to their owners.
+> **Independent project.** The Agent Office is not affiliated with or endorsed by Microsoft, Anthropic, OpenAI or Anysphere (Cursor). Product names belong to their owners.
 
 ---
 
-## What is AgentOffice?
+## What is The Agent Office?
 
-AgentOffice sits at the top of your screen and shows what your coding agents are doing: who is working, who is waiting for you, and how much of your usage limit is left. Open the office and every chat becomes a colleague at a desk, grouped by project. Everything runs on your PC, with no account and no AgentOffice server.
+The Agent Office sits at the top of your screen and shows what your coding agents are doing: who is working, who is waiting for you, and how much of your usage limit is left. Open the office and every chat becomes a colleague at a desk, grouped by project. Everything runs on your PC, with no account and no server of ours.
 
 The island is called **Octolantis**, and **Octo**, a little octopus, lives in it and keeps you company.
 
@@ -43,7 +43,7 @@ The island is called **Octolantis**, and **Octo**, a little octopus, lives in it
 
 ## Supported tools
 
-| Tool | How AgentOffice follows it |
+| Tool | How The Agent Office follows it |
 |---|---|
 | Claude Code (terminal, IDE, Claude desktop app) | A small hook relay added to Claude Code's settings (removable from Settings) |
 | Codex (CLI and desktop app) | Reads Codex's own session files and project list, read-only |
@@ -92,7 +92,7 @@ Other tools are added only once their behaviour can be verified.
 
 1. Download **AgentOffice_x.y.z_x64-setup.exe** with the download link above *(coming soon)*.
 2. Run the installer. A per-user install needs no administrator access.
-3. AgentOffice starts. The first-run screen finds Claude Code, Codex and Cursor and connects them in one step.
+3. The Agent Office starts. The first-run screen finds Claude Code, Codex and Cursor and connects them in one step.
 4. Hover the top edge of your screen to open the island; open the office from the island or the tray icon.
 
 A Microsoft Store version is planned.
@@ -119,14 +119,14 @@ A Microsoft Store version is planned.
 
 ## Uninstall
 
-Remove AgentOffice from Windows' **Installed apps**. The uninstaller also removes AgentOffice's hooks from Claude Code and Cursor; your agents and their settings are otherwise untouched.
+Remove The Agent Office from Windows' **Installed apps**. The uninstaller also removes The Agent Office's hooks from Claude Code and Cursor; your agents and their settings are otherwise untouched.
 
 With the Store version, turn the connection off in Settings › Advanced before uninstalling.
 
 ## Privacy
 
-- No account, no analytics, no AgentOffice server.
-- Chat contents are not uploaded anywhere; AgentOffice reads only session events, titles and project names.
+- No account, no analytics, no server of ours.
+- Chat contents are not uploaded anywhere; The Agent Office reads only session events, titles and project names.
 - Claude limits use your existing local Claude Code sign-in to ask Anthropic's usage service; the token is never stored, logged or sent elsewhere.
 - Synced lyrics (LRCLIB) and weather (Open-Meteo) stay off until you turn them on.
 
@@ -144,7 +144,7 @@ powershell -File scripts/dev.ps1 -Action native   # run the app
 powershell -File scripts/dev.ps1 -Action bundle   # build the installer
 ```
 
-`scripts/dev.ps1` keeps Rust, caches, build output and test data inside the project folder (`.tools/`, `.artifacts/`, `.local-data/`), so a development build never touches an installed AgentOffice.
+`scripts/dev.ps1` keeps Rust, caches, build output and test data inside the project folder (`.tools/`, `.artifacts/`, `.local-data/`), so a development build never touches an installed copy.
 
 ### Making a release
 
@@ -167,16 +167,16 @@ Issues, bug reports and pull requests are welcome: [Issues](https://github.com/e
 
 ## Support
 
-AgentOffice is free. If it helps you, you can support it on the [support page](https://eyrafx.github.io/agentoffice/#support).
+The Agent Office is free. If it helps you, you can support it on the [support page](https://eyrafx.github.io/agentoffice/#support).
 
 ## Thanks
 
-AgentOffice was built with Claude, made possible by Anthropic's startup support program. Thank you, Anthropic 💕
+The Agent Office was built with Claude, made possible by Anthropic's startup support program. Thank you, Anthropic 💕
 
 ## License
 
 - **Code**: [MIT License](LICENSE), © 2026 eyra.
-- **Names, mascot and artwork**: the names "AgentOffice", "Octolantis" and "Octo", the Octo mascot, the office illustrations, the icon and all other images, animations and videos are **not** covered by MIT; all rights reserved. See [LICENSE-ASSETS.md](LICENSE-ASSETS.md). Forks are welcome under their own name and artwork.
+- **Names, mascot and artwork**: the names "The Agent Office", "AgentOffice", "Octolantis" and "Octo", the Octo mascot, the office illustrations, the icon and all other images, animations and videos are **not** covered by MIT; all rights reserved. See [LICENSE-ASSETS.md](LICENSE-ASSETS.md). Forks are welcome under their own name and artwork.
 - **Third-party parts**: [THIRD_PARTY_NOTICES.md](THIRD_PARTY_NOTICES.md).
 
 ---
