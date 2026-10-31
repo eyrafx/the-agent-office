@@ -1,47 +1,43 @@
-<p align="center"><b>English</b> | <a href="README.tr.md">Türkçe</a></p>
-
 # AgentOffice
 
-**A dynamic island for Windows and a little office for your AI agents.**
+A dynamic island for **Windows** and a little office for your AI coding agents.
 
-<!-- Download button: while the site says "coming soon", the label says so too.
-     Once the installer is published, change "Download%20(coming%20soon)" to "Download%20for%20Windows". -->
-<p align="center">
-  <a href="https://eyrafx.github.io/agentoffice/#download"><img src="https://img.shields.io/badge/Download%20(coming%20soon)-Windows%2010%20%7C%2011-0078D4?style=for-the-badge" alt="Download for Windows (coming soon)"></a>
-  <a href="https://eyrafx.github.io/agentoffice/"><img src="https://img.shields.io/badge/Website-live%20demo-F27B35?style=for-the-badge&logo=googlechrome&logoColor=white" alt="Website and live demo"></a>
-  <a href="https://eyrafx.github.io/agentoffice/#support"><img src="https://img.shields.io/badge/Support-the%20project-E5498F?style=for-the-badge&logo=githubsponsors&logoColor=white" alt="Support the project"></a>
-</p>
-<p align="center">
-  <a href="LICENSE"><img src="https://img.shields.io/badge/code-MIT-informational" alt="Code: MIT"></a>
-  <a href="LICENSE-ASSETS.md"><img src="https://img.shields.io/badge/names%20%26%20artwork-all%20rights%20reserved-lightgrey" alt="Names and artwork: all rights reserved"></a>
-</p>
+## Download
 
-AgentOffice's island, Octolantis, sits at the top of your screen with Octo, the octopus mascot, and shows what your coding agents are doing: who is working, who is waiting for you, and how much of your usage limit is left. Open the office to see every chat as a colleague at a desk, grouped by project.
+<!-- While the site says "coming soon", so does this link. When the installer is out,
+     change the text to "⬇ Download AgentOffice vX.Y.Z" and point it at the release file. -->
+**[⬇ Download AgentOffice (coming soon)](https://eyrafx.github.io/agentoffice/#download)**
 
-<!-- HERO VIDEO / GIF (to add): the island and the office in motion, sample data only.
-<p align="center">
-  <img src="docs/media/hero.gif" alt="AgentOffice: the island opening and the office at work" width="720">
-</p>
--->
+<!-- When the demo video is published, turn "▶ Watch Demo (coming soon)" into a link to it. -->
+▶ Watch Demo *(coming soon)* · [Website and live demo](https://eyrafx.github.io/agentoffice/) · [Türkçe README](README_TR.md)
 
-<!-- SCREENSHOTS (to add, 3–4, sample data only):
-<p align="center">
-  <img src="docs/media/island.png" alt="The island at the top of the screen" width="360">
-  <img src="docs/media/office.png" alt="The office with agents at their desks" width="360">
-  <img src="docs/media/limits.png" alt="Claude and Codex usage limits" width="360">
-  <img src="docs/media/pages.png" alt="The island's media, notes and focus pages" width="360">
-</p>
--->
+> **Independent project.** AgentOffice is not affiliated with or endorsed by Microsoft, Anthropic, OpenAI or Anysphere (Cursor). Product names belong to their owners.
+
+---
+
+## What is AgentOffice?
+
+AgentOffice sits at the top of your screen and shows what your coding agents are doing: who is working, who is waiting for you, and how much of your usage limit is left. Open the office and every chat becomes a colleague at a desk, grouped by project. Everything runs on your PC, with no account and no AgentOffice server.
+
+The island is called **Octolantis**, and **Octo**, a small orange octopus, lives in it and keeps you company.
 
 ## Features
 
-- **Agents at a glance**: running, waiting for you and idle sessions, newest first; questions and permission requests come to the top.
-- **The office**: each project is an office, each chat an agent at a desk; the manager sits at the head of the room.
-- **Usage limits**: Claude and Codex 5-hour and weekly limits, with reset times.
-- **Open in place**: click a session to jump to it in Claude or Codex. AgentOffice never answers a question or approves a permission for you.
-- **The island's other pages**: media controls with synced lyrics (optional), notes and to-dos, focus timer and countdown, alarms, water reminder.
-- **Made for Windows**: stays out of full-screen apps, follows your monitor and DPI, optional start with Windows.
-- **11 languages**: English, Türkçe, Deutsch, Español, Français, Italiano, Português (Brasil), Русский, 日本語, 한국어, 简体中文.
+- Agents at a glance: working, waiting for you and idle sessions, newest first
+- Questions and permission requests come to the top
+- The office: each project is an office, each chat an agent at a desk, the manager at the head of the room
+- Claude and Codex usage limits (5-hour and weekly), with reset times
+- Click a session to open it in Claude or Codex
+- Never answers a question or approves a permission for you
+- Media controls with optional synced lyrics
+- Notes and to-dos, focus timer and countdown
+- Alarms, reminders and a water reminder
+- A file shelf: gather files, then drag them into any app
+- Weather and battery in the small island
+- Glass or dark look, and a different resting look per place (desktop, apps, browser)
+- Stays out of the way of full-screen apps, follows your monitor and DPI
+- Optional start with Windows, quietly in the tray
+- 11 languages
 
 ## Supported tools
 
@@ -51,15 +47,90 @@ AgentOffice's island, Octolantis, sits at the top of your screen with Octo, the 
 | Codex (CLI and desktop app) | Reads Codex's own session files and project list, read-only |
 | Cursor | A hook relay added to Cursor's hook settings (removable) |
 
-Other tools are added only once their behaviour can be verified. No universal "every AI app" support is claimed.
+Other tools are added only once their behaviour can be verified.
 
-## Install
+## Controls
 
-- **Microsoft Store**: *(link once published)*
-- **Installer** *(coming soon)*: `AgentOffice_x.y.z_x64-setup.exe` will be published on [Releases](https://github.com/eyrafx/agentoffice/releases) with its SHA-256. Per-user install, no admin rights needed.
-- Requires Windows 10 or 11 with the Microsoft Edge WebView2 Runtime (already present on most PCs).
+| Control | Action |
+|---|---|
+| Hover the island (or touch the top edge) | Open the island |
+| Move the pointer away | Close the island |
+| `Ctrl+Alt+Space` | Open the island (changeable in Settings) |
+| `Ctrl+Alt+M` | Mute (changeable in Settings) |
+| Horizontal drag, wheel or touchpad swipe | Turn the island's pages |
+| Click a session or a waiting question | Open that chat in Claude or Codex |
+| Drag the handle in the island's header | Move the island along the top edge |
+| Double-click the handle | Centre the island |
+| Shelf: drag a file / click it | Drop it into an app / open it |
+| Office: click the manager's desk | Choose the office's manager |
+| Point at Octo | Octo looks at you |
+| Tray icon | Open the office, Settings, Mute, Quit |
 
-### Build from source
+## Screenshots
+
+<!-- Images go in assets/screenshots/ (sample data only). Uncomment each one when its file is added. -->
+
+### The island
+
+<!-- ![The island at the top of the screen](assets/screenshots/1-island.png) -->
+
+### The office
+
+<!-- ![The office with agents at their desks](assets/screenshots/2-office.png) -->
+
+### Usage limits
+
+<!-- ![Claude and Codex usage limits](assets/screenshots/3-limits.png) -->
+
+### The island's pages
+
+<!-- ![Media, notes and focus pages](assets/screenshots/4-pages.png) -->
+
+## Installation
+
+1. Download **AgentOffice_x.y.z_x64-setup.exe** with the download link above *(coming soon)*.
+2. Run the installer. A per-user install needs no administrator access.
+3. AgentOffice starts. The first-run screen finds Claude Code, Codex and Cursor and connects them in one step.
+4. Hover the top edge of your screen to open the island; open the office from the island or the tray icon.
+
+A Microsoft Store version is planned.
+
+## Languages
+
+- English
+- Turkish
+- German
+- Spanish
+- French
+- Italian
+- Portuguese (Brazil)
+- Russian
+- Japanese
+- Korean
+- Simplified Chinese
+
+## Requirements
+
+- Windows 10 or 11 (64-bit)
+- Microsoft Edge WebView2 Runtime (already present on most PCs)
+- Claude Code, Codex or Cursor for the agent features (the island's other pages work without them)
+
+## Uninstall
+
+Remove AgentOffice from Windows' **Installed apps**. The uninstaller also removes AgentOffice's hooks from Claude Code and Cursor; your agents and their settings are otherwise untouched.
+
+With the Store version, turn the connection off in Settings › Advanced before uninstalling.
+
+## Privacy
+
+- No account, no analytics, no AgentOffice server.
+- Chat contents are not uploaded anywhere; AgentOffice reads only session events, titles and project names.
+- Claude limits use your existing local Claude Code sign-in to ask Anthropic's usage service; the token is never stored, logged or sent elsewhere.
+- Synced lyrics (LRCLIB) and weather (Open-Meteo) stay off until you turn them on.
+
+Full policy: [Privacy](https://eyrafx.github.io/agentoffice/privacy.html)
+
+## Build from source
 
 Requirements: Windows 10/11, Node.js 20+, Visual Studio C++ Build Tools. Rust can be installed inside the project folder with `scripts/install-local-rust.ps1`.
 
@@ -71,38 +142,34 @@ powershell -File scripts/dev.ps1 -Action native   # run the app
 powershell -File scripts/dev.ps1 -Action bundle   # build the installer
 ```
 
-`scripts/dev.ps1` keeps Rust, caches, build output and the app's test data inside the project folder (`.tools/`, `.artifacts/`, `.local-data/`), so a development build never touches an installed AgentOffice.
-
-## Repository layout
+`scripts/dev.ps1` keeps Rust, caches, build output and test data inside the project folder (`.tools/`, `.artifacts/`, `.local-data/`), so a development build never touches an installed AgentOffice.
 
 | Folder | What it is |
 |---|---|
-| `app/` | The desktop app: TypeScript UI (`app/src`), Rust/Tauri 2 shell (`app/src-tauri`), the hook relay (`app/hook`), tests (`app/tests`, `app/src-tauri/tests`) |
-| `site/` | The website at [eyrafx.github.io/agentoffice](https://eyrafx.github.io/agentoffice/). `site/dist/` is the published static site; see [site/README.md](site/README.md) |
-| `promo-site/` | A small browser demo of the island and office, used to film the promo videos |
-| `promo-video/` | Scripts that capture and render the promo videos (the videos themselves are not in the repository) |
+| `app/` | The desktop app: TypeScript UI, Rust/Tauri 2 shell, hook relay, tests |
+| `site/` | The website; `site/dist/` is what GitHub Pages publishes ([site/README.md](site/README.md)) |
+| `promo-site/`, `promo-video/` | The browser demo and scripts used to film the promo videos |
 | `design/` | Scripts that prepare the mascot and office artwork |
-| `scripts/` | Development helpers (`dev.ps1`, local Rust install) |
+| `scripts/` | Development helpers |
 | `licenses/` | License texts shipped with the installer |
 
-## Privacy
+## Contributing
 
-- Everything runs on your PC. There is no account, no analytics and no AgentOffice server.
-- Chat contents are not uploaded anywhere. AgentOffice reads only what it needs to show status: session events, titles and project names.
-- To show Claude limits it uses your existing local Claude Code sign-in to ask Anthropic's usage service; the token is never stored, logged or sent elsewhere.
-- Synced lyrics (LRCLIB) and weather (Open-Meteo) are off until you turn them on. Site icons are fetched from the open site itself, never from a third-party icon service.
-- The installer's uninstaller removes AgentOffice's hooks from Claude Code and Cursor. With the Store version, turn the connection off in Settings › Advanced before uninstalling.
-
-Full policy: [Privacy](https://eyrafx.github.io/agentoffice/privacy.html)
-
-## License
-
-- **Code**: [MIT](LICENSE), © 2026 eyra.
-- **Names, mascot and artwork**: the names "AgentOffice", "Octolantis" and "Octo", the Octo mascot, the office illustrations, the icon and all other images, animations and videos are **not** under MIT; all rights reserved. See [LICENSE-ASSETS.md](LICENSE-ASSETS.md). Forks are welcome under their own name and artwork.
-- **Third-party parts**: [THIRD_PARTY_NOTICES.md](THIRD_PARTY_NOTICES.md) (includes MIT code adapted from [Coucou](https://github.com/Louis-CFM/coucou)).
-
-AgentOffice is an independent project and is not affiliated with or endorsed by Anthropic, OpenAI, Anysphere (Cursor) or Microsoft. Product names belong to their owners.
+Issues, bug reports and pull requests are welcome: [Issues](https://github.com/eyrafx/agentoffice/issues).
 
 ## Support
 
-AgentOffice is free. If it helps you, you can support development with a crypto donation on the [support page](https://eyrafx.github.io/agentoffice/#support). Bug reports and ideas: [Issues](https://github.com/eyrafx/agentoffice/issues).
+AgentOffice is free. If it helps you, you can support it on the [support page](https://eyrafx.github.io/agentoffice/#support).
+
+## License
+
+- **Code**: [MIT License](LICENSE), © 2026 eyra.
+- **Names, mascot and artwork**: the names "AgentOffice", "Octolantis" and "Octo", the Octo mascot, the office illustrations, the icon and all other images, animations and videos are **not** covered by MIT; all rights reserved. See [LICENSE-ASSETS.md](LICENSE-ASSETS.md). Forks are welcome under their own name and artwork.
+- **Third-party parts**: [THIRD_PARTY_NOTICES.md](THIRD_PARTY_NOTICES.md).
+
+---
+
+Created by **eyra**
+
+GitHub: **[@eyrafx](https://github.com/eyrafx)**  
+Telegram: **[@eyrafx](https://t.me/eyrafx)**
