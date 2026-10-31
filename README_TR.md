@@ -161,6 +161,10 @@ Hata bildirimleri, fikirler ve pull request'ler memnuniyetle karşılanır: [Iss
 
 AgentOffice ücretsizdir. İşine yarıyorsa [destek sayfasından](https://eyrafx.github.io/agentoffice/#support) destek olabilirsin.
 
+## Teşekkürler
+
+AgentOffice, Anthropic'in girişimlere destek programı sayesinde Claude ile geliştirildi. Teşekkürler Anthropic 💕
+
 ## Lisans
 
 - **Kod**: [MIT Lisansı](LICENSE), © 2026 eyra.

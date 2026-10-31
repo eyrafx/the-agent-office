@@ -161,6 +161,10 @@ Issues, bug reports and pull requests are welcome: [Issues](https://github.com/e
 
 AgentOffice is free. If it helps you, you can support it on the [support page](https://eyrafx.github.io/agentoffice/#support).
 
+## Thanks
+
+AgentOffice was built with Claude, made possible by Anthropic's startup support program. Thank you, Anthropic 💕
+
 ## License
 
 - **Code**: [MIT License](LICENSE), © 2026 eyra.
