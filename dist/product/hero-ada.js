@@ -1,8 +1,8 @@
 (() => {
  'use strict';
  // Ada inside the hero island's open panel: a wave when the island opens, idle with blinks and an
- // occasional hop while it stays open, the centre gaze while the cursor is on her, the shy clip on a
- // click, then idle again. Same clip engine as the corner mascot (ada-mascot.js): only the prepared
+ // occasional hop while it stays open; her eyes follow the cursor over the panel (gaze stills), she
+ // looks up at you with big eyes (plead) when the cursor lands on her, the shy clip on a click. Same clip engine as the corner mascot (ada-mascot.js): only the prepared
  // clips and stills are switched, never moved or warped in code. The island's own open/close logic
  // is not touched: the mascot box stays pointer-events:none and the cursor is matched by position.
  if (!new URLSearchParams(location.search).has('hero')) return;
@@ -12,10 +12,12 @@
   hop: { file: 'hop', duration: 1984 },
   wave: { file: 'wave', duration: 2046 },
   shy: { file: 'shy', duration: 2542 },
+  plead: { file: 'plead', duration: 2046 },
  };
  const HOP_EVERY = [9000, 16000];
  const clipUrl = name => `${BASE}${CLIPS[name].file}-256.webp`;
- const centerUrl = `${BASE}look-center-256.png`;
+ const gazeUrl = dir => `${BASE}look-${dir === 'upLeft' ? 'up-left' : dir}-256.png`;
+ const GAZE_REST_MS = 2500, GAZE_SETTLE_MS = 110; // a resting cursor → back to idle; a direction must hold
  // The clips share one 512 px frame; inside it Ada spans x 43..469, y 87..424. The still in the
  // island (still-426.webp) is that same pose cropped and padded to 426x403 (33 px above and below),
  // drawn with object-fit: contain at the bottom of the box. The clip layer is placed so the two
@@ -83,19 +85,19 @@
  }
 
  /* ---------- Behaviour ---------- */
- const S = { state: 'closed', timer: 0, hopTimer: 0, over: false };
+ const S = { state: 'closed', timer: 0, hopTimer: 0, over: false, gaze: null };
+ const cursor = { x: 0, y: 0, inside: false, moved: 0 };
  const isOpen = () => app.classList.contains('expanded');
 
  async function idle() {
   clearTimeout(S.timer);
   if (!isOpen()) return;
-  if (S.over) { S.state = 'look'; await show(centerUrl, false); return; }
-  S.state = 'idle';
+  S.state = 'idle'; S.gaze = null;
   if (!(await show(clipUrl('idle'), true)) && S.state === 'idle') S.timer = setTimeout(idle, 1500);
  }
  async function play(name) {
   clearTimeout(S.timer);
-  S.state = name;
+  S.state = name; S.gaze = null;
   const ok = await show(clipUrl(name), true);
   if (S.state !== name) return;
   S.timer = setTimeout(() => { if (S.state === name) idle(); }, ok ? CLIPS[name].duration : 0);
@@ -126,14 +128,44 @@
   const r = box.getBoundingClientRect();
   return x > r.left + r.width * 0.1 && x < r.right - r.width * 0.1 && y > r.top + r.height * 0.12 && y < r.bottom;
  }
+ // Which gaze still matches the cursor, seen from Ada's eyes (only the made directions:
+ // left, right, up-left). Null when the cursor is on or right next to her.
+ const DIRS = ['right', 'right', 'down', 'left', 'left', 'upLeft', 'upLeft', 'right'];
+ function gazeDir() {
+  const r = box.getBoundingClientRect();
+  const dx = cursor.x - (r.left + r.width / 2), dy = cursor.y - (r.top + r.height * 0.42);
+  if (Math.hypot(dx, dy) < Math.max(24, r.width * 0.6)) return null;
+  const dir = DIRS[(Math.round(Math.atan2(dy, dx) / (Math.PI / 4)) + 8) % 8];
+  return dir === 'down' ? (dx >= 0 ? 'right' : 'left') : dir;
+ }
+ let pendingGaze = null, pendingSince = 0;
+ function updateGaze() {
+  if (!isOpen() || calm.matches || (S.state !== 'idle' && S.state !== 'gaze')) { pendingGaze = null; return; }
+  const want = cursor.inside && !S.over && performance.now() - cursor.moved < GAZE_REST_MS ? gazeDir() : null;
+  if (want === S.gaze) { pendingGaze = null; return; }
+  const now = performance.now();
+  if (want !== pendingGaze) { pendingGaze = want; pendingSince = now; return; }
+  if (now - pendingSince < GAZE_SETTLE_MS) return;
+  pendingGaze = null;
+  if (!want) { idle(); return; }
+  const url = gazeUrl(want);
+  if (!loaded.has(url)) { load(url, 'low').catch(() => {}); return; }
+  clearTimeout(S.timer);
+  S.state = 'gaze'; S.gaze = want;
+  show(url, false);
+ }
+
  function pointer(e) {
-  if (!isOpen() || calm.matches || e.pointerType === 'touch') return;
+  if (e.pointerType === 'touch') return;
+  cursor.x = e.clientX; cursor.y = e.clientY; cursor.inside = true; cursor.moved = performance.now();
+  if (!isOpen() || calm.matches) return;
   const over = onAda(e.clientX, e.clientY);
   if (over === S.over) return;
   S.over = over;
-  if (over && (S.state === 'idle' || S.state === 'hop')) { S.state = 'look'; clearTimeout(S.timer); show(centerUrl, false); }
-  else if (!over && S.state === 'look') idle();
+  // Landing on her: she looks up at you, once per landing.
+  if (over && (S.state === 'idle' || S.state === 'gaze' || S.state === 'hop')) play('plead');
  }
+ function left() { cursor.inside = false; S.over = false; }
 
  function start() {
   app = document.getElementById('app');
@@ -154,13 +186,14 @@
   new MutationObserver(() => { const now = isOpen(); if (now !== was) { was = now; now ? opened() : closed(); } })
    .observe(app, { attributes: true, attributeFilter: ['class'] });
   addEventListener('pointermove', pointer, { passive: true });
-  addEventListener('pointerleave', () => { if (S.over) { S.over = false; if (S.state === 'look') idle(); } });
-  document.documentElement.addEventListener('pointerleave', () => { if (S.over) { S.over = false; if (S.state === 'look') idle(); } });
+  document.documentElement.addEventListener('pointerleave', left);
+  addEventListener('blur', left);
+  setInterval(updateGaze, 60);
   addEventListener('click', e => { if (isOpen() && !calm.matches && onAda(e.clientX, e.clientY)) play('shy'); }, true);
   calm.addEventListener?.('change', () => { if (calm.matches) closed(); else if (isOpen()) opened(); });
   if (was) opened();
   // Fetch the clips after the page has settled, in the order they are needed.
-  const fetchAll = () => { if (!calm.matches && !navigator.connection?.saveData) ['wave', 'idle', 'shy', 'hop'].map(clipUrl).concat(centerUrl).reduce((p, u) => p.then(() => load(u, 'low').catch(() => {})), Promise.resolve()); };
+  const fetchAll = () => { if (!calm.matches && !navigator.connection?.saveData) ['wave', 'idle', 'plead', 'shy', 'hop'].map(clipUrl).concat(['right', 'left', 'upLeft'].map(gazeUrl)).reduce((p, u) => p.then(() => load(u, 'low').catch(() => {})), Promise.resolve()); };
   (window.requestIdleCallback ? requestIdleCallback(fetchAll, { timeout: 3000 }) : setTimeout(fetchAll, 500));
   window.AO_HERO_ADA = S;
   return true;
