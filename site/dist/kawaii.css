@@ -451,3 +451,5 @@ html.kw .dev-note-card p.eyebrow{color:var(--kw-bg)}
 html.kw .get-button.is-soon{opacity:1;filter:none}
 html.kw .usage-stats>div{min-width:0}
 @media (max-width:440px){html.kw .reference-hero .intro-actions{gap:10px}html.kw .reference-hero .intro-actions .button:is(.live-action,.support-action){font-size:14px;padding:0 8px;gap:6px}html.kw .reference-hero .intro-actions .button .arrow{display:none}}
+html.kw .dev-note-card p.kw-note-thanks{margin:16px 0 18px;padding:11px 15px;border-radius:14px;border:2px dashed rgba(42,22,64,.35);background:color-mix(in srgb,var(--kw-candy-soft) 40%,#fff);color:var(--kw-text);font-weight:800;font-size:15.5px;line-height:1.6}
+html.kw :lang(ja) :is(.button,.get-button,.kw-thanks-btn,.kw-thanks-links a,p,li){word-break:auto-phrase}

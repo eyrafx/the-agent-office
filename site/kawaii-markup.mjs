@@ -60,6 +60,8 @@ await page('index.html', html => {
     const foot = html.match(/<p class="pledge-foot">[^]*?<\/p>/)[0];
     html = html.replace(foot, `${foot}<div class="kw-thanks"><p class="kw-thanks-bubble" role="status" hidden>Thank you so much!</p><button type="button" class="kw-thanks-btn" data-kw-thanks>${HEART}<span>Say thanks</span></button><p class="kw-thanks-note">No wallet needed. A kind word makes Octo’s day too.</p><div class="kw-thanks-links"><a href="https://github.com/eyrafx/agentoffice" target="_blank" rel="noopener">${STAR}<span>Star on GitHub</span></a><a href="https://github.com/eyrafx/agentoffice/discussions" target="_blank" rel="noopener">${CHAT}<span>Leave a thank-you message</span></a></div></div>`);
   }
+  // a thank-you line in the developer note, just before the signature (text only)
+  if (!html.includes('kw-note-thanks')) html = html.replace('<div class="dev-note-sign">', '<p class="kw-note-thanks">AgentOffice was built with Claude, made possible by Anthropic’s startup support program. Thank you, Anthropic 💕</p><div class="dev-note-sign">');
   return html;
 });
 
