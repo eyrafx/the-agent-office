@@ -88,9 +88,13 @@ html.kw .connections b{color:var(--kw-text);background:var(--kw-paper);border:2p
 html.kw .connections a{color:var(--kw-link)}
 .kw-band{position:absolute;right:-8%;top:120px;width:58%;height:620px;z-index:-1;background:var(--kw-mint);border:var(--kw-bw) solid var(--kw-line);border-radius:48px;transform:rotate(-7deg)}
 .kw-band::after{content:"";position:absolute;inset:14px;border-radius:36px;background:repeating-conic-gradient(from 0deg at 40% 46%,rgba(255,255,255,.5) 0 4deg,transparent 4deg 13deg)}
-.kw-sticker{position:relative;z-index:6;justify-self:center;width:min(100%,500px);transform:rotate(-5deg);transition:transform .35s cubic-bezier(.3,1.6,.5,1)}
-.kw-sticker:hover{transform:rotate(1deg) translateY(-8px) scale(1.02)}
-.kw-octo{display:block;width:100%;height:auto;cursor:pointer;-webkit-user-select:none;user-select:none;-webkit-touch-callout:none;
+/* The sticker box is Octo's hit area: its size never changes with the pose or the clip, and the hover
+   lift moves only what is inside it (kawaii.js sets .kw-on), so a parked cursor cannot flip him back and forth. */
+.kw-sticker{position:relative;z-index:6;justify-self:center;width:min(100%,500px);transform:rotate(-5deg);cursor:pointer}
+.kw-sticker>*{pointer-events:none;transition:translate .35s cubic-bezier(.3,1.6,.5,1),scale .35s cubic-bezier(.3,1.6,.5,1),rotate .35s cubic-bezier(.3,1.6,.5,1)}
+.kw-sticker.kw-on>*{translate:0 -8px;scale:1.02}
+.kw-sticker.kw-on>.kw-octo{rotate:5deg}
+.kw-octo{display:block;width:100%;height:auto;-webkit-user-select:none;user-select:none;-webkit-touch-callout:none;
  filter:drop-shadow(5px 0 0 #fff) drop-shadow(-5px 0 0 #fff) drop-shadow(0 5px 0 #fff) drop-shadow(0 -5px 0 #fff) drop-shadow(3px 3px 0 var(--kw-line)) drop-shadow(-1px -1px 0 var(--kw-line)) drop-shadow(0 10px 0 rgba(42,22,64,.18))}
 .kw-badge{position:absolute;display:grid;place-items:center;border:var(--kw-bw) solid var(--kw-line);box-shadow:0 4px 0 var(--kw-shadow);pointer-events:none}
 .kw-kana{right:-3%;top:-1%;width:92px;height:92px;border-radius:50%;background:var(--kw-candy);color:var(--kw-on-candy);font:400 21px/1 'KW Display',sans-serif;transform:rotate(12deg)}
@@ -445,7 +449,7 @@ html.kw .kw-band,html.kw .kw-sticker::before{transition:background-color .5s eas
 html.kw .reference-hero[data-octo=shy] .kw-band,html.kw .reference-hero[data-octo=shy] .kw-sticker::before{background-color:#ffb3d1}
 html.kw .reference-hero[data-octo=plead] .kw-band,html.kw .reference-hero[data-octo=plead] .kw-sticker::before{background-color:#cdb8ff}
 html.kw .reference-hero[data-octo=wave] .kw-band,html.kw .reference-hero[data-octo=wave] .kw-sticker::before{background-color:#a9d8ff}
-@media (prefers-reduced-motion:reduce){html.kw .kw-band,html.kw .kw-sticker::before{transition:none}}
+@media (prefers-reduced-motion:reduce){html.kw .kw-band,html.kw .kw-sticker::before,html.kw .kw-sticker>*{transition:none}}
 html.kw .usage-stats b{font-family:var(--kw-text-font);font-weight:900;font-size:clamp(24px,2.2vw,32px);letter-spacing:-.5px}
 html.kw .dev-note-card p.eyebrow{color:var(--kw-bg)}
 html.kw .get-button.is-soon{opacity:1;filter:none}
