@@ -1,0 +1,195 @@
+<!doctype html>
+<html lang="tr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>AgentOffice — Ajanların ekranın tepesinde</title>
+<meta name="description" content="AgentOffice, Claude ve Codex kodlama ajanlarını Windows ekranının üst kenarındaki küçük bir adada toplar: kim çalışıyor, kim seni bekliyor, tek bakışta.">
+<meta name="theme-color" content="#07080b">
+<meta name="color-scheme" content="dark">
+<link rel="icon" href="./favicon.svg" type="image/svg+xml">
+<link rel="preload" href="./fonts/Manrope-var.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="stylesheet" href="./src/styles.css">
+</head>
+<body>
+<a class="skip" href="#ozellikler" data-i18n="skip"></a>
+
+<header class="bar" aria-label="AgentOffice">
+  <a class="brand" href="#" data-i18n-attr="aria-label:nav.home"><img src="./robot-192.png" alt="" width="28" height="28"><span>AgentOffice</span></a>
+  <nav class="bar-links">
+    <a href="#ozellikler" data-i18n="nav.features"></a>
+    <a href="#ofis" data-i18n="nav.office"></a>
+    <a class="bar-cta" href="#indir" data-i18n="nav.download"></a>
+  </nav>
+</header>
+
+<main>
+  <section class="hero stage-host" id="ust" aria-labelledby="hero-title">
+    <canvas class="wall" data-wall="hero" aria-hidden="true"></canvas>
+    <div class="hero-island island-wrap" data-island="hero" data-w="1260" data-h="500" data-fit="660"></div>
+    <div class="hero-copy">
+      <p class="hint" aria-hidden="true"><svg viewBox="0 0 24 24" width="16" height="16"><path d="M12 19V5M6 11l6-6 6 6" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg><span class="hint-desk" data-i18n="hero.hint"></span><span class="hint-touch" data-i18n="hero.hint.touch"></span></p>
+      <p class="eyebrow" data-i18n="hero.eyebrow"></p>
+      <h1 id="hero-title" data-i18n="hero.title"></h1>
+      <p class="lead" data-i18n="hero.lead"></p>
+      <div class="actions">
+        <a class="btn primary" href="#indir"><svg viewBox="0 0 24 24" width="18" height="18" aria-hidden="true"><path d="M12 4v11m0 0-4.5-4.5M12 15l4.5-4.5M5 19h14" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg><span data-i18n="hero.cta"></span><em data-i18n="hero.cta.note"></em></a>
+        <a class="btn ghost" href="#ozellikler" data-i18n="hero.try"></a>
+      </div>
+      <p class="live-note"><i></i><span data-i18n="hero.live"></span></p>
+    </div>
+  </section>
+
+  <section class="trio" aria-label="Öne çıkanlar">
+    <div class="trio-item reveal"><b data-i18n="trio.1.t"></b><span data-i18n="trio.1.d"></span></div>
+    <div class="trio-item reveal"><b data-i18n="trio.2.t"></b><span data-i18n="trio.2.d"></span></div>
+    <div class="trio-item reveal"><b data-i18n="trio.3.t"></b><span data-i18n="trio.3.d"></span></div>
+  </section>
+
+  <nav class="rail" data-i18n-attr="aria-label:rail.label"><ol></ol></nav>
+
+  <div id="ozellikler" class="features">
+    <section class="feature" id="ajanlar" data-page="agents" aria-labelledby="ajanlar-t">
+      <div class="copy reveal">
+        <p class="kicker" data-i18n="agents.kicker"></p>
+        <h2 id="ajanlar-t" data-i18n="agents.title"></h2>
+        <p class="lead" data-i18n="agents.lead"></p>
+        <ul class="try"><li data-i18n="agents.try.1"></li><li data-i18n="agents.try.2"></li></ul>
+        <button class="btn small" type="button" data-action="ask"><span data-i18n="agents.ask"></span></button>
+        <p class="status" role="status" aria-live="polite"></p>
+      </div>
+      <div class="stage stage-host reveal"><canvas class="wall" data-wall="agents" aria-hidden="true"></canvas><div class="island-wrap" data-island="agents" data-page="agents" data-w="700" data-h="490" data-fit="664"></div></div>
+    </section>
+
+    <section class="feature wide" id="ofis" aria-labelledby="ofis-t">
+      <div class="copy reveal">
+        <p class="kicker" data-i18n="office.kicker"></p>
+        <h2 id="ofis-t" data-i18n="office.title"></h2>
+        <p class="lead" data-i18n="office.lead"></p>
+        <ul class="try"><li data-i18n="office.try.1"></li><li data-i18n="office.try.2"></li></ul>
+        <p class="status" role="status" aria-live="polite"></p>
+      </div>
+      <div class="office-stage reveal">
+        <div class="office-window">
+          <div class="office-chrome" aria-hidden="true"><i></i><i></i><i></i><span>AgentOffice · Ofis</span></div>
+          <div class="office-fit"><div class="office-slot" data-i18n-attr="aria-label:office.frame"></div></div>
+        </div>
+        <p class="note mobile-only" data-i18n="office.mobile"></p>
+      </div>
+    </section>
+
+    <section class="feature" id="medya" data-page="media" aria-labelledby="medya-t">
+      <div class="copy reveal">
+        <p class="kicker" data-i18n="media.kicker"></p>
+        <h2 id="medya-t" data-i18n="media.title"></h2>
+        <p class="lead" data-i18n="media.lead"></p>
+        <ul class="try"><li data-i18n="media.try.1"></li><li data-i18n="media.try.2"></li></ul>
+        <p class="note" data-i18n="media.honest"></p>
+      </div>
+      <div class="stage stage-host reveal"><canvas class="wall" data-wall="media" aria-hidden="true"></canvas><div class="island-wrap" data-island="media" data-page="media" data-w="620" data-h="300" data-fit="564"></div></div>
+    </section>
+
+    <section class="feature" id="notlar" data-page="notes" aria-labelledby="notlar-t">
+      <div class="copy reveal">
+        <p class="kicker" data-i18n="notes.kicker"></p>
+        <h2 id="notlar-t" data-i18n="notes.title"></h2>
+        <p class="lead" data-i18n="notes.lead"></p>
+        <ul class="try"><li data-i18n="notes.try.1"></li><li data-i18n="notes.try.2"></li></ul>
+      </div>
+      <div class="stage stage-host reveal"><canvas class="wall" data-wall="notes" aria-hidden="true"></canvas><div class="island-wrap" data-island="notes" data-page="notes" data-w="600" data-h="470" data-fit="564"></div></div>
+    </section>
+
+    <section class="feature" id="odak" data-page="focus" aria-labelledby="odak-t">
+      <div class="copy reveal">
+        <p class="kicker" data-i18n="focus.kicker"></p>
+        <h2 id="odak-t" data-i18n="focus.title"></h2>
+        <p class="lead" data-i18n="focus.lead"></p>
+        <ul class="try"><li data-i18n="focus.try.1"></li><li data-i18n="focus.try.2"></li></ul>
+      </div>
+      <div class="stage stage-host reveal"><canvas class="wall" data-wall="focus" aria-hidden="true"></canvas><div class="island-wrap" data-island="focus" data-page="focus" data-w="620" data-h="300" data-fit="584"></div></div>
+    </section>
+
+    <section class="feature" id="alarmlar" data-page="alarms" aria-labelledby="alarmlar-t">
+      <div class="copy reveal">
+        <p class="kicker" data-i18n="alarms.kicker"></p>
+        <h2 id="alarmlar-t" data-i18n="alarms.title"></h2>
+        <p class="lead" data-i18n="alarms.lead"></p>
+        <ul class="try"><li data-i18n="alarms.try.1"></li></ul>
+        <p class="note" data-i18n="alarms.honest"></p>
+      </div>
+      <div class="stage stage-host reveal"><canvas class="wall" data-wall="alarms" aria-hidden="true"></canvas><div class="island-wrap" data-island="alarms" data-page="alarms" data-w="600" data-h="470" data-fit="564"></div></div>
+    </section>
+
+    <section class="feature" id="su" data-page="water" aria-labelledby="su-t">
+      <div class="copy reveal">
+        <p class="kicker" data-i18n="water.kicker"></p>
+        <h2 id="su-t" data-i18n="water.title"></h2>
+        <p class="lead" data-i18n="water.lead"></p>
+        <ul class="try"><li data-i18n="water.try.1"></li></ul>
+      </div>
+      <div class="stage stage-host reveal"><canvas class="wall" data-wall="water" aria-hidden="true"></canvas><div class="island-wrap" data-island="water" data-page="water" data-w="600" data-h="400" data-fit="564"></div></div>
+    </section>
+
+    <section class="feature" id="raf" data-page="shelf" aria-labelledby="raf-t">
+      <div class="copy reveal">
+        <p class="kicker" data-i18n="shelf.kicker"></p>
+        <h2 id="raf-t" data-i18n="shelf.title"></h2>
+        <p class="lead" data-i18n="shelf.lead"></p>
+        <ul class="try"><li data-i18n="shelf.try.1"></li><li data-i18n="shelf.try.2"></li></ul>
+        <div class="samples" role="list" data-i18n-attr="aria-label:shelf.samples"></div>
+        <p class="note" data-i18n="shelf.honest"></p>
+      </div>
+      <div class="stage stage-host reveal"><canvas class="wall" data-wall="shelf" aria-hidden="true"></canvas><div class="island-wrap" data-island="shelf" data-page="shelf" data-w="620" data-h="470" data-fit="584"></div></div>
+    </section>
+  </div>
+
+  <section class="windows" aria-labelledby="win-t">
+    <div class="copy center reveal">
+      <p class="kicker" data-i18n="win.kicker"></p>
+      <h2 id="win-t" data-i18n="win.title"></h2>
+      <p class="lead" data-i18n="win.lead"></p>
+    </div>
+    <div class="win-grid">
+      <article class="win-card reveal">
+        <svg class="ill" viewBox="0 0 160 96" aria-hidden="true"><rect x="4" y="4" width="152" height="88" rx="8" fill="#12141a" stroke="#2a2e38"/><rect x="10" y="10" width="140" height="76" rx="4" fill="url(#wg1)"/><rect x="62" y="10" width="36" height="2.4" rx="1.2" fill="#ffb15e"/><defs><linearGradient id="wg1" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#2b1d3c"/><stop offset="1" stop-color="#0f2a33"/></linearGradient></defs><path d="M30 70l18-20 14 12 22-26 30 34" fill="none" stroke="#ffffff30" stroke-width="2"/></svg>
+        <h3 data-i18n="win.1.t"></h3><p data-i18n="win.1.d"></p>
+      </article>
+      <article class="win-card reveal">
+        <svg class="ill" viewBox="0 0 160 96" aria-hidden="true"><rect x="40" y="10" width="80" height="26" rx="13" fill="#0b0c10" stroke="#2a2e38"/><rect x="48" y="16" width="14" height="14" rx="4" fill="url(#wg2)"/><g fill="#ffb15e"><rect x="67" y="20" width="2.4" height="8" rx="1"/><rect x="71" y="17" width="2.4" height="11" rx="1"/><rect x="75" y="21" width="2.4" height="7" rx="1"/></g><rect x="86" y="21" width="26" height="4" rx="2" fill="#ffffff40"/><defs><linearGradient id="wg2" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#ff8a3d"/><stop offset="1" stop-color="#5b2a86"/></linearGradient></defs><rect x="22" y="52" width="116" height="34" rx="8" fill="#12141a" stroke="#2a2e38"/><rect x="30" y="66" width="100" height="4" rx="2" fill="#ffffff18"/><rect x="30" y="66" width="44" height="4" rx="2" fill="#ffb15e"/></svg>
+        <h3 data-i18n="win.2.t"></h3><p data-i18n="win.2.d"></p>
+      </article>
+      <article class="win-card reveal">
+        <svg class="ill" viewBox="0 0 160 96" aria-hidden="true"><rect x="44" y="6" width="72" height="22" rx="11" fill="#0b0c10" stroke="#ffb15e66" stroke-dasharray="3 3"/><path d="M80 66V36m0 0-7 7m7-7 7 7" fill="none" stroke="#ffb15e" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/><rect x="58" y="68" width="44" height="22" rx="5" fill="#1a1d25" stroke="#2f3440"/><path d="M66 74h18M66 80h26" stroke="#ffffff40" stroke-width="2" stroke-linecap="round"/></svg>
+        <h3 data-i18n="win.3.t"></h3><p data-i18n="win.3.d"></p>
+      </article>
+      <article class="win-card reveal">
+        <svg class="ill" viewBox="0 0 160 96" aria-hidden="true"><rect x="34" y="20" width="92" height="28" rx="14" fill="#0b0c10" stroke="#2a2e38"/><path d="M48 30v8h4l5 4V26l-5 4z" fill="#ffffffcc"/><rect x="64" y="32" width="50" height="4" rx="2" fill="#ffffff18"/><rect x="64" y="32" width="32" height="4" rx="2" fill="#ffffffcc"/><rect x="50" y="62" width="60" height="20" rx="6" fill="#12141a" stroke="#2a2e38"/><text x="80" y="76" text-anchor="middle" font-size="9" fill="#ffffff99" font-family="Manrope,system-ui,sans-serif">Caps Lock</text></svg>
+        <h3 data-i18n="win.4.t"></h3><p data-i18n="win.4.d"></p>
+      </article>
+    </div>
+  </section>
+
+  <section class="cta" id="indir" aria-labelledby="cta-t">
+    <canvas class="wall" data-wall="cta" aria-hidden="true"></canvas>
+    <div class="cta-inner reveal">
+      <img class="cta-mascot" loading="lazy" decoding="async" src="./robot-384.png" alt="AgentOffice'in turuncu ahtapot maskotu" width="160" height="160">
+      <h2 id="cta-t" data-i18n="cta.title"></h2>
+      <p class="lead" data-i18n="cta.lead"></p>
+      <a class="btn primary big" href="#indir" aria-disabled="true" data-action="download"><span data-i18n="cta.button"></span></a>
+      <p class="note" data-i18n="cta.note"></p>
+    </div>
+  </section>
+</main>
+
+<footer class="foot">
+  <div class="foot-brand"><img src="./robot-192.png" alt="" width="22" height="22"><b>AgentOffice</b></div>
+  <p data-i18n="foot.indie"></p>
+  <p data-i18n="foot.demo"></p>
+  <p class="small" data-i18n="foot.font"></p>
+</footer>
+
+<div class="toast" role="status" aria-live="polite" hidden></div>
+<noscript><p class="noscript">Canlı adalar için JavaScript gerekir.</p></noscript>
+<script type="module" src="./src/main.ts"></script>
+</body>
+</html>

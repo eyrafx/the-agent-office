@@ -1,0 +1,52 @@
+{
+  "$schema": "https://schema.tauri.app/config/2",
+  "productName": "AgentOffice",
+  "version": "0.1.0",
+  "identifier": "local.agentoffice.desktop",
+  "build": {
+    "beforeDevCommand": "npm run dev",
+    "devUrl": "http://127.0.0.1:1420",
+    "beforeBuildCommand": "npm run build",
+    "frontendDist": "../dist"
+  },
+  "app": {
+    "windows": [],
+    "security": {
+      "csp": "default-src 'self'; script-src 'self'; style-src 'self' 'unsafe-inline'; img-src 'self' asset: data: blob: http://backdrop.localhost; connect-src 'self' ipc: http://ipc.localhost http://backdrop.localhost; font-src 'self' data:; worker-src 'self' blob:",
+      "devCsp": "default-src 'self'; script-src 'self'; style-src 'self' 'unsafe-inline'; img-src 'self' asset: data: blob: http://backdrop.localhost; connect-src 'self' ipc: http://ipc.localhost http://backdrop.localhost ws://127.0.0.1:1420; font-src 'self' data:; worker-src 'self' blob:"
+    }
+  },
+  "bundle": {
+    "active": true,
+    "targets": [
+      "nsis"
+    ],
+    "icon": [
+      "icons/icon.ico",
+      "icons/32x32.png",
+      "icons/128x128.png"
+    ],
+    "copyright": "AgentOffice contributors",
+    "category": "Productivity",
+    "shortDescription": "An office for your AI sessions",
+    "useLocalToolsDir": true,
+    "resources": {
+      "../../THIRD_PARTY_NOTICES.md": "THIRD_PARTY_NOTICES.md",
+      "../../licenses/Coucou-MIT.txt": "licenses/Coucou-MIT.txt",
+      "../../licenses/Coucou-assets-excluded.md": "licenses/Coucou-assets-excluded.md",
+      "../../.artifacts/cargo-target/release/agentoffice-hook.exe": "agentoffice-hook.exe"
+    },
+    "windows": {
+      "webviewInstallMode": {
+        "type": "downloadBootstrapper",
+        "silent": true
+      },
+      "nsis": {
+        "installMode": "currentUser",
+        "installerHooks": "installer-hooks.nsh",
+        "displayLanguageSelector": false,
+        "languages": ["English", "Turkish", "German", "Spanish", "French", "Italian", "PortugueseBR", "Russian", "Japanese", "Korean", "SimpChinese"]
+      }
+    }
+  }
+}

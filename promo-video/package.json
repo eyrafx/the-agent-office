@@ -1,0 +1,17 @@
+{
+  "name": "agentoffice-promo-video",
+  "private": true,
+  "version": "0.1.0",
+  "type": "module",
+  "description": "AgentOffice tanıtım videosu: site/ demosundaki gerçek ada ve ofis kaydedilir, ffmpeg ile kurgulanır.",
+  "scripts": {
+    "serve": "node ../app/node_modules/vite/bin/vite.js --config vite.config.mjs --host 127.0.0.1 --port 5190 --strictPort",
+    "capture": "node capture.mjs",
+    "render": "node render.mjs",
+    "storyboard": "node storyboard.mjs",
+    "build": "node build.mjs"
+  },
+  "devDependencies": {
+    "ffmpeg-static": "^5.2.0"
+  }
+}

@@ -1,0 +1,30 @@
+<!doctype html>
+<html lang="tr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex">
+<title>AgentOffice ofisi</title>
+<script>
+  // The live island keeps its small conveniences (last page, filters) in this frame's memory only:
+  // the demo never writes to the visitor's storage. Turkish first, as the page.
+  (function () {
+    var data = { 'agentoffice:ui': JSON.stringify({ language: 'tr', muted: true, reducedMotion: matchMedia('(prefers-reduced-motion: reduce)').matches }) };
+    var mem = {
+      getItem: function (k) { return Object.prototype.hasOwnProperty.call(data, k) ? data[k] : null; },
+      setItem: function (k, v) { data[k] = String(v); },
+      removeItem: function (k) { delete data[k]; },
+      clear: function () { data = {}; },
+      key: function (i) { return Object.keys(data)[i] || null; },
+      get length() { return Object.keys(data).length; }
+    };
+    try { Object.defineProperty(window, 'localStorage', { value: mem, configurable: true }); } catch (e) {}
+  })();
+</script>
+<style>
+  .tile-claude, .provider-avatar.claude, .strip-tile.claude, .strip-tile.all .claude { background: #4a3f39 !important; color: #fff !important; }
+  .tile-codex, .strip-tile.codex, .strip-tile.all .codex { background: #2c3340 !important; }
+</style>
+</head>
+<body><div id="app"></div><script type="module" src="./src/office.ts"></script></body>
+</html>

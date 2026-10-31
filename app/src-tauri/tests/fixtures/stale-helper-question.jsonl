@@ -1,0 +1,9 @@
+{"session_id":"6b5447e0-235b-44ad-9493-e4e6c2e423a7","hook_event_name":"UserPromptSubmit","cwd":"C:\\Users\\demo\\Desktop\\puzzle","agentoffice_at":1793373419849}
+{"session_id":"6b5447e0-235b-44ad-9493-e4e6c2e423a7","hook_event_name":"PreToolUse","cwd":"C:\\Users\\demo\\Desktop\\puzzle","agentoffice_at":1793374064205,"tool_name":"PowerShell","tool_use_id":"toolu_01SKVeQaR77WuTrf9UrmQdvv","tool_input":{"command":"npm test"}}
+{"session_id":"6b5447e0-235b-44ad-9493-e4e6c2e423a7","hook_event_name":"PostToolUse","cwd":"C:\\Users\\demo\\Desktop\\puzzle","agentoffice_at":1793374078669,"tool_name":"PowerShell","tool_use_id":"toolu_01SKVeQaR77WuTrf9UrmQdvv"}
+{"session_id":"6b5447e0-235b-44ad-9493-e4e6c2e423a7","hook_event_name":"Stop","cwd":"C:\\Users\\demo\\Desktop\\puzzle","agentoffice_at":1793374123105}
+{"session_id":"6b5447e0-235b-44ad-9493-e4e6c2e423a7","agent_id":"ad7056bcab7dacd97","hook_event_name":"PreToolUse","cwd":"C:\\Users\\demo\\Desktop\\puzzle","agentoffice_at":1793374134608,"tool_name":"AskUserQuestion","tool_use_id":"toolu_01ENkGM7hUc3ahR5YQqEG7hM","tool_input":{"questions":[{"question":"Which build should we try first?","header":"Build","options":[{"label":"The small one (Recommended)"},{"label":"The full one"}],"multiSelect":false}]}}
+{"session_id":"6b5447e0-235b-44ad-9493-e4e6c2e423a7","hook_event_name":"UserPromptSubmit","cwd":"C:\\Users\\demo\\Desktop\\puzzle","agentoffice_at":1793374233295}
+{"session_id":"6b5447e0-235b-44ad-9493-e4e6c2e423a7","hook_event_name":"Stop","cwd":"C:\\Users\\demo\\Desktop\\puzzle","agentoffice_at":1793374239012}
+{"session_id":"6b5447e0-235b-44ad-9493-e4e6c2e423a7","hook_event_name":"UserPromptSubmit","cwd":"C:\\Users\\demo\\Desktop\\puzzle","agentoffice_at":1793375877215}
+{"session_id":"6b5447e0-235b-44ad-9493-e4e6c2e423a7","hook_event_name":"Stop","cwd":"C:\\Users\\demo\\Desktop\\puzzle","agentoffice_at":1793375882697}

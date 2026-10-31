@@ -1,0 +1,548 @@
+{
+  "requests": [
+    {
+      "version": 1,
+      "expiresAt": 900000,
+      "status": "pending",
+      "canAnswer": true,
+      "key": {
+        "sessionKey": {
+          "hostId": "demo-local",
+          "sessionId": "demo-1",
+          "provider": "codex"
+        },
+        "requestId": "demo-request-1"
+      },
+      "title": "Örnek dosya işlemini onaylıyor musunuz?",
+      "kind": "permission",
+      "detail": "Bu kart örnek veridir. Yanıt gerçek bir AI aracına gönderilmez.",
+      "options": [
+        "İzin ver",
+        "Reddet"
+      ]
+    },
+    {
+      "version": 1,
+      "expiresAt": 900000,
+      "status": "pending",
+      "canAnswer": true,
+      "key": {
+        "sessionKey": {
+          "hostId": "demo-local",
+          "sessionId": "demo-5",
+          "provider": "codex"
+        },
+        "requestId": "demo-request-5"
+      },
+      "title": "Hangi görünüm önce açılsın?",
+      "kind": "question",
+      "detail": "Bu kart örnek veridir. Yanıt gerçek bir AI aracına gönderilmez.",
+      "options": [
+        "Ofis",
+        "Çentik"
+      ]
+    },
+    {
+      "version": 1,
+      "expiresAt": 900000,
+      "status": "pending",
+      "canAnswer": true,
+      "key": {
+        "sessionKey": {
+          "hostId": "demo-local",
+          "sessionId": "demo-11",
+          "provider": "codex"
+        },
+        "requestId": "demo-request-11"
+      },
+      "title": "Örnek dosya işlemini onaylıyor musunuz?",
+      "kind": "permission",
+      "detail": "Bu kart örnek veridir. Yanıt gerçek bir AI aracına gönderilmez.",
+      "options": [
+        "İzin ver",
+        "Reddet"
+      ]
+    }
+  ],
+  "history": [
+    {
+      "kind": "replyEnded",
+      "at": -45000,
+      "title": "Test koşucusu · Yanıt sona erdi",
+      "id": "demo-event-1",
+      "sessionKey": {
+        "hostId": "demo-local",
+        "sessionId": "demo-3",
+        "provider": "codex"
+      }
+    },
+    {
+      "kind": "error",
+      "at": -8000,
+      "title": "Tasarım kontrolü · Örnek bağlantı hatası",
+      "id": "demo-event-2",
+      "sessionKey": {
+        "hostId": "demo-local",
+        "sessionId": "demo-6",
+        "provider": "claude"
+      }
+    }
+  ],
+  "sessions": [
+    {
+      "status": "working",
+      "name": "Arayüz düzeni",
+      "key": {
+        "hostId": "demo-local",
+        "sessionId": "demo-0",
+        "provider": "claude"
+      },
+      "summary": "Dosyalar ve araç adımları inceleniyor",
+      "files": [
+        {
+          "deletions": 2,
+          "before": "export const ready = false;",
+          "additions": 12,
+          "path": "src/interface.ts",
+          "after": "export const ready = true;"
+        }
+      ],
+      "source": "demo",
+      "project": "AgentOffice",
+      "lastActivity": -15000
+    },
+    {
+      "status": "waiting",
+      "name": "İzin akışı",
+      "key": {
+        "hostId": "demo-local",
+        "sessionId": "demo-1",
+        "provider": "codex"
+      },
+      "summary": "Örnek soru için yanıt bekliyor",
+      "files": [
+        {
+          "deletions": 3,
+          "before": "export const ready = false;",
+          "additions": 15,
+          "path": "tests/workflow.test.ts",
+          "after": "export const ready = true;"
+        }
+      ],
+      "source": "demo",
+      "project": "AgentOffice",
+      "lastActivity": -18700
+    },
+    {
+      "status": "working",
+      "name": "Dosya karşılaştırma",
+      "key": {
+        "hostId": "demo-local",
+        "sessionId": "demo-2",
+        "provider": "claude"
+      },
+      "summary": "Dosyalar ve araç adımları inceleniyor",
+      "files": [
+        {
+          "deletions": 4,
+          "before": "export const ready = false;",
+          "additions": 18,
+          "path": "src/interface.ts",
+          "after": "export const ready = true;"
+        }
+      ],
+      "source": "demo",
+      "project": "AgentOffice",
+      "lastActivity": -22400
+    },
+    {
+      "status": "replyEnded",
+      "name": "Test koşucusu",
+      "key": {
+        "hostId": "demo-local",
+        "sessionId": "demo-3",
+        "provider": "codex"
+      },
+      "summary": "Bu yanıt sona erdi; proje tamamlandı anlamına gelmez",
+      "files": [
+        {
+          "deletions": 5,
+          "before": "export const ready = false;",
+          "additions": 21,
+          "path": "tests/workflow.test.ts",
+          "after": "export const ready = true;"
+        }
+      ],
+      "source": "demo",
+      "project": "AgentOffice",
+      "lastActivity": -26100
+    },
+    {
+      "status": "working",
+      "name": "Bağlantı adaptörü",
+      "key": {
+        "hostId": "demo-local",
+        "sessionId": "demo-4",
+        "provider": "claude"
+      },
+      "summary": "Dosyalar ve araç adımları inceleniyor",
+      "files": [
+        {
+          "deletions": 6,
+          "before": "export const ready = false;",
+          "additions": 24,
+          "path": "src/interface.ts",
+          "after": "export const ready = true;"
+        }
+      ],
+      "source": "demo",
+      "project": "AgentOffice",
+      "lastActivity": -29800
+    },
+    {
+      "status": "waiting",
+      "name": "Dokümantasyon",
+      "key": {
+        "hostId": "demo-local",
+        "sessionId": "demo-5",
+        "provider": "codex"
+      },
+      "summary": "Örnek soru için yanıt bekliyor",
+      "files": [
+        {
+          "deletions": 7,
+          "before": "export const ready = false;",
+          "additions": 27,
+          "path": "tests/workflow.test.ts",
+          "after": "export const ready = true;"
+        }
+      ],
+      "source": "demo",
+      "project": "AgentOffice",
+      "lastActivity": -33500
+    },
+    {
+      "status": "error",
+      "name": "Tasarım kontrolü",
+      "key": {
+        "hostId": "demo-local",
+        "sessionId": "demo-6",
+        "provider": "claude"
+      },
+      "summary": "Örnek bağlantı hatası; yeniden deneme gerekiyor",
+      "files": [
+        {
+          "deletions": 8,
+          "before": "export const ready = false;",
+          "additions": 30,
+          "path": "src/interface.ts",
+          "after": "export const ready = true;"
+        }
+      ],
+      "source": "demo",
+      "project": "AgentOffice",
+      "lastActivity": -37200
+    },
+    {
+      "status": "working",
+      "name": "Pencere davranışı",
+      "key": {
+        "hostId": "demo-local",
+        "sessionId": "demo-7",
+        "provider": "codex"
+      },
+      "summary": "Dosyalar ve araç adımları inceleniyor",
+      "files": [
+        {
+          "deletions": 9,
+          "before": "export const ready = false;",
+          "additions": 33,
+          "path": "tests/workflow.test.ts",
+          "after": "export const ready = true;"
+        }
+      ],
+      "source": "demo",
+      "project": "AgentOffice",
+      "lastActivity": -40900
+    },
+    {
+      "status": "working",
+      "name": "Oturum kuyruğu",
+      "key": {
+        "hostId": "demo-local",
+        "sessionId": "demo-8",
+        "provider": "claude"
+      },
+      "summary": "Dosyalar ve araç adımları inceleniyor",
+      "files": [
+        {
+          "deletions": 10,
+          "before": "export const ready = false;",
+          "additions": 36,
+          "path": "src/interface.ts",
+          "after": "export const ready = true;"
+        }
+      ],
+      "source": "demo",
+      "project": "AgentOffice",
+      "lastActivity": -44600
+    },
+    {
+      "status": "unknown",
+      "name": "Yerelleştirme",
+      "key": {
+        "hostId": "demo-local",
+        "sessionId": "demo-9",
+        "provider": "codex"
+      },
+      "summary": "Kaynak durumu doğrulanamıyor",
+      "files": [
+        {
+          "deletions": 11,
+          "before": "export const ready = false;",
+          "additions": 39,
+          "path": "tests/workflow.test.ts",
+          "after": "export const ready = true;"
+        }
+      ],
+      "source": "demo",
+      "project": "AgentOffice",
+      "lastActivity": -48300
+    },
+    {
+      "status": "working",
+      "name": "Paket hazırlığı",
+      "key": {
+        "hostId": "demo-local",
+        "sessionId": "demo-10",
+        "provider": "claude"
+      },
+      "summary": "Dosyalar ve araç adımları inceleniyor",
+      "files": [
+        {
+          "deletions": 12,
+          "before": "export const ready = false;",
+          "additions": 42,
+          "path": "src/interface.ts",
+          "after": "export const ready = true;"
+        }
+      ],
+      "source": "demo",
+      "project": "AgentOffice",
+      "lastActivity": -52000
+    },
+    {
+      "status": "waiting",
+      "name": "Kod inceleme",
+      "key": {
+        "hostId": "demo-local",
+        "sessionId": "demo-11",
+        "provider": "codex"
+      },
+      "summary": "Örnek soru için yanıt bekliyor",
+      "files": [
+        {
+          "deletions": 13,
+          "before": "export const ready = false;",
+          "additions": 45,
+          "path": "tests/workflow.test.ts",
+          "after": "export const ready = true;"
+        }
+      ],
+      "source": "demo",
+      "project": "AgentOffice",
+      "lastActivity": -55700
+    },
+    {
+      "status": "replyEnded",
+      "name": "Erişilebilirlik",
+      "key": {
+        "hostId": "demo-local",
+        "sessionId": "demo-12",
+        "provider": "claude"
+      },
+      "summary": "Bu yanıt sona erdi; proje tamamlandı anlamına gelmez",
+      "files": [
+        {
+          "deletions": 14,
+          "before": "export const ready = false;",
+          "additions": 48,
+          "path": "src/interface.ts",
+          "after": "export const ready = true;"
+        }
+      ],
+      "source": "demo",
+      "project": "AgentOffice",
+      "lastActivity": -59400
+    },
+    {
+      "status": "working",
+      "name": "Performans",
+      "key": {
+        "hostId": "demo-local",
+        "sessionId": "demo-13",
+        "provider": "codex"
+      },
+      "summary": "Dosyalar ve araç adımları inceleniyor",
+      "files": [
+        {
+          "deletions": 15,
+          "before": "export const ready = false;",
+          "additions": 51,
+          "path": "tests/workflow.test.ts",
+          "after": "export const ready = true;"
+        }
+      ],
+      "source": "demo",
+      "project": "AgentOffice",
+      "lastActivity": -63100
+    },
+    {
+      "status": "working",
+      "name": "Sürüm notları",
+      "key": {
+        "hostId": "demo-local",
+        "sessionId": "demo-14",
+        "provider": "claude"
+      },
+      "summary": "Dosyalar ve araç adımları inceleniyor",
+      "files": [
+        {
+          "deletions": 16,
+          "before": "export const ready = false;",
+          "additions": 54,
+          "path": "src/interface.ts",
+          "after": "export const ready = true;"
+        }
+      ],
+      "source": "demo",
+      "project": "Studio Kit",
+      "lastActivity": -66800
+    },
+    {
+      "status": "working",
+      "name": "Simge tasarımı",
+      "key": {
+        "hostId": "demo-local",
+        "sessionId": "demo-15",
+        "provider": "codex"
+      },
+      "summary": "Dosyalar ve araç adımları inceleniyor",
+      "files": [
+        {
+          "deletions": 17,
+          "before": "export const ready = false;",
+          "additions": 57,
+          "path": "tests/workflow.test.ts",
+          "after": "export const ready = true;"
+        }
+      ],
+      "source": "demo",
+      "project": "Studio Kit",
+      "lastActivity": -70500
+    },
+    {
+      "status": "unknown",
+      "name": "Kaynak tarama",
+      "key": {
+        "hostId": "demo-local",
+        "sessionId": "demo-16",
+        "provider": "claude"
+      },
+      "summary": "Kaynak durumu doğrulanamıyor",
+      "files": [
+        {
+          "deletions": 18,
+          "before": "export const ready = false;",
+          "additions": 60,
+          "path": "src/interface.ts",
+          "after": "export const ready = true;"
+        }
+      ],
+      "source": "demo",
+      "project": "Studio Kit",
+      "lastActivity": -74200
+    },
+    {
+      "status": "replyEnded",
+      "name": "Geri alma",
+      "key": {
+        "hostId": "demo-local",
+        "sessionId": "demo-17",
+        "provider": "codex"
+      },
+      "summary": "Bu yanıt sona erdi; proje tamamlandı anlamına gelmez",
+      "files": [
+        {
+          "deletions": 19,
+          "before": "export const ready = false;",
+          "additions": 63,
+          "path": "tests/workflow.test.ts",
+          "after": "export const ready = true;"
+        }
+      ],
+      "source": "demo",
+      "project": "Studio Kit",
+      "lastActivity": -77900
+    },
+    {
+      "status": "working",
+      "name": "Görsel kontrol",
+      "key": {
+        "hostId": "demo-local",
+        "sessionId": "demo-18",
+        "provider": "claude"
+      },
+      "summary": "Dosyalar ve araç adımları inceleniyor",
+      "files": [
+        {
+          "deletions": 20,
+          "before": "export const ready = false;",
+          "additions": 66,
+          "path": "src/interface.ts",
+          "after": "export const ready = true;"
+        }
+      ],
+      "source": "demo",
+      "project": "Studio Kit",
+      "lastActivity": -81600
+    },
+    {
+      "status": "working",
+      "name": "Sistem testi",
+      "key": {
+        "hostId": "demo-local",
+        "sessionId": "demo-19",
+        "provider": "codex"
+      },
+      "summary": "Dosyalar ve araç adımları inceleniyor",
+      "files": [
+        {
+          "deletions": 21,
+          "before": "export const ready = false;",
+          "additions": 69,
+          "path": "tests/workflow.test.ts",
+          "after": "export const ready = true;"
+        }
+      ],
+      "source": "demo",
+      "project": "Studio Kit",
+      "lastActivity": -85300
+    }
+  ],
+  "mode": "demo",
+  "schemaVersion": 1,
+  "connections": [
+    {
+      "detail": "Örnek veri · Canlı bağlantı yok",
+      "status": "unverified",
+      "provider": "claude"
+    },
+    {
+      "detail": "Örnek veri · Canlı bağlantı yok",
+      "status": "unverified",
+      "provider": "codex"
+    }
+  ],
+  "revision": 1
+}

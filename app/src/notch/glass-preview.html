@@ -1,0 +1,58 @@
+<!doctype html><html lang="tr"><meta charset="utf-8"><title>AgentOffice glass studio</title>
+<!-- Dev-only: tunes the liquid glass (glass.ts) over fixed backgrounds, with
+     text styled like the notch, so its look can be judged without the shell. -->
+<style>
+html,body{margin:0;height:100%;overflow:hidden;font-family:"Segoe UI",system-ui,sans-serif}
+#bg,#glass{position:fixed;inset:0;width:100%;height:100%}
+.face{position:fixed;top:0;color:var(--l1);pointer-events:none;transition:color .3s}
+body{--l1:rgba(255,255,255,.92);--l2:rgba(255,255,255,.58);--l3:rgba(255,255,255,.44);--fill:rgba(255,255,255,.07)}
+.island{left:50%;margin-left:-280px;width:560px;height:300px}
+.island .head{display:flex;align-items:center;gap:12px;padding:16px 18px 8px 96px}
+.island b{font-size:15px;font-weight:600;display:block}
+.island small{font-size:11px;color:var(--l2);display:block;margin-top:3px}
+.island h2{font-size:11px;font-weight:600;color:var(--l3);margin:14px 18px 6px}
+.row{display:flex;justify-content:space-between;padding:7px 18px}
+.row span{font-size:13px;font-weight:600}.row em{font-style:normal;font-size:11px;color:var(--l2)}
+.pill{margin-left:auto;font-size:12px;font-weight:600;padding:6px 13px;border-radius:15px;background:var(--fill);box-shadow:inset 0 0 0 1px rgba(255,255,255,.13)}
+.mascot{position:fixed;top:10px;left:calc(50% - 262px);width:66px}
+nav{position:fixed;bottom:12px;left:12px;display:flex;gap:6px}
+nav button{font:12px system-ui;padding:6px 10px;border-radius:8px;border:1px solid #888;background:#fff}
+</style>
+<canvas id="bg"></canvas><canvas id="glass"></canvas>
+<div class="face island"><div class="head"><div><b>1 oturum çalışıyor</b><small>2 oturum izleniyor</small></div><span class="pill">Limitler</span></div>
+<h2>Ofisten bir bakış</h2><div class="row"><span>puzzle</span><em>Çalışıyor</em></div><div class="row"><span>notes</span><em>Yanıt sona erdi</em></div></div>
+<img class="mascot" src="/mascot/robot-192.png" alt="">
+<nav><button data-bg="leaves">Yapraklar</button><button data-bg="bright">Beyaz sayfa</button><button data-bg="dark">Koyu uygulama</button><button data-bg="color">Renkli</button></nav>
+<script type="module">
+import { createGlass } from './glass.ts';
+const bg = document.getElementById('bg'), glassCanvas = document.getElementById('glass');
+const glass = createGlass(glassCanvas);
+const paint = mode => {
+  const w = bg.width = innerWidth, h = bg.height = innerHeight, g = bg.getContext('2d');
+  const page = mode === 'bright' ? '#fafafc' : mode === 'dark' ? '#1e1f24' : '#ffffff';
+  g.fillStyle = page; g.fillRect(0, 0, w, h);
+  if (mode === 'color') { const gr = g.createLinearGradient(0, 0, w, h); gr.addColorStop(0, '#ff7a3d'); gr.addColorStop(.5, '#7b4dff'); gr.addColorStop(1, '#16c2a3'); g.fillStyle = gr; g.fillRect(0, 0, w, h); }
+  if (mode === 'leaves') {
+    // Light wall with soft bamboo-like leaves, like the reference wallpaper.
+    g.fillStyle = '#cfd8d0'; g.fillRect(0, 0, w, h);
+    for (let i = 0; i < 38; i++) {
+      const x = (i * 137) % w, y = (i * 89) % h, a = (i * 47) % 180 * Math.PI / 180;
+      g.save(); g.translate(x, y); g.rotate(a); g.fillStyle = i % 3 ? 'rgba(52,84,66,.75)' : 'rgba(70,104,84,.5)';
+      g.beginPath(); g.ellipse(0, 0, 90, 13, 0, 0, 7); g.fill(); g.restore();
+    }
+    glass.setFrame(bg, { x: 0, y: 0, w, h }); return;
+  }
+  g.fillStyle = mode === 'dark' ? '#2b2d34' : 'rgba(0,0,0,.06)'; g.fillRect(0, 0, w, 54);
+  g.font = '22px Segoe UI'; g.fillStyle = mode === 'dark' ? '#d8dae0' : '#141414';
+  for (let i = 0; i < 16; i++) g.fillText('Arka plandaki sayfanın metni — camdan okunmamalı, şekli ve rengi seçilmeli', 30, 90 + i * 34);
+  g.fillStyle = '#2f7cf6'; g.beginPath(); g.arc(w * .72, 210, 110, 0, 7); g.fill();
+  g.fillStyle = '#ff8a2a'; g.fillRect(w * .2, 230, 220, 120);
+  g.fillStyle = '#21b36b'; g.fillRect(w * .46, 40, 160, 90);
+  glass.setFrame(bg, { x: 0, y: 0, w, h });
+};
+const shapes = () => [{ x: innerWidth / 2 - 280, y: 0, w: 560, h: 300, r: 26, flush: true }];
+const frame = () => { glass.draw(shapes()); requestAnimationFrame(frame); };
+document.querySelectorAll('nav button').forEach(b => b.onclick = () => paint(b.dataset.bg));
+paint(new URLSearchParams(location.search).get('bg') || 'bright'); frame();
+window.glassStudio = { paint };
+</script></html>

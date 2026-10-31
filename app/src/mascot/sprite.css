@@ -1,0 +1,10 @@
+/* Product mascot (see still.ts): Ada's clips and stills, one on top of another while they switch.
+   All files share one 256-unit frame; Ada at rest spans x 22–234 and ends at y 211 in it. The box
+   is wider than tall, so she fills its width standing on its bottom edge (margins in % of the box
+   width); a hop rises above the box. States also change the glow around her. */
+.sprite-mascot{position:relative;width:100%;height:100%;pointer-events:none}
+.mascot-layers{position:absolute;inset:0;filter:drop-shadow(0 3px 5px rgba(0,0,0,.3));transition:filter .5s ease}
+.mascot-layers img{position:absolute;left:0;bottom:0;display:block;width:120.75%;height:auto;aspect-ratio:1;margin:0 0 -21.23% -10.38%;user-select:none;-webkit-user-drag:none}
+.sprite-mascot[data-state=waiting] .mascot-layers{filter:drop-shadow(0 3px 5px rgba(0,0,0,.3)) drop-shadow(0 0 8px rgba(255,150,60,.75))}
+.sprite-mascot[data-state=error] .mascot-layers{filter:drop-shadow(0 3px 5px rgba(0,0,0,.3)) drop-shadow(0 0 8px rgba(255,80,80,.7))}
+.sprite-mascot[data-state=resting] .mascot-layers{filter:drop-shadow(0 3px 5px rgba(0,0,0,.3)) saturate(.8) brightness(.85)}

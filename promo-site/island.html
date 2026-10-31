@@ -1,0 +1,39 @@
+<!doctype html>
+<html lang="tr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex">
+<title>AgentOffice adası</title>
+<script>
+  // The live island keeps its small conveniences (last page, filters) in this frame's memory only:
+  // the demo never writes to the visitor's storage. Turkish first, as the page.
+  (function () {
+    var lang = new URLSearchParams(location.search).get('lang') || 'tr';
+    var data = { 'agentoffice:ui': JSON.stringify({ language: lang, muted: true, reducedMotion: matchMedia('(prefers-reduced-motion: reduce)').matches }) };
+    var mem = {
+      getItem: function (k) { return Object.prototype.hasOwnProperty.call(data, k) ? data[k] : null; },
+      setItem: function (k, v) { data[k] = String(v); },
+      removeItem: function (k) { delete data[k]; },
+      clear: function () { data = {}; },
+      key: function (i) { return Object.keys(data)[i] || null; },
+      get length() { return Object.keys(data).length; }
+    };
+    try { Object.defineProperty(window, 'localStorage', { value: mem, configurable: true }); } catch (e) {}
+  })();
+</script>
+<style>
+  /* Only the island's own shapes take the pointer, as the app's window region does. */
+  /* Same colour scheme as the host page, so the frame stays see-through around the island. */
+  :root { color-scheme: dark !important; }
+  #app { pointer-events: none; }
+  .island-shape, .capsule-face { pointer-events: auto; }
+  /* The island area (864px) is centred in whatever width the page gives this frame. */
+  .notch-stage { margin-left: calc((100vw - 864px) / 2); }
+  /* The AI tools' tiles in neutral colours (their logos are text labels here, see src/demo/icons.ts). */
+  .tile-claude { background: #4a3f39 !important; }
+  .tile-codex { background: #2c3340 !important; }
+</style>
+</head>
+<body><div id="app"></div><script type="module" src="./src/island.ts"></script></body>
+</html>

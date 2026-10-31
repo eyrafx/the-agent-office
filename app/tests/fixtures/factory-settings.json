@@ -1,0 +1,108 @@
+{
+  "alertColors": "warm",
+  "alertHold": 10,
+  "animationSpeed": 100,
+  "askHold": 120,
+  "breathSpeed": 100,
+  "capturable": true,
+  "clockStyle": "date",
+  "closeDelay": 60,
+  "collapsed": "auto",
+  "focusMinutes": 25,
+  "fullscreenRest": "line",
+  "glassDarkness": 0,
+  "hideMascot": true,
+  "hoverDelay": 0,
+  "idleMotion": true,
+  "indicators": [
+    "wifi",
+    "caps",
+    "language",
+    "volume",
+    "audio"
+  ],
+  "islandTheme": "glass",
+  "language": "system",
+  "lightBrightness": 100,
+  "lineColor": "green",
+  "longBreak": 15,
+  "longEvery": 4,
+  "lyricsOnline": false,
+  "monitor": "",
+  "muted": false,
+  "notchMode": "capsule",
+  "notifyClick": "source",
+  "notifyError": {
+    "open": true,
+    "sound": true
+  },
+  "notifyFocus": {
+    "open": true,
+    "sound": true
+  },
+  "notifyReminder": {
+    "open": true,
+    "sound": true
+  },
+  "notifyReply": {
+    "open": false,
+    "sound": false
+  },
+  "notifyRequest": {
+    "open": true,
+    "sound": true
+  },
+  "pages": [
+    {
+      "id": "agents",
+      "on": true
+    },
+    {
+      "id": "media",
+      "on": true
+    },
+    {
+      "id": "notes",
+      "on": true
+    },
+    {
+      "id": "focus",
+      "on": true
+    },
+    {
+      "id": "alarms",
+      "on": true
+    },
+    {
+      "id": "water",
+      "on": true
+    },
+    {
+      "id": "shelf",
+      "on": true
+    }
+  ],
+  "positions": {},
+  "quietDnd": true,
+  "quietFullscreen": true,
+  "reducedMotion": false,
+  "restApps": "capsule",
+  "restBrowsers": "hidden",
+  "restDesktop": "capsule",
+  "restLight": true,
+  "scale": 90,
+  "setupDone": false,
+  "shortBreak": 5,
+  "shortcutMute": "Ctrl+Alt+M",
+  "shortcutOpen": "Ctrl+Alt+Space",
+  "sound": "double",
+  "startPage": "last",
+  "statusAlarm": true,
+  "statusAudio": true,
+  "statusBattery": true,
+  "statusWeather": false,
+  "uiMigrated": false,
+  "volume": 100,
+  "weatherCity": "",
+  "weatherPlace": null
+}

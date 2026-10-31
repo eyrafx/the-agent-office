@@ -1,0 +1,11 @@
+use agentoffice_lib::domain::*;
+fn k(n:usize)->SessionKey{SessionKey{provider:"claude".into(),host_id:"local".into(),session_id:format!("session-{n}")}}
+fn request(n:usize)->PendingRequest{PendingRequest{key:RequestKey{session_key:k(n),request_id:format!("r{n}")},version:1,turn_id:Some("t1".into()),kind:"permission".into(),title:"Test".into(),detail:"Test only".into(),options:vec!["Allow".into(),"Deny".into()],expires_at:1000,status:RequestStatus::Pending,can_answer: true, tool_id: None, questions: vec![], hold_until: None, outcome: None}}
+fn put(s:&mut Store,n:usize){s.ingest(NormalizedEvent{key:k(n),event_id:format!("request{n}"),kind:EventKind::RequestOpened,at:100,turn_id:Some("t1".into()),request:Some(request(n)),..Default::default()});}
+#[test] fn three_pending_requests(){let mut s=Store::new();for n in 0..3{put(&mut s,n);}assert_eq!(s.snapshot_at(200).requests.iter().filter(|r|r.status==RequestStatus::Pending).count(),3);}
+#[test] fn expires_during_click(){let mut s=Store::new();put(&mut s,0);assert_eq!(s.begin_answer_at(&request(0).key,1,"Allow",1001),Err(AnswerResult::Stale));}
+#[test] fn duplicate_answer(){let mut s=Store::new();put(&mut s,0);let key=request(0).key;assert!(s.begin_answer_at(&key,1,"Allow",200).is_ok());assert_eq!(s.begin_answer_at(&key,1,"Allow",201),Err(AnswerResult::Stale));}
+#[test] fn answered_at_source_invalidates_ticket(){let mut s=Store::new();put(&mut s,0);let key=request(0).key;let ticket=s.begin_answer_at(&key,1,"Allow",200).unwrap();s.close_request(&key,RequestStatus::Resolved);assert_eq!(s.finish_answer_at(&key,ticket,true,300),AnswerResult::Stale);}
+#[test] fn interrupt_cancels_only_matching_turn(){let mut s=Store::new();put(&mut s,0);s.ingest(NormalizedEvent{key:k(0),event_id:"interrupt".into(),kind:EventKind::Interrupted,at:300,turn_id:Some("t1".into()),..Default::default()});assert_eq!(s.snapshot_at(400).requests[0].status,RequestStatus::Cancelled);}
+#[test] fn answer_must_be_an_offered_option(){let mut s=Store::new();put(&mut s,0);assert_eq!(s.begin_answer_at(&request(0).key,1,"Run something else",200),Err(AnswerResult::Failed));}
+#[test] fn transport_loss_does_not_deliver(){let mut s=Store::new();put(&mut s,0);let key=request(0).key;let ticket=s.begin_answer_at(&key,1,"Allow",200).unwrap();assert_eq!(s.finish_answer_at(&key,ticket,false,300),AnswerResult::Disconnected);}

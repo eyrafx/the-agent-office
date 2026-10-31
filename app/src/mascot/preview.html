@@ -1,0 +1,12 @@
+<!doctype html><html lang="tr"><meta charset="utf-8"><title>AgentOffice robot studio</title>
+<style>body{margin:0;background:#1b2027;color:#f7eee4;font:14px system-ui}main{display:flex;align-items:center;justify-content:center;min-height:80vh;gap:50px}#large{width:420px;height:430px;background:radial-gradient(ellipse,#343b44,transparent 70%)}#small{width:240px;height:260px}#compact{width:84px;height:76px}nav{display:flex;gap:8px;justify-content:center}button{background:#303842;border:1px solid #515964;border-radius:8px;color:inherit;padding:10px 15px}h1{text-align:center;font-weight:500;font-size:20px}</style>
+<h1>Original enamel robot · eight articulated arms</h1><main><div id="large"></div><div id="small"></div><div id="compact"></div></main><nav></nav>
+<script type="module">
+import {createMascot} from './renderer.ts'; import {downloadMascotGLB,exportMascotGLB} from './export.ts';
+const views = ['large','small','compact'].map(id=>createMascot(document.getElementById(id),{compact:id==='compact',reducedMotion:true,engine:new URLSearchParams(location.search).get('engine')==='sprite'?'sprite':'webgl'}));
+for(const state of ['idle','working','waiting','replyEnded','error','resting','dragged']){const b=document.createElement('button');b.textContent=state;b.onclick=()=>views.forEach(v=>v.setState(state));document.querySelector('nav').append(b)}
+const animate=document.createElement('button');animate.textContent='Animate';animate.onclick=()=>views.forEach(v=>v.setReducedMotion(false));document.querySelector('nav').append(animate);
+const exportButton=document.createElement('button');exportButton.textContent='Export GLB';exportButton.onclick=downloadMascotGLB;document.querySelector('nav').append(exportButton);
+document.addEventListener('pointermove',e=>views.forEach(v=>v.setPointer(e.clientX/innerWidth*2-1,1-e.clientY/innerHeight*2)));
+window.mascotStudio={views,exportMascotGLB};
+</script></html>

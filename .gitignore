@@ -1,0 +1,48 @@
+# Dependencies and build output
+node_modules/
+app/dist/
+app/src-tauri/target/
+target/
+
+# Local toolchains, caches and data (scripts/dev.ps1 keeps them inside the project)
+.tools/
+.cache/
+.local-data/
+.artifacts/
+output/
+
+# Local editor / agent configuration
+.claude/
+.vscode/
+.idea/
+.playwright-cli/
+
+# Signing material and secrets
+*.pfx
+*.p12
+*.pem
+*.key
+*.snk
+.env
+.env.*
+!.env.example
+
+# Packages and recordings
+*.msix
+*.msixbundle
+*.appx
+*-setup.exe
+*.mp4
+*.webm
+*.mov
+*.wav
+*.log
+
+# OS clutter
+Thumbs.db
+desktop.ini
+.DS_Store
+
+# Website local output (site/ keeps its own .gitignore as well)
+site/.local/
+site/outputs/

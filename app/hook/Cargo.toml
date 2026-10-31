@@ -1,0 +1,17 @@
+[package]
+name = "agentoffice-hook"
+version = "0.1.0"
+description = "Std-only Claude Code hook relay for AgentOffice"
+edition = "2021"
+rust-version = "1.85"
+
+[dependencies]
+
+# The VC runtime linked into the program (Windows' own UCRT stays shared, as for the app): a clean
+# Windows has no vcruntime140.dll unless something installed it, and the helper did not start there.
+[build-dependencies]
+static_vcruntime = "3.0"
+
+[profile.release]
+opt-level = "s"
+strip = true

@@ -1,0 +1,1 @@
+{"desktop":{"identifier":"desktop","description":"Local office and notch may receive canonical session snapshots.","local":true,"windows":["office","notch"],"permissions":["core:event:default"]}}

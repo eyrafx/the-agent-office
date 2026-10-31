@@ -1,0 +1,31 @@
+/* The app's dropdown (dropdown.ts): the page's own <select> hidden, a button in its place, and a
+   list in the top layer drawn like the island's glass panels: dark smoke, a hairline edge, soft
+   shadow, the choice ticked, the highlight in the accent colour. */
+.dd-native{position:absolute!important;width:1px!important;height:1px!important;padding:0!important;margin:-1px!important;overflow:hidden!important;clip-path:inset(50%)!important;opacity:0!important;pointer-events:none!important}
+.dd-trigger{display:inline-flex;align-items:center;justify-content:space-between;gap:8px;min-width:0;max-width:100%;cursor:pointer;text-align:left;font:inherit;line-height:1.2;outline:none}
+.dd-trigger[hidden]{display:none}
+.dd-trigger .dd-value{min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.dd-chevron{flex:none;width:12px;height:12px;opacity:.6;transition:transform .16s ease,opacity .16s ease}
+.dd-trigger:hover .dd-chevron,.dd-trigger[aria-expanded=true] .dd-chevron{opacity:.95}
+.dd-trigger[aria-expanded=true] .dd-chevron{transform:rotate(180deg)}
+.dd-trigger:focus-visible{box-shadow:0 0 0 2px rgba(255,154,60,.55)!important}
+.dd-trigger:disabled{cursor:default;opacity:.45}
+
+.dd-pop{position:fixed;inset:auto;margin:0;box-sizing:border-box;padding:5px;border:1px solid rgba(255,255,255,.1);border-radius:12px;
+  background:linear-gradient(180deg,rgba(38,40,46,.97),rgba(24,25,30,.98));color:#f2f3f7;
+  box-shadow:0 16px 36px rgba(0,0,0,.5),0 2px 6px rgba(0,0,0,.35),inset 0 1px 0 rgba(255,255,255,.05);
+  font-family:"Segoe UI",system-ui,sans-serif;font-size:13px;line-height:1.25;overflow-y:auto;overscroll-behavior:contain;
+  scrollbar-width:thin;scrollbar-color:rgba(255,255,255,.22) transparent;
+  opacity:0;transform:translateY(-4px) scale(.97);transform-origin:50% 0;transition:opacity .14s ease,transform .16s cubic-bezier(.2,.9,.25,1)}
+.dd-pop.dd-up{transform:translateY(4px) scale(.97);transform-origin:50% 100%}
+.dd-pop.dd-in{opacity:1;transform:none}
+.dd-pop.dd-calm{transition:none}
+.dd-opt{display:flex;align-items:center;gap:8px;min-height:30px;padding:5px 12px 5px 8px;border-radius:8px;white-space:nowrap;cursor:pointer;user-select:none;color:rgba(255,255,255,.86)}
+.dd-opt span{min-width:0;overflow:hidden;text-overflow:ellipsis}
+.dd-check{flex:none;width:14px;height:14px;color:#ffad5c;visibility:hidden}
+.dd-opt.on{color:#fff;font-weight:600}
+.dd-opt.on .dd-check{visibility:visible}
+.dd-opt.active{background:rgba(255,154,60,.18);color:#fff}
+.dd-opt.off{opacity:.4;cursor:default}
+.set-row .dd-trigger:hover{border-color:#4a4e5c}
+.set-row .dd-trigger[aria-expanded=true]{border-color:rgba(255,154,60,.7)}
