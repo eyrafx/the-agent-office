@@ -1,12 +1,37 @@
-<!-- Badge ideas: code MIT, artwork all rights reserved, Windows 10/11, latest release, tests. -->
+<p align="center"><b>English</b> | <a href="README.tr.md">Türkçe</a></p>
 
 # AgentOffice
 
 **A dynamic island for Windows and a little office for your AI agents.**
 
+<!-- Download button: while the site says "coming soon", the label says so too.
+     Once the installer is published, change "Download%20(coming%20soon)" to "Download%20for%20Windows". -->
+<p align="center">
+  <a href="https://eyrafx.github.io/agentoffice/#download"><img src="https://img.shields.io/badge/Download%20(coming%20soon)-Windows%2010%20%7C%2011-0078D4?style=for-the-badge" alt="Download for Windows (coming soon)"></a>
+  <a href="https://eyrafx.github.io/agentoffice/"><img src="https://img.shields.io/badge/Website-live%20demo-F27B35?style=for-the-badge&logo=googlechrome&logoColor=white" alt="Website and live demo"></a>
+  <a href="https://eyrafx.github.io/agentoffice/#support"><img src="https://img.shields.io/badge/Support-the%20project-E5498F?style=for-the-badge&logo=githubsponsors&logoColor=white" alt="Support the project"></a>
+</p>
+<p align="center">
+  <a href="LICENSE"><img src="https://img.shields.io/badge/code-MIT-informational" alt="Code: MIT"></a>
+  <a href="LICENSE-ASSETS.md"><img src="https://img.shields.io/badge/names%20%26%20artwork-all%20rights%20reserved-lightgrey" alt="Names and artwork: all rights reserved"></a>
+</p>
+
 AgentOffice's island, Octolantis, sits at the top of your screen with Octo, the octopus mascot, and shows what your coding agents are doing: who is working, who is waiting for you, and how much of your usage limit is left. Open the office to see every chat as a colleague at a desk, grouped by project.
 
-[Website and live demo](https://eyrafx.github.io/agentoffice/) · [Download](https://eyrafx.github.io/agentoffice/#download) · [Support the project](https://eyrafx.github.io/agentoffice/#support)
+<!-- HERO VIDEO / GIF (to add): the island and the office in motion, sample data only.
+<p align="center">
+  <img src="docs/media/hero.gif" alt="AgentOffice: the island opening and the office at work" width="720">
+</p>
+-->
+
+<!-- SCREENSHOTS (to add, 3–4, sample data only):
+<p align="center">
+  <img src="docs/media/island.png" alt="The island at the top of the screen" width="360">
+  <img src="docs/media/office.png" alt="The office with agents at their desks" width="360">
+  <img src="docs/media/limits.png" alt="Claude and Codex usage limits" width="360">
+  <img src="docs/media/pages.png" alt="The island's media, notes and focus pages" width="360">
+</p>
+-->
 
 ## Features
 
@@ -31,7 +56,7 @@ Other tools are added only once their behaviour can be verified. No universal "e
 ## Install
 
 - **Microsoft Store**: *(link once published)*
-- **Installer**: download `AgentOffice_x.y.z_x64-setup.exe` from [Releases](https://github.com/eyrafx/agentoffice/releases) and check its SHA-256. Per-user install, no admin rights needed.
+- **Installer** *(coming soon)*: `AgentOffice_x.y.z_x64-setup.exe` will be published on [Releases](https://github.com/eyrafx/agentoffice/releases) with its SHA-256. Per-user install, no admin rights needed.
 - Requires Windows 10 or 11 with the Microsoft Edge WebView2 Runtime (already present on most PCs).
 
 ### Build from source
