@@ -61,7 +61,7 @@ await page('index.html', html => {
     html = html.replace(foot, `${foot}<div class="kw-thanks"><p class="kw-thanks-bubble" role="status" hidden>Thank you so much!</p><button type="button" class="kw-thanks-btn" data-kw-thanks>${HEART}<span>Say thanks</span></button><p class="kw-thanks-note">No wallet needed. A kind word makes Octo’s day too.</p><div class="kw-thanks-links"><a href="https://github.com/eyrafx/the-agent-office" target="_blank" rel="noopener">${STAR}<span>Star on GitHub</span></a><a href="https://github.com/eyrafx/the-agent-office/discussions" target="_blank" rel="noopener">${CHAT}<span>Leave a thank-you message</span></a></div></div>`);
   }
   // "The Agent Office": the living office, after the office demo. Videos are slots: set data-src
-  // (and data-poster) on .kw-office-film and the .kw-loop spans; empty ones show the placeholder.
+  // (and data-poster) on .kw-office-film and the .kw-loop spans; empty ones stay hidden (kawaii.css).
   if (!html.includes('id="agent-office"')) {
     const at = html.lastIndexOf('<section', html.indexOf('id="media-preview"'));
     const ico = {
