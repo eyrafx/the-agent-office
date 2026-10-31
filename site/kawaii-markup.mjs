@@ -85,6 +85,8 @@ await page('index.html', html => {
     }</div></section>`;
     html = html.slice(0, at) + section + html.slice(at);
   }
+  // the closing mascot: the pink Octo's idle clip instead of the app's (orange) layered mascot frame
+  html = html.replace(/<iframe class="release-mascot"[^>]*><\/iframe>/, '<picture class="kw-release-pic"><source media="(prefers-reduced-motion: reduce)" srcset="mascot/ada/still-426.webp"><img class="release-mascot kw-release-octo" src="mascot/ada/idle-512.webp" alt="" width="512" height="512" loading="lazy" decoding="async"></picture>');
   // a thank-you line in the developer note, just before the signature (text only)
   if (!html.includes('kw-note-thanks')) html = html.replace('<div class="dev-note-sign">', '<p class="kw-note-thanks">The Agent Office was built with Claude, made possible by Anthropic’s startup support program. Thank you, Anthropic 💕</p><div class="dev-note-sign">');
   return html;

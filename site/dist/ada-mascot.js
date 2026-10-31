@@ -10,12 +10,12 @@
  // Durations (ms) are the clips' own lengths, as in the demo.
  const CONFIG = {
   clips: {
-   idle: { file: 'idle', duration: 1798 },     // idle with blink
-   hop: { file: 'hop', duration: 1984 },       // happy hop
-   giggle: { file: 'giggle', duration: 1984 }, // giggle (click)
-   wave: { file: 'wave', duration: 2046 },     // wave            → "Hi!"
-   plead: { file: 'plead', duration: 2046 },   // pleading eyes   → "Can I come live on your desktop?"
-   shy: { file: 'shy', duration: 2542 },       // shy             → "I'm teeny tiny, I'll fit!"
+   idle: { file: 'idle', duration: 2125 },     // idle with blink
+   hop: { file: 'hop', duration: 2000 },       // happy hop
+   giggle: { file: 'giggle', duration: 2250 }, // giggle (click)
+   wave: { file: 'wave', duration: 2250 },     // wave            → "Hi!"
+   plead: { file: 'plead', duration: 2312 },   // pleading eyes   → "Can I come live on your desktop?"
+   shy: { file: 'shy', duration: 2375 },       // shy             → "I'm teeny tiny, I'll fit!"
   },
   // Hover: each clip plays with its own bubble line, then back to idle.
   greeting: [
@@ -23,9 +23,11 @@
    { clip: 'plead', line: 1 }, // one bubble opens on the other side
    { clip: 'shy', line: 2 },   // same bubble, the line scrolls; it closes when the clip ends
   ],
-  // Gaze stills. Only the directions that were actually made; nothing mirrored or invented.
-  look: { center: 'look-center', left: 'look-left', right: 'look-right', upLeft: 'look-up-left' },
-  lookMap: { left: 'left', right: 'right', upLeft: 'upLeft' }, // other directions: center
+  // Gaze stills (ada-70): the resting pose and the head turned to the viewer; nothing mirrored or invented.
+  look: { center: 'look-center', front: 'look-front' },
+  // The pink Octo (ada-70) has no separate pupils, so there are no side glances: a nearby cursor
+  // in any direction gets the head turned to the viewer.
+  lookMap: { right: 'front', downRight: 'front', down: 'front', downLeft: 'front', left: 'front', upLeft: 'front', up: 'front', upRight: 'front' },
   hopEvery: [6000, 12000],
   lookNearPx: 70,     // at the demo's 256 px; scaled with the mascot
   lookIdleMs: 2500,   // a cursor resting this long → back to idle

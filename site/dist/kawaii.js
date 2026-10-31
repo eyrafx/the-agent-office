@@ -23,16 +23,29 @@
 
  // Octo poses: hello first, then the resting pose; shy when the cursor lands on him, pleading while
  // pressed. A tap on a phone gets a short shy moment.
+ // Octo's poses are crisp stills; once the page has settled (desktop, motion allowed, no data
+ // saver) the pink idle clip (ada-70, re-encoded for the web) is fetched and plays while he rests.
+ // The sticker box has a fixed aspect, so swapping still and clip never moves the layout.
  const POSE = n => `assets/octo/octo-${n}-720.webp`;
  const SRCSET = n => `assets/octo/octo-${n}-360.webp 360w, assets/octo/octo-${n}-720.webp 720w`;
+ const IDLE_CLIP = 'assets/octo/octo-idle-512.webp';
  ['base', 'shy', 'plead'].forEach(n => { const i = new Image(); i.srcset = SRCSET(n); i.sizes = '480px'; });
  document.querySelectorAll('[data-kw-octo]').forEach(img => {
-  let pose = 'wave', timer;
+  let pose = 'wave', timer, clip = null;
   // the hero's sunburst band follows the pose (kawaii.css colours it per data-octo)
   const stage = img.closest('.reference-hero');
-  const set = n => { if (pose === n) return; pose = n; img.srcset = SRCSET(n); img.src = POSE(n); img.dataset.pose = n; if (stage) stage.dataset.octo = n; };
+  const show = n => {
+   if (n === 'base' && clip) { img.removeAttribute('srcset'); img.classList.add('kw-clip'); img.src = clip; return; }
+   img.classList.remove('kw-clip'); img.srcset = SRCSET(n); img.src = POSE(n);
+  };
+  const set = n => { if (pose === n) return; pose = n; img.dataset.pose = n; if (stage) stage.dataset.octo = n; show(n); };
   if (stage) stage.dataset.octo = pose;
   setTimeout(() => pose === 'wave' && set('base'), reduce.matches ? 0 : 1900);
+  const wantClip = !reduce.matches && !navigator.connection?.saveData && matchMedia('(min-width: 900px)').matches;
+  if (wantClip) addEventListener('load', () => {
+   const go = () => { const c = new Image(); c.src = IDLE_CLIP; (c.decode ? c.decode() : Promise.resolve()).then(() => { clip = c.src; if (pose === 'base') show('base'); }).catch(() => {}); };
+   window.requestIdleCallback ? requestIdleCallback(go, { timeout: 4000 }) : setTimeout(go, 1500);
+  }, { once: true });
   img.addEventListener('pointerenter', e => e.pointerType === 'mouse' && set('shy'));
   img.addEventListener('pointerleave', e => e.pointerType === 'mouse' && set('base'));
   img.addEventListener('pointerdown', () => { clearTimeout(timer); set('plead'); });

@@ -495,3 +495,10 @@ html.kw main .kw-ocard p{margin:0;font-size:15.5px;line-height:1.65;color:var(--
 @media (prefers-reduced-motion:reduce){.kw-film-fly{animation:none}}
 html.kw #legal h1{overflow-wrap:break-word;hyphens:auto;-webkit-hyphens:auto}
 @media (max-width:520px){html.kw #legal h1{font-size:clamp(24px,7vw,34px)}}
+html.kw .release-final .kw-release-octo{object-fit:contain;object-position:center bottom}
+html.kw .kw-release-pic{display:contents}
+/* the sticker keeps the drawn octopus' aspect; stills fit inside, the padded 512 px clip is placed
+   so its octopus lands on the same spot (it spans x 43-469, y 87-424 of its frame, centred) */
+html.kw .kw-sticker{aspect-ratio:426/337}
+html.kw .kw-octo{position:absolute;inset:0;width:100%;height:100%;object-fit:contain}
+html.kw .kw-octo.kw-clip{transform:scale(1.5193);transform-origin:50% 49.9%} /* contain + scale: a transform, so the swap is not a layout shift */
