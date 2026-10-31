@@ -24,14 +24,14 @@
    for(const [node,base] of records){if(!node.isConnected){records.delete(node);continue;}const padding=node.nodeValue.match(/^(\s*)[^]*?(\s*)$/);node.nodeValue=(padding?.[1]||'')+t(base)+(padding?.[2]||'');}
    for(const [el,attrs] of attributes)if(el.isConnected)for(const [attr,base] of Object.entries(attrs))el.setAttribute(attr,t(base));
    document.querySelector('h1').innerHTML=headlines[id].join('<br>');
-   document.title='AgentOffice — '+headlines[id].join(' ').replace(/<[^>]*>/g,'');
+   document.title='The Agent Office — '+headlines[id].join(' ').replace(/<[^>]*>/g,'');
    document.querySelector('meta[name="description"]').content=t(source[8]);
    document.querySelectorAll('[data-site-lang]').forEach(b=>b.setAttribute('aria-pressed',String(b.dataset.siteLang===id)));
    document.querySelector('#site-language-code').textContent=names[id];
    document.querySelector('.site-language summary').setAttribute('aria-label',t('Language'));
    document.querySelector('.site-language-options').setAttribute('aria-label',t('Language'));
    document.querySelector('.language-list').setAttribute('aria-label',t('Language'));
-   document.querySelector('.brand[aria-label]')?.setAttribute('aria-label',t('AgentOffice home'));
+   document.querySelector('.brand[aria-label]')?.setAttribute('aria-label',t('The Agent Office home'));
    document.querySelectorAll('iframe[src*="product/"]').forEach(frame=>{const url=new URL(frame.getAttribute('src'),location.href);if(url.searchParams.get('lang')!==id){url.searchParams.set('lang',id);frame.src=url.pathname+url.search;}});
    if(persist){try{localStorage.setItem('agentoffice:site-language',id);}catch{}const url=new URL(location.href);url.searchParams.set('lang',id);history.replaceState(null,'',url);}
    window.dispatchEvent(new CustomEvent('site-languagechange',{detail:{language:id}}));

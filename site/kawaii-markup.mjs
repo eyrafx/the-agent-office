@@ -37,7 +37,7 @@ await page('index.html', html => {
     const start = html.indexOf('<aside class="octo-story"'), end = html.indexOf('</script></div>', start);
     if (start < 0 || end < 0) throw new Error('Story card not found');
     const card = html.slice(start, end + '</script>'.length);
-    const sticker = `<div class="kw-sticker"><img class="kw-octo" data-kw-octo src="${OCTO('wave')}-720.webp" srcset="${OCTO('wave')}-360.webp 360w, ${OCTO('wave')}-720.webp 720w" sizes="(max-width: 900px) 80vw, 500px" alt="Octo, the AgentOffice octopus" width="720" height="580" fetchpriority="high"><span class="kw-badge kw-kana" aria-hidden="true">オクト</span><span class="kw-badge kw-star" aria-hidden="true">${STAR}</span><p class="kw-bubble">Hi! I’m Octo. Nice to meet you!</p></div>`;
+    const sticker = `<div class="kw-sticker"><img class="kw-octo" data-kw-octo src="${OCTO('wave')}-720.webp" srcset="${OCTO('wave')}-360.webp 360w, ${OCTO('wave')}-720.webp 720w" sizes="(max-width: 900px) 80vw, 500px" alt="Octo, the octopus of The Agent Office" width="720" height="580" fetchpriority="high"><span class="kw-badge kw-kana" aria-hidden="true">オクト</span><span class="kw-badge kw-star" aria-hidden="true">${STAR}</span><p class="kw-bubble">Hi! I’m Octo. Nice to meet you!</p></div>`;
     const panel = (n, art, cap) => `<figure class="kw-panel kw-panel-${n}">${art}<figcaption>${cap}</figcaption></figure>`;
     const strip = `<div class="kw-strip" role="group" aria-label="The story of Octolantis, in three panels">${
       panel(1, `<svg class="kw-art" viewBox="0 0 400 190" preserveAspectRatio="xMidYMid slice" aria-hidden="true"><g class="kw-col"><rect x="150" y="64" width="22" height="86"/><rect x="190" y="50" width="22" height="100"/><rect x="230" y="72" width="22" height="78"/><path d="M140 64h120l-10-18H150z"/></g><path class="kw-wave" d="M0 122q25-14 50 0t50 0 50 0 50 0 50 0 50 0 50 0 50 0V190H0z"/><path class="kw-wave2" d="M0 150q25-12 50 0t50 0 50 0 50 0 50 0 50 0 50 0 50 0V190H0z"/><g class="kw-bub"><circle cx="300" cy="100" r="8"/><circle cx="318" cy="78" r="5"/><circle cx="96" cy="92" r="6"/></g></svg>`, 'Atlantis sank beneath the waves.')
@@ -86,7 +86,7 @@ await page('index.html', html => {
     html = html.slice(0, at) + section + html.slice(at);
   }
   // a thank-you line in the developer note, just before the signature (text only)
-  if (!html.includes('kw-note-thanks')) html = html.replace('<div class="dev-note-sign">', '<p class="kw-note-thanks">AgentOffice was built with Claude, made possible by Anthropic’s startup support program. Thank you, Anthropic 💕</p><div class="dev-note-sign">');
+  if (!html.includes('kw-note-thanks')) html = html.replace('<div class="dev-note-sign">', '<p class="kw-note-thanks">The Agent Office was built with Claude, made possible by Anthropic’s startup support program. Thank you, Anthropic 💕</p><div class="dev-note-sign">');
   return html;
 });
 

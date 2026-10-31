@@ -17,7 +17,7 @@ window.AO_CONFIG = {
   //   mode 'mailto' → the visitor's email app opens with the message filled in (to `email`).
   //   mode 'soon'   → the button says sending is coming soon.
   //   telegram / telegramLabel / issues: the contact links under the form (Telegram, GitHub Issues for bugs).
-  feedback: { mode: 'mailto', email: 'eyra@hotmail.com.tr', subject: 'AgentOffice feedback', telegram: 'https://t.me/eyrafx', telegramLabel: '@eyrafx', issues: 'https://github.com/eyrafx/agentoffice/issues' },
+  feedback: { mode: 'mailto', email: 'eyra@hotmail.com.tr', subject: 'The Agent Office feedback', telegram: 'https://t.me/eyrafx', telegramLabel: '@eyrafx', issues: 'https://github.com/eyrafx/agentoffice/issues' },
 
   // Hardware use. APPROXIMATE values from our own measurements (28 Oct 2026); edit freely.
   //   idleCpuPercent: measured ~5.9% of one core at idle; the planned cut targets under 1%, shown as "~1%".

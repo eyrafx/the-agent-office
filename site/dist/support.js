@@ -74,7 +74,7 @@
       status.dataset.kind = 'ok';
       if (mailto) {
         const body = contact.value.trim() ? `${text}\n\n— ${contact.value.trim()}` : text;
-        location.href = `mailto:${encodeURIComponent(fb.email)}?subject=${encodeURIComponent(fb.subject || 'AgentOffice feedback')}&body=${encodeURIComponent(body)}`;
+        location.href = `mailto:${encodeURIComponent(fb.email)}?subject=${encodeURIComponent(fb.subject || 'The Agent Office feedback')}&body=${encodeURIComponent(body)}`;
         status.textContent = t('Your email app will open with this message ready to send.');
       } else status.textContent = t('Sending from the site is coming soon. Thank you for writing!');
     });
