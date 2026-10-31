@@ -1,80 +1,80 @@
 // Disclaimer in every site language: short, plain, consistent with the developer's note.
 window.AO_LEGAL = {
-en: { title: 'Disclaimer', updated: '29 October 2026', intro: ['AgentOffice is an independent project, offered as is and as available, without warranties of any kind, express or implied, including fitness for a particular purpose.'], sections: [
-  { h: 'Your agents, your decisions', p: ['AgentOffice shows what your AI tools report and opens them for you; it never approves a question, a permission or a command on your behalf. What your agents do, and what you approve in those tools, remains your responsibility.'] },
+en: { title: 'Disclaimer', updated: '29 October 2026', intro: ['The Agent Office is an independent project, offered as is and as available, without warranties of any kind, express or implied, including fitness for a particular purpose.'], sections: [
+  { h: 'Your agents, your decisions', p: ['The Agent Office shows what your AI tools report and opens them for you; it never approves a question, a permission or a command on your behalf. What your agents do, and what you approve in those tools, remains your responsibility.'] },
   { h: 'Figures shown in the app', p: ['Usage limits, hardware figures, weather and other information are shown as reported or estimated and may be incomplete, inaccurate or delayed.'] },
-  { h: 'No affiliation', p: ['AgentOffice is not affiliated with or endorsed by Anthropic, OpenAI, Anysphere (Cursor) or Microsoft. Product names belong to their owners and are used only to describe compatibility.'] },
+  { h: 'No affiliation', p: ['The Agent Office is not affiliated with or endorsed by Anthropic, OpenAI, Anysphere (Cursor) or Microsoft. Product names belong to their owners and are used only to describe compatibility.'] },
   { h: 'Support', p: ['Support is a voluntary gift. It does not buy features, services or any obligation, and crypto transfers cannot be reversed.'] },
-  { h: 'Limitation of liability', p: ['To the extent permitted by law, the developer is not liable for any damage arising from the use of AgentOffice or this website. Where the law does not allow such limits, they apply only as far as it does.'] },
+  { h: 'Limitation of liability', p: ['To the extent permitted by law, the developer is not liable for any damage arising from the use of The Agent Office or this website. Where the law does not allow such limits, they apply only as far as it does.'] },
 ] },
-tr: { title: 'Sorumluluk reddi', updated: '29 Ekim 2026', intro: ['AgentOffice bağımsız bir projedir; belirli bir amaca uygunluk dahil, açık ya da örtük hiçbir garanti olmaksızın, olduğu gibi ve mevcut haliyle sunulur.'], sections: [
-  { h: 'Ajanların ve kararların sana ait', p: ['AgentOffice, yapay zekâ araçlarının bildirdiklerini gösterir ve onları senin için açar; bir soruyu, izni ya da komutu asla senin adına onaylamaz. Ajanlarının yaptıkları ve o araçlarda onayladıkların senin sorumluluğunda kalır.'] },
+tr: { title: 'Sorumluluk reddi', updated: '29 Ekim 2026', intro: ['The Agent Office bağımsız bir projedir; belirli bir amaca uygunluk dahil, açık ya da örtük hiçbir garanti olmaksızın, olduğu gibi ve mevcut haliyle sunulur.'], sections: [
+  { h: 'Ajanların ve kararların sana ait', p: ['The Agent Office, yapay zekâ araçlarının bildirdiklerini gösterir ve onları senin için açar; bir soruyu, izni ya da komutu asla senin adına onaylamaz. Ajanlarının yaptıkları ve o araçlarda onayladıkların senin sorumluluğunda kalır.'] },
   { h: 'Uygulamada görünen değerler', p: ['Kullanım limitleri, donanım değerleri, hava durumu ve diğer bilgiler bildirildiği ya da tahmin edildiği şekliyle gösterilir; eksik, hatalı ya da gecikmeli olabilir.'] },
-  { h: 'Bağlantı yoktur', p: ['AgentOffice’in Anthropic, OpenAI, Anysphere (Cursor) ya da Microsoft ile bir bağı yoktur ve bu şirketlerce onaylanmamıştır. Ürün adları sahiplerine aittir ve yalnız uyumluluğu anlatmak için kullanılır.'] },
+  { h: 'Bağlantı yoktur', p: ['The Agent Office’in Anthropic, OpenAI, Anysphere (Cursor) ya da Microsoft ile bir bağı yoktur ve bu şirketlerce onaylanmamıştır. Ürün adları sahiplerine aittir ve yalnız uyumluluğu anlatmak için kullanılır.'] },
   { h: 'Destek', p: ['Destek gönüllü bir hediyedir. Özellik, hizmet ya da herhangi bir yükümlülük satın almaz; kripto transferleri geri alınamaz.'] },
-  { h: 'Sorumluluğun sınırı', p: ['Yasaların izin verdiği ölçüde geliştirici, AgentOffice’in ya da bu sitenin kullanımından doğan hiçbir zarardan sorumlu değildir. Yasanın bu sınırlara izin vermediği yerlerde, yalnız izin verdiği kadarıyla geçerlidir.'] },
+  { h: 'Sorumluluğun sınırı', p: ['Yasaların izin verdiği ölçüde geliştirici, The Agent Office’in ya da bu sitenin kullanımından doğan hiçbir zarardan sorumlu değildir. Yasanın bu sınırlara izin vermediği yerlerde, yalnız izin verdiği kadarıyla geçerlidir.'] },
 ] },
-es: { title: 'Aviso legal', updated: '29 de octubre de 2026', intro: ['AgentOffice es un proyecto independiente que se ofrece tal cual y según disponibilidad, sin garantías de ningún tipo, expresas o implícitas, incluida la idoneidad para un fin concreto.'], sections: [
-  { h: 'Tus agentes, tus decisiones', p: ['AgentOffice muestra lo que informan tus herramientas de IA y las abre por ti; nunca aprueba una pregunta, un permiso ni un comando en tu nombre. Lo que hagan tus agentes y lo que apruebes en esas herramientas sigue siendo tu responsabilidad.'] },
+es: { title: 'Aviso legal', updated: '29 de octubre de 2026', intro: ['The Agent Office es un proyecto independiente que se ofrece tal cual y según disponibilidad, sin garantías de ningún tipo, expresas o implícitas, incluida la idoneidad para un fin concreto.'], sections: [
+  { h: 'Tus agentes, tus decisiones', p: ['The Agent Office muestra lo que informan tus herramientas de IA y las abre por ti; nunca aprueba una pregunta, un permiso ni un comando en tu nombre. Lo que hagan tus agentes y lo que apruebes en esas herramientas sigue siendo tu responsabilidad.'] },
   { h: 'Datos que muestra la app', p: ['Los límites de uso, las cifras de hardware, el tiempo y otra información se muestran tal como se informan o estiman y pueden ser incompletos, inexactos o llegar con retraso.'] },
-  { h: 'Sin afiliación', p: ['AgentOffice no está afiliado ni respaldado por Anthropic, OpenAI, Anysphere (Cursor) ni Microsoft. Los nombres de productos pertenecen a sus dueños y solo se usan para describir la compatibilidad.'] },
+  { h: 'Sin afiliación', p: ['The Agent Office no está afiliado ni respaldado por Anthropic, OpenAI, Anysphere (Cursor) ni Microsoft. Los nombres de productos pertenecen a sus dueños y solo se usan para describir la compatibilidad.'] },
   { h: 'Apoyo', p: ['El apoyo es un regalo voluntario. No compra funciones, servicios ni obligaciones, y las transferencias cripto no se pueden revertir.'] },
-  { h: 'Limitación de responsabilidad', p: ['En la medida en que la ley lo permita, el desarrollador no responde de ningún daño derivado del uso de AgentOffice o de este sitio web. Donde la ley no admita estos límites, se aplican solo hasta donde lo permita.'] },
+  { h: 'Limitación de responsabilidad', p: ['En la medida en que la ley lo permita, el desarrollador no responde de ningún daño derivado del uso de The Agent Office o de este sitio web. Donde la ley no admita estos límites, se aplican solo hasta donde lo permita.'] },
 ] },
-de: { title: 'Haftungsausschluss', updated: '29. Oktober 2026', intro: ['AgentOffice ist ein unabhängiges Projekt und wird ohne Mängelgewähr und je nach Verfügbarkeit bereitgestellt, ohne ausdrückliche oder stillschweigende Garantien, einschließlich der Eignung für einen bestimmten Zweck.'], sections: [
-  { h: 'Deine Agenten, deine Entscheidungen', p: ['AgentOffice zeigt, was deine KI-Tools melden, und öffnet sie für dich; es genehmigt nie eine Frage, eine Berechtigung oder einen Befehl in deinem Namen. Was deine Agenten tun und was du in diesen Tools genehmigst, liegt in deiner Verantwortung.'] },
+de: { title: 'Haftungsausschluss', updated: '29. Oktober 2026', intro: ['The Agent Office ist ein unabhängiges Projekt und wird ohne Mängelgewähr und je nach Verfügbarkeit bereitgestellt, ohne ausdrückliche oder stillschweigende Garantien, einschließlich der Eignung für einen bestimmten Zweck.'], sections: [
+  { h: 'Deine Agenten, deine Entscheidungen', p: ['The Agent Office zeigt, was deine KI-Tools melden, und öffnet sie für dich; es genehmigt nie eine Frage, eine Berechtigung oder einen Befehl in deinem Namen. Was deine Agenten tun und was du in diesen Tools genehmigst, liegt in deiner Verantwortung.'] },
   { h: 'Angezeigte Werte', p: ['Nutzungslimits, Hardwarewerte, Wetter und andere Angaben werden so gezeigt, wie sie gemeldet oder geschätzt werden, und können unvollständig, ungenau oder verzögert sein.'] },
-  { h: 'Keine Verbindung', p: ['AgentOffice steht in keiner Verbindung zu Anthropic, OpenAI, Anysphere (Cursor) oder Microsoft und wird von ihnen nicht unterstützt. Produktnamen gehören ihren Inhabern und dienen nur zur Beschreibung der Kompatibilität.'] },
+  { h: 'Keine Verbindung', p: ['The Agent Office steht in keiner Verbindung zu Anthropic, OpenAI, Anysphere (Cursor) oder Microsoft und wird von ihnen nicht unterstützt. Produktnamen gehören ihren Inhabern und dienen nur zur Beschreibung der Kompatibilität.'] },
   { h: 'Unterstützung', p: ['Unterstützung ist ein freiwilliges Geschenk. Sie kauft keine Funktionen, Leistungen oder Verpflichtungen, und Krypto-Überweisungen lassen sich nicht rückgängig machen.'] },
-  { h: 'Haftungsbeschränkung', p: ['Soweit gesetzlich zulässig, haftet der Entwickler nicht für Schäden aus der Nutzung von AgentOffice oder dieser Website. Wo das Gesetz solche Beschränkungen nicht erlaubt, gelten sie nur, soweit es sie erlaubt.'] },
+  { h: 'Haftungsbeschränkung', p: ['Soweit gesetzlich zulässig, haftet der Entwickler nicht für Schäden aus der Nutzung von The Agent Office oder dieser Website. Wo das Gesetz solche Beschränkungen nicht erlaubt, gelten sie nur, soweit es sie erlaubt.'] },
 ] },
-fr: { title: 'Avertissement', updated: '29 octobre 2026', intro: ['AgentOffice est un projet indépendant, fourni tel quel et selon disponibilité, sans garantie d’aucune sorte, expresse ou implicite, y compris d’adéquation à un usage particulier.'], sections: [
-  { h: 'Tes agents, tes décisions', p: ['AgentOffice affiche ce que signalent tes outils d’IA et les ouvre pour toi ; il n’approuve jamais une question, une autorisation ou une commande en ton nom. Ce que font tes agents, et ce que tu approuves dans ces outils, reste sous ta responsabilité.'] },
+fr: { title: 'Avertissement', updated: '29 octobre 2026', intro: ['The Agent Office est un projet indépendant, fourni tel quel et selon disponibilité, sans garantie d’aucune sorte, expresse ou implicite, y compris d’adéquation à un usage particulier.'], sections: [
+  { h: 'Tes agents, tes décisions', p: ['The Agent Office affiche ce que signalent tes outils d’IA et les ouvre pour toi ; il n’approuve jamais une question, une autorisation ou une commande en ton nom. Ce que font tes agents, et ce que tu approuves dans ces outils, reste sous ta responsabilité.'] },
   { h: 'Valeurs affichées', p: ['Les limites d’usage, les chiffres matériels, la météo et les autres informations sont affichés tels qu’ils sont signalés ou estimés et peuvent être incomplets, inexacts ou en retard.'] },
-  { h: 'Aucune affiliation', p: ['AgentOffice n’est ni affilié à Anthropic, OpenAI, Anysphere (Cursor) ou Microsoft, ni approuvé par eux. Les noms de produits appartiennent à leurs propriétaires et ne servent qu’à décrire la compatibilité.'] },
+  { h: 'Aucune affiliation', p: ['The Agent Office n’est ni affilié à Anthropic, OpenAI, Anysphere (Cursor) ou Microsoft, ni approuvé par eux. Les noms de produits appartiennent à leurs propriétaires et ne servent qu’à décrire la compatibilité.'] },
   { h: 'Soutien', p: ['Le soutien est un don volontaire. Il n’achète ni fonctions, ni services, ni obligation, et les transferts crypto sont irréversibles.'] },
-  { h: 'Limitation de responsabilité', p: ['Dans la mesure permise par la loi, le développeur n’est responsable d’aucun dommage lié à l’utilisation d’AgentOffice ou de ce site. Là où la loi n’autorise pas de telles limites, elles s’appliquent seulement dans la mesure où elle le permet.'] },
+  { h: 'Limitation de responsabilité', p: ['Dans la mesure permise par la loi, le développeur n’est responsable d’aucun dommage lié à l’utilisation de The Agent Office ou de ce site. Là où la loi n’autorise pas de telles limites, elles s’appliquent seulement dans la mesure où elle le permet.'] },
 ] },
-'pt-BR': { title: 'Aviso legal', updated: '29 de outubro de 2026', intro: ['O AgentOffice é um projeto independente, oferecido como está e conforme disponível, sem garantias de qualquer tipo, expressas ou implícitas, inclusive de adequação a uma finalidade específica.'], sections: [
-  { h: 'Seus agentes, suas decisões', p: ['O AgentOffice mostra o que suas ferramentas de IA informam e as abre para você; nunca aprova uma pergunta, permissão ou comando em seu nome. O que seus agentes fazem, e o que você aprova nessas ferramentas, continua sendo sua responsabilidade.'] },
+'pt-BR': { title: 'Aviso legal', updated: '29 de outubro de 2026', intro: ['The Agent Office é um projeto independente, oferecido como está e conforme disponível, sem garantias de qualquer tipo, expressas ou implícitas, inclusive de adequação a uma finalidade específica.'], sections: [
+  { h: 'Seus agentes, suas decisões', p: ['The Agent Office mostra o que suas ferramentas de IA informam e as abre para você; nunca aprova uma pergunta, permissão ou comando em seu nome. O que seus agentes fazem, e o que você aprova nessas ferramentas, continua sendo sua responsabilidade.'] },
   { h: 'Valores mostrados no app', p: ['Limites de uso, números de hardware, clima e outras informações aparecem como foram informados ou estimados e podem estar incompletos, imprecisos ou atrasados.'] },
-  { h: 'Sem afiliação', p: ['O AgentOffice não é afiliado nem endossado pela Anthropic, OpenAI, Anysphere (Cursor) ou Microsoft. Os nomes de produtos pertencem aos donos e são usados só para descrever a compatibilidade.'] },
+  { h: 'Sem afiliação', p: ['The Agent Office não é afiliado nem endossado pela Anthropic, OpenAI, Anysphere (Cursor) ou Microsoft. Os nomes de produtos pertencem aos donos e são usados só para descrever a compatibilidade.'] },
   { h: 'Apoio', p: ['O apoio é um presente voluntário. Não compra recursos, serviços nem obrigações, e transferências cripto não podem ser revertidas.'] },
-  { h: 'Limitação de responsabilidade', p: ['Na medida permitida por lei, o desenvolvedor não se responsabiliza por danos decorrentes do uso do AgentOffice ou deste site. Onde a lei não permitir esses limites, eles valem apenas até onde ela permitir.'] },
+  { h: 'Limitação de responsabilidade', p: ['Na medida permitida por lei, o desenvolvedor não se responsabiliza por danos decorrentes do uso de The Agent Office ou deste site. Onde a lei não permitir esses limites, eles valem apenas até onde ela permitir.'] },
 ] },
-it: { title: 'Esclusione di responsabilità', updated: '29 ottobre 2026', intro: ['AgentOffice è un progetto indipendente, fornito così com’è e secondo disponibilità, senza garanzie di alcun tipo, esplicite o implicite, compresa l’idoneità a uno scopo particolare.'], sections: [
-  { h: 'I tuoi agenti, le tue decisioni', p: ['AgentOffice mostra ciò che segnalano i tuoi strumenti di IA e li apre per te; non approva mai una domanda, un permesso o un comando a tuo nome. Ciò che fanno i tuoi agenti, e ciò che approvi in quegli strumenti, resta una tua responsabilità.'] },
+it: { title: 'Esclusione di responsabilità', updated: '29 ottobre 2026', intro: ['The Agent Office è un progetto indipendente, fornito così com’è e secondo disponibilità, senza garanzie di alcun tipo, esplicite o implicite, compresa l’idoneità a uno scopo particolare.'], sections: [
+  { h: 'I tuoi agenti, le tue decisioni', p: ['The Agent Office mostra ciò che segnalano i tuoi strumenti di IA e li apre per te; non approva mai una domanda, un permesso o un comando a tuo nome. Ciò che fanno i tuoi agenti, e ciò che approvi in quegli strumenti, resta una tua responsabilità.'] },
   { h: 'Valori mostrati nell’app', p: ['Limiti d’uso, valori hardware, meteo e altre informazioni sono mostrati come riportati o stimati e possono essere incompleti, imprecisi o in ritardo.'] },
-  { h: 'Nessuna affiliazione', p: ['AgentOffice non è affiliato né approvato da Anthropic, OpenAI, Anysphere (Cursor) o Microsoft. I nomi dei prodotti appartengono ai rispettivi proprietari e sono usati solo per descrivere la compatibilità.'] },
+  { h: 'Nessuna affiliazione', p: ['The Agent Office non è affiliato né approvato da Anthropic, OpenAI, Anysphere (Cursor) o Microsoft. I nomi dei prodotti appartengono ai rispettivi proprietari e sono usati solo per descrivere la compatibilità.'] },
   { h: 'Supporto', p: ['Il supporto è un regalo volontario. Non acquista funzioni, servizi né obblighi, e i trasferimenti crypto non sono reversibili.'] },
-  { h: 'Limitazione di responsabilità', p: ['Nei limiti consentiti dalla legge, lo sviluppatore non risponde di alcun danno derivante dall’uso di AgentOffice o di questo sito. Dove la legge non ammette tali limiti, si applicano solo nella misura consentita.'] },
+  { h: 'Limitazione di responsabilità', p: ['Nei limiti consentiti dalla legge, lo sviluppatore non risponde di alcun danno derivante dall’uso di The Agent Office o di questo sito. Dove la legge non ammette tali limiti, si applicano solo nella misura consentita.'] },
 ] },
-ru: { title: 'Отказ от ответственности', updated: '29 октября 2026 г.', intro: ['AgentOffice — независимый проект, который предоставляется «как есть» и «по мере доступности», без каких-либо явных или подразумеваемых гарантий, включая пригодность для определённой цели.'], sections: [
-  { h: 'Ваши агенты — ваши решения', p: ['AgentOffice показывает то, что сообщают ваши ИИ-инструменты, и открывает их для вас; он никогда не одобряет вопрос, разрешение или команду от вашего имени. За действия ваших агентов и за то, что вы одобряете в этих инструментах, отвечаете вы.'] },
+ru: { title: 'Отказ от ответственности', updated: '29 октября 2026 г.', intro: ['The Agent Office — независимый проект, который предоставляется «как есть» и «по мере доступности», без каких-либо явных или подразумеваемых гарантий, включая пригодность для определённой цели.'], sections: [
+  { h: 'Ваши агенты — ваши решения', p: ['The Agent Office показывает то, что сообщают ваши ИИ-инструменты, и открывает их для вас; он никогда не одобряет вопрос, разрешение или команду от вашего имени. За действия ваших агентов и за то, что вы одобряете в этих инструментах, отвечаете вы.'] },
   { h: 'Показываемые значения', p: ['Лимиты использования, показатели оборудования, погода и другие данные показываются так, как они сообщены или оценены, и могут быть неполными, неточными или запаздывать.'] },
-  { h: 'Нет аффилированности', p: ['AgentOffice не связан с Anthropic, OpenAI, Anysphere (Cursor) или Microsoft и не одобрен ими. Названия продуктов принадлежат их владельцам и используются только для описания совместимости.'] },
+  { h: 'Нет аффилированности', p: ['The Agent Office не связан с Anthropic, OpenAI, Anysphere (Cursor) или Microsoft и не одобрен ими. Названия продуктов принадлежат их владельцам и используются только для описания совместимости.'] },
   { h: 'Поддержка', p: ['Поддержка — это добровольный подарок. Она не покупает функции, услуги или обязательства, а криптопереводы нельзя отменить.'] },
-  { h: 'Ограничение ответственности', p: ['В той мере, в какой это допускает закон, разработчик не несёт ответственности за ущерб, связанный с использованием AgentOffice или этого сайта. Там, где закон не допускает таких ограничений, они действуют лишь в допустимых пределах.'] },
+  { h: 'Ограничение ответственности', p: ['В той мере, в какой это допускает закон, разработчик не несёт ответственности за ущерб, связанный с использованием The Agent Office или этого сайта. Там, где закон не допускает таких ограничений, они действуют лишь в допустимых пределах.'] },
 ] },
-ja: { title: '免責事項', updated: '2026年10月29日', intro: ['AgentOfficeは個人による独立したプロジェクトであり、特定目的への適合性を含め、明示または黙示を問わずいかなる保証もなく、現状のまま、提供可能な範囲で提供されます。'], sections: [
-  { h: 'エージェントと判断はあなたのもの', p: ['AgentOfficeはAIツールが報告する内容を表示し、ツールを開くだけで、質問、許可、コマンドをあなたの代わりに承認することはありません。エージェントの行動と、それらのツールであなたが承認した内容の責任はあなたにあります。'] },
+ja: { title: '免責事項', updated: '2026年10月29日', intro: ['The Agent Officeは個人による独立したプロジェクトであり、特定目的への適合性を含め、明示または黙示を問わずいかなる保証もなく、現状のまま、提供可能な範囲で提供されます。'], sections: [
+  { h: 'エージェントと判断はあなたのもの', p: ['The Agent OfficeはAIツールが報告する内容を表示し、ツールを開くだけで、質問、許可、コマンドをあなたの代わりに承認することはありません。エージェントの行動と、それらのツールであなたが承認した内容の責任はあなたにあります。'] },
   { h: 'アプリに表示される値', p: ['利用上限、ハードウェアの数値、天気などの情報は、報告または推定されたとおりに表示され、不完全、不正確、または遅れている場合があります。'] },
-  { h: '提携関係はありません', p: ['AgentOfficeはAnthropic、OpenAI、Anysphere（Cursor）、Microsoftと提携しておらず、これらの企業の承認を受けたものでもありません。製品名は各所有者に帰属し、互換性の説明のためにのみ使用しています。'] },
+  { h: '提携関係はありません', p: ['The Agent OfficeはAnthropic、OpenAI、Anysphere（Cursor）、Microsoftと提携しておらず、これらの企業の承認を受けたものでもありません。製品名は各所有者に帰属し、互換性の説明のためにのみ使用しています。'] },
   { h: '支援について', p: ['支援は任意の贈り物です。機能やサービス、何らかの義務を購入するものではなく、暗号資産の送金は取り消せません。'] },
-  { h: '責任の制限', p: ['法律で認められる範囲で、開発者はAgentOfficeまたは本サイトの利用によって生じたいかなる損害についても責任を負いません。法律がこうした制限を認めない場合は、認められる範囲でのみ適用されます。'] },
+  { h: '責任の制限', p: ['法律で認められる範囲で、開発者はThe Agent Officeまたは本サイトの利用によって生じたいかなる損害についても責任を負いません。法律がこうした制限を認めない場合は、認められる範囲でのみ適用されます。'] },
 ] },
-ko: { title: '면책 조항', updated: '2026년 10월 29일', intro: ['AgentOffice는 독립 프로젝트로, 특정 목적 적합성을 포함한 명시적·묵시적 보증 없이 있는 그대로, 제공 가능한 상태로 제공됩니다.'], sections: [
-  { h: '에이전트와 결정은 사용자의 것', p: ['AgentOffice는 AI 도구가 알려 주는 내용을 보여 주고 도구를 열어 줄 뿐, 질문이나 권한, 명령을 사용자 대신 승인하지 않습니다. 에이전트가 하는 일과 그 도구에서 사용자가 승인한 내용에 대한 책임은 사용자에게 있습니다.'] },
+ko: { title: '면책 조항', updated: '2026년 10월 29일', intro: ['The Agent Office는 독립 프로젝트로, 특정 목적 적합성을 포함한 명시적·묵시적 보증 없이 있는 그대로, 제공 가능한 상태로 제공됩니다.'], sections: [
+  { h: '에이전트와 결정은 사용자의 것', p: ['The Agent Office는 AI 도구가 알려 주는 내용을 보여 주고 도구를 열어 줄 뿐, 질문이나 권한, 명령을 사용자 대신 승인하지 않습니다. 에이전트가 하는 일과 그 도구에서 사용자가 승인한 내용에 대한 책임은 사용자에게 있습니다.'] },
   { h: '앱에 표시되는 값', p: ['사용 한도, 하드웨어 수치, 날씨 등의 정보는 보고되거나 추정된 대로 표시되며 불완전하거나 부정확하거나 늦을 수 있습니다.'] },
-  { h: '제휴 관계 없음', p: ['AgentOffice는 Anthropic, OpenAI, Anysphere(Cursor), Microsoft와 제휴하거나 이들의 보증을 받은 제품이 아닙니다. 제품명은 각 소유자의 것이며 호환성을 설명하기 위해서만 사용합니다.'] },
+  { h: '제휴 관계 없음', p: ['The Agent Office는 Anthropic, OpenAI, Anysphere(Cursor), Microsoft와 제휴하거나 이들의 보증을 받은 제품이 아닙니다. 제품명은 각 소유자의 것이며 호환성을 설명하기 위해서만 사용합니다.'] },
   { h: '후원', p: ['후원은 자발적인 선물입니다. 기능이나 서비스, 어떤 의무도 구매하는 것이 아니며, 암호화폐 전송은 되돌릴 수 없습니다.'] },
-  { h: '책임의 제한', p: ['법이 허용하는 범위에서 개발자는 AgentOffice나 이 웹사이트의 사용으로 발생한 어떠한 손해에도 책임지지 않습니다. 법이 이러한 제한을 허용하지 않는 곳에서는 허용되는 범위까지만 적용됩니다.'] },
+  { h: '책임의 제한', p: ['법이 허용하는 범위에서 개발자는 The Agent Office나 이 웹사이트의 사용으로 발생한 어떠한 손해에도 책임지지 않습니다. 법이 이러한 제한을 허용하지 않는 곳에서는 허용되는 범위까지만 적용됩니다.'] },
 ] },
-'zh-Hans': { title: '免责声明', updated: '2026年10月29日', intro: ['AgentOffice 是一个独立项目，按“原样”和“现有”提供，不附带任何明示或暗示的保证，包括对特定用途的适用性。'], sections: [
-  { h: '你的智能体，你的决定', p: ['AgentOffice 显示你的 AI 工具报告的内容并替你打开它们；它从不以你的名义批准问题、权限或命令。你的智能体所做的事，以及你在这些工具中批准的内容，仍由你负责。'] },
+'zh-Hans': { title: '免责声明', updated: '2026年10月29日', intro: ['The Agent Office 是一个独立项目，按“原样”和“现有”提供，不附带任何明示或暗示的保证，包括对特定用途的适用性。'], sections: [
+  { h: '你的智能体，你的决定', p: ['The Agent Office 显示你的 AI 工具报告的内容并替你打开它们；它从不以你的名义批准问题、权限或命令。你的智能体所做的事，以及你在这些工具中批准的内容，仍由你负责。'] },
   { h: '应用中显示的数值', p: ['用量上限、硬件数据、天气等信息按报告或估算显示，可能不完整、不准确或有延迟。'] },
-  { h: '无从属关系', p: ['AgentOffice 与 Anthropic、OpenAI、Anysphere（Cursor）或 Microsoft 均无从属关系，也未获得它们的认可。产品名称归其所有者所有，仅用于说明兼容性。'] },
+  { h: '无从属关系', p: ['The Agent Office 与 Anthropic、OpenAI、Anysphere（Cursor）或 Microsoft 均无从属关系，也未获得它们的认可。产品名称归其所有者所有，仅用于说明兼容性。'] },
   { h: '关于支持', p: ['支持是自愿的赠予，不购买任何功能、服务或义务，加密货币转账无法撤回。'] },
-  { h: '责任限制', p: ['在法律允许的范围内，开发者不对因使用 AgentOffice 或本网站而产生的任何损害承担责任。在法律不允许此类限制的地方，仅在法律允许的范围内适用。'] },
+  { h: '责任限制', p: ['在法律允许的范围内，开发者不对因使用 The Agent Office 或本网站而产生的任何损害承担责任。在法律不允许此类限制的地方，仅在法律允许的范围内适用。'] },
 ] },
 };

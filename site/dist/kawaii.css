@@ -1,0 +1,506 @@
+/* AgentOffice, kawaii edition (31 Oct 2026): manga sticker pop (the night theme was dropped).
+   Loaded last; every rule sits under html.kw so it wins over the older layers without !important.
+   Product views (island, office, menus, scenes, task card, wallet) stay dark like the real app and
+   get an ink frame; everything around them takes the theme. */
+
+/* fonts: self-hosted subsets (SIL OFL 1.1), CJK files load only for CJK text */
+@font-face{font-family:'KW Display';src:url('fonts/kawaii/dela-latin.woff2') format('woff2');font-display:swap;unicode-range:U+0000-024F,U+0259,U+02BB-02DC,U+0300-036F,U+0400-04FF,U+1E00-1EFF,U+2000-206F,U+20AC,U+2116,U+2122,U+2190-2199,U+2605-2606,U+2661,U+2665}
+@font-face{font-family:'KW Display';src:url('fonts/kawaii/dela-cjk.woff2') format('woff2');font-display:swap;unicode-range:U+2E80-9FFF,U+F900-FAFF,U+FF00-FFEF}
+@font-face{font-family:'KW Text';src:url('fonts/kawaii/mplus-500-latin.woff2') format('woff2');font-weight:400 600;font-display:swap;unicode-range:U+0000-024F,U+0259,U+02BB-02DC,U+0300-036F,U+0400-04FF,U+1E00-1EFF,U+2000-206F,U+20AC,U+2116,U+2122,U+2190-2199,U+2605-2606,U+2661,U+2665}
+@font-face{font-family:'KW Text';src:url('fonts/kawaii/mplus-800-latin.woff2') format('woff2');font-weight:700 900;font-display:swap;unicode-range:U+0000-024F,U+0259,U+02BB-02DC,U+0300-036F,U+0400-04FF,U+1E00-1EFF,U+2000-206F,U+20AC,U+2116,U+2122,U+2190-2199,U+2605-2606,U+2661,U+2665}
+@font-face{font-family:'KW Text';src:url('fonts/kawaii/mplus-500-cjk.woff2') format('woff2');font-weight:400 600;font-display:swap;unicode-range:U+3000-30FF,U+4E00-9FFF,U+FF00-FFEF}
+@font-face{font-family:'KW Text';src:url('fonts/kawaii/mplus-800-cjk.woff2') format('woff2');font-weight:700 900;font-display:swap;unicode-range:U+3000-30FF,U+4E00-9FFF,U+FF00-FFEF}
+@font-face{font-family:'KW Display KO';src:url('fonts/kawaii/dohyeon-cjk.woff2') format('woff2');font-display:swap}
+@font-face{font-family:'KW Text KO';src:url('fonts/kawaii/gowun-cjk.woff2') format('woff2');font-display:swap}
+@font-face{font-family:'KW Display ZH';src:url('fonts/kawaii/kuaile-cjk.woff2') format('woff2');font-display:swap}
+
+/* ---------- tokens ---------- */
+html.kw{
+ --kw-bg:#fff6d2;--kw-paper:#fffdf4;--kw-panel:#fffdf4;--kw-text:#2a1640;--kw-muted:#5a4772;--kw-line:#2a1640;--kw-shadow:#2a1640;
+ --kw-candy:#ff5fa2;--kw-candy-soft:#ffc4dc;--kw-candy-text:#c2185b;--kw-mint:#8fe8cf;--kw-sky:#a9d8ff;--kw-grape:#b59cff;--kw-lemon:#ffe45c;
+ --kw-dots:rgba(255,95,162,.26);--kw-on-candy:#2a1640;--kw-link:#c2185b;--kw-glow:none;
+ --kw-display:'KW Display','Yu Gothic UI','Segoe UI',sans-serif;--kw-text-font:'KW Text','Segoe UI Variable Text','Segoe UI',system-ui,sans-serif;
+ --kw-r:22px;--kw-bw:3px;
+ /* the older layers' own tokens, re-pointed */
+ --bg:var(--kw-bg);--paper:var(--kw-text);--muted:var(--kw-muted);--line:var(--kw-line);--font:var(--kw-text-font);
+ --promo-bg:var(--kw-bg);--promo-ink:var(--kw-text);--promo-muted:var(--kw-muted);--promo-amber:var(--kw-candy);
+ color-scheme:light;background:var(--kw-bg)
+}
+:lang(ko).kw,.kw :lang(ko){--kw-display:'KW Display KO','KW Display','Malgun Gothic',sans-serif;--kw-text-font:'KW Text KO','KW Text','Malgun Gothic',sans-serif}
+:lang(zh).kw,.kw :lang(zh){--kw-display:'KW Display ZH','KW Display','Microsoft YaHei',sans-serif;--kw-text-font:'Microsoft YaHei',system-ui,sans-serif}
+/* product frames keep the app's dark rendering and transparency */
+html.kw iframe{color-scheme:normal}
+html.kw :is(.reference-office-frame,#office-frame,.release-mascot){color-scheme:dark}
+
+/* ---------- page ---------- */
+html.kw body{background:radial-gradient(circle,var(--kw-dots) 1.6px,transparent 2.2px) 0 0/18px 18px,var(--kw-bg);color:var(--kw-text);font-family:var(--kw-text-font);transition:background-color .4s,color .4s}
+html.kw ::selection{background:var(--kw-candy);color:var(--kw-on-candy)}
+html.kw :focus-visible{outline:3px dashed var(--kw-text);outline-offset:4px}
+canvas.kw-petals{position:absolute;inset:0;width:100%;height:100%;pointer-events:none}
+canvas.kw-page{position:fixed;z-index:60}
+.reference-hero canvas.kw-back{z-index:0}.reference-hero canvas.kw-front{z-index:30}
+
+/* headings: the chunky display face, with a sticker shadow on the big ones */
+html.kw :is(h1,h2,h3){font-family:var(--kw-display);font-weight:400;letter-spacing:-.005em}
+html.kw main h2:not(:is(.reference-stage,.demo-shell,.desktop-scenes .isle,.question-card,.office-window,.tool-rail-area,.octo-story,.kw-strip,.eyebrow) *){text-shadow:3px 3px 0 var(--kw-candy-soft)}
+html.kw main :is(h2,h3):not(:is(.reference-stage,.demo-shell,.desktop-scenes .isle,.question-card,.office-window,.tool-rail-area,.octo-story,.kw-strip,.eyebrow) *){color:var(--kw-text)}
+html.kw main :is(section,.reference-trio) h2{font-size:clamp(32px,3.5vw,54px);line-height:1.12}
+html.kw :is(h1,h2) span{color:inherit}
+html.kw .eyebrow{display:inline-flex;gap:8px;align-items:center;width:fit-content;max-width:100%;padding:6px 12px 5px;border-radius:10px;background:var(--kw-text);color:var(--kw-bg);font:400 12.5px/1.2 var(--kw-display);letter-spacing:.04em;transform:rotate(-1.5deg)}
+
+/* buttons: stickers that press in */
+html.kw :is(.button,.header-try,.get-button,.pledge-action,.feedback-send,.kw-thanks-btn,.release-demo,.scenes-pause){font-family:var(--kw-text-font);font-weight:800;border-radius:16px;border:var(--kw-bw) solid var(--kw-line);box-shadow:0 5px 0 var(--kw-shadow);transition:transform .1s,box-shadow .1s,background-color .3s;color:var(--kw-text);background:var(--kw-paper)}
+html.kw :is(.button.primary,.header-try,.get-button.primary,.pledge-action,.feedback-send,.kw-thanks-btn){background:var(--kw-candy);color:var(--kw-on-candy)}
+html.kw :is(.button,.header-try,.get-button,.pledge-action,.feedback-send,.kw-thanks-btn,.release-demo):hover{transform:translateY(-2px);box-shadow:0 7px 0 var(--kw-shadow)}
+html.kw :is(.button,.header-try,.get-button,.pledge-action,.feedback-send,.kw-thanks-btn,.release-demo):active{transform:translateY(4px);box-shadow:0 1px 0 var(--kw-shadow)}
+html.kw :is(.button,.header-try,.get-button) svg{stroke:currentColor}
+html.kw :is(.button,.get-button) small{background:var(--kw-grape);color:var(--kw-on-candy);border:2px solid var(--kw-line);border-radius:8px}
+
+/* header */
+html.kw .brand{color:var(--kw-text)}
+html.kw .brand .wordmark{font-family:var(--kw-display);font-weight:400;color:var(--kw-text)}
+html.kw .header nav a{color:var(--kw-text);font-weight:800}
+html.kw .site-language summary{background:var(--kw-paper);color:var(--kw-text);border:var(--kw-bw) solid var(--kw-line);box-shadow:0 4px 0 var(--kw-shadow);border-radius:999px}
+html.kw .site-language-options{background:var(--kw-paper);border:var(--kw-bw) solid var(--kw-line);box-shadow:0 6px 0 var(--kw-shadow);border-radius:18px}
+html.kw .site-language-options button{color:var(--kw-text)}
+html.kw .site-language-options button[aria-pressed=true]{background:var(--kw-candy);color:var(--kw-on-candy)}
+
+
+/* ---------- hero ---------- */
+/* The hero island's frame is 864x480 and see-through. Closed, only the area around the small island
+   takes the pointer, so the headline, buttons and Octo underneath stay clickable; open, the whole
+   frame does, as before (html.hero-island-open is set by embed-ready.js from the product's state). */
+html.kw .reference-hero .hero-island-live{pointer-events:none}
+html.kw:not(.hero-island-open) .reference-hero .hero-island-live iframe{clip-path:inset(0 calc(50% - 170px) calc(100% - 72px))}
+html.kw .reference-hero{background:none;isolation:isolate;overflow:hidden;padding-top:206px;padding-bottom:40px;min-height:0}
+html.kw .reference-hero::before,html.kw .reference-hero::after{display:none}
+html.kw .reference-hero-content{display:grid;grid-template-columns:minmax(0,1.12fr) minmax(0,.88fr);align-items:center;column-gap:28px;text-align:left;max-width:1260px;margin:0 auto;padding-left:32px;padding-right:32px}
+html.kw .intro-copy{position:relative;z-index:5;text-align:left;margin:0;max-width:none}
+html.kw .reference-hero h1{font-size:clamp(36px,4vw,66px);overflow-wrap:anywhere;line-height:1.1;text-align:left;color:var(--kw-text);text-shadow:4px 4px 0 var(--kw-candy-soft),5px 5px 0 var(--kw-line);text-wrap:balance}
+html.kw .reference-hero h1 :is(.cyan-text,.coral-text){color:inherit;background:none;-webkit-text-fill-color:currentColor}
+html.kw :is(:lang(ja),:lang(ko),:lang(zh)) .reference-hero h1{font-size:clamp(32px,3.8vw,58px);line-height:1.24;overflow-wrap:normal}
+html.kw :lang(ja) :is(h1,h2,h3,.kw-bubble,figcaption){word-break:auto-phrase}
+html.kw .intro-description{color:var(--kw-text);font-weight:800;text-align:left}
+html.kw .intro-detail{color:var(--kw-muted);text-align:left;margin-left:0}
+html.kw .intro-actions{justify-content:flex-start}
+html.kw .connections{justify-content:flex-start;color:var(--kw-muted)}
+html.kw .connections b{color:var(--kw-text);background:var(--kw-paper);border:2px solid var(--kw-line);border-radius:999px;padding:3px 10px}
+html.kw .connections a{color:var(--kw-link)}
+.kw-band{position:absolute;right:-8%;top:120px;width:58%;height:620px;z-index:-1;background:var(--kw-mint);border:var(--kw-bw) solid var(--kw-line);border-radius:48px;transform:rotate(-7deg)}
+.kw-band::after{content:"";position:absolute;inset:14px;border-radius:36px;background:repeating-conic-gradient(from 0deg at 40% 46%,rgba(255,255,255,.5) 0 4deg,transparent 4deg 13deg)}
+.kw-sticker{position:relative;z-index:6;justify-self:center;width:min(100%,500px);transform:rotate(-5deg);transition:transform .35s cubic-bezier(.3,1.6,.5,1)}
+.kw-sticker:hover{transform:rotate(1deg) translateY(-8px) scale(1.02)}
+.kw-octo{display:block;width:100%;height:auto;cursor:pointer;-webkit-user-select:none;user-select:none;-webkit-touch-callout:none;
+ filter:drop-shadow(5px 0 0 #fff) drop-shadow(-5px 0 0 #fff) drop-shadow(0 5px 0 #fff) drop-shadow(0 -5px 0 #fff) drop-shadow(3px 3px 0 var(--kw-line)) drop-shadow(-1px -1px 0 var(--kw-line)) drop-shadow(0 10px 0 rgba(42,22,64,.18))}
+.kw-badge{position:absolute;display:grid;place-items:center;border:var(--kw-bw) solid var(--kw-line);box-shadow:0 4px 0 var(--kw-shadow);pointer-events:none}
+.kw-kana{right:-3%;top:-1%;width:92px;height:92px;border-radius:50%;background:var(--kw-candy);color:var(--kw-on-candy);font:400 21px/1 'KW Display',sans-serif;transform:rotate(12deg)}
+.kw-star{left:-5%;bottom:17%;width:60px;height:60px;border-radius:18px;background:var(--kw-sky);transform:rotate(-14deg)}
+.kw-star svg{width:32px;height:32px;fill:#fff;stroke:var(--kw-line);stroke-width:2;stroke-linejoin:round}
+.kw-bubble{position:absolute;left:0;top:-5%;margin:0;max-width:12.5em;padding:11px 15px;border-radius:22px;background:var(--kw-paper);border:var(--kw-bw) solid var(--kw-line);box-shadow:0 4px 0 var(--kw-shadow);font-weight:800;font-size:15px;line-height:1.4;color:var(--kw-text);transform:rotate(4deg)}
+.kw-bubble::after{content:"";position:absolute;right:28px;bottom:-15px;width:22px;height:16px;background:var(--kw-paper);border:var(--kw-bw) solid var(--kw-line);border-top:0;border-left:0;clip-path:polygon(0 0,100% 0,100% 100%);transform:skewX(-30deg)}
+/* the story card, in ink and paper */
+html.kw .reference-hero .octo-story{grid-column:1/-1;position:relative;z-index:6;max-width:none;width:100%;margin:26px 0 0;color:var(--kw-text);background:var(--kw-paper);border:var(--kw-bw) solid var(--kw-line);box-shadow:0 6px 0 var(--kw-shadow),var(--kw-glow);-webkit-backdrop-filter:none;backdrop-filter:none;transform:rotate(-.5deg);font-family:var(--kw-text-font)}
+html.kw .octo-story::before{background:radial-gradient(circle,rgba(255,95,162,.35) 1.4px,transparent 1.9px) 0 0/10px 10px}
+html.kw .reference-hero .octo-story :is(.octo-story-title,p){font-family:var(--kw-text-font);color:var(--kw-text)}
+html.kw .reference-hero .octo-story-title{font-family:var(--kw-display);font-weight:400;text-shadow:none}
+html.kw .octo-story-avatar{background:radial-gradient(circle at 50% 38%,#fff 0%,#ffd6e8 60%,#ffc0dc 100%);box-shadow:0 0 0 3px var(--kw-line),0 0 0 8px #fff,0 0 0 11px var(--kw-line)}
+html.kw .octo-story .octo-story-bubble{border:var(--kw-bw) solid var(--kw-line);box-shadow:0 4px 0 var(--kw-shadow);color:var(--kw-text);background:var(--kw-candy-soft)}
+html.kw .octo-story-bubble::before{border-bottom-color:var(--kw-line)}
+html.kw .octo-story-bubble::after{border-bottom-color:var(--kw-candy-soft)}
+html.kw .octo-name{background:none;-webkit-background-clip:border-box;background-clip:border-box;color:var(--kw-candy-text)}
+html.kw .octo-story .octo-story-bubble .octo-name{color:var(--kw-candy-text)}
+html.kw .octo-spark{color:var(--kw-candy)}
+/* the three-panel strip */
+.kw-strip{grid-column:1/-1;position:relative;z-index:6;display:grid;grid-template-columns:1fr 1fr 1.25fr;gap:18px;margin:22px 0 10px}
+.kw-panel{position:relative;height:190px;margin:0;overflow:hidden;border:var(--kw-bw) solid var(--kw-line);border-radius:14px;box-shadow:0 4px 0 var(--kw-shadow)}
+.kw-panel-1{background:#dff4ff;transform:rotate(-1deg)}.kw-panel-2{background:#ffeaf3;transform:rotate(.8deg)}.kw-panel-3{background:#fff2c7;transform:rotate(-.6deg)}
+.kw-art{position:absolute;inset:0;width:100%;height:100%;stroke:var(--kw-line);stroke-width:3;stroke-linejoin:round}
+.kw-col{fill:#fff}.kw-wave{fill:var(--kw-mint)}.kw-wave2{fill:#6fd6bb}.kw-bub{fill:#fff;stroke-width:2.5}
+.kw-rays{stroke:var(--kw-candy);stroke-width:2.5;opacity:.7}.kw-screen{fill:none}.kw-pill{fill:#1a1224}.kw-glint{fill:var(--kw-lemon);stroke-width:2.5}
+.kw-speed{stroke-width:2;opacity:.3;stroke-dasharray:40 26}.kw-hearts{fill:var(--kw-candy);stroke-width:2.5}.kw-hearts .kw-heart2{fill:var(--kw-candy-soft)}
+.kw-panel img{position:absolute;right:9%;bottom:-16%;width:44%;height:auto}
+.kw-panel figcaption{position:absolute;left:12px;top:10px;max-width:78%;padding:6px 10px;background:#fff;color:#2a1640;border:2.5px solid var(--kw-line);font-weight:800;font-size:13.5px;line-height:1.35}
+.kw-panel-2 figcaption{top:auto;bottom:10px}
+
+/* ---------- sections as manga panels ---------- */
+html.kw main>:is(section,div.reference-trio):not(.reference-hero){position:relative}
+html.kw :is(.reference-feature,.languages,.desktop-extras,.usage,.get,.dev-note,.release,.support,.feedback,.faq,.demo-wrap){background:var(--kw-panel);border:var(--kw-bw) solid var(--kw-line);border-radius:30px;box-shadow:0 8px 0 var(--kw-shadow),var(--kw-glow);padding:clamp(26px,3.4vw,52px);margin-top:46px;margin-bottom:0;overflow:visible}
+html.kw :is(.reference-feature,.languages,.desktop-extras,.usage,.get,.dev-note,.release,.support,.feedback,.faq,.demo-wrap)::after{content:"";position:absolute;right:0;top:0;width:44%;height:54%;pointer-events:none;border-radius:0 30px 0 0;
+ background:radial-gradient(circle,var(--kw-dots) 1.6px,transparent 2.2px) 0 0/11px 11px;-webkit-mask-image:radial-gradient(90% 100% at 100% 0%,#000,transparent 70%);mask-image:radial-gradient(90% 100% at 100% 0%,#000,transparent 70%)}
+html.kw main>section:nth-of-type(even):not(.reference-hero){rotate:.25deg}
+html.kw main>section:nth-of-type(odd):not(.reference-hero){rotate:-.2deg}
+/* text in those panels follows the theme; product views keep their own colours */
+html.kw main :is(section,.reference-trio) :is(h2,h3,h4,p,li,summary,dt,dd,label,b,strong,small,.reference-hint,.reference-count):not(:is(.reference-stage,.demo-shell,.desktop-scenes .isle,.question-card,.office-window,.tool-rail-area,.octo-story,.kw-strip,.eyebrow) *):not(.eyebrow){color:var(--kw-text)}
+html.kw main :is(section,.reference-trio) :is(p,li,small,.reference-hint):not(:is(.reference-stage,.demo-shell,.desktop-scenes .isle,.question-card,.office-window,.tool-rail-area,.octo-story,.kw-strip,.eyebrow) *):not(.eyebrow){color:var(--kw-muted)}
+html.kw main :is(section,.reference-trio) a:not(.button,.get-button,.release-demo,.brand,.header-try):not(:is(.reference-stage,.demo-shell,.desktop-scenes .isle,.question-card,.office-window,.tool-rail-area,.octo-story,.kw-strip,.eyebrow) *){color:var(--kw-link)}
+/* product views: dark screens inside an ink frame */
+html.kw :is(.reference-stage,.demo-shell,.taskcard,.wallet-card,.dev-note-card,.feedback-form,.scene){border:var(--kw-bw) solid var(--kw-line);border-radius:var(--kw-r);box-shadow:0 6px 0 var(--kw-shadow);overflow:hidden}
+html.kw .reference-trio{gap:18px}
+html.kw .reference-trio>div{background:var(--kw-panel);border:var(--kw-bw) solid var(--kw-line);border-radius:20px;box-shadow:0 5px 0 var(--kw-shadow);padding:18px 20px}
+html.kw .reference-trio>div:nth-child(1){transform:rotate(-1deg)}html.kw .reference-trio>div:nth-child(2){transform:rotate(.7deg)}html.kw .reference-trio>div:nth-child(3){transform:rotate(-.5deg)}
+html.kw .reference-trio b{font-family:var(--kw-display);font-weight:400}
+html.kw .language-list button{background:var(--kw-paper);color:var(--kw-text);border:var(--kw-bw) solid var(--kw-line);border-radius:16px;box-shadow:0 4px 0 var(--kw-shadow)}
+html.kw .language-list button[aria-pressed=true]{background:var(--kw-candy);color:var(--kw-on-candy)}
+html.kw .language-list button i{color:inherit}
+/* footer: the last panel's tail */
+html.kw .footer{color:var(--kw-muted);border-top:var(--kw-bw) dashed var(--kw-line);margin-top:60px}
+html.kw .footer a{color:var(--kw-text)}
+
+/* ---------- support: say thanks ---------- */
+.kw-thanks{position:relative;margin-top:22px;padding:18px 18px 16px;border:var(--kw-bw) dashed var(--kw-line);border-radius:20px;background:color-mix(in srgb,var(--kw-candy-soft) 35%,transparent)}
+.kw-thanks-btn{display:inline-flex;align-items:center;gap:9px;min-height:50px;padding:0 22px;font-size:16px;cursor:pointer}
+.kw-thanks-btn svg{width:20px;height:20px;fill:#fff;stroke:var(--kw-line);stroke-width:2}
+.kw-thanks-note{margin:12px 0 10px;font-size:14.5px}
+.kw-thanks-links{display:flex;flex-wrap:wrap;gap:10px}
+.kw-thanks-links a{display:inline-flex;align-items:center;gap:8px;min-height:44px;padding:0 14px;border-radius:14px;border:2.5px solid var(--kw-line);background:var(--kw-paper);color:var(--kw-text);font-weight:800;font-size:14.5px;text-decoration:none;box-shadow:0 3px 0 var(--kw-shadow)}
+html.kw main .kw-thanks-links a{color:var(--kw-text)}
+.kw-thanks-links svg{width:18px;height:18px;fill:var(--kw-lemon);stroke:var(--kw-line);stroke-width:2;stroke-linejoin:round}
+.kw-thanks-links a:last-child svg{fill:var(--kw-sky)}
+.kw-thanks-bubble{position:absolute;right:16px;top:-22px;margin:0;padding:9px 15px;border-radius:20px;background:var(--kw-paper);border:var(--kw-bw) solid var(--kw-line);box-shadow:0 4px 0 var(--kw-shadow);font-weight:800;color:var(--kw-candy-text)!important}
+.kw-thanks-bubble.kw-pop{animation:kw-pop .5s cubic-bezier(.3,1.7,.5,1)}
+@keyframes kw-pop{from{transform:scale(.4) rotate(-8deg);opacity:0}}
+html.kw .support-pledge.kw-thanked .pledge-layers{animation:kw-wiggle .6s ease-in-out 2}
+@keyframes kw-wiggle{25%{rotate:-6deg}75%{rotate:6deg}}
+
+/* feature stages: candy screens behind the dark product views */
+html.kw .reference-stage{background:radial-gradient(circle,rgba(255,255,255,.55) 2px,transparent 2.6px) 0 0/16px 16px,var(--kw-stage,var(--kw-sky));border-radius:var(--kw-r)}
+html.kw #inside .reference-stage{--kw-stage:#ffb3d1}html.kw #team .reference-stage{--kw-stage:#a9d8ff}html.kw #media-preview .reference-stage{--kw-stage:#b59cff}
+html.kw #notes-preview .reference-stage{--kw-stage:#ffe45c}html.kw #focus-preview .reference-stage{--kw-stage:#8fe8cf}html.kw #alarm-preview .reference-stage{--kw-stage:#ffc4a8}
+html.kw #water-preview .reference-stage{--kw-stage:#a9e4ff}html.kw #shelf-preview .reference-stage{--kw-stage:#ffd0e6}html.kw #settings-preview .reference-stage{--kw-stage:#d9ccff}
+html.kw .reference-hint{border-left:4px solid var(--kw-candy);border-radius:2px}
+html.kw .reference-count{color:var(--kw-candy-text)}
+html.kw .office-weather button{border:2.5px solid var(--kw-line);background:var(--kw-paper);color:var(--kw-text);box-shadow:0 3px 0 var(--kw-shadow);font-weight:800}
+html.kw .office-weather button[aria-pressed=true]{background:var(--kw-candy);color:var(--kw-on-candy)}
+html.kw .office-weather-label,html.kw .office-weather span{color:var(--kw-muted)}
+/* support and feedback: paper stickers instead of dark cards */
+html.kw .support-pledge{background:var(--kw-paper);border:var(--kw-bw) solid var(--kw-line);box-shadow:0 6px 0 var(--kw-shadow)}
+html.kw .pledge-glow{display:none}
+html.kw .feedback-form{background:var(--kw-paper);border:var(--kw-bw) solid var(--kw-line)}
+html.kw .feedback-form :is(input,textarea,select){background:#fff;color:#2a1640;border:2.5px solid var(--kw-line);border-radius:14px}
+html.kw .feedback-form :is(input,textarea)::placeholder{color:#7a6a8e}
+html.kw .usage-stats *{color:var(--kw-text)}
+html.kw .usage-stats small,html.kw .usage-stats span{color:var(--kw-muted)}
+html.kw .usage-points li::before{background:var(--kw-candy);border-color:var(--kw-line)}
+html.kw .faq :is(details,summary){border-color:var(--kw-line)}
+html.kw .faq details{border-bottom:2.5px dashed color-mix(in srgb,var(--kw-line) 45%,transparent)}
+
+/* ---------- small screens ---------- */
+@media (max-width:900px){
+ html.kw .reference-hero-content{grid-template-columns:1fr;padding-left:18px;padding-right:18px}
+ html.kw .reference-hero{padding-top:172px}
+ .kw-sticker{width:min(82vw,380px);margin:30px auto 6px}
+ .kw-bubble{left:-2%;top:-10%;font-size:14px}
+ .kw-band{display:none}
+ .kw-sticker::before{content:"";position:absolute;left:-30%;right:-30%;top:18%;height:62%;z-index:-1;background:var(--kw-mint);border:var(--kw-bw) solid var(--kw-line);border-radius:40px;transform:rotate(-2deg);background-image:repeating-conic-gradient(from 0deg at 50% 50%,rgba(255,255,255,.45) 0 4deg,transparent 4deg 13deg)}
+ .kw-strip{grid-template-columns:1fr;gap:12px}
+ .kw-panel{height:150px}
+ html.kw :is(.reference-feature,.languages,.desktop-extras,.usage,.get,.dev-note,.release,.support,.feedback,.faq,.demo-wrap){border-radius:22px;margin-top:30px;padding:22px 16px}
+ html.kw main>section:not(.reference-hero){rotate:0deg!important}
+}
+@media (prefers-reduced-motion:reduce){
+}
+html.kw .eyebrow .reference-count{color:inherit;opacity:.75}
+html.kw .download-action{background-image:none}
+html.kw .download-action.is-soon:not(.mac-action){filter:none;opacity:1}
+html.kw .reference-hero :is(.download-action,.live-action,.support-action){width:auto;max-width:none;min-height:54px;font-size:15.5px;border-radius:16px}
+html.kw .intro-actions{gap:12px}
+html.kw .languages>*{min-width:0}
+/* ---------- FAQ, privacy, disclaimer ---------- */
+html.kw body[data-page]{background:radial-gradient(circle,var(--kw-dots) 1.6px,transparent 2.2px) 0 0/18px 18px,var(--kw-bg)}
+html.kw #legal{background:var(--kw-paper);border:var(--kw-bw) solid var(--kw-line);box-shadow:0 8px 0 var(--kw-shadow),var(--kw-glow);color:var(--kw-text)}
+html.kw #legal :is(h1,h2,summary){color:var(--kw-text)}
+html.kw #legal h1{font-family:var(--kw-display);font-weight:400;letter-spacing:0;text-shadow:3px 3px 0 var(--kw-candy-soft)}
+html.kw #legal :is(p,li,.lead){color:var(--kw-text)}
+html.kw #legal .when{color:var(--kw-muted)}
+html.kw #legal :is(a,code){color:var(--kw-link)}
+html.kw .legal-faq details{border:2.5px solid var(--kw-line);background:color-mix(in srgb,var(--kw-candy-soft) 22%,transparent);box-shadow:0 3px 0 var(--kw-shadow)}
+html.kw .legal-faq summary::after{border-color:var(--kw-candy)}
+html.kw .legal-faq details div p{color:var(--kw-text)}
+html.kw .legal-home{border:2.5px solid var(--kw-line);color:var(--kw-text);background:var(--kw-paper);box-shadow:0 3px 0 var(--kw-shadow);font-weight:800}
+html.kw .legal-lang select{border:2.5px solid var(--kw-line);background:var(--kw-paper);color:var(--kw-text);box-shadow:0 3px 0 var(--kw-shadow)}
+html.kw .shelf-samples button{background:var(--kw-candy);color:var(--kw-on-candy);border:2.5px solid var(--kw-line);box-shadow:0 3px 0 var(--kw-shadow);font-weight:800}
+@media (max-width:440px){
+ html.kw .header-actions{gap:6px}
+ html.kw .header .brand .wordmark{font-size:17px}
+ html.kw .header .brand img{width:36px;height:auto}
+}
+@media (max-width:350px){html.kw .header .brand .wordmark{display:none}}
+
+/* ---------- hero buttons: three rows of equal width ---------- */
+html.kw .reference-hero .intro-actions{display:grid;grid-template-columns:1fr 1fr;gap:12px;max-width:540px;width:100%}
+html.kw .reference-hero .intro-actions>.download-action{grid-column:1/-1}
+html.kw .reference-hero .intro-actions .button{width:100%;max-width:none;min-height:56px;justify-content:center;gap:10px;padding:0 18px;border-radius:16px;font-size:15.5px;font-weight:800;
+ border:var(--kw-bw) solid var(--kw-line);box-shadow:0 5px 0 var(--kw-shadow);background:var(--kw-paper);background-image:none;color:var(--kw-text)}
+html.kw .reference-hero .intro-actions .button.primary{background:var(--kw-candy)}
+html.kw .reference-hero .intro-actions .button:is(:hover,:focus-visible){border-color:var(--kw-line);background-image:none;box-shadow:0 7px 0 var(--kw-shadow);transform:translateY(-2px)}
+html.kw .reference-hero .intro-actions .button:not(.primary):is(:hover,:focus-visible){background:color-mix(in srgb,var(--kw-candy-soft) 45%,var(--kw-paper))}
+html.kw .reference-hero .intro-actions .button:active{transform:translateY(4px);box-shadow:0 1px 0 var(--kw-shadow)}
+html.kw .reference-hero .intro-actions .mac-action:is(:hover,:active){transform:none;box-shadow:0 5px 0 var(--kw-shadow);background:var(--kw-paper)}
+html.kw .reference-hero .intro-actions .button svg{width:20px;height:20px;flex:none;fill:none;stroke:currentColor;stroke-width:2.2;stroke-linecap:round;stroke-linejoin:round}
+/* the "Coming soon" pills: ink on lilac */
+html.kw :is(.download-action,.get-button) small,html.kw .soon-pill{background:#e4dbff;color:#2a1640;border:2px solid var(--kw-line);border-radius:8px;font-size:12px;font-weight:800;padding:4px 8px;opacity:1}
+
+/* ---------- language menu ---------- */
+html.kw .site-language-options button:is(:hover,:focus-visible){background:color-mix(in srgb,var(--kw-candy-soft) 55%,var(--kw-paper));color:var(--kw-text)}
+html.kw .site-language-options button:focus-visible{outline:3px dashed var(--kw-text);outline-offset:1px}
+html.kw .site-language-options button[aria-pressed=true],html.kw .site-language-options button[aria-pressed=true]:is(:hover,:focus-visible){background:var(--kw-candy);color:var(--kw-on-candy)}
+html.kw .site-language-options i{opacity:.8}
+html.kw .site-language summary:is(:hover,:focus-visible){background:color-mix(in srgb,var(--kw-candy-soft) 45%,var(--kw-paper))}
+
+/* ---------- the live demo window ---------- */
+html.kw .demo-shell{background:var(--kw-paper);border:var(--kw-bw) solid var(--kw-line);border-radius:26px;box-shadow:0 7px 0 var(--kw-shadow)}
+html.kw .demo-switch{background:var(--kw-candy-soft);border-bottom:var(--kw-bw) solid var(--kw-line)}
+html.kw .demo-switch>button{color:var(--kw-text);font-weight:800;font-family:var(--kw-text-font)}
+html.kw .demo-switch>button+button{border-left:var(--kw-bw) solid var(--kw-line)}
+html.kw .demo-switch>button:hover{background:color-mix(in srgb,#fff 45%,var(--kw-candy-soft))}
+html.kw .demo-switch>button[aria-selected=true]{background:var(--kw-paper);color:var(--kw-text);box-shadow:inset 0 -5px 0 var(--kw-candy)}
+html.kw .demo-switch small{color:var(--kw-muted);font-size:12px;font-weight:500}
+html.kw .demo-switch i{color:var(--kw-text)}
+html.kw .demo-shell .desktop{border-bottom:var(--kw-bw) solid var(--kw-line)}
+html.kw .demo-shell :is(.workspace-controls,.surface-controls,.demo-options,.line-palette,.demo-caption,.line-palette>span){color:var(--kw-text)}
+html.kw .demo-shell :is(.rail-label,.line-palette small,.demo-boundary){color:var(--kw-muted)}
+html.kw .demo-shell .rail-label{font-size:11px;font-weight:800;letter-spacing:.06em}
+html.kw .demo-shell .line-palette{border-bottom:2.5px dashed color-mix(in srgb,var(--kw-line) 35%,transparent)}
+html.kw .demo-shell .surface-looks{background:var(--kw-bg);border:2.5px solid var(--kw-line);border-radius:14px;padding:4px}
+/* chips: every small control in the demo bar */
+html.kw .demo-shell :is(.gesture-controls button,.tool-rail button,.rail-arrow,.look-tabs button,.demo-options>summary,.line-return){
+ font-family:var(--kw-text-font);font-weight:800;color:var(--kw-text);background:var(--kw-paper);border:2.5px solid var(--kw-line);border-radius:12px;box-shadow:0 3px 0 var(--kw-shadow);transition:transform .1s,box-shadow .1s,background-color .15s}
+html.kw .demo-shell .surface-looks button{font-family:var(--kw-text-font);font-weight:800;color:var(--kw-text);background:transparent;border:0;border-radius:10px}
+html.kw .demo-shell :is(.surface-looks button,.gesture-controls button,.tool-rail button,.rail-arrow:enabled,.look-tabs button,.demo-options>summary):hover{background:color-mix(in srgb,var(--kw-candy-soft) 50%,var(--kw-paper));color:var(--kw-text)}
+html.kw .demo-shell :is(.gesture-controls button,.tool-rail button,.rail-arrow,.look-tabs button):active{transform:translateY(2px);box-shadow:0 1px 0 var(--kw-shadow)}
+html.kw .demo-shell :is(.surface-looks button,.tool-rail button,.look-tabs button)[aria-pressed=true],html.kw .demo-shell .surface-looks button[data-demo-line][aria-pressed=true]{background:var(--kw-candy);color:var(--kw-on-candy)}
+html.kw .demo-shell :is(.tool-rail,.surface-looks,.gesture-controls,.look-tabs) svg,html.kw .demo-shell .tool-rail button[aria-pressed=true] svg{color:currentColor}
+html.kw .demo-shell .gesture-controls button:first-child>span:first-child{color:var(--kw-candy-text)}
+html.kw .demo-shell .line-switch{background:#d9cff0;box-shadow:inset 0 0 0 2px var(--kw-line)}
+html.kw .demo-shell .line-switch:before{background:#fff;box-shadow:0 0 0 1.5px var(--kw-line)}
+html.kw .demo-shell .surface-looks button[data-demo-line][aria-pressed=true] .line-switch{background:#fff3f8}
+html.kw .demo-shell .surface-looks button[data-demo-line][aria-pressed=true] .line-switch:before{background:var(--kw-line)}
+html.kw .demo-shell .line-palette button[aria-pressed=true]{border:2.5px solid var(--kw-line)}
+html.kw .demo-shell .line-palette button i{box-shadow:inset 0 0 0 1.5px rgba(42,22,64,.35)}
+html.kw .demo-shell .rest-controls{background:var(--kw-paper);border:var(--kw-bw) solid var(--kw-line);border-radius:18px;box-shadow:0 6px 0 var(--kw-shadow);color:var(--kw-text)}
+html.kw .demo-shell .rest-controls :is(p,span,small,b,label){color:var(--kw-text)}
+html.kw .demo-shell .default-dot{background:var(--kw-candy)}
+html.kw .demo-shell .tool-rail{scrollbar-color:var(--kw-candy) transparent;padding-bottom:12px}
+
+/* ---------- feature stages: one light, on-brand stage for every product view ---------- */
+html.kw :is(#inside,#team,#media-preview,#notes-preview,#focus-preview,#alarm-preview,#water-preview,#shelf-preview,#settings-preview) .reference-stage{
+ background:radial-gradient(circle,rgba(255,255,255,.75) 1.6px,transparent 2.2px) 0 0/16px 16px,radial-gradient(70% 60% at 50% 30%,rgba(255,255,255,.85),transparent 70%),linear-gradient(160deg,#ffe0ee 0%,#ece2ff 52%,#d8f1ff 100%)}
+html.kw .reference-stage iframe:not(.reference-office-frame){filter:drop-shadow(0 16px 18px rgba(60,20,80,.28)) drop-shadow(0 3px 4px rgba(60,20,80,.2))}
+html.kw .demo-switch>button span{font-weight:800}
+html.kw .demo-switch>button small{font-weight:500}
+html.kw .demo-shell :is(.question-trigger,.open-question){color:var(--kw-candy-text);font-weight:800}
+html.kw .demo-shell .waiting-dot{background:var(--kw-candy)}
+html.kw .demo-shell .demo-options>summary{padding:7px 30px 7px 12px;position:relative}
+html.kw .demo-shell .demo-options>summary svg{position:absolute;right:9px;top:50%;translate:0 -50%}
+/* the story card keeps its own size inside the hero */
+html.kw .reference-hero .octo-story-title{font-size:27px;line-height:1.2;text-shadow:none}
+@media (max-width:640px){html.kw .reference-hero .octo-story-title{font-size:22px}}
+/* section rail on the left edge */
+html.kw .section-isle-track::before{background:color-mix(in srgb,var(--kw-line) 25%,transparent)}
+html.kw .section-isle-label{color:var(--kw-muted);font-weight:800}
+html.kw .section-isle a:is(:hover,:focus-visible) .section-isle-label{color:var(--kw-text)}
+html.kw .section-isle a[aria-current] .section-isle-label{color:var(--kw-candy-text)}
+html.kw .section-isle-pill{background:var(--kw-candy);box-shadow:0 0 0 2px var(--kw-line)}
+html.kw .section-line i{background:var(--kw-candy)}
+/* audit fixes */
+html.kw .skip{background:var(--kw-text);color:var(--kw-bg);border-radius:12px;font-weight:800}
+html.kw .octo-story .octo-story-bubble .octo-name{color:#9c1048}
+html.kw .demo-switch .tab-mark{color:var(--kw-text);opacity:1}
+html.kw .demo-shell .rest-controls button{color:var(--kw-text);font-weight:800}
+html.kw .demo-shell .rest-controls button:is(:hover,:focus-visible){background:color-mix(in srgb,var(--kw-candy-soft) 50%,var(--kw-paper))}
+html.kw .release-demo{display:inline-flex;align-items:center;gap:8px;min-height:44px;padding:0 16px}
+html.kw .release-demo:is(:hover,:focus-visible){color:var(--kw-text);background:color-mix(in srgb,var(--kw-candy-soft) 45%,var(--kw-paper));border-color:var(--kw-line)}
+html.kw main section .eyebrow span.reference-count{color:var(--kw-bg);opacity:.75}
+html.kw .legal-footer{color:var(--kw-muted);border-top:var(--kw-bw) dashed color-mix(in srgb,var(--kw-line) 40%,transparent);margin-top:40px}
+html.kw .legal-footer a{color:var(--kw-text);font-weight:800}
+html.kw .legal-footer a:is(:hover,:focus-visible){color:var(--kw-link)}
+html.kw .legal-footer a[aria-current=page]{color:var(--kw-link);text-decoration:underline;text-underline-offset:4px;text-decoration-thickness:2px}
+html.kw .legal-footer .footer-by{color:var(--kw-muted)}
+html.kw .footer .footer-by,html.kw .footer .footer-copy{color:var(--kw-muted)}
+html.kw .demo-shell #preview-settings{color:var(--kw-text);font-weight:800;background:var(--kw-paper);border:2.5px solid var(--kw-line);border-radius:12px;box-shadow:0 3px 0 var(--kw-shadow)}
+html.kw .demo-shell #preview-settings:is(:hover,:focus-visible){background:color-mix(in srgb,var(--kw-candy-soft) 50%,var(--kw-paper))}
+html.kw .demo-shell #preview-settings{padding:6px 12px}
+html.kw .shelf-samples :is(span,b){color:var(--kw-text)}
+html.kw .shelf-samples>*{background:var(--kw-paper);border:2.5px solid var(--kw-line);border-radius:14px;box-shadow:0 3px 0 var(--kw-shadow)}
+html.kw .shelf-samples .sample-type{border:2px solid var(--kw-line)}
+html.kw .shelf-samples .type-pdf{background:#c62f3a}html.kw .shelf-samples .type-png{background:#2462b8}html.kw .shelf-samples .type-xls{background:#19734f}html.kw .shelf-samples .type-txt{background:#5d5a6a}
+
+/* ---------- the old dark cards, in paper and ink (premium, not a toy) ---------- */
+html.kw :is(.usage,.get,.support,.feedback){--ink:var(--kw-text);--muted:var(--kw-muted);--amber:var(--kw-candy);--hair:rgba(42,22,64,.18)}
+html.kw main h2{overflow-wrap:break-word;hyphens:manual}
+html.kw main :is(section,.reference-trio) h2{font-size:clamp(30px,3.1vw,50px)}
+html.kw .support h2{font-size:clamp(28px,2.6vw,42px)}
+html.kw .kw-card,html.kw :is(.wallet-card,.dev-note-card,.get-main,.get-steps,.taskcard,.feedback-form){background:var(--kw-paper);border:var(--kw-bw) solid var(--kw-line);border-radius:24px;box-shadow:0 6px 0 var(--kw-shadow);color:var(--kw-text)}
+
+/* crypto support */
+html.kw .wallet-card{background:linear-gradient(180deg,#fff 0%,var(--kw-paper) 100%)}
+html.kw .wallet-head{border-bottom:2.5px dashed rgba(42,22,64,.2)}
+html.kw .wallet-title{color:var(--kw-text);font-family:var(--kw-display);font-weight:400}
+html.kw .wallet-badge{background:var(--kw-lemon);color:#2a1640;border:2px solid var(--kw-line)}
+html.kw .wallet-tabs{background:var(--kw-bg);border:2.5px solid var(--kw-line);border-radius:16px}
+html.kw .wallet-tabs button{color:var(--kw-text);font-weight:800}
+html.kw .wallet-tabs button:hover{background:color-mix(in srgb,var(--kw-candy-soft) 45%,transparent)}
+html.kw .wallet-tabs button[aria-selected=true]{background:var(--kw-paper);color:var(--kw-text);box-shadow:0 0 0 2.5px var(--kw-line),0 3px 0 2.5px var(--kw-shadow)}
+html.kw .wallet-tabs button i{box-shadow:0 0 0 1.5px var(--kw-line)}
+html.kw .wallet-tabs button.is-placeholder{color:var(--kw-muted)}
+html.kw .wallet-tabs button small{color:#9c1048}
+html.kw .wallet-qr{border:var(--kw-bw) solid var(--kw-line);box-shadow:0 4px 0 var(--kw-shadow)}
+html.kw .wallet-qr-flag{background:var(--kw-lemon);color:#2a1640;border:2px solid var(--kw-line)}
+html.kw .wallet-card :is(h3,b,strong){color:var(--kw-text)}
+html.kw .wallet-coin span{color:#2a1640;font-weight:800}
+html.kw .wallet-coin span::before{content:"";display:inline-block;width:9px;height:9px;margin-right:6px;border-radius:50%;background:var(--coin);box-shadow:0 0 0 1.5px var(--kw-line);vertical-align:1px}
+html.kw .wallet-address code{color:#2a1640;background:#fff;border:2px solid var(--kw-line);border-radius:10px;font-weight:600}
+html.kw .wallet-copy{color:#2a1640;background:var(--kw-candy-soft);border:2.5px solid var(--kw-line);box-shadow:0 3px 0 var(--kw-shadow);font-weight:800}
+html.kw .wallet-copy:hover{background:color-mix(in srgb,var(--kw-candy) 40%,var(--kw-candy-soft))}
+html.kw .wallet-copy:active{transform:translateY(2px);box-shadow:0 1px 0 var(--kw-shadow)}
+html.kw .wallet-copy.done{background:#c8f3dc;color:#0f5132;border-color:var(--kw-line)}
+html.kw .wallet-card :is(p,li,small,span:not(.wallet-badge)){color:var(--kw-text)}
+html.kw .wallet-notes li{color:var(--kw-muted)}
+html.kw .wallet-soon{border:2px dashed rgba(42,22,64,.4);color:var(--kw-text)}
+
+/* developer note: a signed letter */
+html.kw .dev-note-card{background:repeating-linear-gradient(180deg,transparent 0 31px,rgba(42,22,64,.06) 31px 32px),#fffdf8}
+html.kw .dev-note-card::before{content:"";position:absolute;left:50%;top:-14px;width:96px;height:26px;translate:-50% 0;rotate:-2deg;background:color-mix(in srgb,var(--kw-candy-soft) 80%,transparent);border:2px solid rgba(42,22,64,.25);border-radius:4px}
+html.kw .dev-note-card :is(h2,b){color:var(--kw-text)}
+html.kw .dev-note-card>p,html.kw .dev-note-card p{color:var(--kw-text)}
+html.kw .dev-note-card a{color:var(--kw-link)}
+html.kw .dev-note-sign img{background:var(--kw-candy-soft);border:2px solid var(--kw-line)}
+html.kw .dev-note-who small,html.kw .dev-note-foot,html.kw .dev-note-foot a{color:var(--kw-muted)!important}
+html.kw .dev-note-foot{border-top:2px dashed rgba(42,22,64,.2)}
+
+/* download */
+html.kw .get-main{background:linear-gradient(180deg,#fff,var(--kw-paper))}
+html.kw .get-button.store{background:var(--kw-paper);color:var(--kw-text)}
+html.kw .get-button.installer{background:var(--kw-candy);color:var(--kw-on-candy)}
+html.kw .get-button.is-soon{cursor:default}
+html.kw .get-button.is-soon:is(:hover,:active){transform:none;box-shadow:0 5px 0 var(--kw-shadow)}
+html.kw .get-req,html.kw .get-soon{color:var(--kw-text)}
+html.kw .get-req svg{stroke:var(--kw-text)}
+html.kw .get-warn{background:#fff3d9;border:2.5px solid var(--kw-line);border-left:8px solid #e38b12;border-radius:14px}
+html.kw .get-warn b{color:#7a3d00}
+html.kw .get-warn p{color:#3b2a14}
+html.kw .get-steps{background:var(--kw-paper)}
+html.kw .get-steps :is(h3,b){color:var(--kw-text)}
+html.kw .get-steps li{color:var(--kw-text)}
+html.kw .get-steps li::before{background:var(--kw-candy);color:#2a1640;border:2px solid var(--kw-line);font-weight:800}
+html.kw .get-sha-label{color:var(--kw-muted)}
+html.kw .get-sha code{color:#2a1640;background:#fff;border:2px solid var(--kw-line)}
+html.kw .get-sha-copy{color:var(--kw-text);background:var(--kw-paper);border:2px solid var(--kw-line);box-shadow:0 2px 0 var(--kw-shadow)}
+
+/* "light on your PC": a light task-manager window and sticker tiles */
+html.kw .taskcard-head{color:var(--kw-text);font-weight:800;background:var(--kw-candy-soft);border-bottom:2.5px solid var(--kw-line)}
+html.kw .taskcard-dots i{background:#fff;box-shadow:0 0 0 2px var(--kw-line)}
+html.kw .taskcard-dots i:nth-child(1){background:var(--kw-candy)}html.kw .taskcard-dots i:nth-child(2){background:var(--kw-lemon)}html.kw .taskcard-dots i:nth-child(3){background:var(--kw-mint)}
+html.kw .taskcard-cols{color:var(--kw-muted);border-bottom:2px dashed rgba(42,22,64,.18)}
+html.kw .taskcard-row{background:color-mix(in srgb,var(--kw-candy-soft) 45%,#fff);box-shadow:inset 5px 0 var(--kw-candy);color:var(--kw-text);font-weight:800}
+html.kw .taskcard :is(span,b,small){color:inherit}
+html.kw .taskcard svg :is(path,polyline){stroke:var(--kw-candy)}
+html.kw .usage-stats>div{background:var(--kw-paper);border:2.5px solid var(--kw-line);border-radius:18px;box-shadow:0 4px 0 var(--kw-shadow)}
+html.kw .usage-stats b{color:var(--kw-text);font-family:var(--kw-display);font-weight:400;letter-spacing:0}
+html.kw .usage-points li{color:var(--kw-text)}
+html.kw .usage-points li::before{background-color:var(--kw-candy);border:2px solid var(--kw-line)}
+html.kw .usage-approx span{color:var(--kw-text);border:2px solid var(--kw-line);background:var(--kw-paper)}
+
+/* "a little further on Windows": pastel screens, the island mock-ups stay dark like the app */
+html.kw .scene{border:var(--kw-bw) solid var(--kw-line);box-shadow:0 6px 0 var(--kw-shadow)}
+html.kw .scene-full{background:radial-gradient(circle,rgba(255,255,255,.6) 1.5px,transparent 2px) 0 0/16px 16px,linear-gradient(160deg,#dcd2ff,#cfe8ff)}
+html.kw .scene-media{background:radial-gradient(circle,rgba(255,255,255,.6) 1.5px,transparent 2px) 0 0/16px 16px,linear-gradient(160deg,#ffd6e7,#ffeacc)}
+html.kw .scene-signals{background:radial-gradient(circle,rgba(255,255,255,.6) 1.5px,transparent 2px) 0 0/16px 16px,linear-gradient(160deg,#c9f3e4,#d9ecff)}
+html.kw .scene-shelf{background:radial-gradient(circle,rgba(255,255,255,.6) 1.5px,transparent 2px) 0 0/16px 16px,linear-gradient(160deg,#fff1b8,#ffd9e8)}
+html.kw :is(.scene-full,.scene-media,.scene-signals)::after{background:linear-gradient(0deg,rgba(255,253,244,.96) 30%,rgba(255,253,244,0))}
+html.kw .scene-copy h3{color:var(--kw-text);font-family:var(--kw-display);font-weight:400;letter-spacing:0}
+html.kw .scene-copy p{color:var(--kw-muted)}
+html.kw .scene-tag{background:var(--kw-paper);color:var(--kw-text);border:2px solid var(--kw-line);font-weight:800}
+html.kw .scene-modes{background:var(--kw-paper);border:2.5px solid var(--kw-line);box-shadow:0 3px 0 var(--kw-shadow)}
+html.kw .scene-modes button{color:var(--kw-text);font-family:var(--kw-text-font);font-weight:800}
+html.kw .scene-modes button:hover{color:var(--kw-text);background:color-mix(in srgb,var(--kw-candy-soft) 50%,transparent)}
+html.kw .scene-modes button[aria-pressed=true]{background:var(--kw-candy);color:var(--kw-on-candy)}
+html.kw .slide-kicker{background:var(--kw-candy)}
+html.kw .slide-title{background:rgba(42,22,64,.25)}
+html.kw .slide-bars{border-bottom:2px solid rgba(42,22,64,.35)}
+html.kw .slide-bars i{background:linear-gradient(180deg,var(--kw-candy),#ffc4dc);border:2px solid var(--kw-line);border-bottom:0}
+html.kw .slide-bars i:nth-child(n+4){background:linear-gradient(180deg,#9b82f0,#d9ccff)}
+html.kw .slide-dots i{background:rgba(42,22,64,.25)}html.kw .slide-dots i.on{background:var(--kw-candy)}
+html.kw .mini-window{background:#fff;border:2.5px solid var(--kw-line);box-shadow:0 4px 0 var(--kw-shadow)}
+html.kw .mini-bar i{background:var(--kw-candy-soft);box-shadow:0 0 0 1.5px var(--kw-line)}
+html.kw .mini-window .bubble{background:rgba(42,22,64,.1)}
+html.kw .mini-window .bubble.b2{background:color-mix(in srgb,var(--kw-candy-soft) 70%,#fff)}
+html.kw .mini-window .bubble.file{background:var(--kw-candy-soft);border:2px solid var(--kw-line)}
+html.kw .mini-window .bubble.file em{background:rgba(42,22,64,.35)}
+html.kw .scenes-pause{color:var(--kw-text);background:var(--kw-paper)}
+html.kw .scenes-pause:hover{background:color-mix(in srgb,var(--kw-candy-soft) 50%,var(--kw-paper));color:var(--kw-text)}
+html.kw .desktop-scenes .isle{box-shadow:0 10px 22px rgba(42,22,64,.3)}
+
+/* feedback contacts */
+html.kw .contact-list a{background:var(--kw-paper);border:2.5px solid var(--kw-line);color:var(--kw-text);box-shadow:0 3px 0 var(--kw-shadow);font-weight:800}
+html.kw .contact-list a:hover{background:color-mix(in srgb,var(--kw-candy-soft) 45%,var(--kw-paper));border-color:var(--kw-line)}
+html.kw .contact-list b{color:var(--kw-muted)}
+html.kw .contact-list svg{stroke:var(--kw-candy-text)}
+html.kw .feedback-form label{color:var(--kw-text)}
+html.kw .feedback-status{color:#0f6b3d}
+html.kw .feedback-status[data-kind=warn]{color:#8a4b00}
+
+/* the sunburst behind Octo follows his mood */
+html.kw .kw-band,html.kw .kw-sticker::before{transition:background-color .5s ease}
+html.kw .reference-hero[data-octo=shy] .kw-band,html.kw .reference-hero[data-octo=shy] .kw-sticker::before{background-color:#ffb3d1}
+html.kw .reference-hero[data-octo=plead] .kw-band,html.kw .reference-hero[data-octo=plead] .kw-sticker::before{background-color:#cdb8ff}
+html.kw .reference-hero[data-octo=wave] .kw-band,html.kw .reference-hero[data-octo=wave] .kw-sticker::before{background-color:#a9d8ff}
+@media (prefers-reduced-motion:reduce){html.kw .kw-band,html.kw .kw-sticker::before{transition:none}}
+html.kw .usage-stats b{font-family:var(--kw-text-font);font-weight:900;font-size:clamp(24px,2.2vw,32px);letter-spacing:-.5px}
+html.kw .dev-note-card p.eyebrow{color:var(--kw-bg)}
+html.kw .get-button.is-soon{opacity:1;filter:none}
+html.kw .usage-stats>div{min-width:0}
+@media (max-width:440px){html.kw .reference-hero .intro-actions{gap:10px}html.kw .reference-hero .intro-actions .button:is(.live-action,.support-action){font-size:14px;padding:0 8px;gap:6px}html.kw .reference-hero .intro-actions .button .arrow{display:none}}
+html.kw .dev-note-card p.kw-note-thanks{margin:16px 0 18px;padding:11px 15px;border-radius:14px;border:2px dashed rgba(42,22,64,.35);background:color-mix(in srgb,var(--kw-candy-soft) 40%,#fff);color:var(--kw-text);font-weight:800;font-size:15.5px;line-height:1.6}
+html.kw :lang(ja) :is(.button,.get-button,.kw-thanks-btn,.kw-thanks-links a,p,li){word-break:auto-phrase}
+
+/* ---------- The Agent Office ---------- */
+html.kw .kw-office{background:var(--kw-panel);border:var(--kw-bw) solid var(--kw-line);border-radius:30px;box-shadow:0 8px 0 var(--kw-shadow);padding:clamp(26px,3.4vw,52px);margin-top:46px;position:relative}
+html.kw .kw-office::after{content:"";position:absolute;right:0;top:0;width:44%;height:40%;pointer-events:none;border-radius:0 30px 0 0;background:radial-gradient(circle,var(--kw-dots) 1.6px,transparent 2.2px) 0 0/11px 11px;-webkit-mask-image:radial-gradient(90% 100% at 100% 0%,#000,transparent 70%);mask-image:radial-gradient(90% 100% at 100% 0%,#000,transparent 70%)}
+.kw-office-head{max-width:720px}
+.kw-office-head p:not(.eyebrow){margin:14px 0 0;font-size:clamp(16px,1.3vw,18.5px);line-height:1.75}
+.kw-office-film{position:relative;z-index:1;margin:30px 0 0;aspect-ratio:16/9;border:var(--kw-bw) solid var(--kw-line);border-radius:24px;box-shadow:0 7px 0 var(--kw-shadow);overflow:hidden;background:#ffe9f2}
+.kw-office-film video{display:block;width:100%;height:100%;object-fit:cover}
+.kw-office-film.has-video .kw-film-placeholder{display:none}
+/* until the film arrives the box stays out of the page: no empty frame, no "on its way" note */
+.kw-office-film:not(.has-video){display:none}
+.kw-film-placeholder{position:absolute;inset:0}
+.kw-film-art{position:absolute;inset:0;width:100%;height:100%;stroke:var(--kw-line);stroke-width:3;stroke-linejoin:round;stroke-linecap:round}
+.kw-film-wall{fill:#ffe1ee;stroke:none}.kw-film-floor{fill:#ffe9b8;stroke:none}
+.kw-film-window rect{fill:#cfe9ff}.kw-film-window path{fill:none}
+.kw-film-desk rect{fill:#ffd2b0}.kw-film-desk rect+rect{fill:#2a1640}.kw-film-desk path{fill:none}
+.kw-plane{fill:#fff}.kw-env rect{fill:#fff4c8}.kw-env path{fill:none}
+.kw-film-hearts{fill:var(--kw-candy)}
+.kw-film-fly{animation:kw-drift 6s ease-in-out infinite}
+@keyframes kw-drift{50%{transform:translate(14px,-10px)}}
+.kw-film-octo{position:absolute;left:41%;bottom:8%;width:26%;height:auto;filter:drop-shadow(4px 0 0 #fff) drop-shadow(-4px 0 0 #fff) drop-shadow(0 4px 0 #fff) drop-shadow(0 -4px 0 #fff) drop-shadow(2px 3px 0 var(--kw-line))}
+.kw-film-note{position:absolute;left:50%;top:7%;translate:-50% 0;margin:0;padding:9px 16px;border-radius:18px;background:var(--kw-paper);border:var(--kw-bw) solid var(--kw-line);box-shadow:0 4px 0 var(--kw-shadow);font-weight:800;font-size:clamp(14px,1.3vw,17px);color:var(--kw-text);white-space:nowrap;max-width:92%;overflow:hidden;text-overflow:ellipsis}
+html.kw .kw-office-grid{position:relative;z-index:1;display:grid;grid-template-columns:repeat(6,minmax(0,1fr));gap:18px;margin-top:30px}
+.kw-ocard{position:relative;min-width:0;padding:22px 22px 20px;border:var(--kw-bw) solid var(--kw-line);border-radius:22px;box-shadow:0 5px 0 var(--kw-shadow);background:var(--kw-c,#fff);overflow:hidden}
+.kw-ocard-talk,.kw-ocard-paw,.kw-ocard-day,.kw-ocard-toggle{grid-column:span 3}
+.kw-ocard-plane,.kw-ocard-medal,.kw-ocard-game{grid-column:span 2}
+.kw-ocard-talk{--kw-c:#ffe3ef;rotate:-.4deg}.kw-ocard-paw{--kw-c:#fff1c2;rotate:.3deg}.kw-ocard-plane{--kw-c:#dff1ff}.kw-ocard-medal{--kw-c:#ffe9c9;rotate:-.3deg}
+.kw-ocard-game{--kw-c:#ebe2ff}.kw-ocard-day{--kw-c:#d9f6ea;rotate:.25deg}.kw-ocard-toggle{--kw-c:#fffdf4;rotate:-.25deg}
+.kw-ocard>svg{display:block;width:46px;height:46px;margin-bottom:12px;fill:none;stroke:var(--kw-line);stroke-width:2.6;stroke-linejoin:round;stroke-linecap:round}
+.kw-ocard svg .f1{fill:var(--kw-candy)}.kw-ocard svg .f2{fill:#fff}.kw-ocard svg .f3{fill:var(--kw-lemon)}.kw-ocard svg .f4{fill:#fff}
+html.kw main .kw-ocard h3{margin:0 0 8px;font-size:clamp(19px,1.6vw,23px);line-height:1.25;color:var(--kw-text);overflow-wrap:break-word}
+html.kw main .kw-ocard p{margin:0;font-size:15.5px;line-height:1.65;color:var(--kw-text)}
+.kw-loop{display:none}
+.kw-loop.has-video{display:block;margin:0 0 14px;aspect-ratio:16/9;border:2.5px solid var(--kw-line);border-radius:14px;overflow:hidden}
+.kw-loop video{display:block;width:100%;height:100%;object-fit:cover}
+@media (max-width:900px){
+ html.kw .kw-office{border-radius:22px;margin-top:30px;padding:22px 16px}
+ html.kw .kw-office-grid{grid-template-columns:1fr;gap:14px}
+ .kw-ocard{grid-column:auto!important;rotate:0deg!important;padding:18px}
+ .kw-film-note{white-space:normal;text-align:center;width:max-content}
+}
+@media (prefers-reduced-motion:reduce){.kw-film-fly{animation:none}}
+html.kw #legal h1{overflow-wrap:break-word;hyphens:auto;-webkit-hyphens:auto}
+@media (max-width:520px){html.kw #legal h1{font-size:clamp(24px,7vw,34px)}}
+html.kw .release-final .kw-release-octo{object-fit:contain;object-position:center bottom}
+html.kw .kw-release-pic{display:contents}
+/* the sticker keeps the drawn octopus' aspect; stills fit inside, the padded 512 px clip is placed
+   so its octopus lands on the same spot (it spans x 43-469, y 87-424 of its frame, centred) */
+html.kw .kw-sticker{aspect-ratio:426/337}
+html.kw .kw-octo{position:absolute;inset:0;width:100%;height:100%;object-fit:contain}
+html.kw .kw-octo.kw-clip{transform:scale(1.5193);transform-origin:50% 49.9%} /* contain + scale: a transform, so the swap is not a layout shift */

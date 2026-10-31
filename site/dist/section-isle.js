@@ -6,7 +6,7 @@
  const t = text => (window.AO_I18N ? window.AO_I18N.t(text) : text);
  const $ = s => document.querySelector(s);
  const groups = [
-  ['AgentOffice', ['.reference-hero']],
+  ['The Agent Office', ['.reference-hero']],
   ['Live demo', ['#demo']],
   ['Agents', ['#inside']],
   ['The office', ['#team']],

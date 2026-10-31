@@ -4,8 +4,8 @@ import path from 'node:path';
 import { fileURLToPath } from 'node:url';
 // Local preview of dist/.
 //   node serve.mjs                      → http://127.0.0.1:8940/
-//   node serve.mjs --base agentoffice   → http://127.0.0.1:8940/agentoffice/  (as on GitHub Pages;
-//   write it without slashes: Git Bash turns "/agentoffice/" into a Windows path)
+//   node serve.mjs --base the-agent-office   → http://127.0.0.1:8940/the-agent-office/  (as on GitHub Pages;
+//   write it without slashes: Git Bash turns "/the-agent-office/" into a Windows path)
 const root = path.join(path.dirname(fileURLToPath(import.meta.url)), 'dist');
 const port = Number(process.env.AGENTOFFICE_PREVIEW_PORT || 8940);
 const arg = process.argv.indexOf('--base');

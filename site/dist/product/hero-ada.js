@@ -9,19 +9,19 @@
  if (!new URLSearchParams(location.search).has('hero')) return;
  const BASE = new URL('../mascot/ada/', document.currentScript?.src || location.href).href;
  const CLIPS = {
-  idle: { file: 'idle', duration: 1798 },
-  hop: { file: 'hop', duration: 1984 },
-  wave: { file: 'wave', duration: 2046 },
-  shy: { file: 'shy', duration: 2542 },
-  // Cut from plead-256.webp (16 fps, 62 ms a frame): in = frames 0-9 (plays once, stays on 9),
-  // hold = 9→15→10 looping, out = 16-32 (plays once, ends on the base pose).
-  pleadIn: { file: 'plead-in', duration: 620 },
-  pleadHold: { file: 'plead-hold', loop: 744, exitAt: 434 }, // frame 15 is on screen 372-434 ms into the loop
-  pleadOut: { file: 'plead-out', duration: 1054 },
+  idle: { file: 'idle', duration: 2125 },
+  hop: { file: 'hop', duration: 2000 },
+  wave: { file: 'wave', duration: 2250 },
+  shy: { file: 'shy', duration: 2375 },
+  // The pink Octo's (ada-75) plead in three parts: in (plays once, stays on the peak), hold (a
+  // ping-pong loop that starts and ends on that peak), out (plays once, ends on the base pose).
+  pleadIn: { file: 'plead-in', duration: 938 },
+  pleadHold: { file: 'plead-hold', loop: 2000, exitAt: 0 }, // the loop is back on the peak at every 2000 ms
+  pleadOut: { file: 'plead-out', duration: 938 },
  };
  const HOP_EVERY = [9000, 16000];
  const clipUrl = name => `${BASE}${CLIPS[name].file}-256.webp`;
- const gazeUrl = dir => `${BASE}look-${dir === 'upLeft' ? 'up-left' : dir}-256.png`;
+ const gazeUrl = dir => `${BASE}look-${dir}-256.png`;
  const GAZE_REST_MS = 2500, GAZE_SETTLE_MS = 110; // a resting cursor → back to idle; a direction must hold
  // The clips share one 512 px frame; inside it Ada spans x 43..469, y 87..424. The still in the
  // island (still-426.webp) is that same pose cropped and padded to 426x403 (33 px above and below),
@@ -156,15 +156,14 @@
   const r = box.getBoundingClientRect();
   return x > r.left + r.width * 0.1 && x < r.right - r.width * 0.1 && y > r.top + r.height * 0.12 && y < r.bottom;
  }
- // Which gaze still matches the cursor, seen from Ada's eyes (only the made directions:
- // left, right, up-left). Null when the cursor is on or right next to her.
- const DIRS = ['right', 'right', 'down', 'left', 'left', 'upLeft', 'upLeft', 'right'];
+ // The gaze still for the cursor: the head turned to the viewer. Null when the cursor is on or
+ // right next to her.
  function gazeDir() {
   const r = box.getBoundingClientRect();
   const dx = cursor.x - (r.left + r.width / 2), dy = cursor.y - (r.top + r.height * 0.42);
   if (Math.hypot(dx, dy) < Math.max(24, r.width * 0.6)) return null;
-  const dir = DIRS[(Math.round(Math.atan2(dy, dx) / (Math.PI / 4)) + 8) % 8];
-  return dir === 'down' ? (dx >= 0 ? 'right' : 'left') : dir;
+  // ada-75 has no separate pupils: from any direction she turns her head to the viewer.
+  return 'front';
  }
  let pendingGaze = null, pendingSince = 0;
  function updateGaze() {
@@ -223,7 +222,7 @@
   calm.addEventListener?.('change', () => { if (calm.matches) closed(); else if (isOpen()) opened(); });
   if (was) opened();
   // Fetch the clips after the page has settled, in the order they are needed.
-  const fetchAll = () => { if (!calm.matches && !navigator.connection?.saveData) ['wave', 'idle', 'pleadIn', 'pleadHold', 'pleadOut', 'shy', 'hop'].map(clipUrl).concat(['right', 'left', 'upLeft'].map(gazeUrl)).reduce((p, u) => p.then(() => load(u, 'low').catch(() => {})), Promise.resolve()); };
+  const fetchAll = () => { if (!calm.matches && !navigator.connection?.saveData) ['wave', 'idle', 'pleadIn', 'pleadHold', 'pleadOut', 'shy', 'hop'].map(clipUrl).concat(['front'].map(gazeUrl)).reduce((p, u) => p.then(() => load(u, 'low').catch(() => {})), Promise.resolve()); };
   (window.requestIdleCallback ? requestIdleCallback(fetchAll, { timeout: 3000 }) : setTimeout(fetchAll, 500));
   window.AO_HERO_ADA = S;
   return true;

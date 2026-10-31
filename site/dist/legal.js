@@ -4,17 +4,17 @@
   'use strict';
   const LANGS = [['tr', 'Türkçe', 'tr-TR'], ['en', 'English', 'en-US'], ['es', 'Español', 'es-ES'], ['de', 'Deutsch', 'de-DE'], ['fr', 'Français', 'fr-FR'], ['pt-BR', 'Português (Brasil)', 'pt-BR'], ['it', 'Italiano', 'it-IT'], ['ru', 'Русский', 'ru-RU'], ['ja', '日本語', 'ja-JP'], ['ko', '한국어', 'ko-KR'], ['zh-Hans', '简体中文', 'zh-CN']];
   const UI = {
-    en: { privacy: 'Privacy', faq: 'FAQ', disclaimer: 'Disclaimer', feedback: 'Feedback', download: 'Download', language: 'Language', home: 'Back to AgentOffice', updated: 'Last updated', by: 'by {name}' },
-    tr: { privacy: 'Gizlilik', faq: 'SSS', disclaimer: 'Sorumluluk reddi', feedback: 'Geri bildirim', download: 'İndir', language: 'Dil', home: 'AgentOffice’e dön', updated: 'Son güncelleme', by: '{name} tarafından' },
-    es: { privacy: 'Privacidad', faq: 'Preguntas frecuentes', disclaimer: 'Aviso legal', feedback: 'Comentarios', download: 'Descargar', language: 'Idioma', home: 'Volver a AgentOffice', updated: 'Última actualización', by: 'por {name}' },
-    de: { privacy: 'Datenschutz', faq: 'FAQ', disclaimer: 'Haftungsausschluss', feedback: 'Feedback', download: 'Download', language: 'Sprache', home: 'Zurück zu AgentOffice', updated: 'Zuletzt aktualisiert', by: 'von {name}' },
-    fr: { privacy: 'Confidentialité', faq: 'FAQ', disclaimer: 'Avertissement', feedback: 'Retours', download: 'Télécharger', language: 'Langue', home: 'Retour à AgentOffice', updated: 'Dernière mise à jour', by: 'par {name}' },
-    'pt-BR': { privacy: 'Privacidade', faq: 'Perguntas frequentes', disclaimer: 'Aviso legal', feedback: 'Feedback', download: 'Baixar', language: 'Idioma', home: 'Voltar ao AgentOffice', updated: 'Última atualização', by: 'por {name}' },
-    it: { privacy: 'Privacy', faq: 'FAQ', disclaimer: 'Esclusione di responsabilità', feedback: 'Feedback', download: 'Scarica', language: 'Lingua', home: 'Torna ad AgentOffice', updated: 'Ultimo aggiornamento', by: 'di {name}' },
-    ru: { privacy: 'Конфиденциальность', faq: 'Вопросы и ответы', disclaimer: 'Отказ от ответственности', feedback: 'Отзывы', download: 'Скачать', language: 'Язык', home: 'Вернуться к AgentOffice', updated: 'Обновлено', by: 'автор: {name}' },
-    ja: { privacy: 'プライバシー', faq: 'よくある質問', disclaimer: '免責事項', feedback: 'フィードバック', download: 'ダウンロード', language: '言語', home: 'AgentOfficeに戻る', updated: '最終更新', by: '制作: {name}' },
-    ko: { privacy: '개인정보', faq: '자주 묻는 질문', disclaimer: '면책 조항', feedback: '피드백', download: '다운로드', language: '언어', home: 'AgentOffice로 돌아가기', updated: '최종 업데이트', by: '제작: {name}' },
-    'zh-Hans': { privacy: '隐私', faq: '常见问题', disclaimer: '免责声明', feedback: '反馈', download: '下载', language: '语言', home: '返回 AgentOffice', updated: '最后更新', by: '制作：{name}' },
+    en: { privacy: 'Privacy', faq: 'FAQ', disclaimer: 'Disclaimer', feedback: 'Feedback', download: 'Download', language: 'Language', home: 'Back to The Agent Office', updated: 'Last updated', by: 'by {name}' },
+    tr: { privacy: 'Gizlilik', faq: 'SSS', disclaimer: 'Sorumluluk reddi', feedback: 'Geri bildirim', download: 'İndir', language: 'Dil', home: 'The Agent Office’e dön', updated: 'Son güncelleme', by: '{name} tarafından' },
+    es: { privacy: 'Privacidad', faq: 'Preguntas frecuentes', disclaimer: 'Aviso legal', feedback: 'Comentarios', download: 'Descargar', language: 'Idioma', home: 'Volver a The Agent Office', updated: 'Última actualización', by: 'por {name}' },
+    de: { privacy: 'Datenschutz', faq: 'FAQ', disclaimer: 'Haftungsausschluss', feedback: 'Feedback', download: 'Download', language: 'Sprache', home: 'Zurück zu The Agent Office', updated: 'Zuletzt aktualisiert', by: 'von {name}' },
+    fr: { privacy: 'Confidentialité', faq: 'FAQ', disclaimer: 'Avertissement', feedback: 'Retours', download: 'Télécharger', language: 'Langue', home: 'Retour à The Agent Office', updated: 'Dernière mise à jour', by: 'par {name}' },
+    'pt-BR': { privacy: 'Privacidade', faq: 'Perguntas frequentes', disclaimer: 'Aviso legal', feedback: 'Feedback', download: 'Baixar', language: 'Idioma', home: 'Voltar para The Agent Office', updated: 'Última atualização', by: 'por {name}' },
+    it: { privacy: 'Privacy', faq: 'FAQ', disclaimer: 'Esclusione di responsabilità', feedback: 'Feedback', download: 'Scarica', language: 'Lingua', home: 'Torna a The Agent Office', updated: 'Ultimo aggiornamento', by: 'di {name}' },
+    ru: { privacy: 'Конфиденциальность', faq: 'Вопросы и ответы', disclaimer: 'Отказ от ответственности', feedback: 'Отзывы', download: 'Скачать', language: 'Язык', home: 'Вернуться к The Agent Office', updated: 'Обновлено', by: 'автор: {name}' },
+    ja: { privacy: 'プライバシー', faq: 'よくある質問', disclaimer: '免責事項', feedback: 'フィードバック', download: 'ダウンロード', language: '言語', home: 'The Agent Officeに戻る', updated: '最終更新', by: '制作: {name}' },
+    ko: { privacy: '개인정보', faq: '자주 묻는 질문', disclaimer: '면책 조항', feedback: '피드백', download: '다운로드', language: '언어', home: 'The Agent Office로 돌아가기', updated: '최종 업데이트', by: '제작: {name}' },
+    'zh-Hans': { privacy: '隐私', faq: '常见问题', disclaimer: '免责声明', feedback: '反馈', download: '下载', language: '语言', home: '返回 The Agent Office', updated: '最后更新', by: '制作：{name}' },
   };
   const copy = window.AO_LEGAL || {};
   const page = document.body.dataset.page;
@@ -30,7 +30,7 @@
   function render(id) {
     const ui = UI[id] || UI.en, c = copy[id] || copy.en, tag = (LANGS.find(l => l[0] === id) || LANGS[1])[2];
     document.documentElement.lang = tag;
-    document.title = `AgentOffice — ${c.title}`;
+    document.title = `The Agent Office — ${c.title}`;
     const main = document.querySelector('#legal');
     const section = s => `<section>${s.h ? `<h2>${s.h}</h2>` : ''}${(s.p || []).map(p => `<p>${fill(p)}</p>`).join('')}${s.items ? `<ul>${s.items.map(i => `<li>${fill(i)}</li>`).join('')}</ul>` : ''}</section>`;
     const qa = q => `<details><summary>${q.q}</summary><div>${q.a.map(p => `<p>${fill(p)}</p>`).join('')}</div></details>`;

@@ -4,7 +4,7 @@ The island
 The office
 Getting started
 Open the workspace
-AGENTOFFICE / FOR WINDOWS
+THE AGENT OFFICE / FOR WINDOWS
 A place to follow your AI team.
 A place to keep the rest of your day close.
 See your agents at work, catch their questions and keep music, time and notes within reach. Two connected views. One desktop companion.
@@ -122,7 +122,7 @@ This preview focuses on Claude Code and local Codex. Features vary by connection
 Does the shelf move my files?
 No. It remembers where the originals are. Drop a file onto the shelf, switch apps, then drag it into another app. The browser preview uses sample files.
 Is this the actual product?
-The island uses AgentOffice’s own components, icons and mascot. The office uses its original scene. This preview supplies sample data instead of connecting to your desktop or AI accounts.
+The island uses The Agent Office’s own components, icons and mascot. The office uses its original scene. This preview supplies sample data instead of connecting to your desktop or AI accounts.
 Where can I download the Windows app?
 A download link will be added when the distributable installer is ready. For now, you can explore the product here.
 A desktop companion with two points of view.
@@ -156,13 +156,13 @@ Island features
 Main navigation
 Resting appearance
 Sample AI office
-Two ways to use AgentOffice
-AgentOffice home
-Interactive AgentOffice workspace
-AgentOffice dynamic island: original product interface
+Two ways to use The Agent Office
+The Agent Office home
+Interactive The Agent Office workspace
+The Agent Office dynamic island: original product interface
 An interactive office with sample AI agents
-Live compact AgentOffice island
-AgentOffice’s original scene with AI agents at their desks`.split('\n');
+Live compact The Agent Office island
+The Agent Office’s original scene with AI agents at their desks`.split('\n');
 
 export const copy={en};
 export const headlines={
@@ -182,7 +182,7 @@ copy.ja=`ワークスペースへ移動
 オフィス
 はじめに
 ワークスペースを開く
-AGENTOFFICE / WINDOWS向け
+THE AGENT OFFICE / WINDOWS向け
 AIチームの仕事を見守る場所。
 一日に必要なものを、すぐ手の届く場所に。
 エージェントの仕事を見守り、質問に応え、音楽・時間・メモを手元に。つながる2つのビュー。ひとつのデスクトップパートナー。
@@ -300,7 +300,7 @@ AIツールなしでも使える？
 シェルフはファイルを移動する？
 移動しない。元の場所を覚えるだけ。ファイルを置き、アプリを切り替えて別のアプリへドラッグできる。ブラウザーではサンプルファイルを使う。
 これは実際の製品？
-アイランドはAgentOffice本来の部品、アイコン、マスコットを使い、オフィスも本来のシーンを使用。このプレビューは実際のデスクトップやAIアカウントには接続せず、サンプルデータを使う。
+アイランドはThe Agent Office本来の部品、アイコン、マスコットを使い、オフィスも本来のシーンを使用。このプレビューは実際のデスクトップやAIアカウントには接続せず、サンプルデータを使う。
 Windowsアプリはどこからダウンロードできる？
 インストーラーが完成したらリンクを追加する。それまではここで製品を試せる。
 2つの視点を持つデスクトップパートナー。
@@ -334,19 +334,19 @@ Windowsアプリではエージェントを押すと会話が開く。このオ�
 メインナビゲーション
 待機時の表示
 サンプルAIオフィス
-AgentOfficeの2つの使い方
-AgentOfficeホーム
-操作できるAgentOfficeワークスペース
-AgentOfficeダイナミックアイランド：製品本来のインターフェイス
+The Agent Officeの2つの使い方
+The Agent Officeホーム
+操作できるThe Agent Officeワークスペース
+The Agent Officeダイナミックアイランド：製品本来のインターフェイス
 サンプルAIエージェントがいる操作可能なオフィス
-動作する小さなAgentOfficeアイランド
-AIエージェントが机に向かうAgentOffice本来のシーン`.split('\n');
+動作する小さなThe Agent Officeアイランド
+AIエージェントが机に向かうThe Agent Office本来のシーン`.split('\n');
 copy.ko=`작업 공간으로 이동
 아일랜드
 오피스
 시작하기
 작업 공간 열기
-AGENTOFFICE / WINDOWS용
+THE AGENT OFFICE / WINDOWS용
 AI 팀의 작업을 지켜보는 곳.
 하루에 필요한 것을 가까이 두는 곳.
 에이전트의 작업을 보고, 질문에 답하고, 음악과 시간, 메모를 가까이 두세요. 연결된 두 가지 화면. 하나의 데스크톱 동반자.
@@ -464,7 +464,7 @@ AI 도구 없이 아일랜드를 쓸 수 있나요?
 선반이 파일을 옮기나요?
 아니요. 원본 위치만 기억해요. 파일을 놓고 앱을 바꾼 다음 다른 앱으로 끌어 놓으세요. 브라우저에서는 예시 파일을 사용해요.
 실제 제품인가요?
-아일랜드는 AgentOffice의 실제 구성 요소, 아이콘과 마스코트를 사용하고 오피스도 원래 장면을 사용해요. 미리 보기는 데스크톱이나 AI 계정에 연결하지 않고 예시 데이터를 사용해요.
+아일랜드는 The Agent Office의 실제 구성 요소, 아이콘과 마스코트를 사용하고 오피스도 원래 장면을 사용해요. 미리 보기는 데스크톱이나 AI 계정에 연결하지 않고 예시 데이터를 사용해요.
 Windows 앱은 어디서 내려받나요?
 설치 프로그램이 준비되면 다운로드 링크를 추가할 거예요. 지금은 여기서 제품을 둘러볼 수 있어요.
 두 가지 시선을 가진 데스크톱 동반자.
@@ -498,19 +498,19 @@ Windows 앱에서는 에이전트를 누르면 대화가 열려요. 이 오피�
 기본 탐색
 대기 상태 모양
 예시 AI 오피스
-AgentOffice를 쓰는 두 가지 방법
-AgentOffice 홈
-대화형 AgentOffice 작업 공간
-AgentOffice 다이내믹 아일랜드: 실제 제품 인터페이스
+The Agent Office를 쓰는 두 가지 방법
+The Agent Office 홈
+대화형 The Agent Office 작업 공간
+The Agent Office 다이내믹 아일랜드: 실제 제품 인터페이스
 예시 AI 에이전트가 있는 대화형 오피스
-실시간 작은 AgentOffice 아일랜드
-책상 앞 AI 에이전트가 있는 AgentOffice 원래 장면`.split('\n');
+실시간 작은 The Agent Office 아일랜드
+책상 앞 AI 에이전트가 있는 The Agent Office 원래 장면`.split('\n');
 copy['zh-Hans']=`跳到工作区
 灵动岛
 办公室
 开始使用
 打开工作区
-AGENTOFFICE / WINDOWS 专用
+THE AGENT OFFICE / WINDOWS 专用
 在这里，随时了解 AI 团队的进展。
 在这里，让日常所需近在手边。
 查看智能体的工作，回复它们的问题，将音乐、时间和笔记放在手边。两个相连的视图，一个桌面伙伴。
@@ -628,7 +628,7 @@ Windows 安装程序正在准备中。
 文件架会移动我的文件吗？
 不会。它只记住原文件的位置。放入文件，切换应用，再拖入另一个应用。浏览器预览使用示例文件。
 这是实际产品吗？
-灵动岛使用 AgentOffice 的原生组件、图标和吉祥物，办公室也使用原始场景。预览采用示例数据，不会连接桌面或 AI 账户。
+灵动岛使用 The Agent Office 的原生组件、图标和吉祥物，办公室也使用原始场景。预览采用示例数据，不会连接桌面或 AI 账户。
 在哪里下载 Windows 应用？
 安装程序准备好后会添加下载链接。现在可以先在这里体验产品。
 拥有两个视角的桌面伙伴。
@@ -662,19 +662,19 @@ Windows 安装程序正在准备中。
 主导航
 待机外观
 示例 AI 办公室
-AgentOffice 的两种使用方式
-AgentOffice 首页
-AgentOffice 交互式工作区
-AgentOffice 灵动岛：原始产品界面
+The Agent Office 的两种使用方式
+The Agent Office 首页
+The Agent Office 交互式工作区
+The Agent Office 灵动岛：原始产品界面
 包含示例 AI 智能体的交互式办公室
-实时小型 AgentOffice 灵动岛
-AI 智能体坐在桌前的 AgentOffice 原始场景`.split('\n');
+实时小型 The Agent Office 灵动岛
+AI 智能体坐在桌前的 The Agent Office 原始场景`.split('\n');
 copy.it=`Vai allo spazio di lavoro
 L’isola
 L’ufficio
 Per iniziare
 Apri lo spazio
-AGENTOFFICE / PER WINDOWS
+THE AGENT OFFICE / PER WINDOWS
 Un posto per seguire il tuo team IA.
 Un posto per tenere la giornata a portata di mano.
 Guarda i tuoi agenti al lavoro, rispondi alle loro domande e tieni musica, tempo e note a portata. Due viste collegate. Un compagno desktop.
@@ -792,7 +792,7 @@ L’anteprima si concentra su Claude Code e Codex locale. Le funzioni e le rispo
 Lo scaffale sposta i miei file?
 No. Ricorda dove sono gli originali. Lascia un file, cambia app e trascinalo in un’altra. L’anteprima usa file di esempio.
 È il prodotto reale?
-L’isola usa componenti, icone e mascotte di AgentOffice. L’ufficio usa la sua scena originale. L’anteprima offre dati di esempio senza collegarsi al desktop o agli account IA.
+L’isola usa componenti, icone e mascotte di The Agent Office. L’ufficio usa la sua scena originale. L’anteprima offre dati di esempio senza collegarsi al desktop o agli account IA.
 Dove posso scaricare l’app Windows?
 Il collegamento verrà aggiunto quando il programma di installazione sarà pronto. Per ora puoi esplorare il prodotto qui.
 Un compagno desktop con due punti di vista.
@@ -826,19 +826,19 @@ Funzioni dell’isola
 Navigazione principale
 Aspetto a riposo
 Ufficio IA di esempio
-Due modi di usare AgentOffice
-Home di AgentOffice
-Spazio interattivo AgentOffice
-Isola dinamica AgentOffice: interfaccia originale
+Due modi di usare The Agent Office
+Home di The Agent Office
+Spazio interattivo The Agent Office
+Isola dinamica The Agent Office: interfaccia originale
 Ufficio interattivo con agenti IA di esempio
-Isola compatta AgentOffice dal vivo
-Scena originale AgentOffice con agenti IA alle scrivanie`.split('\n');
+Isola compatta The Agent Office dal vivo
+Scena originale The Agent Office con agenti IA alle scrivanie`.split('\n');
 copy.ru=`Перейти к рабочему пространству
 Островок
 Офис
 Начало работы
 Открыть пространство
-AGENTOFFICE / ДЛЯ WINDOWS
+THE AGENT OFFICE / ДЛЯ WINDOWS
 Место, где видна работа твоей ИИ-команды.
 Место, где всё для твоего дня под рукой.
 Наблюдай за агентами, отвечай на их вопросы и держи музыку, время и заметки рядом. Два связанных вида. Один помощник на рабочем столе.
@@ -956,7 +956,7 @@ Claude Code + Codex · пример офиса
 Полка перемещает мои файлы?
 Нет. Она запоминает расположение оригиналов. Добавь файл, смени приложение и перетащи его туда. В браузере используются примеры файлов.
 Это настоящий продукт?
-Островок использует компоненты, значки и талисман AgentOffice, офис — оригинальную сцену. Просмотр использует примеры данных без подключения к рабочему столу или ИИ-аккаунтам.
+Островок использует компоненты, значки и талисман The Agent Office, офис — оригинальную сцену. Просмотр использует примеры данных без подключения к рабочему столу или ИИ-аккаунтам.
 Где скачать приложение Windows?
 Ссылка появится, когда установщик будет готов. Пока можно изучить продукт здесь.
 Помощник на рабочем столе с двумя точками зрения.
@@ -990,19 +990,19 @@ Claude Code + Codex · пример офиса
 Главная навигация
 Вид в покое
 Пример ИИ-офиса
-Два способа использовать AgentOffice
-Главная AgentOffice
-Интерактивное пространство AgentOffice
-Динамический островок AgentOffice: оригинальный интерфейс
+Два способа использовать The Agent Office
+Главная The Agent Office
+Интерактивное пространство The Agent Office
+Динамический островок The Agent Office: оригинальный интерфейс
 Интерактивный офис с примерами ИИ-агентов
-Живой малый островок AgentOffice
-Оригинальная сцена AgentOffice с ИИ-агентами за столами`.split('\n');
+Живой малый островок The Agent Office
+Оригинальная сцена The Agent Office с ИИ-агентами за столами`.split('\n');
 copy.fr=`Aller à l’espace de travail
 L’îlot
 Le bureau
 Premiers pas
 Ouvrir l’espace
-AGENTOFFICE / POUR WINDOWS
+THE AGENT OFFICE / POUR WINDOWS
 Un endroit pour suivre ton équipe IA.
 Un endroit pour garder ta journée à portée de main.
 Vois tes agents travailler, réponds à leurs questions et garde musique, temps et notes à proximité. Deux vues connectées. Un compagnon de bureau.
@@ -1120,7 +1120,7 @@ Cet aperçu se concentre sur Claude Code et Codex local. Les fonctions et répon
 L’étagère déplace-t-elle mes fichiers ?
 Non. Elle mémorise l’emplacement des originaux. Dépose un fichier, change d’application et glisse-le vers une autre. L’aperçu utilise des fichiers d’exemple.
 Est-ce le vrai produit ?
-L’îlot utilise les composants, icônes et mascotte d’AgentOffice. Le bureau utilise sa scène originale. L’aperçu fournit des exemples sans se connecter à ton bureau ni à tes comptes IA.
+L’îlot utilise les composants, icônes et mascotte de The Agent Office. Le bureau utilise sa scène originale. L’aperçu fournit des exemples sans se connecter à ton bureau ni à tes comptes IA.
 Où télécharger l’application Windows ?
 Le lien sera ajouté lorsque le programme d’installation sera prêt. Pour le moment, explore le produit ici.
 Un compagnon de bureau, deux points de vue.
@@ -1154,19 +1154,19 @@ Fonctions de l’îlot
 Navigation principale
 Apparence au repos
 Bureau IA d’exemple
-Deux façons d’utiliser AgentOffice
-Accueil AgentOffice
-Espace interactif AgentOffice
-Îlot dynamique AgentOffice : interface originale
+Deux façons d’utiliser The Agent Office
+Accueil The Agent Office
+Espace interactif The Agent Office
+Îlot dynamique The Agent Office : interface originale
 Bureau interactif avec agents IA d’exemple
-Petit îlot AgentOffice en direct
-Scène originale AgentOffice avec des agents IA à leur bureau`.split('\n');
+Petit îlot The Agent Office en direct
+Scène originale The Agent Office avec des agents IA à leur bureau`.split('\n');
 copy['pt-BR']=`Ir para o espaço de trabalho
 A ilha
 O escritório
 Primeiros passos
 Abrir o espaço
-AGENTOFFICE / PARA WINDOWS
+THE AGENT OFFICE / PARA WINDOWS
 Um lugar para acompanhar sua equipe de IA.
 Um lugar para manter seu dia por perto.
 Veja seus agentes trabalhando, responda às perguntas e tenha música, tempo e notas à mão. Duas visualizações conectadas. Um companheiro de desktop.
@@ -1284,7 +1284,7 @@ Esta prévia foca em Claude Code e Codex local. Os recursos e as respostas pelo 
 A prateleira move meus arquivos?
 Não. Ela lembra onde estão os originais. Solte um arquivo, troque de aplicativo e arraste-o para outro. A prévia usa arquivos de exemplo.
 Este é o produto real?
-A ilha usa componentes, ícones e mascote do AgentOffice. O escritório usa sua cena original. A prévia usa exemplos sem conectar seu desktop nem contas de IA.
+A ilha usa componentes, ícones e mascote de The Agent Office. O escritório usa sua cena original. A prévia usa exemplos sem conectar seu desktop nem contas de IA.
 Onde posso baixar o aplicativo Windows?
 O link será adicionado quando o instalador estiver pronto. Por enquanto, explore o produto aqui.
 Um companheiro de desktop com dois pontos de vista.
@@ -1318,19 +1318,19 @@ Recursos da ilha
 Navegação principal
 Aparência em repouso
 Escritório de IA de exemplo
-Duas formas de usar o AgentOffice
-Início do AgentOffice
-Espaço interativo AgentOffice
-Ilha dinâmica AgentOffice: interface original
+Duas formas de usar The Agent Office
+Início de The Agent Office
+Espaço interativo The Agent Office
+Ilha dinâmica The Agent Office: interface original
 Escritório interativo com agentes de IA de exemplo
-Ilha compacta AgentOffice ao vivo
-Cena original do AgentOffice com agentes de IA às mesas`.split('\n');
+Ilha compacta The Agent Office ao vivo
+Cena original de The Agent Office com agentes de IA às mesas`.split('\n');
 copy.es=`Ir al espacio de trabajo
 La isla
 La oficina
 Primeros pasos
 Abrir el espacio
-AGENTOFFICE / PARA WINDOWS
+THE AGENT OFFICE / PARA WINDOWS
 Un lugar para seguir a tu equipo de IA.
 Un lugar para tener tu día a mano.
 Ve a tus agentes trabajando, atiende sus preguntas y ten música, tiempo y notas a mano. Dos vistas conectadas. Un compañero de escritorio.
@@ -1448,7 +1448,7 @@ Esta vista previa se centra en Claude Code y Codex local. Las funciones y respue
 ¿El estante mueve mis archivos?
 No. Recuerda dónde están los originales. Deja un archivo, cambia de aplicación y arrástralo a otra. La demo usa archivos de ejemplo.
 ¿Es el producto real?
-La isla utiliza los componentes, iconos y mascota de AgentOffice. La oficina usa su escena original. La demo usa datos de ejemplo sin conectarse a tu escritorio ni a tus cuentas de IA.
+La isla utiliza los componentes, iconos y mascota de The Agent Office. La oficina usa su escena original. La demo usa datos de ejemplo sin conectarse a tu escritorio ni a tus cuentas de IA.
 ¿Dónde puedo descargar la aplicación de Windows?
 Añadiremos el enlace cuando el instalador esté listo. Por ahora, puedes explorar el producto aquí.
 Un compañero de escritorio con dos puntos de vista.
@@ -1482,19 +1482,19 @@ Funciones de la isla
 Navegación principal
 Aspecto en reposo
 Oficina de IA de ejemplo
-Dos formas de usar AgentOffice
-Inicio de AgentOffice
-Espacio interactivo de AgentOffice
-Isla dinámica de AgentOffice: interfaz original
+Dos formas de usar The Agent Office
+Inicio de The Agent Office
+Espacio interactivo de The Agent Office
+Isla dinámica de The Agent Office: interfaz original
 Oficina interactiva con agentes de IA de ejemplo
-Isla compacta de AgentOffice en directo
-Escena original de AgentOffice con agentes de IA en sus mesas`.split('\n');
+Isla compacta de The Agent Office en directo
+Escena original de The Agent Office con agentes de IA en sus mesas`.split('\n');
 copy.de=`Zum Arbeitsbereich
 Die Insel
 Das Büro
 Erste Schritte
 Arbeitsbereich öffnen
-AGENTOFFICE / FÜR WINDOWS
+THE AGENT OFFICE / FÜR WINDOWS
 Ein Platz, um dein KI-Team im Blick zu behalten.
 Ein Platz für alles andere in deinem Tag.
 Sieh deinen Agenten bei der Arbeit zu, beantworte ihre Fragen und behalte Musik, Zeit und Notizen griffbereit. Zwei verbundene Ansichten. Ein Desktop-Begleiter.
@@ -1612,7 +1612,7 @@ Diese Vorschau konzentriert sich auf Claude Code und lokales Codex. Funktionen u
 Verschiebt die Ablage meine Dateien?
 Nein. Sie merkt sich den Ort der Originale. Lege eine Datei ab, wechsle die App und ziehe sie heraus. Die Browser-Demo nutzt Beispieldateien.
 Ist das das echte Produkt?
-Die Insel nutzt AgentOffice-Komponenten, Symbole und Maskottchen. Das Büro zeigt seine Originalszene. Die Vorschau nutzt Beispieldaten statt Verbindungen zu Desktop oder KI-Konten.
+Die Insel nutzt The-Agent-Office-Komponenten, Symbole und Maskottchen. Das Büro zeigt seine Originalszene. Die Vorschau nutzt Beispieldaten statt Verbindungen zu Desktop oder KI-Konten.
 Wo kann ich die Windows-App herunterladen?
 Der Download-Link folgt, sobald der Installer bereit ist. Bis dahin kannst du das Produkt hier erkunden.
 Ein Desktop-Begleiter mit zwei Blickwinkeln.
@@ -1646,19 +1646,19 @@ Inselfunktionen
 Hauptnavigation
 Ruheansicht
 KI-Beispielbüro
-Zwei Möglichkeiten, AgentOffice zu nutzen
-AgentOffice-Startseite
-Interaktiver AgentOffice-Arbeitsbereich
-Dynamische AgentOffice-Insel: Originaloberfläche
+Zwei Möglichkeiten, The Agent Office zu nutzen
+The-Agent-Office-Startseite
+Interaktiver The-Agent-Office-Arbeitsbereich
+Dynamische The-Agent-Office-Insel: Originaloberfläche
 Interaktives Büro mit KI-Beispielagenten
-Live-Vorschau der kleinen AgentOffice-Insel
-Originale AgentOffice-Szene mit KI-Agenten an ihren Schreibtischen`.split('\n');
+Live-Vorschau der kleinen The-Agent-Office-Insel
+Originale The-Agent-Office-Szene mit KI-Agenten an ihren Schreibtischen`.split('\n');
 copy.tr=`Çalışma alanına geç
 Ada
 Ofis
 Başlarken
 Çalışma alanını aç
-AGENTOFFICE / WINDOWS İÇİN
+THE AGENT OFFICE / WINDOWS İÇİN
 AI ekibini takip edebileceğin bir yer.
 Günün geri kalanını elinin altında tutan bir yer.
 Ajanlarını çalışırken gör, sorularını yakala; müzik, zaman ve notların elinin altında olsun. Birbirine bağlı iki görünüm. Tek masaüstü yardımcısı.
@@ -1776,7 +1776,7 @@ Bu önizleme Claude Code ve yerel Codex'e odaklanır. Özellikler bağlantıya g
 Raf dosyalarımı taşıyor mu?
 Hayır. Asıllarının yerini hatırlar. Dosyayı rafa bırak, uygulama değiştir ve başka bir uygulamaya sürükle. Tarayıcı önizlemesi örnek dosyalar kullanır.
 Bu, gerçek ürün mü?
-Ada AgentOffice'in kendi bileşenlerini, simgelerini ve maskotunu kullanır. Ofis de özgün sahnesini kullanır. Önizleme, masaüstüne veya AI hesaplarına bağlanmak yerine örnek veriler sunar.
+Ada The Agent Office'in kendi bileşenlerini, simgelerini ve maskotunu kullanır. Ofis de özgün sahnesini kullanır. Önizleme, masaüstüne veya AI hesaplarına bağlanmak yerine örnek veriler sunar.
 Windows uygulamasını nereden indirebilirim?
 Dağıtılabilir kurulum dosyası hazır olduğunda indirme bağlantısı eklenecek. Şimdilik ürünü burada keşfedebilirsin.
 İki bakış açısına sahip bir masaüstü yardımcısı.
@@ -1810,10 +1810,10 @@ Ada özellikleri
 Ana menü
 Dinlenme görünümü
 Örnek AI ofisi
-AgentOffice'i kullanmanın iki yolu
-AgentOffice ana sayfa
-Etkileşimli AgentOffice çalışma alanı
-AgentOffice dinamik adası: özgün ürün arayüzü
+The Agent Office'i kullanmanın iki yolu
+The Agent Office ana sayfa
+Etkileşimli The Agent Office çalışma alanı
+The Agent Office dinamik adası: özgün ürün arayüzü
 Örnek AI ajanlarıyla etkileşimli bir ofis
-Canlı küçük AgentOffice adası
-AI ajanlarının masalarında bulunduğu özgün AgentOffice sahnesi`.split('\n');
+Canlı küçük The Agent Office adası
+AI ajanlarının masalarında bulunduğu özgün The Agent Office sahnesi`.split('\n');

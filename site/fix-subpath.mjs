@@ -1,4 +1,4 @@
-// Makes the built site work from any folder (GitHub Pages serves it from /agentoffice/), as well as
+// Makes the built site work from any folder (GitHub Pages serves it from /the-agent-office/), as well as
 // from the root. The desktop app's code refers to its own files from the server root
 // (/mascot/layers, /ofis, /assets); the product frames live in dist/product/, so those become
 // paths relative to that folder. Idempotent: run after every product build (build-*.mjs call it).
