@@ -31,7 +31,7 @@ const A = (name: string) => [LANG === 'en' ? `${name}-en-dark` : '', `${name}-da
 
 // ——— words: the film's language only ———
 /** The product's site, the same in every cut (no scheme, as people type it). */
-const SITE = 'eyrafx.github.io/agentoffice';
+const SITE = 'eyrafx.github.io/the-agent-office';
 const TEXT = {
   tr: {
     top: 'Ajanların, ekranın tepesinde.',

@@ -6,12 +6,12 @@
 
 <!-- Site "yakında" dediği sürece bu bağlantı da öyle der. Kurulum dosyası yayımlanınca
      yazıyı "⬇ The Agent Office vX.Y.Z'yi indir" yapın ve bağlantıyı sürüm dosyasına yönlendirin. -->
-**[⬇ The Agent Office'i indir (yakında)](https://eyrafx.github.io/agentoffice/#download)**
+**[⬇ The Agent Office'i indir (yakında)](https://eyrafx.github.io/the-agent-office/#download)**
 
-[![Son sürüm](https://img.shields.io/github/v/release/eyrafx/agentoffice?include_prereleases&sort=semver&label=son%20s%C3%BCr%C3%BCm)](https://github.com/eyrafx/agentoffice/releases) · [Yenilikler](CHANGELOG_TR.md)
+[![Son sürüm](https://img.shields.io/github/v/release/eyrafx/the-agent-office?include_prereleases&sort=semver&label=son%20s%C3%BCr%C3%BCm)](https://github.com/eyrafx/the-agent-office/releases) · [Yenilikler](CHANGELOG_TR.md)
 
 <!-- Demo videosu yayımlanınca "▶ Demoyu İzle (yakında)" yazısını videoya bağlayın. -->
-▶ Demoyu İzle *(yakında)* · [Web sitesi ve canlı demo](https://eyrafx.github.io/agentoffice/) · [English README](README.md)
+▶ Demoyu İzle *(yakında)* · [Web sitesi ve canlı demo](https://eyrafx.github.io/the-agent-office/) · [English README](README.md)
 
 > **Bağımsız bir projedir.** The Agent Office'in Microsoft, Anthropic, OpenAI ya da Anysphere (Cursor) ile resmi bir bağlantısı yoktur ve onlar tarafından desteklenmemektedir. Ürün adları sahiplerine aittir.
 
@@ -130,7 +130,7 @@ Store sürümünde kaldırmadan önce bağlantıyı Ayarlar › Gelişmiş'ten k
 - Claude sınırları için bilgisayarındaki mevcut Claude Code oturumuyla Anthropic'in kullanım servisine sorulur; erişim anahtarı asla saklanmaz, kaydedilmez ya da başka yere gönderilmez.
 - Eş zamanlı şarkı sözleri (LRCLIB) ve hava durumu (Open-Meteo) sen açana kadar kapalıdır.
 
-Tam metin: [Gizlilik](https://eyrafx.github.io/agentoffice/privacy.html)
+Tam metin: [Gizlilik](https://eyrafx.github.io/the-agent-office/privacy.html)
 
 ## Kaynaktan derleme
 
@@ -163,11 +163,11 @@ powershell -File scripts/dev.ps1 -Action bundle   # kurulum dosyasını oluştur
 
 ## Katkı
 
-Hata bildirimleri, fikirler ve pull request'ler memnuniyetle karşılanır: [Issues](https://github.com/eyrafx/agentoffice/issues).
+Hata bildirimleri, fikirler ve pull request'ler memnuniyetle karşılanır: [Issues](https://github.com/eyrafx/the-agent-office/issues).
 
 ## Destek
 
-The Agent Office ücretsizdir. İşine yarıyorsa [destek sayfasından](https://eyrafx.github.io/agentoffice/#support) destek olabilirsin.
+The Agent Office ücretsizdir. İşine yarıyorsa [destek sayfasından](https://eyrafx.github.io/the-agent-office/#support) destek olabilirsin.
 
 ## Teşekkürler
 

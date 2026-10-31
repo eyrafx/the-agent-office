@@ -6,12 +6,12 @@ A dynamic island for **Windows** and a little office for your AI coding agents.
 
 <!-- While the site says "coming soon", so does this link. When the installer is out,
      change the text to "⬇ Download The Agent Office vX.Y.Z" and point it at the release file. -->
-**[⬇ Download The Agent Office (coming soon)](https://eyrafx.github.io/agentoffice/#download)**
+**[⬇ Download The Agent Office (coming soon)](https://eyrafx.github.io/the-agent-office/#download)**
 
-[![Latest version](https://img.shields.io/github/v/release/eyrafx/agentoffice?include_prereleases&sort=semver&label=latest%20version)](https://github.com/eyrafx/agentoffice/releases) · [What's new](CHANGELOG.md)
+[![Latest version](https://img.shields.io/github/v/release/eyrafx/the-agent-office?include_prereleases&sort=semver&label=latest%20version)](https://github.com/eyrafx/the-agent-office/releases) · [What's new](CHANGELOG.md)
 
 <!-- When the demo video is published, turn "▶ Watch Demo (coming soon)" into a link to it. -->
-▶ Watch Demo *(coming soon)* · [Website and live demo](https://eyrafx.github.io/agentoffice/) · [Türkçe README](README_TR.md)
+▶ Watch Demo *(coming soon)* · [Website and live demo](https://eyrafx.github.io/the-agent-office/) · [Türkçe README](README_TR.md)
 
 > **Independent project.** The Agent Office is not affiliated with or endorsed by Microsoft, Anthropic, OpenAI or Anysphere (Cursor). Product names belong to their owners.
 
@@ -130,7 +130,7 @@ With the Store version, turn the connection off in Settings › Advanced before 
 - Claude limits use your existing local Claude Code sign-in to ask Anthropic's usage service; the token is never stored, logged or sent elsewhere.
 - Synced lyrics (LRCLIB) and weather (Open-Meteo) stay off until you turn them on.
 
-Full policy: [Privacy](https://eyrafx.github.io/agentoffice/privacy.html)
+Full policy: [Privacy](https://eyrafx.github.io/the-agent-office/privacy.html)
 
 ## Build from source
 
@@ -163,11 +163,11 @@ powershell -File scripts/dev.ps1 -Action bundle   # build the installer
 
 ## Contributing
 
-Issues, bug reports and pull requests are welcome: [Issues](https://github.com/eyrafx/agentoffice/issues).
+Issues, bug reports and pull requests are welcome: [Issues](https://github.com/eyrafx/the-agent-office/issues).
 
 ## Support
 
-The Agent Office is free. If it helps you, you can support it on the [support page](https://eyrafx.github.io/agentoffice/#support).
+The Agent Office is free. If it helps you, you can support it on the [support page](https://eyrafx.github.io/the-agent-office/#support).
 
 ## Thanks
 

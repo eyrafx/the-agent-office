@@ -12,7 +12,7 @@ const BEATS = [
   { n: 3, title: 'Uygulamalar ve tarayıcı', range: [23.33, 31.67], at: [24.5, 26.5, 28.5, 30.5], status: 'gerçek (pencereler uydurma)', what: 'Koyu, markasız bir uygulama ekranı dolduruyor; siyah ada üstte. Tarayıcıya geçince ada gizlenir; imleç üst kenara gelince açılır.', sound: 'Müzik sürer.' },
   { n: 4, title: 'Her yerde', range: [31.67, 43.33], at: [33.0, 37.0, 40.5], status: 'gerçek + çizilmiş sürükleme', what: 'Tam ekran sunumda ince, nefes alan çizgi. Sistem işaretleri: ses, Caps Lock, klavye dili. Dosyalar rafa bırakılır, biri mesaja sürüklenir.', sound: 'Müzik sürer.' },
   { n: 5, title: 'Ajanlar ve ofis', range: [43.33, 54.17], at: [45.0, 47.5, 49.5, 51.5, 53.0], status: 'gerçek', what: 'Bir ajan soru sorar, ada gösterir. Ofiste yönetici yanında; geniş plandan karta kesme, yanıt gönderilir. Pencerede ilkbahar → yaz → sonbahar → kış.', sound: 'Müzik Em9 ve A9 ile eve döner.' },
-  { n: 6, title: 'Bitiş kartı', range: [54.17, 60], at: [56.5, 58.0], status: 'gerçek', what: 'Ahtapot maskot, "AgentOffice", "Claude Code ve Codex ajanların için.", "Windows · macOS yakında", eyrafx.github.io/agentoffice.', sound: 'Tek uzun Re akoru, sessizliğe kadar söner.' },
+  { n: 6, title: 'Bitiş kartı', range: [54.17, 60], at: [56.5, 58.0], status: 'gerçek', what: 'Ahtapot maskot, "AgentOffice", "Claude Code ve Codex ajanların için.", "Windows · macOS yakında", eyrafx.github.io/the-agent-office.', sound: 'Tek uzun Re akoru, sessizliğe kadar söner.' },
 ];
 
 const at = BEATS.flatMap(b => b.at);
