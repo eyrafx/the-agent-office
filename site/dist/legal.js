@@ -28,13 +28,14 @@
   const here = (file, id) => `${file}?lang=${encodeURIComponent(id)}`;
 
   function render(id) {
-    const ui = UI[id] || UI.en, c = copy[id] || copy.en, tag = (LANGS.find(l => l[0] === id) || LANGS[1])[2];
+    // A page without this language shows the English text, so it is marked as English.
+    const ui = UI[id] || UI.en, c = copy[id] || copy.en, tag = copy[id] ? (LANGS.find(l => l[0] === id) || LANGS[1])[2] : 'en-US';
     document.documentElement.lang = tag;
     document.title = `The Agent Office — ${c.title}`;
     const main = document.querySelector('#legal');
     const section = s => `<section>${s.h ? `<h2>${s.h}</h2>` : ''}${(s.p || []).map(p => `<p>${fill(p)}</p>`).join('')}${s.items ? `<ul>${s.items.map(i => `<li>${fill(i)}</li>`).join('')}</ul>` : ''}</section>`;
     const qa = q => `<details><summary>${q.q}</summary><div>${q.a.map(p => `<p>${fill(p)}</p>`).join('')}</div></details>`;
-    main.innerHTML = `<h1>${c.title}</h1>${c.updated ? `<p class="when">${ui.updated}: ${c.updated}</p>` : ''}${(c.intro || []).map(p => `<p class="lead">${fill(p)}</p>`).join('')}${(c.sections || []).map(section).join('')}${c.questions ? `<div class="legal-faq">${c.questions.map(qa).join('')}</div>` : ''}`;
+    main.innerHTML = `<h1>${c.title}</h1>${c.updated ? `<p class="when">${(copy[id] ? ui : UI.en).updated}: ${c.updated}</p>` : ''}${(c.intro || []).map(p => `<p class="lead">${fill(p)}</p>`).join('')}${(c.sections || []).map(section).join('')}${c.questions ? `<div class="legal-faq">${c.questions.map(qa).join('')}</div>` : ''}`;
     document.querySelector('[data-legal-home]').href = home(id);
     document.querySelector('[data-legal-home] span').textContent = ui.home;
     const select = document.querySelector('#legal-language');

@@ -184,4 +184,5 @@ The Agent Office was built with Claude, made possible by Anthropic's startup sup
 Created by **eyra**
 
 GitHub: **[@eyrafx](https://github.com/eyrafx)**  
-Telegram: **[@eyrafx](https://t.me/eyrafx)**
+Questions and suggestions: **[GitHub Discussions](https://github.com/eyrafx/the-agent-office/discussions)**  
+Bug reports: **[GitHub Issues](https://github.com/eyrafx/the-agent-office/issues)**

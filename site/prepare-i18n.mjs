@@ -31,7 +31,7 @@ for(const id of Object.keys(copy)){if(noteCopy[id]?.length!==11)throw new Error(
 for(const id of Object.keys(copy)){if(footerCopy[id]?.length!==6)throw new Error('Incomplete footer copy '+id);copy[id].push(...footerCopy[id]);}
 for(const id of Object.keys(copy)){if(sectionCopy[id]?.length!==4)throw new Error('Incomplete section copy '+id);copy[id].push(...sectionCopy[id]);}
 for(const id of Object.keys(copy)){if(filesCopy[id]?.length!==4)throw new Error('Incomplete files copy '+id);copy[id].push(...filesCopy[id]);}
-for(const id of Object.keys(copy)){if(contactCopy[id]?.length!==3)throw new Error('Incomplete contact copy '+id);copy[id].push(...contactCopy[id]);}
+for(const id of Object.keys(copy)){if(contactCopy[id]?.length!==4)throw new Error('Incomplete contact copy '+id);copy[id].push(...contactCopy[id]);}
 for(const id of Object.keys(copy)){if(kawaiiCopy[id]?.length!==12)throw new Error('Incomplete kawaii copy '+id);copy[id].push(...kawaiiCopy[id]);}
 for(const id of Object.keys(copy)){if(officeCopy[id]?.length!==18)throw new Error('Incomplete office copy '+id);copy[id].push(...officeCopy[id]);}
 for(const [id,values] of Object.entries(copy)){

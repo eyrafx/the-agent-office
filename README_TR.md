@@ -184,4 +184,5 @@ The Agent Office, Anthropic'in girişimlere destek programı sayesinde Claude il
 **eyra** tarafından yapıldı
 
 GitHub: **[@eyrafx](https://github.com/eyrafx)**  
-Telegram: **[@eyrafx](https://t.me/eyrafx)**
+Sorular ve öneriler: **[GitHub Discussions](https://github.com/eyrafx/the-agent-office/discussions)**  
+Hata bildirimleri: **[GitHub Issues](https://github.com/eyrafx/the-agent-office/issues)**

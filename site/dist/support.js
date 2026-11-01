@@ -61,21 +61,22 @@
     });
   }
 
-  // ——— feedback (no backend: an email draft, or "coming soon") ———
+  // ——— feedback (no backend: a GitHub Discussions draft, or "coming soon") ———
   const form = $('.feedback-form');
   if (form) {
-    const status = $('.feedback-status', form), message = $('#feedback-message', form), contact = $('#feedback-contact', form);
+    const status = $('.feedback-status', form), message = $('#feedback-message', form);
     const fb = config.feedback || {};
-    const mailto = fb.mode === 'mailto' && /@/.test(fb.email || '');
+    const github = fb.mode === 'github' && /^https:\/\/github\.com\//.test(fb.discussions || '');
     form.addEventListener('submit', e => {
       e.preventDefault();
       const text = message.value.trim();
       if (!text) { status.textContent = t('Please write a message first.'); status.dataset.kind = 'warn'; message.focus(); return; }
       status.dataset.kind = 'ok';
-      if (mailto) {
-        const body = contact.value.trim() ? `${text}\n\n— ${contact.value.trim()}` : text;
-        location.href = `mailto:${encodeURIComponent(fb.email)}?subject=${encodeURIComponent(fb.subject || 'The Agent Office feedback')}&body=${encodeURIComponent(body)}`;
-        status.textContent = t('Your email app will open with this message ready to send.');
+      if (github) {
+        const url = `${fb.discussions.replace(/\/$/, '')}/new?category=${encodeURIComponent(fb.category || 'ideas')}&title=${encodeURIComponent(fb.subject || 'The Agent Office feedback')}&body=${encodeURIComponent(text)}`;
+        const tab = window.open(url, '_blank'); // ('noopener' would make this null, so it is cut by hand)
+        if (tab) tab.opener = null; else location.href = url;
+        status.textContent = t('GitHub Discussions opens in a new tab with your message ready to post.');
       } else status.textContent = t('Sending from the site is coming soon. Thank you for writing!');
     });
   }

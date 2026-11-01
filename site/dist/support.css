@@ -148,8 +148,8 @@
 .contact-list a:hover{background:#ffffff0e;border-color:#ffffff26}
 .contact-list a:focus-visible{outline:2px solid #9bc8ce;outline-offset:2px}
 .contact-list svg{width:18px;height:18px;flex:none;fill:none;stroke:#ffb76b;stroke-width:1.7;stroke-linecap:round;stroke-linejoin:round}
-.contact-list span{font-weight:650;font-size:14px}
-.contact-list b{margin-left:auto;font-weight:500;font-size:13px;color:#a9a5ad;min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.contact-list span{font-weight:650;font-size:14px;white-space:nowrap}
+.contact-list b{margin-left:auto;font-weight:500;font-size:13px;color:#a9a5ad;min-width:0;text-align:right}
 /* Download buttons while no download is published: a calm "Coming soon" pill. */
 .download-action.is-soon:not(.mac-action){filter:saturate(.75);opacity:.9}
 .download-action.is-soon:not(.mac-action):hover{transform:none}
